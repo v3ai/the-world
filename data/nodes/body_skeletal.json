@@ -390,7 +390,7 @@
   "layers": {
    "basics": "The pelvis carries your upper-body weight to your legs and cradles the organs of the lower abdomen.",
    "deeper": "Each hip bone is made of three fused bones (ilium, ischium, pubis). The hip sockets (acetabula) hold the heads of the femurs.",
-   "expert": "Male and female pelves differ in the shape of the inlet and outlet. Why is debated: the obstetric-dilemma view says walking and birth pull the pelvis in opposite directions, while the energetics-of-gestation-and-growth hypothesis says the mother's metabolism limits fetal size."
+   "expert": "A woman's pelvis is usually wider and shallower than a man's: the inlet is round or oval rather than heart-shaped, the angle under the pubic bones is wider (more than 80° against less than 70°), the sacrum is wider, shorter and less curved, the sciatic notch is broader and the outlet larger, with the ischial tuberosities further apart. These are averages that overlap. Why they differ is debated: the obstetric-dilemma view says walking and birth pull the pelvis in opposite directions, while the energetics-of-gestation-and-growth hypothesis says the mother's metabolism limits fetal size."
   },
   "facts": [
    [
@@ -400,6 +400,10 @@
    [
     "Joints",
     "2 sacroiliac + pubic symphysis"
+   ],
+   [
+    "Subpubic angle",
+    "> 80° in women, < 70° in men (on average)"
    ]
   ],
   "did_you_know": "The pelvis' shape is among the best clues to a skeleton's sex.",

@@ -70,7 +70,7 @@ nodes.forEach(n => {
 });
 kn.forEach(n => add({ id: 'kn:' + n.id, c: 'kn', g: 'card', t: n.title, s: first(n.basics), k: 'knowledge' }));
 // places: landmarks, planets, moons, park things
-const LM_SKIP = new Set(['Your brain', 'Your heart', 'Your phone', 'Phone processor', 'CPU core', 'Your skin', 'Oxygen atom', 'Honey bee (14 mm)', 'Proton', 'Transistor', 'Logic gates']);
+const LM_SKIP = new Set(['Brain', 'Heart', 'Skin', 'Your brain', 'Your heart', 'Your phone', 'Phone processor', 'CPU core', 'Your skin', 'Oxygen atom', 'Honey bee (14 mm)', 'Proton', 'Transistor', 'Logic gates']);
 const LM_CARD = { 'The Sun': ['sun'], 'Earth': ['earthPlanet', 'earth'], 'Black hole Sgr A*': ['sgr', 'sgra'], 'Milky Way': ['milkyway', 'mw'] };
 snap.landmarks.forEach(l => { if (LM_SKIP.has(l.label)) return; add({ id: 'lm:' + l.label, c: 'lm', g: 'model', t: l.label.replace(/ \(\d+ mm\)/, ''), s: 'A place on the scale', card: LM_CARD[l.label] }); });
 const PLANETS = ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ceres', 'Eris', 'Haumea', 'Makemake'];

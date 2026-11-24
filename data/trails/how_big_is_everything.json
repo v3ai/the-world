@@ -27,7 +27,7 @@
    "title": "A person, about 2 metres",
    "scale": "6 m across",
    "where": {
-    "landmark": "You"
+    "landmark": "People"
    },
    "expect": {
     "frame": "Greenwich Park"

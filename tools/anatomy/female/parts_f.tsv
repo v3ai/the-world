@@ -1,0 +1,134 @@
+# The woman's parts: one row per part of data/anatomy_f, built by build_f.py from the Human Reference Atlas female set (v1.10, file u)
+# and its female pelvis (v1.3, file p). Columns (tab-separated):
+#   id       the part's id (the app shows it with the prefix vhf_); the same id as the man's part where the structure is the same
+#   name     shown on screen; {Side} is Left or Right, {n} the source node's own name in words (rows with flag each)
+#   system   one of the app's systems (integumentary skeletal muscular nervous cardiovascular respiratory digestive urinary
+#            lymphatic sensory reproductive)
+#   side     - (none), L or R (only meshes on that side, by position), LR (one part per side: id_l and id_r)
+#   match    regular expression on the node's path (ancestor names and its own, joined by /, VH_F_ removed); a subtree is chosen
+#            by an ancestor's name
+#   exclude  regular expression; matching nodes are left out (- for none)
+#   file     u (united female v1.10) or p (pelvis female v1.3)
+#   tris     triangle target after reduction (per side for LR; L/R targets as a/b)
+#   src      where the shape comes from: vhf (her sections), vhf_edited (her sections, adjusted by the atlas makers), vhf_atlas
+#            (her sections, modelled with the guidance of atlases), modelled (fitted to her body, not traced), sculpted (a
+#            sculpted reference model placed in her body), allen (another woman's brain, Allen atlas, mirrored and resized)
+#   card     the card (node id in data/nodes) that explains it
+#   parent   - or the part this one is a detail of (drawn only in that organ's cut-open view)
+#   flags    - or a comma list: whole (the part has detail parts), each (one part per matched node)
+# Sides are set from position, never from the source's names (some of which are wrong: the Allen "_L" structures and the
+# "right" round ligament lie on her right and left respectively). build_f.py logs every name that disagrees with its position.
+id	name	system	side	match	exclude	file	tris	src	card	parent	flags
+skin	Skin	integumentary	-	integumentary_system/skin$	-	u	22000	vhf_edited	skin	-	-
+breast_fat	Breast fat ({Side})	reproductive	LR	mammary_gland_./fat_.$	-	u	3000	sculpted	breast	-	-
+breast_lobes	Mammary lobes ({Side})	reproductive	LR	mammary_lobes_.$	-	u	2500	sculpted	mammary_lobes	-	-
+lactiferous_ducts	Lactiferous ducts and sinuses ({Side})	reproductive	LR	main_lactiferous_(ducts|sinuses)_.$	-	u	2000	sculpted	lactiferous_ducts	-	-
+nipple_areola	Nipple and areola ({Side})	reproductive	LR	mammary_gland_./(nipple|areola|areolar_tubercles)_.$	-	u	1200	sculpted	nipple_areola	-	-
+breast_ligaments	Suspensory ligaments of the breast ({Side})	reproductive	LR	mammary_gland_./suspensory_ligaments_.$	-	u	1500	sculpted	suspensory_ligaments_breast	-	-
+uterus	Uterus	reproductive	-	reproductive_system/uterus/(body_of_uterus|fundus_of_uterus|cornua|lower_uterine_segment|posterior_wall_of_uterus|anterior_wall_of_uterus|abdominal_ostium_of_uterine_tube)$	-	u	4000	vhf	uterus	-	whole
+uterus_fundus	Fundus of the uterus	reproductive	-	reproductive_system/uterus/(fundus_of_uterus|cornua|abdominal_ostium_of_uterine_tube)$	-	u	900	vhf	uterus	uterus	-
+uterus_wall_front	Front wall of the uterus	reproductive	-	reproductive_system/uterus/anterior_wall_of_uterus$	-	u	1500	vhf	uterus	uterus	-
+uterus_wall_back	Back wall of the uterus	reproductive	-	reproductive_system/uterus/posterior_wall_of_uterus$	-	u	1500	vhf	uterus	uterus	-
+uterus_body	Body of the uterus, round its cavity	reproductive	-	reproductive_system/uterus/body_of_uterus$	-	u	1200	vhf	uterus	uterus	-
+uterus_lower_segment	Lower segment of the uterus	reproductive	-	reproductive_system/uterus/lower_uterine_segment$	-	u	500	vhf	uterus	uterus	-
+cervix	Cervix (with the internal and external os)	reproductive	-	reproductive_system/uterus/cervix	-	u	1300	vhf	cervix	-	-
+uterine_tube	Uterine tube ({Side})	reproductive	LR	reproductive_system/fallopian_tube/	-	u	1500	vhf	uterine_tubes	-	-
+ovary	Ovary ({Side})	reproductive	LR	reproductive_system/ovary/	-	u	420	vhf	ovaries	-	-
+vagina	Vagina	reproductive	-	reproductive_system/vagina	-	u	1500	vhf	vagina	-	-
+broad_ligament	Broad ligament (with the mesosalpinx and mesovarium)	reproductive	-	ligaments_of_uterus_and_ovaries/broad_ligament	-	u	3000	vhf	broad_ligament	-	-
+uterine_ligaments	Ligaments of the uterus and ovaries (round, cardinal, uterosacral, suspensory, ovarian)	reproductive	-	ligaments_of_uterus_and_ovaries/(round_ligament|uterosacral|cardinal|suspensory_ligament_of_ovary|ovarian_ligament)	-	u	2500	vhf	ligaments_of_uterus	-	-
+uterovesical_pouch	Uterovesical pouch	reproductive	-	ligaments_of_uterus_and_ovaries/uterovesical_pouch$	-	u	1500	vhf	uterovesical_pouch	-	-
+sternum	Sternum (with the manubrium)	skeletal	-	skeletal_system/(sternum|manubrium)$	-	u	1300	vhf	sternum	-	-
+cervical_spine	Cervical vertebrae (C1-C7)	skeletal	-	vertebra/cervical_vertebra_\d$	-	u	2200	vhf	cervical_spine	-	-
+thoracic_spine	Thoracic vertebrae (T1-T12)	skeletal	-	vertebra/thoracic_vertebra_\d+$	-	u	3500	vhf	thoracic_spine	-	-
+lumbar_spine	Lumbar vertebrae (L1-L6: she has six)	skeletal	-	vertebra/lumbar_vertebra_\d$	-	u	3000	vhf	lumbar_spine	-	-
+sacrum	Sacrum	skeletal	-	skeletal_system/pelvis/sacrum$	-	u	1000	vhf	sacrum	-	-
+coccyx	Coccyx	skeletal	-	skeletal_system/pelvis/coccyx$	-	u	300	vhf	coccyx	-	-
+hip_bone	Hip bone ({Side}: ilium, ischium and pubis)	skeletal	LR	pelvis/(ilium|ischium|pubis)/(ilium|ischium|pubis)_compact_bone/	-	p	1800	vhf	pelvis	-	-
+intervertebral_discs	Intervertebral discs	skeletal	-	intervertebral_disk/	-	u	1500	modelled	intervertebral_discs	-	-
+femur	Femur ({Side})	skeletal	LR	knee_joint_./femur_.$	-	u	1000	vhf	femur	-	-
+patella	Patella ({Side})	skeletal	LR	knee_joint_./patella_.$	-	u	300	vhf	patella	-	-
+tibia	Tibia ({Side})	skeletal	LR	knee_joint_./tibia_.$	-	u	700	vhf	tibia_fibula	-	-
+fibula	Fibula ({Side})	skeletal	LR	knee_joint_./fibula_.$	-	u	450	vhf	tibia_fibula	-	-
+knee_cartilage	Knee cartilage and meniscus ({Side})	skeletal	LR	(knee_./meniscus_.$|articular_cartilage_of_knee_./)	-	u	600	vhf	knee_cartilage	-	-
+knee_ligaments	Knee ligaments ({Side})	skeletal	LR	ligaments_of_knee_./	-	u	800	vhf	knee_ligaments	-	-
+teeth	Teeth	skeletal	-	mouth/tooth_row/	-	u	3000	vhf_atlas	teeth	-	-
+rectus_femoris	Rectus femoris ({Side})	muscular	LR	muscles_of_knee_./rectus_femoris_.	-	u	1000	vhf	rectus_femoris	-	-
+extraocular_muscles	Eye muscles ({Side})	muscular	LR	muscles_of_eye/ocular_muscles_./	-	u	800	vhf_edited	extraocular_muscles	-	-
+cerebrum	Cerebral hemisphere ({Side})	nervous	LR	Allen_brain_hemisphere_./Allen_(primary_motor_cortex|superior_frontal_gyrus|middle_frontal_gyrus|inferior_frontal_gyrus\w*|gyrus_rectus\w*|medial_orbital_gyrus|\w*intermediate_orbital_gyrus|lateral_orbital_gyrus|paracentral_lobule\w*|frontal_operculum|postcentral_gyrus|supraparietal_lobule|supramarginal_gyrus|angular_gyrus|precuneus|superior_temporal_gyrus|middle_temporal_gyrus|inferior_temporal_gyrus|occipitotemporal_fusiform\w*|transverse_temporal\w*|planum_\w+|temporal_pole|occipital_pole|cuneus|lingual_gyrus\w*|lateral_occipitotemporal\w*|inferior_occipital_gyrus|superior_occipital_gyrus|cingulate_gyrus\w*|ingulo_parahippocampal_isthmus|subcallosal\w*|\w*parahippocampal_gyrus|gyrus_ambiens|long_insular_gyri|short_insular_gyri|limen_insula|lateral_olfactory_gyrus|parietal_operculum|paracingulate_gyrus|rostral_gyrus|frontomarginal_gyrus|frontal_pole|perirhinal\w*|piriform_region|\w*agranular_insular\w*)_.$	-	u	4500	allen	brain	-	whole
+frontal_lobe	Frontal lobe ({Side})	nervous	LR	Allen_(primary_motor_cortex|superior_frontal_gyrus|middle_frontal_gyrus|inferior_frontal_gyrus\w*|gyrus_rectus\w*|medial_orbital_gyrus|\w*intermediate_orbital_gyrus|lateral_orbital_gyrus|paracentral_lobule_rostral_part|frontal_operculum|rostral_gyrus|frontomarginal_gyrus|frontal_pole|frontal_agranular_insular\w*)_.$	-	u	1300	allen	frontal_lobe	cerebrum	-
+parietal_lobe	Parietal lobe ({Side})	nervous	LR	Allen_(postcentral_gyrus|supraparietal_lobule|supramarginal_gyrus|angular_gyrus|precuneus|paracentral_lobule_caudal_part|parietal_operculum)_.$	-	u	900	allen	parietal_lobe	cerebrum	-
+temporal_lobe	Temporal lobe ({Side})	nervous	LR	Allen_(superior_temporal_gyrus|middle_temporal_gyrus|inferior_temporal_gyrus|occipitotemporal_fusiform_gyrus_temporal_part|transverse_temporal\w*|planum_\w+|temporal_pole|\w*parahippocampal_gyrus|gyrus_ambiens|perirhinal\w*|piriform_region|temporal_agranular_insular\w*)_.$	-	u	900	allen	temporal_lobe	cerebrum	-
+occipital_lobe	Occipital lobe ({Side})	nervous	LR	Allen_(occipital_pole|cuneus|lingual_gyrus\w*|lateral_occipitotemporal\w*|inferior_occipital_gyrus|superior_occipital_gyrus)_.$	-	u	700	allen	occipital_lobe	cerebrum	-
+cingulate_insula	Cingulate gyrus and insula ({Side})	nervous	LR	Allen_(cingulate_gyrus\w*|ingulo_parahippocampal_isthmus|subcallosal\w*|paracingulate_gyrus|long_insular_gyri|short_insular_gyri|limen_insula|lateral_olfactory_gyrus)_.$	-	u	600	allen	cerebral_cortex	cerebrum	-
+cerebral_white_matter	White matter of the cerebrum ({Side})	nervous	LR	Allen_white_matter_of_forebrain_.$	-	u	1200	allen	brain	cerebrum	-
+thalamus	Thalamus	nervous	-	Allen_(thalamus|\w*_of_thalamus|\w*nucleus_of_thalamus|pulvinar_of_thalamus|ventral_\w+_nucleus|ventral_\w+_nucleus_of_thalamus|\w*geniculate\w*|midline_nuclear_complex)_.$	-	u	600	allen	thalamus	cerebrum_l	-
+basal_ganglia	Basal ganglia (caudate, putamen, globus pallidus)	nervous	-	Allen_(head_of_caudate|body_of_caudate|tail_of_caudate|putamen|posteroventral_putamen|nucleus_accumbens|\w*globus_pallidus|subthalamic_nucleus|claustrum)_.$	-	u	700	allen	basal_ganglia	cerebrum_l	-
+hippocampus	Hippocampus	nervous	-	Allen_(head|body|tail)_of_hippocampus_.$	-	u	300	allen	hippocampus	cerebrum_l	-
+amygdala	Amygdala	nervous	-	Allen_(amygdaloid_complex|anterior_amygdaloid_area|central_nuclear_group|lateral_nucleus|basolateral_nucleus\w*|basomedial_nucleus\w*|anterior_cortical_nucleus|posterior_cortical_nucleus|medial_nucleus|amygdalohippocampal_area)_.$	-	u	300	allen	amygdala	cerebrum_l	-
+hypothalamus	Hypothalamus	nervous	-	Allen_(hypothalamus|\w+_region_of_HTH)_.$	-	u	250	allen	hypothalamus	cerebrum_l	-
+corpus_callosum	Corpus callosum	nervous	-	Allen_corpus_callosum_.$	-	u	300	allen	corpus_callosum	cerebrum_l	-
+cerebellum	Cerebellum	nervous	-	Allen_(cerebellar_vermis|paravermis_of_cerebellum|lateral_hemisphere_of_cerebellum|cerebellar_deep_nuclei|white_matter_of_hindbrain)_.$	-	u	2200	allen	cerebellum	-	-
+brainstem	Brainstem (midbrain, pons, medulla)	nervous	-	Allen_(basilar_part_of_pons|pontine_tegmentum|pyramidal_part_of_medulla_oblongata|tegmentum_of_medulla_oblongata|inferior_olive|midbrain_tegmentum|cerebral_peduncle\w*|red_nucleus|substantia_nigra|superior_colliculus|inferior_colliculus|inferior_cerebellar_peduncle|middle_cerebellar_peduncle|superior_cerebellar_peduncle\w*)_.$	-	u	1800	allen	brainstem	-	-
+spinal_cord	Spinal cord	nervous	-	nervous_system/spinal_cord/	-	u	2500	vhf	spinal_cord	-	-
+optic_nerves	Optic nerves and chiasm	nervous	-	(nerves_of_eye/|/optic_chiasm$)	-	u	800	vhf_edited	optic_nerve	-	-
+eyeball	Eyeball ({Side})	sensory	LR	eyes/eye_./(sclera|cornea|iris|lens|vitreous_humor)_.$	-	u	1500	vhf_edited	eye	-	whole
+sclera	Sclera ({Side})	sensory	LR	eyes/eye_./(sclera|corneo_scleral_junction)_.$	-	u	500	vhf_edited	eye	eyeball	-
+cornea	Cornea ({Side})	sensory	LR	eyes/eye_./cornea_.$	-	u	300	vhf_edited	cornea	eyeball	-
+iris	Iris and pupil ({Side})	sensory	LR	eyes/eye_./(iris|pupil)_.$	-	u	400	vhf_edited	iris	eyeball	-
+lens	Lens ({Side})	sensory	LR	eyes/eye_./lens_.$	-	u	200	vhf_edited	lens	eyeball	-
+retina	Retina ({Side})	sensory	LR	eyes/eye_./retina_.	-	u	400	vhf_edited	retina	eyeball	-
+choroid	Choroid ({Side})	sensory	LR	eyes/eye_./optic_choroid_.$	-	u	300	vhf_edited	eye	eyeball	-
+ciliary_body	Ciliary body and the lens's ligament ({Side})	sensory	LR	eyes/eye_./(ciliary_body_.|ciliary_processes_.$|suspensory_ligament_of_lens_.$)	-	u	400	vhf_edited	eye	eyeball	-
+vitreous_humor	Vitreous body ({Side})	sensory	LR	eyes/eye_./vitreous_humor_.$	-	u	300	vhf_edited	vitreous_humor	eyeball	-
+heart	Heart	cardiovascular	-	heart/cardiac_chamber/	-	u	5500	vhf	heart	-	whole
+left_atrium	Left atrium	cardiovascular	-	cardiac_chamber/left_cardiac_atrium$	-	u	1200	vhf	left_atrium	heart	-
+right_atrium	Right atrium	cardiovascular	-	cardiac_chamber/right_cardiac_atrium$	-	u	1200	vhf	right_atrium	heart	-
+left_ventricle	Left ventricle	cardiovascular	-	cardiac_chamber/left_ventricle$	-	u	1500	vhf	left_ventricle	heart	-
+right_ventricle	Right ventricle	cardiovascular	-	cardiac_chamber/right_ventricle$	-	u	1800	vhf	right_ventricle	heart	-
+interventricular_septum	Interventricular septum	cardiovascular	-	cardiac_chamber/interventricular_septum$	-	u	1200	vhf	interventricular_septum	heart	-
+aortic_valve	Aortic valve	cardiovascular	-	heart/valve/aortic_valve$	-	u	400	vhf	aortic_valve	heart	-
+pulmonary_valve	Pulmonary valve	cardiovascular	-	heart/valve/pulmonary_valve$	-	u	200	vhf	pulmonary_valve	heart	-
+mitral_valve	Mitral valve	cardiovascular	-	heart/valve/mitral_valve$	-	u	300	vhf	mitral_valve	heart	-
+tricuspid_valve	Tricuspid valve	cardiovascular	-	heart/valve/tricuspid_valve$	-	u	600	vhf	tricuspid_valve	heart	-
+papillary_muscles	Papillary muscles	cardiovascular	-	heart/papillary_muscle_of_heart/	-	u	500	vhf	left_ventricle	heart	-
+coronary_arteries	Coronary arteries	cardiovascular	-	arteries_of_heart/(left_anterior\w*|left_circumflex\w*|diagonal\w*|left_coronary\w*|left_marginal\w*|left_posterior\w*|posterior_left\w*|right_coronary\w*|right_marginal\w*)$	-	u	1800	vhf	coronary_arteries	-	-
+cardiac_veins	Cardiac veins and coronary sinus	cardiovascular	-	veins_of_heart/cardiac_vein/	-	u	1500	vhf	cardiac_veins	-	-
+aorta	Aorta	cardiovascular	-	arteries_of_heart/aorta/(aortic_arch|ascending_aorta|descending_aorta)	-	u	1800	vhf	aorta	-	-
+arteries_thorax	Branches of the aortic arch (first few centimetres only)	cardiovascular	-	arteries_of_heart/aorta/(left_common_carotid|left_subclavian|brachiocephalic)	-	u	600	vhf	blood_vessels	-	-
+pulmonary_trunk	Pulmonary trunk and arteries	cardiovascular	-	arteries_of_heart/pulmonary_artery/	-	u	900	vhf	blood_vessels	-	-
+pulmonary_vessels	Pulmonary veins	cardiovascular	-	veins_of_heart/pulmonary_vein/	-	u	800	vhf	blood_vessels	-	-
+superior_vena_cava	Superior vena cava	cardiovascular	-	vena_cava/superior_vena_cava$	-	u	500	vhf	vena_cava	-	-
+inferior_vena_cava	Inferior vena cava	cardiovascular	-	vena_cava/inferior_vena_cava/	-	u	600	vhf	vena_cava	-	-
+arteries_abdomen	Arteries of the abdomen and pelvis (to the gut, liver, spleen and kidneys)	cardiovascular	-	blood_vasculature_of_(kidney|large_intestine|spleen|gallbladder|liver)/arteries_	-	u	4000	vhf	blood_vessels	-	-
+veins_abdomen	Veins of the abdomen and pelvis (incl. the portal system and iliac veins)	cardiovascular	-	blood_vasculature_of_(kidney|large_intestine|spleen|gallbladder|liver)/veins_	-	u	4500	vhf	blood_vessels	-	-
+uterine_vessels	Uterine arteries and veins	cardiovascular	-	blood_vasculature_of_uterus/	-	u	1200	vhf	uterine_vessels	-	-
+ocular_vessels	Vessels of the eye ({Side})	cardiovascular	LR	blood_vasculature_of_eye/ocular_(veins|arteries)/	-	u	600	vhf_edited	blood_vessels	-	-
+lung	Lung ({Side})	respiratory	LR	respiratory_system/lungs/	-	u	5000/6000	vhf	lung	-	whole
+lseg	{n}	respiratory	L	lungs/left_lungs_L/.*bronchopulmonary_segment$	-	u	300	vhf	bronchopulmonary_segment	lung_l	each
+lseg	{n}	respiratory	R	lungs/lungs_R/.*bronchopulmonary_segm\w*$	-	u	300	vhf	bronchopulmonary_segment	lung_r	each
+trachea	Trachea	respiratory	-	tracheobronchial_tree/trachea_of_respiratory_system/	-	u	900	vhf	trachea	-	-
+bronchi	Bronchial tree (main, lobar and segmental bronchi)	respiratory	-	tracheobronchial_tree/bronchi/	-	u	10000	vhf	bronchi	-	-
+larynx	Larynx (thyroid, cricoid, epiglottic, arytenoid and corniculate cartilages)	respiratory	-	respiratory_system/larynx/	-	u	2500	vhf	larynx	-	-
+liver	Liver	digestive	-	digestive_system/liver/capsule_of_the_liver$	-	u	4500	vhf	liver	-	whole
+lvseg	{n}	digestive	-	liver/couinaud_liver_segment/	-	u	350	vhf	liver_segments	liver	each
+gallbladder	Gallbladder	digestive	-	gallbladder_/gallbladder$	-	u	500	vhf	gallbladder	-	-
+biliary_tree	Bile ducts and pancreatic ducts	digestive	-	digestive_system/biliary_tree/	-	u	800	vhf	biliary_tree	-	-
+pancreas	Pancreas	digestive	-	digestive_system/pancreas/	-	u	1500	vhf_edited	pancreas	-	-
+small_intestine	Small intestine (duodenum, jejunum, ileum)	digestive	-	digestive_system/small_intestine/	-	u	6000	vhf	small_intestine	-	-
+colon	Colon (caecum, ascending, transverse, descending and sigmoid)	digestive	-	digestive_system/colon/(hepatic_flexure\w*|transverse_colon|ascending_colon|descending_colon|ileocecal_valve|caecum|sigmoid_colon|splenic_flexure\w*)$	-	u	3500	modelled	large_intestine	-	-
+rectum	Rectum	digestive	-	digestive_system/colon/rectum$	-	u	600	modelled	large_intestine	-	-
+appendix	Appendix	digestive	-	digestive_system/colon/vermiform_appendix$	-	u	300	modelled	large_intestine	-	-
+omentum	Greater omentum	digestive	-	digestive_system/visceral_adipose/	-	u	2000	vhf	omentum	-	-
+tongue	Tongue	digestive	-	mouth/tongue/	-	u	1200	vhf_atlas	tongue	-	-
+gums_palate	Gums, palate and lining of the mouth	digestive	-	mouth/(gingiva|secondary_palate|mouth_floor|buccal_mucosa|frenulum_of_lip)	-	u	1500	vhf_atlas	mouth	-	-
+salivary_glands	Salivary glands (parotid, submandibular, sublingual)	digestive	-	mouth/major_salivary_gland/	-	u	800	vhf_atlas	salivary_glands	-	-
+kidney	Kidney ({Side})	urinary	LR	(left|right)_kidney/kidney_capsule_.$	-	u	1500	vhf	kidney	-	whole
+kidney_cortex	Renal cortex and columns ({Side})	urinary	LR	(left|right)_kidney/cortex_of_kidney_./	-	u	900	vhf	renal_cortex	kidney	-
+renal_pyramids	Renal pyramids and papillae ({Side})	urinary	LR	(left|right)_kidney/renal_medulla_./	-	u	700	vhf	renal_medulla	kidney	-
+renal_pelvis	Renal pelvis and calyces ({Side})	urinary	LR	renal_pelvis_ureter_./(renal_calyx_.|kidney_calyx_.|renal_pelvis_.$)	-	u	700	vhf	renal_pelvis	kidney	-
+kidney_capsule	Renal capsule and hilum ({Side})	urinary	LR	(left|right)_kidney/(kidney_capsule_.|hilum_of_kidney_.)$	-	u	500	vhf	kidney	kidney	-
+ureter	Ureter ({Side})	urinary	LR	renal_pelvis_ureter_./(left|right)_ureter$	-	u	400	vhf	ureters	-	-
+bladder	Urinary bladder	urinary	-	urinary_system/urinary_bladder/	-	u	1200	vhf	bladder	-	-
+spleen	Spleen	lymphatic	-	lymphatic_system/spleen/	-	u	1000	vhf	spleen	-	-
+thymus	Thymus	lymphatic	-	lymphatic_system/thymus/	-	u	700	vhf	thymus	-	-

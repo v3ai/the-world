@@ -1742,7 +1742,7 @@ function zoomIntoHit(h) {
   const f = h.frame; let p, r;
   if (h.obj.userData.id === 'air' && f === FR.park && typeof placeGo === 'function') { placeGo('place:air'); return; } // the sky is not a place to fly to: go into the air itself
   const og = f.children && h.obj.userData.node && f.children.find(c => c.enterOnly && c.opts && c.opts.organ === h.obj.userData.node); // an organ you can see has a cut-open view: double-click goes inside, on purpose
-  if (og) { flyTo(og, new V3(), og.opts.R * 2.2); return; }
+  if (og) { flyTo(og, new V3(), og.opts.R * 2.2, undefined, og.opts.dir || undefined); return; }   // (a view may name the side it is seen from: her breast, from her left)
   if (h.obj.userData.center) { p = h.obj.userData.center(h); r = (typeof h.obj.userData.radius === 'function' ? h.obj.userData.radius(h) : h.obj.userData.radius) || 1; }
   else {
     const rr = objRadiusLocal(h.obj);
@@ -1813,6 +1813,7 @@ function updateLabels() {
     if (f !== cam.A && f.dLoc < f.radius * 1e-3) continue; // outer frames: only when their structure is in view
     for (const L of f.labels) {
       if ((!labelsOn && !L.always) || !L.el.textContent || !visibleChain(L.obj)) continue;
+      if (L.hideFn && L.hideFn()) continue;   // a name whose thing is hidden behind something else drawn solid (the man behind the woman)
       L.obj.getWorldPosition(_lv).add(_lo.copy(L.off).multiplyScalar(L.scaleRef ? L.scaleRef.k || 1 : 1));
       _lv.project(f.cam);
       if (_lv.z > 1 || Math.abs(_lv.x) > 1.05 || Math.abs(_lv.y) > 1.05) continue;

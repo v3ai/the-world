@@ -296,7 +296,7 @@ REGION_TRIS = {'head': 25000, 'hand': 10000, 'foot': 3200, 'body': 9800}   # han
 # about 34,000 triangles more than the coarse skin: the body seen from 1 m stays inside its budget (docs/DEVELOPMENT.md, Performance: 420,000)
 
 
-NAIL_WL = (1.04, .94, .95, .95, .93)   # width over length of men's fingernails, thumb to little finger (Park et al. 2015, Arch Plast Surg 42:753)
+NAIL_WL = (1.04, .94, .95, .95, .93)   # width over length of men's fingernails, thumb to little finger (Jung et al. 2015, Fingernail configuration, Arch Plast Surg 42:753)
 
 
 def nails(SV, SF, SN):

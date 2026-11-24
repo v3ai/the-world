@@ -1,5 +1,5 @@
 {
- "about": "The human body (FT.body): parts of data/anatomy by pick id and by system.",
+ "about": "The human body (FT.body): parts of data/anatomy by pick id and by system; the woman's parts (data/anatomy_f) have the same plain ids, and those only she has are here too (match: by pattern).",
  "systems": {
   "skeletal": "bone",
   "muscular": "skeletal_muscle",
@@ -7,7 +7,8 @@
   "cardiovascular": "vessel_wall",
   "integumentary": "epithelium",
   "lymphatic": "lymphoid",
-  "endocrine": "gland_tissue"
+  "endocrine": "gland_tissue",
+  "reproductive": "organ_wall"
  },
  "ids": {
   "skin": "epithelium",
@@ -35,6 +36,45 @@
   "ureter_r": "organ_wall",
   "bladder": "organ_wall",
   "eyeball_l": "eyeball",
-  "eyeball_r": "eyeball"
- }
+  "eyeball_r": "eyeball",
+  "uterus": "smooth_muscle",
+  "cervix": "organ_wall",
+  "vagina": "organ_wall",
+  "uterine_tube_l": "organ_wall",
+  "uterine_tube_r": "organ_wall",
+  "ovary_l": "gland_tissue",
+  "ovary_r": "gland_tissue",
+  "broad_ligament": "collagen",
+  "uterine_ligaments": "collagen",
+  "uterovesical_pouch": "lining",
+  "uterine_vessels": "vessel_wall",
+  "omentum": "adipose",
+  "gums_palate": "lining",
+  "salivary_glands": "gland_tissue",
+  "biliary_tree": "organ_wall",
+  "knee_cartilage_l": "cartilage",
+  "knee_cartilage_r": "cartilage",
+  "knee_ligaments_l": "tendon",
+  "knee_ligaments_r": "tendon",
+  "cardiac_veins": "vessel_wall",
+  "optic_nerves": "nervous_tissue"
+ },
+ "match": [
+  [
+   "^breast_fat_",
+   "adipose"
+  ],
+  [
+   "^(breast_lobes|lactiferous_ducts|nipple_areola)_",
+   "gland_tissue"
+  ],
+  [
+   "^breast_ligaments_",
+   "collagen"
+  ],
+  [
+   "^ureter_",
+   "organ_wall"
+  ]
+ ]
 }

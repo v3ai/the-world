@@ -23,16 +23,16 @@
  "minutes": 8,
  "stops": [
   {
-   "title": "You, in a London park",
+   "title": "Two people in a London park",
    "scale": "about 2 m",
    "where": {
-    "landmark": "You"
+    "landmark": "People"
    },
    "expect": {
     "frame": "Greenwich Park"
    },
    "text": [
-    "This is a person drawn at true size, standing in a model of Greenwich Park. The question is simple: what is that body made of?",
+    "These are two people, a man and a woman, each drawn at the size of their model, standing in a model of Greenwich Park. The question is simple: what is a body like yours made of?",
     "The first answer is cells. An adult body has roughly 30 to 37 trillion of its own cells, of more than 200 kinds."
    ],
    "notice": "Scroll in on the body. The skin turns see-through, then the muscles, then the bones and organs, and you keep going.",
@@ -47,7 +47,7 @@
    "title": "The skin you can see",
    "scale": "about 1.5 mm",
    "where": {
-    "landmark": "Your skin"
+    "landmark": "Skin"
    },
    "expect": {
     "frame": "Skin surface"
@@ -166,8 +166,8 @@
    "notice": "Count the two colours: protons carry electric charge and neutrons do not.",
    "deeper": [
     {
-     "label": "The nucleus at true size",
-     "node": "nucleusQ"
+     "label": "What holds the nucleus together",
+     "node": "sm_residual_strong"
     }
    ]
   },
@@ -227,7 +227,7 @@
   "what_holds_everything_together"
  ],
  "sources": [
-  "Cards: human, skin, cell_animal, dna, hbond, at_cloud_sizes, nucleusQ, sm_proton, sm_overview (their sources are on the cards)",
+  "Cards: human, skin, cell_animal, dna, hbond, at_cloud_sizes, sm_residual_strong, sm_proton, sm_overview (their sources are on the cards)",
   "Frame notes in the app: Skin cell, DNA, Proton (no structure found down to about 1e-19 m)",
   "Nucleus to atom ratio: see the sources of is_a_rock_really_solid; Standard Model scope: cards sm_interactions, sm_gravity"
  ]

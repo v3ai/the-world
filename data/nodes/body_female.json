@@ -1,0 +1,1263 @@
+[
+ {
+  "id": "model_woman",
+  "title": "About this model: the woman",
+  "kind": "organism",
+  "template": "anatomy",
+  "scale_m": 1.66,
+  "parents": [
+   "human_body"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "model_man",
+   "human_body"
+  ],
+  "mesh": null,
+  "summary": "One woman's body, rebuilt in 3D from photographs of thin slices of it.",
+  "layers": {
+   "basics": "This woman's body was donated to science after her death: the U.S. National Library of Medicine thanks her for having willed it. It was frozen and cut into thousands of very thin slices, and each slice was photographed. Anatomists later traced her organs slice by slice to make the 3D shapes you see here. She was 59, and the Human Reference Atlas describes her as obese; press reports describe her as a Maryland woman who died of a heart attack.",
+   "deeper": "She is the Visible Human Female of the U.S. National Library of Medicine, released in 1995. The 3D models are the Human Reference Atlas's reference organs for a female body, made from her sections. Some parts were not made from her: her skull, ribs, shoulder, arm, hand and foot bones, almost all her muscles and her stomach are missing, and no missing part has been filled in from another body. Her shape is that of a body lying on its back, shown standing: her back and buttocks are flattened.",
+   "expert": "Her brain in the atlas is the one part from someone else: the atlas makers took the Allen Institute's reference brain of another woman, 34 years old, mirrored it and resized it to fit her head. The inside of each breast is a sculpted reference model placed in her body. The large intestine and the discs between her vertebrae were modelled to fit her; her teeth, tongue and mouth follow her sections and were refined with dental atlases; and the atlas makers adjusted her skin to fit her organs, made her optic nerves thicker and reshaped the neck of her pancreas. She is shown at the size of the model, 1.66 m from sole to crown; her recorded height was 171.2 cm. One account of the project notes that her reproductive organs are not representative of typical anatomy."
+  },
+  "facts": [
+   [
+    "Age at death",
+    "59 years"
+   ],
+   [
+    "Build",
+    "described as obese (Human Reference Atlas)"
+   ],
+   [
+    "Recorded height",
+    "171.2 cm"
+   ],
+   [
+    "Height in this model",
+    "1.66 m, not resized"
+   ],
+   [
+    "Section spacing",
+    "0.33 mm"
+   ],
+   [
+    "Section photographs",
+    "5,189"
+   ],
+   [
+    "Data set released",
+    "1995"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "did_you_know": "Her slices are a third of a millimetre apart, three times closer than the Visible Human Male's 1 mm, so that each picture element is a small cube.",
+  "ext": [
+   {
+    "title": "U.S. National Library of Medicine: the Visible Human Project",
+    "url": "https://www.nlm.nih.gov/research/visible/visible_human.html"
+   },
+   {
+    "title": "Human Reference Atlas: 3D reference library (donors)",
+    "url": "https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html"
+   },
+   {
+    "title": "Visible Human Project (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Visible_Human_Project"
+   },
+   {
+    "title": "Human Reference Atlas: 3D reference organs, female (v1.10)",
+    "url": "https://doi.org/10.48539/HBM637.DWBM.744"
+   },
+   {
+    "title": "Human Reference Atlas: pelvis, female (v1.3)",
+    "url": "https://doi.org/10.48539/HBM853.VCFM.778"
+   }
+  ],
+  "open_questions": [
+   "One body is one person: how her organs compare with other women's of her age needs many bodies, not one."
+  ]
+ },
+ {
+  "id": "model_man",
+  "title": "About this model: the man",
+  "kind": "organism",
+  "template": "anatomy",
+  "scale_m": 1.75,
+  "parents": [
+   "human_body"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "model_woman",
+   "human_body"
+  ],
+  "mesh": null,
+  "summary": "One man's body, rebuilt in 3D from his medical scans and scaled to 1.75 m.",
+  "layers": {
+   "basics": "The man's shapes come from BodyParts3D, a free anatomy model built from scans of one adult man. It has his skeleton, many muscles and organs, and the vessels of his whole body.",
+   "deeper": "BodyParts3D was made in Japan from TARO, a model of a Japanese adult man built from MRI scans; TARO stands 172.8 cm tall and weighs 65 kg. Here the model is scaled so that he stands 1.75 m tall, a height chosen for this site. The woman beside him is not scaled, so the two are not drawn to one rule, and the difference in their heights is partly that choice.",
+   "expert": "Because each model is one person, the differences you see between them are differences between these two people: their age, build, the way each was imaged, and what each atlas chose to model. They are not the average differences between men and women."
+  },
+  "facts": [
+   [
+    "Source",
+    "BodyParts3D (from TARO, a model built from MRI scans of an adult man)"
+   ],
+   [
+    "TARO",
+    "172.8 cm, 65 kg"
+   ],
+   [
+    "Height in this model",
+    "1.75 m, scaled (a choice of this site)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "NICT: whole-body voxel models of a Japanese man and woman (TARO, HANAKO)",
+    "url": "https://emc.nict.go.jp/bio/en-data-offer/information-on-the-provision.html"
+   }
+  ]
+ },
+ {
+  "id": "breast",
+  "title": "Breast",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "reproductive_system"
+  ],
+  "parts": [
+   "mammary_lobes",
+   "lactiferous_ducts",
+   "nipple_areola",
+   "suspensory_ligaments_breast"
+  ],
+  "made_of": [
+   "adipose_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Fat and gland tissue on the chest wall, with the mammary gland that can make milk.",
+  "layers": {
+   "basics": "A breast is mostly fat wrapped round a gland. The gland is a set of lobes whose ducts open on the nipple. How large a breast is depends mostly on its fat, and size has no effect on how much milk it can make.",
+   "deeper": "The mammary gland is a modified sweat gland. Its lobes hold clusters of milk-making cells (alveoli); ducts from the lobes widen into sinuses and then open on the nipple. Bands of connective tissue run from the gland to the skin and help hold its shape.",
+   "expert": "Milk is made in the alveoli and carried by 15 to 20 lactiferous ducts to the surface of the nipple. The areola around the nipple carries small glands that secrete a lubricating fluid during breastfeeding. After menopause the breasts usually become smaller and more of their tissue is fat. In this model the inside of the breast is a sculpted reference model drawn from anatomy atlases and placed in her body, not traced from her sections."
+  },
+  "facts": [
+   [
+    "Ducts opening on the nipple",
+    "15 to 20"
+   ],
+   [
+    "Areola",
+    "25 to 100 mm across"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "did_you_know": "Breast size is set by fat, not gland: it says nothing about how much milk a breast can make.",
+  "ext": [
+   {
+    "title": "MSD Manual: effects of aging on the female reproductive system",
+    "url": "https://www.msdmanuals.com/home/women-s-health-issues/biology-of-the-female-reproductive-system/effects-of-aging-on-the-female-reproductive-system"
+   }
+  ]
+ },
+ {
+  "id": "mammary_lobes",
+  "title": "Mammary lobes",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.04,
+  "parents": [
+   "breast"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The milk-making parts of the breast's gland.",
+  "layers": {
+   "basics": "Each breast holds a set of lobes, the parts of the gland that can make milk. Fat fills the space round them.",
+   "deeper": "Inside each lobe are clusters of secretory cells called alveoli. Their size changes with how much milk they hold.",
+   "expert": "The lobes are where milk is made during lactation; outside pregnancy and breastfeeding the gland is small and much of the breast is fat. Here the lobes are part of a sculpted reference model placed in her body."
+  },
+  "facts": [
+   [
+    "Milk-making units",
+    "alveoli, in clusters within each lobe"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "lactiferous_ducts",
+  "title": "Lactiferous ducts",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.04,
+  "parents": [
+   "breast"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The tubes that carry milk from the lobes to the nipple.",
+  "layers": {
+   "basics": "Milk leaves the gland through a set of small tubes that end on the nipple.",
+   "deeper": "Each lactiferous duct widens just before the nipple into a lactiferous sinus, where milk collects before it leaves.",
+   "expert": "Between 15 and 20 of these ducts open on the surface of the nipple. In this model they are part of a sculpted reference model of the breast's inside."
+  },
+  "facts": [
+   [
+    "Number",
+    "15 to 20, opening on the nipple"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "nipple_areola",
+  "title": "Nipple and areola",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.03,
+  "parents": [
+   "breast"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The raised nipple, where the milk ducts open, and the darker skin round it.",
+  "layers": {
+   "basics": "The nipple is where milk comes out. The ring of darker skin round it is the areola.",
+   "deeper": "The areola is pigmented and usually round. Small glands in it secrete a fluid that keeps the skin supple while a baby feeds.",
+   "expert": "An areola measures from 25 to 100 mm across. The lactiferous ducts, 15 to 20 of them, open on the nipple's surface."
+  },
+  "facts": [
+   [
+    "Areola",
+    "25 to 100 mm across"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "suspensory_ligaments_breast",
+  "title": "Suspensory ligaments of the breast",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "breast"
+  ],
+  "parts": [],
+  "made_of": [
+   "connective_tissue_loose"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "Bands of connective tissue that tie the breast's tissue to the skin over it.",
+  "layers": {
+   "basics": "Thin bands of tough tissue run through each breast and attach it to the skin, helping to hold its shape.",
+   "deeper": "They are connective tissue, made mostly of collagen, running from the gland and the tissue round it to the dermis of the skin.",
+   "expert": "They are named after the surgeon Astley Cooper, who described them. In this model they are part of the sculpted reference model of the breast."
+  },
+  "facts": [
+   [
+    "Made of",
+    "connective tissue"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "cervix",
+  "title": "Cervix",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.03,
+  "parents": [
+   "uterus"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The narrow lower end of the uterus, which opens into the vagina.",
+  "layers": {
+   "basics": "The cervix is the neck of the uterus. It is narrow, and its lower end sticks into the top of the vagina.",
+   "deeper": "A channel runs through it, from an inner opening into the uterus to an outer opening into the vagina. Its glands make mucus that changes through the menstrual cycle.",
+   "expert": "When estrogen is high, near ovulation, cervical mucus becomes thin and stringy, which can help sperm move through. In this model it comes from her sections, with its inner and outer openings."
+  },
+  "facts": [
+   [
+    "Part of",
+    "the uterus (its lowest part)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "uterine_tubes",
+  "title": "Uterine tubes",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "reproductive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "ovaries",
+   "uterus"
+  ],
+  "mesh": null,
+  "summary": "The two tubes that carry an egg from beside each ovary to the uterus.",
+  "layers": {
+   "basics": "Each tube runs from the top of the uterus out to an ovary. Its open end has finger-like fringes that sweep the released egg in. Fertilization often happens inside the tube.",
+   "deeper": "A tube has three parts: the narrow isthmus next to the uterus, the wider ampulla in the middle, where fertilization often occurs, and the funnel-shaped infundibulum with its fringes (fimbriae) next to the ovary.",
+   "expert": "Cilia on the tube's lining beat toward the uterus, more strongly around ovulation, and the smooth muscle of its wall contracts every 4 to 8 seconds, moving the egg along. The open end of the tube is not joined to the ovary: one long fringe, the ovarian fimbria, reaches towards it, and the released egg crosses a small gap. Fertilization most often happens in the ampulla."
+  },
+  "facts": [
+   [
+    "Parts",
+    "infundibulum, ampulla, isthmus"
+   ],
+   [
+    "Wall contractions",
+    "every 4 to 8 seconds"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "did_you_know": "The open end of each tube is not joined to its ovary: one long fringe reaches towards it, and the fringes sweep the egg across a small gap.",
+  "ext": [
+   {
+    "title": "Fimbriae of the uterine tube (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Fimbriae_of_uterine_tube"
+   }
+  ]
+ },
+ {
+  "id": "vagina",
+  "title": "Vagina",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "reproductive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue",
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The muscular canal from the cervix to the outside of the body.",
+  "layers": {
+   "basics": "The vagina is a stretchy muscular tube about 10 cm long that leads from the cervix to the outside.",
+   "deeper": "Its wall has three layers: a fibrous outer coat, smooth muscle, and a lining of layered (stratified squamous) epithelium folded into ridges called rugae, which let it stretch.",
+   "expert": "Bacteria of the genus Lactobacillus dominate the healthy vagina; the lactic acid they make keeps its pH between about 3.5 and 4.5, which protects against many other microbes. After menopause, with less estrogen, its lining becomes thinner and the pH usually rises above 5."
+  },
+  "facts": [
+   [
+    "Length",
+    "about 10 cm"
+   ],
+   [
+    "pH",
+    "below 4.5 (above 5 after menopause, usually)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Atrophic vaginitis (American Family Physician, 2000)",
+    "url": "https://www.aafp.org/pubs/afp/issues/2000/0515/p3090.html"
+   }
+  ]
+ },
+ {
+  "id": "broad_ligament",
+  "title": "Broad ligament",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "uterus"
+  ],
+  "parts": [],
+  "made_of": [
+   "connective_tissue_loose"
+  ],
+  "processes": [],
+  "related": [
+   "ligaments_of_uterus"
+  ],
+  "mesh": null,
+  "summary": "A wide sheet of the abdominal lining draped over the uterus, tubes and ovaries.",
+  "layers": {
+   "basics": "The broad ligament is a fold of the thin membrane that lines the abdomen. It hangs over the uterus like a sheet over a line and reaches out to the walls of the pelvis.",
+   "deeper": "It holds the uterus, tubes and ovaries in place and is one of the uterus's supports; the uterus is held up mainly by the muscles of the pelvic floor, with the cardinal and uterosacral ligaments. The part of the broad ligament that holds each tube is the mesosalpinx, the part that holds each ovary the mesovarium.",
+   "expert": "It is a fold of peritoneum. The ovarian vessels reach the ovary in the suspensory ligament of the ovary, the fold that runs from the ovary to the wall of the pelvis; the uterine artery runs in the base of the broad ligament, in the cardinal ligament."
+  },
+  "facts": [
+   [
+    "Made of",
+    "a double fold of peritoneum"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Uterus: supports (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Uterus"
+   },
+   {
+    "title": "Suspensory ligament of ovary (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Suspensory_ligament_of_ovary"
+   },
+   {
+    "title": "Cardinal ligament (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cardinal_ligament"
+   }
+  ]
+ },
+ {
+  "id": "ligaments_of_uterus",
+  "title": "Ligaments of the uterus and ovaries",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "uterus"
+  ],
+  "parts": [],
+  "made_of": [
+   "connective_tissue_loose"
+  ],
+  "processes": [],
+  "related": [
+   "broad_ligament"
+  ],
+  "mesh": null,
+  "summary": "Bands of tissue that hold the uterus and the ovaries in place.",
+  "layers": {
+   "basics": "Several bands hold the uterus and ovaries where they are: some to the uterus, some to the walls of the pelvis.",
+   "deeper": "The ovarian ligament ties each ovary to the uterus; the suspensory ligament runs from the ovary to the pelvic wall and carries its vessels; the round ligament runs from near the tube forward to the labia majora; the uterosacral ligament ties the cervix to the back of the pelvis.",
+   "expert": "The cardinal ligaments, at the base of the broad ligament, steady the cervix from the sides, and the uterine artery and the ureter run through them. The suspensory ligament of the ovary is a fold of peritoneum rather than a true ligament: it carries the ovarian artery and vein. In this model these ligaments come from her sections and are shown together as one part."
+  },
+  "facts": [
+   [
+    "Includes",
+    "ovarian, suspensory, round, uterosacral and cardinal ligaments"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Uterine artery (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Uterine_artery"
+   },
+   {
+    "title": "Cardinal ligament (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cardinal_ligament"
+   },
+   {
+    "title": "Suspensory ligament of ovary (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Suspensory_ligament_of_ovary"
+   }
+  ]
+ },
+ {
+  "id": "uterovesical_pouch",
+  "title": "Uterovesical pouch",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "uterus"
+  ],
+  "parts": [],
+  "made_of": [
+   "connective_tissue_loose"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The shallow fold of the abdominal lining between the uterus and the bladder.",
+  "layers": {
+   "basics": "Where the lining of the abdomen passes from the bladder onto the front of the uterus it dips into a small pocket.",
+   "deeper": "Behind the uterus a deeper pocket, between the uterus and the rectum, is the lowest part of the abdominal cavity in a woman.",
+   "expert": "Fluid and infection in the abdomen tend to collect in the deeper pouch behind the uterus. The pouch in front, shown here from her sections, lies near the front of the vagina's top."
+  },
+  "facts": [
+   [
+    "Lies between",
+    "the bladder and the uterus"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Rectouterine pouch (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Rectouterine_pouch"
+   }
+  ]
+ },
+ {
+  "id": "endometrium",
+  "title": "Endometrium",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.01,
+  "parents": [
+   "uterus"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The lining of the uterus, which thickens and is shed in each menstrual cycle.",
+  "layers": {
+   "basics": "The inside of the uterus is lined by a soft layer that grows thicker each month. If no pregnancy starts, most of it is shed: that is the menstrual period.",
+   "deeper": "It has two layers. The deeper stratum basalis stays; the stratum functionalis above it thickens under estrogen and progesterone and is the only layer shed.",
+   "expert": "Spiral arteries, branches of the uterine artery, supply the thickened functional layer. When progesterone falls at the end of a cycle they constrict and break, and the layer comes away. A cycle averages 28 days, usually from 21 to 32, and menstruation about five days."
+  },
+  "facts": [
+   [
+    "Cycle",
+    "about 28 days (21 to 32)"
+   ],
+   [
+    "Menstruation",
+    "about 5 days (2 to 7)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "myometrium",
+  "title": "Myometrium",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.02,
+  "parents": [
+   "uterus"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The thick wall of smooth muscle that makes up most of the uterus.",
+  "layers": {
+   "basics": "Most of the uterus is muscle: a thick wall that can stretch a great deal and squeeze hard.",
+   "deeper": "It is smooth muscle, outside the lining (endometrium) and inside a thin outer serous layer (perimetrium).",
+   "expert": "Its contractions push out the lining during a period and the baby during birth."
+  },
+  "facts": [
+   [
+    "Part of",
+    "the uterine wall: perimetrium, myometrium, endometrium"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ]
+ },
+ {
+  "id": "uterine_vessels",
+  "title": "Uterine arteries and veins",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "blood_vessels"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The blood vessels of the uterus, which grow much larger in pregnancy.",
+  "layers": {
+   "basics": "The uterus gets its blood mainly from the two uterine arteries, one on each side.",
+   "deeper": "Each uterine artery usually comes from a branch of the internal iliac artery in the pelvis, crosses in front of the ureter and reaches the side of the uterus near the cervix.",
+   "expert": "Its branches supply the uterus, the vagina, the tube and the ovary, where it commonly joins the ovarian artery. It enlarges a great deal in pregnancy. In this model the arteries and veins are from her sections, shown together."
+  },
+  "facts": [
+   [
+    "Comes from",
+    "the internal iliac artery (usually)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "27.2",
+    "27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Uterine artery (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Uterine_artery"
+   }
+  ]
+ },
+ {
+  "id": "rectus_femoris",
+  "title": "Rectus femoris",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.45,
+  "parents": [
+   "quadriceps"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "patella_l",
+   "patella_r"
+  ],
+  "mesh": null,
+  "summary": "The front muscle of the thigh, one of the four of the quadriceps.",
+  "layers": {
+   "basics": "The rectus femoris runs down the front of the thigh to the kneecap. It helps you kick and lift your knee.",
+   "deeper": "It starts on the pelvis, at the anterior inferior iliac spine and just above the hip socket, so it crosses both the hip and the knee. With the other three muscles of the quadriceps it ends in the quadriceps tendon on the kneecap.",
+   "expert": "Below the kneecap the patellar ligament carries its pull on to the tibia. In this model it is the only muscle of her limbs that the atlas made from her sections."
+  },
+  "facts": [
+   [
+    "Group",
+    "quadriceps femoris (4 muscles)"
+   ],
+   [
+    "Starts",
+    "anterior inferior iliac spine and above the acetabulum"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.6",
+    "11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs"
+   ]
+  ]
+ },
+ {
+  "id": "extraocular_muscles",
+  "title": "Eye muscles",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.04,
+  "parents": [
+   "eye_l",
+   "eye_r"
+  ],
+  "parts": [],
+  "made_of": [
+   "skeletal_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The six small muscles that turn each eye, and the one that lifts the upper lid.",
+  "layers": {
+   "basics": "Six muscles move each eye up, down and to the sides, and twist it a little. A seventh lifts the upper eyelid.",
+   "deeper": "Four straight muscles (the superior, inferior, medial and lateral rectus) start from a ring of tendon at the back of the eye socket; two oblique muscles, superior and inferior, approach the eye at an angle.",
+   "expert": "The lateral rectus turns the eye out, the medial rectus in; the superior and inferior rectus raise and lower it; the obliques add rotation. In this model they come from her sections, adjusted by the atlas makers."
+  },
+  "facts": [
+   [
+    "Muscles that move each eye",
+    "6"
+   ],
+   [
+    "Lifts the lid",
+    "levator palpebrae superioris"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "11.3",
+    "11-3-axial-muscles-of-the-head-neck-and-back"
+   ]
+  ]
+ },
+ {
+  "id": "knee_cartilage",
+  "title": "Knee cartilage and menisci",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.08,
+  "parents": [
+   "synovial_joint"
+  ],
+  "parts": [],
+  "made_of": [
+   "cartilage_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "knee_ligaments"
+  ],
+  "mesh": null,
+  "summary": "The smooth cartilage on the ends of the knee's bones, and the two C-shaped pads between them.",
+  "layers": {
+   "basics": "Between the thigh bone and the shin bone sit two C-shaped pads, the menisci, which fill the gap between the round end of the femur and the flatter top of the tibia.",
+   "deeper": "The menisci are fibrocartilage, thin at the inner edge and thick at the outer. They are attached to the tibia but not to the femur. The medial one moves less, because it is tied to the joint's capsule and to a ligament.",
+   "expert": "Parts of the menisci have no arterial blood supply and heal poorly. The medial meniscus, held more firmly, is injured more often than the lateral one; how much more often varies between studies."
+  },
+  "facts": [
+   [
+    "Menisci",
+    "medial and lateral, C-shaped"
+   ],
+   [
+    "Injured more often",
+    "the medial meniscus"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "ANP",
+    "9.6",
+    "9-6-anatomy-of-selected-synovial-joints"
+   ]
+  ]
+ },
+ {
+  "id": "knee_ligaments",
+  "title": "Knee ligaments",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "synovial_joint"
+  ],
+  "parts": [],
+  "made_of": [
+   "dense_connective_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "knee_cartilage"
+  ],
+  "mesh": null,
+  "summary": "The bands that hold the knee together: two crossing inside it and one on each side.",
+  "layers": {
+   "basics": "The knee is held by strong bands: two that cross inside the joint (the cruciate ligaments) and one on each side (the collateral ligaments).",
+   "deeper": "The anterior cruciate ligament resists over-straightening; the posterior, the stronger, stops the femur sliding forward off the tibia when the knee is bent and bearing weight. The collateral ligaments are tight when the leg is straight and resist sideways and twisting movement.",
+   "expert": "A hard blow to the outer side of a straight knee can tear, one after the other, the medial collateral ligament, the medial meniscus and the anterior cruciate ligament, an injury known as the \"terrible triad\". A torn cruciate ligament is often rebuilt with part of the patellar ligament."
+  },
+  "facts": [
+   [
+    "Inside the joint",
+    "anterior and posterior cruciate"
+   ],
+   [
+    "On the sides",
+    "tibial and fibular collateral"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "9.6",
+    "9-6-anatomy-of-selected-synovial-joints"
+   ]
+  ]
+ },
+ {
+  "id": "coccyx",
+  "title": "Coccyx",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.03,
+  "parents": [
+   "skeletal_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "bone_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "sacrum"
+  ],
+  "mesh": null,
+  "summary": "The tailbone: a few small vertebrae at the bottom of the spine.",
+  "layers": {
+   "basics": "The coccyx is the small tailbone at the very bottom of the spine, below the sacrum.",
+   "deeper": "It is made of three, four or five small vertebrae, which may be fused or separate. It joins the sacrum at a joint of fibrocartilage that allows a little movement.",
+   "expert": "Muscles of the pelvic floor attach to its front, and part of the gluteus maximus to its back."
+  },
+  "facts": [
+   [
+    "Vertebrae",
+    "3 to 5"
+   ],
+   [
+    "Joins",
+    "the sacrum"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Coccyx (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Coccyx"
+   }
+  ]
+ },
+ {
+  "id": "bronchopulmonary_segment",
+  "title": "Bronchopulmonary segments",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "lung_r",
+   "lung_l"
+  ],
+  "parts": [],
+  "made_of": [
+   "alveoli"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The divisions of each lobe of a lung, each with its own airway and its own artery.",
+  "layers": {
+   "basics": "Each lobe of a lung is divided into segments. A segment gets air from its own branch of the airway and blood from its own artery.",
+   "deeper": "The right lung has three lobes and the left two; every lobe holds several segments. Each is fed by its own tertiary bronchus.",
+   "expert": "Because a segment has its own airway and blood supply, a surgeon can remove one diseased segment and leave the rest of the lobe working. In this model her lungs are made of these segments, traced from her sections."
+  },
+  "facts": [
+   [
+    "Lobes",
+    "right lung 3, left lung 2"
+   ],
+   [
+    "Each segment has",
+    "its own tertiary bronchus and artery"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "22.2",
+    "22-2-the-lungs"
+   ]
+  ]
+ },
+ {
+  "id": "cardiac_veins",
+  "title": "Cardiac veins",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.1,
+  "parents": [
+   "heart"
+  ],
+  "parts": [],
+  "made_of": [
+   "smooth_muscle_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "coronary_arteries"
+  ],
+  "mesh": null,
+  "summary": "The veins of the heart's own muscle, which gather into the coronary sinus.",
+  "layers": {
+   "basics": "The heart's muscle needs blood like any other, and its used blood comes back through the cardiac veins.",
+   "deeper": "The great, middle and small cardiac veins run beside the coronary arteries and empty into the coronary sinus, a large thin-walled vein in the groove at the back of the heart between the atria and the ventricles.",
+   "expert": "The coronary sinus opens into the right atrium between the opening of the inferior vena cava and the tricuspid valve, guarded by a thin valve of its own. The anterior cardiac veins bypass it and open straight into the right atrium."
+  },
+  "facts": [
+   [
+    "Collects into",
+    "the coronary sinus, then the right atrium"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "19.1",
+    "19-1-heart-anatomy"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Coronary sinus (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Coronary_sinus"
+   }
+  ]
+ },
+ {
+  "id": "biliary_tree",
+  "title": "Bile ducts",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.12,
+  "parents": [
+   "liver"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "gallbladder",
+   "pancreas"
+  ],
+  "mesh": null,
+  "summary": "The branching ducts that carry bile from the liver to the gallbladder and the small intestine.",
+  "layers": {
+   "basics": "The liver makes about a litre of bile a day. It drains through a tree of ducts into the small intestine, and between meals some is stored in the gallbladder.",
+   "deeper": "The right and left hepatic ducts join as the common hepatic duct; the cystic duct, about 2 to 4 cm long (sources differ: OpenStax gives 1 to 2 cm), joins it from the gallbladder to make the common bile duct, which meets the pancreatic duct at the hepatopancreatic ampulla in the wall of the duodenum.",
+   "expert": "A ring of smooth muscle at the ampulla controls the flow of bile and pancreatic juice. The gallbladder, 8 to 10 cm long, can concentrate bile up to tenfold. In this model the ducts of the liver and the pancreas are shown together."
+  },
+  "facts": [
+   [
+    "Bile made",
+    "about 1 litre a day"
+   ],
+   [
+    "Cystic duct",
+    "about 2 to 4 cm (sources differ)"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cystic duct (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Cystic_duct"
+   }
+  ]
+ },
+ {
+  "id": "liver_segments",
+  "title": "Liver segments",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.08,
+  "parents": [
+   "liver"
+  ],
+  "parts": [],
+  "made_of": [
+   "liver_lobule"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "The parts of the liver that each have their own blood supply and bile drainage: eight segments, numbered I to VIII.",
+  "layers": {
+   "basics": "Surgeons divide the liver into eight segments. Each has its own blood coming in and its own bile going out, so one can be removed without harming the others.",
+   "deeper": "The scheme is named after the French surgeon Claude Couinaud. A branch of the portal vein, the hepatic artery and the bile duct runs through the middle of each segment; hepatic veins drain blood from its edges.",
+   "expert": "Segment I is the caudate lobe at the back; II and III lie left of the falciform ligament and IV right of it; V to VIII make up the right lobe. A surgeon cuts along the hepatic veins at the segments' edges. Segment IV is often split into an upper IVa and a lower IVb, and the quadrate lobe on the liver's underside is part of IVb. In this model her liver is made of ten pieces traced from her sections: the atlas's own pieces, which name segment IV in three parts. Each piece is named here with its segment number, given by where it lies in her liver."
+  },
+  "facts": [
+   [
+    "Segments",
+    "8 (I to VIII)"
+   ],
+   [
+    "Pieces in her model",
+    "10 (segment IV in three)"
+   ],
+   [
+    "Each has its own",
+    "portal vein, hepatic artery and bile duct branch"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.6",
+    "23-6-accessory-organs-in-digestion-the-liver-pancreas-and-gallbladder"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Liver segment (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Liver_segment"
+   }
+  ]
+ },
+ {
+  "id": "omentum",
+  "title": "Greater omentum",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.3,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "adipose_tissue"
+  ],
+  "processes": [],
+  "related": [],
+  "mesh": null,
+  "summary": "An apron of fatty membrane that hangs from the stomach in front of the intestines.",
+  "layers": {
+   "basics": "The greater omentum hangs down like an apron from the stomach over the intestines. It is mostly fat.",
+   "deeper": "It is a double sheet of the abdominal lining folded back on itself, so four layers thick, with many blood vessels and patches of immune cells (milky spots, which hold macrophages).",
+   "expert": "It stores fat, helps defend against infection and can wrap round an inflamed or injured spot in the abdomen, which may limit the spread of infection. In 1906 the surgeon Rutherford Morison called it the \"abdominal policeman\". Her stomach is not in the model, so her omentum hangs from the empty space where it would be attached."
+  },
+  "facts": [
+   [
+    "Layers",
+    "4 (a double fold)"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Greater omentum (Wikipedia)",
+    "url": "https://en.wikipedia.org/wiki/Greater_omentum"
+   }
+  ]
+ },
+ {
+  "id": "mouth",
+  "title": "Mouth: gums, palate and lining",
+  "kind": "structure",
+  "template": "anatomy",
+  "scale_m": 0.06,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "teeth",
+   "tongue",
+   "salivary_glands"
+  ],
+  "mesh": null,
+  "summary": "The soft tissues of the mouth: the gums round the teeth, the roof of the mouth and the lining of the cheeks.",
+  "layers": {
+   "basics": "The roof of the mouth has a bony front part (the hard palate) and a soft muscular back part (the soft palate). The gums cover the jaw bones round the teeth.",
+   "deeper": "The hard palate is formed by the maxillary and palatine bones; the soft palate is mostly skeletal muscle, with the uvula hanging from its back edge. The inside of the cheeks is lined by layered epithelium that is not keratinized.",
+   "expert": "In her model these tissues come from her sections, modelled with the guidance of atlases of the mouth. The bones of her palate and jaws are not in her model; the lining over them is."
+  },
+  "facts": [
+   [
+    "Hard palate",
+    "maxillary and palatine bones"
+   ],
+   [
+    "Adult teeth",
+    "32"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.3",
+    "23-3-the-mouth-pharynx-and-esophagus"
+   ]
+  ]
+ },
+ {
+  "id": "salivary_glands",
+  "title": "Salivary glands",
+  "kind": "organ",
+  "template": "anatomy",
+  "scale_m": 0.05,
+  "parents": [
+   "digestive_system"
+  ],
+  "parts": [],
+  "made_of": [
+   "epithelial_tissue"
+  ],
+  "processes": [],
+  "related": [
+   "mouth",
+   "tongue"
+  ],
+  "mesh": null,
+  "summary": "Three pairs of glands that make most of the saliva.",
+  "layers": {
+   "basics": "Saliva comes mostly from three pairs of glands: in front of the ears, under the jaw and under the tongue. An adult makes 1 to 1.5 litres a day.",
+   "deeper": "The parotid glands lie between the skin and the chewing muscle near the ears, and their ducts open near the second upper molar; the submandibular glands lie in the floor of the mouth; the sublingual glands below the tongue. Small glands in the cheeks, lips, palate and tongue add more.",
+   "expert": "Saliva is about 99.4 % water. Its amylase starts breaking down starch, lysozyme kills bacteria, and mucus makes food slippery to swallow."
+  },
+  "facts": [
+   [
+    "Saliva a day",
+    "1 to 1.5 litres"
+   ],
+   [
+    "Water",
+    "about 99.4 %"
+   ]
+  ],
+  "certainty": "C1",
+  "refs": [
+   [
+    "ANP",
+    "23.3",
+    "23-3-the-mouth-pharynx-and-esophagus"
+   ]
+  ]
+ }
+]

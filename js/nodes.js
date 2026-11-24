@@ -62,13 +62,19 @@ function inked(geo, color, o = {}) {
 }
 
 /* ---------- anatomy meshes ---------- */
-let ANAT = null;
-function loadAnatomyIndex() {
-  if (!ANAT) ANAT = getJSON('data/anatomy/index.json').then(ix => {
+/* One anatomy data set per body: data/anatomy/ (the man, BodyParts3D) and data/anatomy_f/ (the woman, Human Reference Atlas). Part ids
+   in the files are plain ('heart'); a body frame shows them with its prefix (her index.json says 'vhf_'), so the two bodies' parts never
+   share an id. A part may name its card (`card`); nodeForMesh reads that through ANAT_CARD. */
+let ANAT = null; const ANAT_BY = {}, ANAT_CARD = {}, ANAT_SYNC_BY = {};   // promise / index (once loaded) per data folder; card per part id
+function loadAnatomyIndex(dir = 'data/anatomy/') {
+  if (!ANAT_BY[dir]) ANAT_BY[dir] = getJSON(dir + 'index.json').then(ix => {
     const parts = Array.isArray(ix) ? ix : (ix.parts || []), systems = Array.isArray(ix) ? [] : (ix.systems || []);
-    return { parts, systems, byId: Object.fromEntries(parts.map(p => [p.id, p])) };
+    parts.forEach(p => { if (p.card && ANAT_CARD[p.id] === undefined) ANAT_CARD[p.id] = p.card; });
+    const A = { dir, parts, systems, byId: Object.fromEntries(parts.map(p => [p.id, p])), prefix: ix.prefix || '', hot: ix.hotspots || null, views: ix.organ_views || null, regions: ix.regions || null, absent: ix.absent || null, subject: ix.subject || null, source: ix.source || null, height_m: ix.height_m, measured: ix.measured || null };
+    ANAT_SYNC_BY[dir] = A; return A;
   }).catch(() => null);
-  return ANAT;
+  if (dir === 'data/anatomy/') ANAT = ANAT_BY[dir];
+  return ANAT_BY[dir];
 }
 /* Meshes are fetched and decoded in a worker (js/mesh_worker.js): JSON parsing, unpacking and vertex normals happen off the main
    thread and the typed arrays are transferred, not copied. meshWorker(msg) resolves with the worker's answer; if workers are not
@@ -95,8 +101,8 @@ function geoFromArrays(d, copyPos) { // a geometry from arrays the worker decode
   g.boundingSphere = new THREE.Sphere(new THREE.Vector3(d.bs[0], d.bs[1], d.bs[2]), d.bs[3]); return g;
 }
 const ANAT_FILES = {};
-function loadAnatomyFile(file) { // {parts: [...]}: each part already decoded (part.dec) when the worker did it, raw (part.pos, part.idx) otherwise
-  return ANAT_FILES[file] || (ANAT_FILES[file] = meshWorker({ op: 'anatomy', url: absURL('data/anatomy/' + file) }).catch(() => getJSON('data/anatomy/' + file)));
+function loadAnatomyFile(file, dir = 'data/anatomy/') { // {parts: [...]}: each part already decoded (part.dec) when the worker did it, raw (part.pos, part.idx) otherwise
+  const k = dir + file; return ANAT_FILES[k] || (ANAT_FILES[k] = meshWorker({ op: 'anatomy', url: absURL(k) }).catch(() => getJSON(k)));
 }
 const LOADING = new Map(); let _loadEl = null;
 function loadNote(label, promise) {
@@ -110,6 +116,17 @@ function loadNote(label, promise) {
   };
   const done = () => { LOADING.delete(key); draw(); };
   draw(); promise.then(done, done); return promise;
+}
+/* each vertex's normal averaged with its neighbours' (those it shares a triangle with), `rounds` times: the light's steps on an illustrated
+   surface then follow its overall form rather than each facet of a coarse mesh */
+function blendNormals(g, rounds) {
+  const N = g.attributes.normal.array, I = g.index.array, n = N.length / 3, A = new Float32Array(N.length);
+  for (let r = 0; r < rounds; r++) {
+    A.fill(0);
+    for (let t = 0; t < I.length; t += 3) { const a = I[t] * 3, b = I[t + 1] * 3, c = I[t + 2] * 3; for (let k = 0; k < 3; k++) { const s = N[a + k] + N[b + k] + N[c + k]; A[a + k] += s; A[b + k] += s; A[c + k] += s; } }
+    for (let i = 0; i < n; i++) { const x = A[i * 3], y = A[i * 3 + 1], z = A[i * 3 + 2], l = Math.hypot(x, y, z) || 1; N[i * 3] = x / l; N[i * 3 + 1] = y / l; N[i * 3 + 2] = z / l; }
+  }
+  g.attributes.normal.needsUpdate = true;
 }
 function decodePart(p) {
   if (p.dec) return geoFromArrays(p.dec, true);
@@ -132,15 +149,21 @@ const MODES = {
 };
 const MESH_ALIAS = { cerebrum_l: 'brain', cerebrum_r: 'brain', eyeball_l: 'eye_l', eyeball_r: 'eye_r', ribs_l: 'ribcage', ribs_r: 'ribcage', radius_l: 'radius_ulna_l', ulna_l: 'radius_ulna_l', radius_r: 'radius_ulna_r', ulna_r: 'radius_ulna_r', tibia_l: 'tibia_fibula_l', fibula_l: 'tibia_fibula_l', tibia_r: 'tibia_fibula_r', fibula_r: 'tibia_fibula_r', hip_bone_l: 'pelvis', hip_bone_r: 'pelvis', abdominal_muscles: 'rectus_abdominis', back_muscles_l: 'latissimus_dorsi', back_muscles_r: 'latissimus_dorsi', colon: 'large_intestine', rectum: 'large_intestine', appendix: 'large_intestine', superior_vena_cava: 'vena_cava', inferior_vena_cava: 'vena_cava', carotid_l: 'carotid_arteries', carotid_r: 'carotid_arteries', ureter_l: 'ureters', ureter_r: 'ureters', adrenal_l: 'adrenal_glands', adrenal_r: 'adrenal_glands', lv_cavity: 'left_ventricle', rv_cavity: 'right_ventricle', heart_valves: 'mitral_valve', papillary_muscles: 'left_ventricle', pulmonary_trunk: 'blood_vessels', pulmonary_vessels: 'blood_vessels', pituitary: 'pituitary_gland' };
 function nodeForMesh(id) {
+  id = id.replace(/^vhf_/, '');   // the woman's parts: the same card as the structure's (a part of hers may name its card: ANAT_CARD)
   if (NODE[id]) return id;
-  let a = MESH_ALIAS[id]; if (a === undefined) a = id.replace(/_(l|r)$/, '');
+  let a = MESH_ALIAS[id]; if (a === undefined && ANAT_CARD[id] && NODE[ANAT_CARD[id]]) a = ANAT_CARD[id]; if (a === undefined) a = id.replace(/_(l|r)$/, '');
   if (a && NODE[a]) return a; if (/^(arteries|veins)_/.test(id) && NODE.blood_vessels) return 'blood_vessels';
   return null;
 }
 function sysOf(p) { return p.system === 'integumentary' || p.id === 'skin' ? 'skin' : p.system; }
 
+/* Two bodies use this frame type: the man (FR.body: data/anatomy/, no options) and the woman (FR.body_f: opts {anat: 'data/anatomy_f/',
+   prefix: 'vhf_', who: 'woman'}). Within a frame a part keeps its plain id (F.parts.skin, F.hidden, F.sel); in the world-wide registry
+   of meshes (regMesh) the woman's carry her prefix. Her inner systems are fetched when they are wanted: her skin first, the rest when the
+   camera comes within 4 m of her, when something of hers is asked for (F.loadAll) or after 15 s. */
 FT.body = {
-  build(F) {
+  build(F, o) {
+    o = o || {}; const dir = o.anat || 'data/anatomy/', pre = o.prefix || '', her = o.who === 'woman'; F.who = o.who || 'man'; F.pre = pre; F.anatDir = dir;
     F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .55)); const kl = new THREE.DirectionalLight(0xffffff, .85); kl.position.set(1.5, 3, 2.5); F.add(kl);
     F.parts = {}; F.mode = store.get('bodyMode', 'auto'); F.illo = true; F.layered = true; F.hidden = new Set(); F.sel = null; F.layerName = '';
     F.readyP = new Promise(res => { F._ready = res; });
@@ -148,57 +171,68 @@ FT.body = {
     const grp = new THREE.Group(); F.add(grp); F.grp = grp;
     /* Nothing of the person is drawn until the whole anatomical model has arrived: neither the park's simple figure (it used to stand in, and
        looked like a low-detail person that then changed) nor the model's parts one file at a time. The loading note says what is coming. */
-    grp.visible = false; F.hideStandIn = () => { const v = FR.park && FR.park.v2; if (v && v.parts && v.parts.human && v.parts.human.visible) v.parts.human.visible = false; }; F.hideStandIn();
-    F.blurb = 'You, as an anatomical model at true size. Click anywhere to see what is under that spot; double-click a part to look inside it. Zoom in and the skin turns see-through: first muscles, then bones and organs.';
-    Promise.all([loadAnatomyIndex(), loadNodes()]).then(([A]) => {
+    grp.visible = false; F.hideStandIn = her ? () => { } : () => { const v = FR.park && FR.park.v2; if (v && v.parts && v.parts.human && v.parts.human.visible) v.parts.human.visible = false; }; F.hideStandIn();
+    F.blurb = her ? 'A woman, as an anatomical model at her own size, made from one woman\'s body. Click anywhere to see what is under that spot; double-click a part to look inside it. Zoom in and the skin turns see-through. Some of her parts are not in the model: the note below says which.'
+      : 'A man, as an anatomical model at true size. Click anywhere to see what is under that spot; double-click a part to look inside it. Zoom in and the skin turns see-through: first muscles, then bones and organs.';
+    Promise.all([loadAnatomyIndex(dir), loadNodes()]).then(([A]) => {
       if (!A || !F.built) return;
-      const files = [...new Set(A.parts.map(p => p.file))];
+      F.A = A; const files = [...new Set(A.parts.map(p => p.file))];
       /* Parts are painted in the order of the anatomy index (skeleton, muscles, nerves, vessels, organs ...), so a ghosted skull never veils the
          brain. It used to be the order in which the files happened to arrive, which changed from one page load to the next. */
       const rank = {}; A.parts.forEach((p, i) => { rank[p.id] = i; });
-      loadNote('the human body', F.readyP);
-      Promise.all((BLK.on ? [BLK.loadAO()] : []).concat(files.map(file => loadAnatomyFile(file).then(S => {
+      const first = her ? files.filter(f => A.parts.some(p => p.file === f && p.id === 'skin')) : files;   // her skin first; the rest on approach (F.loadAll)
+      const one = file => loadAnatomyFile(file, dir).then(S => {
         if (!F.built) return;
         S.parts.forEach(p => {
           if (p.parent) { (F.detail = F.detail || {})[p.parent] = (F.detail[p.parent] || []).concat([p]); return; }
-          const atlas = (p.id === 'skin' ? 0xcf9f82 : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc;
-          const g = inked(decodePart(p), BLK.on ? BLK.colorOf(p) : atlas, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin', extra: { transparent: true } });
+          const atlas = (p.id === 'skin' ? (her ? 0xa87656 : 0xcf9f82) : 0) || PART_COL[p.id] || (p.color ? new THREE.Color(p.color).getHex() : 0) || SYS_COL[p.system] || 0xcccccc;
+          const geo = decodePart(p); if (her && p.id === 'skin' && !BLK.on) blendNormals(geo, 10);   // her skin is coarser than his: in the illustrated look its normals are evened out, or the shading breaks into blotches
+          const g = inked(geo, BLK.on ? BLK.colorOf(p, F.who) : atlas, { w: p.id === 'skin' ? .0012 : .0018, double: p.id === 'skin', extra: { transparent: true } });
           paintedInOrder(g.userData.main.material); // layers are painted in the order the parts were made, as before; a solid part is drawn without blending
           { const om = g.userData.ol.material; om.transparent = false; om.blending = THREE.CustomBlending; } // the ink too stays in that pass (render order 0: before every part, so ghost layers veil it as they always did)
-          if (BLK.on) { g.userData.atlas = atlas; BLK.part(g.userData.main.material, p, g.userData.main.geometry); if (p.id === 'skin') BLK.skin(g.userData.main.material, g.userData.main.geometry); }   // the realistic look (js/body_core.js)
+          if (BLK.on) { g.userData.atlas = atlas; BLK.part(g.userData.main.material, p, g.userData.main.geometry); if (p.id === 'skin') BLK.skin(g.userData.main.material, g.userData.main.geometry, F.who); }   // the realistic look (js/body_core.js)
           else bodySurface(g.userData.main.material); // fine grain, so a close-up of a smooth part still has something to read
           const big = () => p.radius > .1;
           Object.assign(g.userData, {
-            id: p.id, node: nodeForMesh(p.id), part: p, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1, rank: (rank[p.id] ?? 0) * 1e-4,
+            id: p.id, node: nodeForMesh(p.id), part: p, who: F.who, priority: 1, madeOf: 'tissue', title: p.name, op: 1, shown: 1, rank: (rank[p.id] ?? 0) * 1e-4,
             tipFn: h => bodyTip(F, p, h),
             // a large part (skin, a long muscle) is zoomed at the clicked point; a small one at its centre
             center: h => (h && h.pointLocal && big() ? h.pointLocal.clone() : new V3(...p.center)), radius: h => (h && h.pointLocal && big() ? .05 : p.radius),
             extent: () => ({ p: new V3(...p.center), r: p.radius })   // the whole part: what a click frames
           });
           g.userData.main.userData.pickRoot = g; g.userData.main.material.userData.noHL = true;
-          if (p.id === 'lung_l' || p.id === 'lung_r') { // the data is the airway tree only: wrap it in a schematic lung outline (see lungShellGeo)
+          if (!her && (p.id === 'lung_l' || p.id === 'lung_r')) { // the data is the airway tree only (the man's; the woman's lungs are her own): wrap it in a schematic lung outline (see lungShellGeo)
             const sh = new THREE.Mesh(lungShellGeo(g.userData.main.geometry, A.byId.heart), illoMat(BLK.on ? BLK.colorOf(p) : 0xf0b3c0, { extra: { transparent: true, opacity: .5, depthWrite: false, side: THREE.DoubleSide } }));
             if (BLK.on) BLK.part(sh.material, { id: 'lung_shell' });
             sh.renderOrder = 3; g.add(sh); g.userData.shell = sh; sh.material.userData.noHL = true;
           }
           g.traverse(o => { o.matrixAutoUpdate = false; }); // body parts never move: their matrices are composed once (identity), not every frame
-          grp.add(g); F.pickables.push(g); F.parts[p.id] = { g, p }; regMesh(p.id, g);
+          grp.add(g); F.pickables.push(g); F.parts[p.id] = { g, p }; regMesh(pre + p.id, g);
         });
-      })))).then(() => {
-        if (!F.built) return;
-        if (BLK.on) BLK.applyAO(F);
-        F.mats = null; applyMode(F);
-        F.hideStandIn(); grp.visible = true;
-        F.partsReady = true; F._ready();
       });
-      const lab = new THREE.Object3D(); lab.position.set(0, 1.95, 0); lab.userData.id = 'skin'; lab.userData.node = 'skin'; lab.userData.title = 'You'; F.add(lab); F.label(lab, 'You', { cls: 'you' });
+      const ao = BLK.on ? [BLK.loadAO(dir)] : [];
+      const done = () => { if (!F.built) return; if (BLK.on) BLK.applyAO(F); F.mats = null; applyMode(F); };
+      const skinP = Promise.all(ao.concat(first.map(one))).then(() => {
+        if (!F.built) return; done();
+        F.hideStandIn(); grp.visible = true;
+        if (!her) { F.partsReady = true; F._ready(); }
+      });
+      loadNote(her ? 'the woman\'s body' : 'the human body', her ? skinP : F.readyP);
+      let restP = null; F.loadAll = () => restP || (restP = skinP.then(() => Promise.all(files.filter(f => !first.includes(f)).map(one))).then(() => {   // (each file once: the first ones are in with skinP)
+        if (!F.built) return; done(); F.partsReady = true; F._ready();
+      }));
+      if (!her || F.wantAll) F.loadAll();
+      const lab = new THREE.Object3D(); lab.position.set(0, (A.height_m || 1.75) + .2, 0); lab.userData.id = 'skin'; lab.userData.node = NODE[her ? 'model_woman' : 'model_man'] ? (her ? 'model_woman' : 'model_man') : 'skin'; lab.userData.title = her ? 'Woman' : 'Man'; F.add(lab); const LL = F.label(lab, her ? 'Woman' : 'Man', { cls: 'you' }); LL.hideFn = () => bodyBehindOther(F);
     });
     const modes = [['auto', 'Auto'], ['skin', 'Skin'], ['muscles', 'Muscles'], ['skeleton', 'Skeleton'], ['organs', 'Organs'], ['nervous', 'Nerves'], ['circulatory', 'Heart & vessels']];
-    F.modeSeg = seg(modes, F.mode, k => { F.mode = k; store.set('bodyMode', k); applyMode(F); });
+    F.modeSeg = seg(modes, F.mode, k => { F.mode = k; store.set('bodyMode', k); applyMode(F); if (her && k === 'muscles' && typeof BODY_F_MUSCLES !== 'undefined') toast(BODY_F_MUSCLES); });
     F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); F.reveal = null; applyMode(F); toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
     F.env = { bg: BLK.on ? BLK.BG : 0x0e1422, opaque: false };
-    if (BLK.on) F.note = BLK.NOTE;
-    F.update = (dt, t) => { if (!F.partsReady) F.hideStandIn(); F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
+    if (BLK.on) F.note = BLK.NOTE; if (her) F.note = BODY_F_NOTE + (BLK.on ? ' ' + BODY_F_NOTE_REAL : '') + ' ' + BODY_BOTH_NOTE;
+    F.placeAs = () => { const pk = FR.park; if (!FR.body_f || !pk || !F.C) return null; return F.C.distanceTo(F.center || V3Z) > 5 ? BODY_PEOPLE : null; };   // (engine_ui.js updateCaption)
+    if (her) F.gapNote = () => { if (!F.partsReady || cam.D > 3.5 || bodyFocus(F)) return ''; const k = F.mode === 'auto' ? (F._layer && F._layer !== 'skin' ? 'auto' : '') : F.mode; return BODY_F_GAP[k] || ''; };
+    F.t0 = performance.now(); F.loadAll = () => { F.wantAll = true; return F.readyP; }; F.skinPasses = her ? 1 : 2;   // her skin is one surface, his a thin shell of two (bodyRayStack)   // until the index is in: remember that everything is wanted
+    F.update = (dt, t) => { if (!F.partsReady) F.hideStandIn(); if (her && !F.partsReady && !F.wantAll && (performance.now() - F.t0 > 15000 || (F.C && F.C.distanceTo(F.center || V3Z) < 4))) F.loadAll(); F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
     F.spawn = (T, hint) => {
       if (!hint || !hint.obj || !hint.obj.userData.part) return null;
       const u = hint.obj.userData, id = u.id, nid = nodeForMesh(id), n = NODE[nid], tis = n && n.made_of && n.made_of[0];
@@ -209,6 +243,19 @@ FT.body = {
     F.spawnD = .012; F.floorD = .0015; // no zooming into an empty gap: a part's tissue takes over at spawnD, otherwise the view stops here
   }
 };
+/* Her omentum (a fatty apron in front of the gut) and the fat of her breasts are organs of their own here, drawn solid in the Organs view, where they
+   hid her gut, heart, lungs and uterus: in that view (and the Nerves and Heart & vessels views, and Auto once it is past her skin) they are drawn see-through; a click still selects them. */
+const BODY_F_VEIL = /^(omentum|breast_fat_|breast_ligaments_|breast_lobes_|lactiferous_ducts_|nipple_areola_)/;
+/* is this body's name label behind the other body (the man seen past the woman in her side view)? Looked at from above: the other one stands
+   closer to the camera and within 0.35 m of the line from the camera to this one */
+const _bbA = new V3(), _bbB = new V3(), _bbC = new V3();
+function bodyBehindOther(F) {
+  const O = F === FR.body ? FR.body_f : FR.body, pk = FR.park; if (!O || !pk || !pk.built || !O.partsReady && !O.grp) return false;
+  camPosIn(pk, _bbC); _bbA.copy(F.pos); _bbB.copy(O.pos); _bbA.y = _bbB.y = _bbC.y = 0;
+  const dA = _bbC.distanceTo(_bbA), dB = _bbC.distanceTo(_bbB); if (dB >= dA) return false;
+  const t = _bbB.clone().sub(_bbC), u = _bbA.clone().sub(_bbC).normalize(), along = t.dot(u); if (along <= 0) return false;
+  return t.addScaledVector(u, -along).length() < .35;
+}
 // the layers Auto shows as the camera comes closer: skin, then muscles, then bones and organs
 function autoLayers(D) {
   const far = smooth(.85, 1.3, D), mid = smooth(.4, .65, D);
@@ -232,6 +279,7 @@ function applyMode(F) {
   for (const id in F.parts) {
     const { g, p } = F.parts[id], u = g.userData, s = M.vessel !== undefined && isVessel(p) ? 'vessel' : sysOf(p);
     let op = M[s] !== undefined ? M[s] : (M['*'] !== undefined ? M['*'] : 0);
+    if (F.who === 'woman' && BODY_F_VEIL.test(id) && (F.mode === 'organs' || F.mode === 'circulatory' || F.mode === 'nervous' || F.mode === 'auto' && F._layer && F._layer !== 'skin')) op = Math.min(op, .18);   // see BODY_F_VEIL
     if (F.reveal && F.auto && F.auto.P && !F.hidden.size) { if (F.reveal.id === id) op = 1; else if (F.auto.front && F.auto.front.has(id)) op = Math.min(op, PEEL_GHOST_MUSCLE); }
     if (F.auto && F.auto.P && !focus && !F.hidden.size && (F.mode === 'auto' || F.reveal)) { const c = F.auto.cur, k = F._k || 1; c[id] = c[id] === undefined ? op : c[id] + (op - c[id]) * k; op = c[id]; } // ease, so layers fade rather than pop
     if (focus) op = focus.opts.meshes.includes(id) ? (focus.alpha > .9 ? 0 : Math.max(op, .6) * (1 - focus.alpha)) : op * (1 - focus.alpha);
@@ -239,6 +287,7 @@ function applyMode(F) {
     const isSel = F.sel === id, isHov = hov === g && op >= BODY_VISIBLE_OP, hl = isSel || isHov; // a ghost layer is not highlighted by pointing at it (its ink outline made a flat blue wall)
     let ev = op; if (isSel) ev = Math.max(ev, .6); // the part a card is about is drawn solid enough to read; hovering never pulls a ghost layer back (it made a flat wall)
     const m = u.main.material; m.opacity = ev * F.alpha; m.depthWrite = ev > .9;
+    if (id === 'skin' && F.who === 'woman') { const sd = m.opacity < .99 ? THREE.FrontSide : THREE.DoubleSide; if (m.side !== sd) { m.side = sd; m.needsUpdate = true; } }   // her skin is one surface: while see-through, only its side facing the camera is drawn (drawn in triangle order, its far side broke through the near side in shards)
     if (u.shell) u.shell.material.opacity = .5 * ev * F.alpha;
     if (BLK.on) { BLK.ghost(m, 1 - smooth(.3, .9, ev), F.alpha); if (u.shell) BLK.ghost(u.shell.material, .85, F.alpha); }   // a peeled layer is clear glass
     g.visible = ev > .01 && (!F.hidden.has(id) || isSel);
@@ -270,12 +319,19 @@ const ORGAN_MIRROR = { lung_l: 'lung_r', kidney_l: 'kidney_r', eye_l: 'eye_r' };
 function makeOrganFrames(body, A) { // built from the anatomy index, so the frames exist before any mesh has loaded
   const has = {}; Object.values(NODE).forEach(n => { if (n.hotspot && n.hotspot.of) (has[n.hotspot.of] = has[n.hotspot.of] || []).push(n.id); });
   for (const m in ORGAN_MIRROR) if (has[ORGAN_MIRROR[m]] && !has[m]) has[m] = has[ORGAN_MIRROR[m]];
+  /* a body whose index measures its own markers (the woman's: index.json, hotspots) uses those, and may add views of its own (organ_views) */
+  const hot = A.hot || null; if (hot) for (const oid in hot) has[oid] = [...new Set((has[oid] || []).concat(Object.keys(hot[oid]).filter(i => NODE[i])))];
   for (const oid in has) {
     if (oid === 'skin' || body.children.some(c => c.opts && c.opts.organ === oid)) continue;
-    const meshes = A.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === oid).map(p => p.id); if (!meshes.length) continue;
+    const view = A.views && A.views[oid];
+    const meshes = view ? view.meshes.filter(i => A.byId[i]) : A.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === oid).map(p => p.id); if (!meshes.length) continue;
     const c = new V3(); meshes.forEach(id => c.add(new V3(...A.byId[id].center))); c.divideScalar(meshes.length);
     let R = 0; meshes.forEach(id => R = Math.max(R, c.distanceTo(new V3(...A.byId[id].center)) + A.byId[id].radius));
-    const f = body.addChild(new Frame({ type: 'organ', name: nodeTitle(oid), unit: 1, radius: R * 1.25, core: R, r0: 0, r1: Math.max(R * 5.5, .35), spawnD: R * .15, pos: c, opts: { organ: oid, meshes, R, hotspots: has[oid], mirror: !!ORGAN_MIRROR[oid] } }));
+    const own = hot && hot[oid];   // her own measured markers for this organ (none for her left lung: the right one's, mirrored and set on her lung)
+    const withIds = view && view.with ? view.with.filter(i => A.byId[i]) : [];
+    if (withIds.length) withIds.forEach(id => R = Math.max(R, c.distanceTo(new V3(...A.byId[id].center)) + A.byId[id].radius * .5));
+    const f = body.addChild(new Frame({ type: 'organ', name: nodeTitle(oid), unit: 1, radius: R * 1.25, core: R, r0: 0, r1: Math.max(R * 5.5, .35), spawnD: R * .15, pos: c, opts: { organ: oid, meshes, R, hotspots: has[oid], mirror: !!ORGAN_MIRROR[oid] && !own, hot: own || (hot ? {} : null), with: withIds, who: body.who,
+      shell: view && view.shell || [], cut: view && view.cut || 'frontal', cutAt: view && view.cut_through && A.byId[view.cut_through] ? new V3(...A.byId[view.cut_through].center).sub(c) : null, dir: view && view.dir ? new V3(...view.dir).normalize() : null } }));   // a view of hers may name its cut (the breast: sagittal, through the nipple), the side it is seen from and the parts drawn as a see-through wall
     f.pinned = true; f.enterOnly = true; f.floorD = R * .05; // cut-open views are entered on purpose (Look inside, double-click, a landmark, a jump to one of its parts), never by scrolling past
   }
 }
@@ -284,14 +340,18 @@ FT.organ = {
     const body = F.parent; F.illo = true;
     F.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, .6)); const kl = new THREE.DirectionalLight(0xffffff, .8); kl.position.set(1, 2, 3); F.add(kl);
     renderer.localClippingEnabled = true;
-    const plane = new THREE.Plane(new V3(0, 0, -1), 0); // keep the back half: cut along the frontal plane
+    const sag = o.cut === 'sagittal', sgn = o.cutAt && o.cutAt.x + F.pos.x < 0 ? -1 : 1;   // sagittal: keep the half towards the midline, seen from the side
+    const plane = new THREE.Plane(sag ? new V3(-sgn, 0, 0) : new V3(0, 0, -1), 0); // keep the back half: cut along the frontal plane
     const cutMats = []; F.cut = true;
     seg([['cut', 'Cut open'], ['whole', 'Whole']], 'cut', k => { F.cut = k === 'cut'; const cp = F.cut ? [plane] : []; cutMats.forEach(m => { m.clippingPlanes = cp; m.needsUpdate = true; }); });
-    F.update = () => { plane.constant = F.root.position.z; }; // clipping planes live in world space; the frame root moves with the camera
+    const off = o.cutAt ? (sag ? o.cutAt.x : o.cutAt.z) : 0;
+    F.update = () => { plane.constant = sag ? sgn * (F.root.position.x + off) : F.root.position.z + off; }; // clipping planes live in world space; the frame root moves with the camera
     // a hit on the half that has been cut away does not count
     F.chooseHit = cands => { let best = null; for (const c of cands) { if (F.cut && plane.distanceToPoint(c.hit.point) < 0) continue; if (!best || c.pri > best.pri) best = c; } return best; };
-    F.blurb = `${nodeTitle(o.organ)}, cut open. A model of a typical adult, simplified. Click a yellow marker or any part to learn what it does.${/^lung_/.test(o.organ) ? ' ' + LUNG_NOTE : ''}`;
+    const her = o.who === 'woman';
+    F.blurb = her ? `${nodeTitle(o.organ)}, cut open: the woman's, from the 3D models of her sections. Click a yellow marker or any part to learn what it does.` : `${nodeTitle(o.organ)}, cut open. A model of a typical adult, simplified. Click a yellow marker or any part to learn what it does.${/^lung_/.test(o.organ) ? ' ' + LUNG_NOTE : ''}`;
     if (BLK.on) F.note = 'Model: built from anatomical data (BodyParts3D), cut along one plane and lit as in a studio. Tissue colours are those of living tissue, approximately; the cut is drawn as the surfaces the data has, not as solid tissue.';
+    if (her) F.note = 'Model: the woman\'s ' + nodeTitle(o.organ).toLowerCase() + ', from the Human Reference Atlas\'s 3D models of her frozen sections (Visible Human Female), cut along one plane' + (BLK.on ? ' and lit as in a studio' : '') + '. ' + (o.organ === 'breast' ? 'Her left breast, cut from top to bottom through the nipple and seen from her left side; the fat round the gland is drawn see-through. The inside of the breast is a sculpted reference model placed in her body, not traced from her sections. ' : o.organ === 'brain' ? 'The brain is another woman\'s (Allen human brain atlas), mirrored and resized to fit her. ' : '') + 'Tissue colours are those of living tissue, approximately; the cut is drawn as the surfaces the data has, not as solid tissue. Markers are placed at the parts of her model they name' + (o.hot ? ', or where a part has none, at the nearest point of the organ.' : '.');
     F.onDispose = () => { dead = true; if (body.focus === F) body.focus = null; };
     F.spawn = (T, hint) => {
       const id = hint && hint.obj && hint.obj.userData.node || o.organ, n = NODE[id];
@@ -319,8 +379,9 @@ FT.organ = {
       };
       const det = [];
       o.meshes.forEach(mid => (body.detail && body.detail[mid] || []).forEach(p => det.push(p)));
-      if (det.length) det.filter(p => !/cavity/.test(p.id)).forEach(p => { const g = decodePart(p); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(p) : p.color ? new THREE.Color(p.color).getHex() : 0xc0392b, nodeForMesh(p.id) || o.organ, 1, p.name); });
-      else o.meshes.forEach(mid => { const src = body.parts[mid]; if (!src) return; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p) : PART_COL[mid] || (src.p.color ? new THREE.Color(src.p.color).getHex() : 0) || SYS_COL[src.p.system] || 0xcccccc, o.organ, 1, src.p.name); });
+      (o.with || []).forEach(mid => { const src = body.parts[mid]; if (!src) return; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p, body.who) : (src.p.color ? new THREE.Color(src.p.color).getHex() : 0xc0392b), nodeForMesh(mid), 1, src.p.name); });   // a view's other parts (the woman's uterus: its tubes, ovaries, ligaments)
+      if (det.length) det.filter(p => !/cavity/.test(p.id)).forEach(p => { const g = decodePart(p); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(p, body.who) : p.color ? new THREE.Color(p.color).getHex() : 0xc0392b, nodeForMesh(p.id) || o.organ, 1, p.name); });
+      else o.meshes.forEach(mid => { const src = body.parts[mid]; if (!src) return; const g = src.g.userData.main.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p, body.who) : PART_COL[mid] || (src.p.color ? new THREE.Color(src.p.color).getHex() : 0) || SYS_COL[src.p.system] || 0xcccccc, o.organ, 1, src.p.name, (o.shell || []).includes(mid)); });
       if (/^lung_/.test(o.organ)) { // the lung: its wall (schematic, see lungShellGeo) around its airway tree and the main airways
         o.meshes.forEach(mid => { const src = body.parts[mid], sh = src && src.g.userData.shell; if (!sh) return; const g = sh.geometry.clone(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p) : 0xf0b3c0, o.organ, 1, nodeTitle(o.organ), true); });
         const br = body.parts.bronchi, tr = body.parts.trachea;
@@ -329,19 +390,24 @@ FT.organ = {
           if (!keep.length) return; const g = new THREE.BufferGeometry(); g.setAttribute('position', pa.clone()); g.setIndex(keep); g.computeVertexNormals(); g.translate(-c.x, -c.y, -c.z); addMesh(g, BLK.on ? BLK.colorOf(src.p) : 0x9fb7d6, nodeForMesh(src.p.id) || o.organ, 1, src.p.name); });
       }
       const dotG = new THREE.SphereGeometry(P.radius * (o.hotspots.length > 6 ? .026 : .045), 16, 12); // many markers (the brain has 12) are drawn smaller so they do not pile up
+      const near = v => {   // the woman's: a marker her index does not place goes to the nearest point of her organ to where the man's would be
+        let best = null, bd = Infinity; const q = v.clone().add(c);
+        o.meshes.forEach(mid => { const src = body.parts[mid]; if (!src) return; const a = src.g.userData.main.geometry.attributes.position; for (let i = 0; i < a.count; i += 3) { const d = (a.getX(i) - q.x) ** 2 + (a.getY(i) - q.y) ** 2 + (a.getZ(i) - q.z) ** 2; if (d < bd) { bd = d; best = new V3(a.getX(i), a.getY(i), a.getZ(i)).sub(c); } } });
+        return best ? best.lerp(new V3(), .15) : v;   // a little inside the surface
+      };
       o.hotspots.forEach(hid => {
-        const n = NODE[hid]; if (!n || !n.hotspot || !n.hotspot.at) return;
-        const at = new V3(...n.hotspot.at); at.x *= mir; if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
+        const n = NODE[hid]; if (!n) return; const mine = o.hot && o.hot[hid]; if (!mine && (!n.hotspot || !n.hotspot.at)) return;
+        let at = mine ? new V3(...mine) : new V3(...n.hotspot.at); if (!mine) { at.x *= mir; if (o.hot) at = near(at); } if (at.length() > P.radius * 1.6) at.setLength(P.radius * .8);
         const g = inked(dotG, 0xffd166, { w: .004, extra: { transparent: true } }); g.position.copy(at); F.add(g); // a marker is painted over everything, ink first then fill: both stay in the blended pass, where renderOrder decides
         if (BLK.on) { g.userData.main.material = new THREE.MeshBasicMaterial({ color: 0xffd166, transparent: true, toneMapped: false }); g.userData.ol.material.uniforms.uOpacity.value = 1; }   // the realistic look: a marker is interface, flat and unlit, never a glossy bead
         g.userData.main.renderOrder = 11; g.userData.ol.renderOrder = 10; // marker above its own outline
         g.children.forEach(m => { m.material.depthTest = false; });
-        Object.assign(g.userData, { id: hid, node: hid, priority: 4, title: n.hotspot.label || n.title, center: () => at.clone(), radius: () => P.radius * .12, madeOf: 'tissue' }); g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(hid, g);
-        F.label(g, n.hotspot.label || n.title, { offset: new V3(0, P.radius * .07, 0) });
+        Object.assign(g.userData, { id: hid, node: hid, priority: 4, title: (n.hotspot && n.hotspot.label) || n.title, center: () => at.clone(), radius: () => P.radius * .12, madeOf: 'tissue' }); g.userData.main.userData.pickRoot = g; F.pickables.push(g); regMesh(hid, g);
+        F.label(g, (n.hotspot && n.hotspot.label) || n.title, { offset: new V3(0, P.radius * .07, 0) });
       });
       F.filled = true;
     };
-    if (body.partsReady) fill(); else if (body.readyP) body.readyP.then(fill);
+    if (body.partsReady) fill(); else if (body.readyP) { if (body.loadAll) body.loadAll(); body.readyP.then(fill); }
   }
 };
 
@@ -443,8 +509,8 @@ function showBodyNode(id, h) {
   const n = NODE[id]; if (!n) return false;
   const BF = h && h.frame && h.frame.layered && h.frame.parts ? h.frame : null; // a click on a layered frame (the body, a thing): answer "what is under here?"
   if (BF) { if (h.ndc && !h.stack) h.stack = bodyCoreSample(BF, h); BF.sel = h.obj && h.obj.userData.part ? h.obj.userData.id : null; }
-  else if (FR.body) FR.body.sel = null;
-  if (FR.body && h) FR.body.reveal = null;
+  else BODIES().forEach(b => { b.sel = null; });
+  if (h) BODIES().forEach(b => { b.reveal = null; });
   infoState = { h, node: id };
   const L = n.layers || {};
   let basics = `<p><b>${n.summary || ''}</b></p>${L.basics ? `<p>${L.basics}</p>` : ''}`;
@@ -461,7 +527,7 @@ function showBodyNode(id, h) {
     basics, deeper: L.deeper, expert: L.expert, facts: n.facts,
     look: !!h, buttons: (mo !== undefined ? (mo ? `<button class="zoom alt" id="madeBtn">${mo.label}</button>` : '') : h && n.made_of && n.made_of.length && !(BF && BF.type === 'body' && !canLook && !ls) ? `<button class="zoom alt" id="madeBtn">${BF && BF.type === 'body' ? 'Look at its tissue' : 'See what it is made of'}</button>` : '') + (hideable ? `<button class="zoom alt" id="hideBtn">Hide this</button>` : '')
       + (n.lab ? `<button class="zoom lab" id="labBtn">${labAvailable(n.lab.id) ? 'Open in the ' : 'Planned: '}${LAB_NAMES[n.lab.id] || n.lab.id}</button>` : '') + (tw && !h ? `<button class="zoom alt" id="whereBtn">Show where it is</button>` : ''),
-    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">${ls ? 'In Auto, "Look inside" (or a double click) goes one layer in at the spot you chose. For this part\'s own tissue, choose "Look at its tissue" or the first entry under "What it is made of", or double-click the part in its own layer view (the buttons above the scene).' : 'There is no cut-open view of this part yet. "Look inside" (or a double click) shows an illustration of the kind of tissue it is made of, not a microscope image.'}</p>` : ''),
+    after: (/^lung_[lr]$/.test(id) && (BF && BF.type === 'body' || canLook || (h && h.frame && h.frame.type === 'organ')) && (bodyOfFrame(h && h.frame) || bodyFor(id)) !== FR.body_f ? `<p class="cnote">${LUNG_NOTE}</p>` : '') + (BF && BF.type === 'body' && mo === undefined && n.made_of && n.made_of.length && !canLook ? `<p class="cnote">${ls ? 'In Auto, "Look inside" (or a double click) goes one layer in at the spot you chose. For this part\'s own tissue, choose "Look at its tissue" or the first entry under "What it is made of", or double-click the part in its own layer view (the buttons above the scene).' : 'There is no cut-open view of this part yet. "Look inside" (or a double click) shows an illustration of the kind of tissue it is made of, not a microscope image.'}</p>` : ''),
     made: (n.parts && n.parts.length ? '<div class="rs">Parts</div>' + chips(n.parts) : '') + (n.made_of && n.made_of.length ? (n.parts && n.parts.length ? '<div class="rs">Made of</div>' : '') + chips(n.made_of) : ''),
     part: chips(n.parents),
     how: n.processes && n.processes.length ? chips(n.processes, 'chip pr', 'data-p') : '',
@@ -474,7 +540,8 @@ function showBodyNode(id, h) {
     cert: n.certainty,
   };
   openPanel(cardHtml(spec), { key: 'node:' + id, reopen: () => showBodyNode(id, h) });
-  mountViz($('#vizHost'), id); wireTrackNav();
+  { const b = h ? bodyOfFrame(h.frame) : bodyFor(id); mountViz($('#vizHost'), id, b && b.who); }   // a chart may have a version for her (data/viz: id@woman)
+  wireTrackNav();
   wireLookBtns(h);
   const mb = $('#madeBtn'); if (mb && mo) mb.onclick = () => { closeInfo(); mo.go(); };
   else if (mb) mb.onclick = () => { closeInfo(); const f = tissueFrame(n.made_of[0], h.pointLocal || h.frame.C, id); f.dynamic = true; f.keep = performance.now() + 60000; h.frame.addChild(f); f.ensure(); flyTo(f, new V3(), 4e-4); };
@@ -534,14 +601,15 @@ function goToNode1(id) {
   const tw = TEAR[id] || (n.where && TEAR[n.where]) || (n.hotspot && TEAR[n.hotspot.of]);
   if (tw) { showBodyNode(id, null); if (tw.frame && tw.frame.ensure) tw.frame.ensure(); if (tw.frame && tw.frame.showPart && id !== 'smartphone') tw.frame.showPart(TEAR[id] ? id : n.where && TEAR[n.where] ? n.where : n.hotspot && n.hotspot.of, id); flyTo(tw.frame, tw.pos, tw.D); return; }
   if (n.where && !TEAR[n.where] && n.where !== id && placeGo(n.where, id)) { setTimeout(() => showBodyNode(id, null), 0); return; }
-  const body = FR.body, ix = ANAT_SYNC, parts = nid => ix ? ix.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === nid) : [];
+  const body = bodyFor(id), ix = body && ANAT_SYNC_BY[body.anatDir || 'data/anatomy/'], parts = nid => ix ? ix.parts.filter(p => !p.parent && p.id !== 'skin' && nodeForMesh(p.id) === nid) : [];
   const organOf = oid => body && body.children.find(c => c.type === 'organ' && c.opts.organ === oid);
+  if (body && body.loadAll && !body.partsReady) body.loadAll();   // the woman's inner systems, if they are not in yet
   // 1. the part has its own cut-open view: go there. 2. it is a hotspot inside an organ: go to that organ's view, at the hotspot.
   const own = organOf(id);
-  if (own) { showBodyNode(id, null); flyTo(own, new V3(), own.opts.R * 2.2); return; }
+  if (own) { showBodyNode(id, null); flyTo(own, new V3(), own.opts.R * 2.2, undefined, own.opts.dir); return; }
   const of0 = n.hotspot && n.hotspot.of, of = GOTO_PARENT[of0] || of0; // a tissue-level hotspot (a nephron, a long bone, the skin) belongs to the body part that holds it
   const org = of && organOf(of);
-  if (org) { showBodyNode(id, null); if (of === of0 && n.hotspot.at) { const at = new V3(...n.hotspot.at); if (org.opts.mirror) at.x = -at.x; flyTo(org, at, org.opts.R * 1.2); } else flyTo(org, new V3(), org.opts.R * 2.2); return; }
+  if (org) { showBodyNode(id, null); const mine = org.opts.hot && org.opts.hot[id]; if (of === of0 && (mine || n.hotspot.at)) { const at = new V3(...(mine || n.hotspot.at)); if (!mine && org.opts.mirror) at.x = -at.x; if (!mine && org.opts.hot) at.multiplyScalar(.5); flyTo(org, at, org.opts.R * 1.2, undefined, org.opts.dir); } else flyTo(org, new V3(), org.opts.R * 2.2, undefined, org.opts.dir); return; }
   // 3. otherwise stay in the whole-body view: peel what is in front of the part, highlight it, centre it and name it
   const skinP = ix && ix.parts.filter(p => p.id === 'skin');
   let P = id === 'skin' ? skinP : parts(id);
@@ -562,6 +630,28 @@ function goToNode1(id) {
 }
 const GOTO_PARENT = { nephron: 'kidney_r', long_bone: 'femur_r', skin: 'skin' }; // tissue-level hotspot parents with no organ view of their own
 let ANAT_SYNC = null; loadAnatomyIndex().then(a => ANAT_SYNC = a);
+/* ---------- two bodies: which one a jump goes to ----------
+   The man (FR.body) and the woman (FR.body_f). A jump to a body structure goes to the body the camera is in, else the nearer one, else the
+   man; to the other one when only it has that structure (her uterus; his stomach); GOTO_WHO names one outright ("See it in the woman"). */
+const BODIES = () => typeof FR === 'undefined' ? [] : [FR.body, FR.body_f].filter(Boolean);
+let GOTO_WHO = null;
+function bodyHas(b, id) {
+  const ix = ANAT_SYNC_BY[b.anatDir || 'data/anatomy/'], n = NODE[id]; if (!ix || !n) return false;
+  const has = nid => nid && (nid === 'skin' || ix.parts.some(p => !p.parent && nodeForMesh(p.id) === nid) || b.children.some(c => c.type === 'organ' && c.opts.organ === nid));
+  const of0 = n.hotspot && n.hotspot.of, of = GOTO_PARENT[of0] || of0;
+  const org = of && b.children.find(c => c.type === 'organ' && c.opts.organ === of);
+  return has(id) || !!(org && org.opts.hotspots.includes(id)) || (b.who === 'woman' && b.children.some(c => c.type === 'organ' && c.opts.hot && c.opts.hot[id])) || (!!of && has(of)) || (!!GOTO_NEAR[id] && has(GOTO_NEAR[id]));
+}
+function bodyFor(id) {
+  const B = BODIES(); if (!B.length) return null;
+  if (GOTO_WHO) { const b = B.find(x => x.who === GOTO_WHO); if (b) return b; }
+  const inF = B.find(b => chainOf(cam.A).includes(b)), dist = b => b.C ? b.C.distanceTo(b.center || V3Z) : Infinity;
+  const order = inF ? [inF, ...B.filter(b => b !== inF)] : B.slice().sort((a, b) => (a === FR.body ? -.5 : 0) + dist(a) - ((b === FR.body ? -.5 : 0) + dist(b)));   // the man unless she is clearly nearer
+  return order.find(b => bodyHas(b, id)) || order[0];
+}
+function goToNodeIn(id, who) { GOTO_WHO = who; try { goToNode(id); } finally { GOTO_WHO = null; } }
+/* the body a pick or a card is about: the body frame it is in, else null */
+function bodyOfFrame(f) { while (f) { if (f.type === 'body') return f; f = f.parent; } return null; }
 
 /* ---------- "where it lives": fly to a topic's home in the world ---------- */
 function parkPointOf(id, fallback) {

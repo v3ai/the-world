@@ -718,7 +718,7 @@ BUILD.life = (c) => {
   const gm = makeLawn(g, c, r); g.add(gm);
   // human
   const { h: human, arms } = makeHuman(); human.userData = { id: 'human' }; g.add(human); c.pickables.push(human);
-  c.addLabel(human, 'You', { offset: new V3(0, 2.05, 0), cls: 'you' });
+  c.addLabel(human, 'Man', { offset: new V3(0, 2.05, 0), cls: 'you' });
   // the dog is a thing built from data (data/things/dog), placed by data/things/index.json
   // trees: the English oaks are things built from data (data/things/oak, placed by data/things/index.json), not made here
   c.parts = { arms, human, sky, sun, sunHit, sg, ground, grass: gm };
