@@ -2,10 +2,10 @@
 
 # ---------------- the whole body ----------------
 how do i see, how do eyes see, how do we see => kn:vision_eye, node:retina, node:vision, node:rod_cell, node:cone_cell, trail:what_is_light // src: openstax-ap
-human body, my body, me, myself, person, human, humans, anatomy, body parts, what am i made of => lm:You, node:human_body, trail:what_am_i_made_of, kn:homeostasis // src: openstax-ap app-card
-skeleton, bones, bone, my bones, skeletal system, bone structure => node:skeletal_system, lm:You, node:compact_bone, node:spongy_bone, node:bone_marrow, node:skull, node:ribcage // In the body view choose Skeleton at the top to see every bone. // src: openstax-ap app-card
+human body, my body, me, myself, person, human, humans, anatomy, body parts, what am i made of => lm:People, node:human_body, trail:what_am_i_made_of, kn:homeostasis // src: openstax-ap app-card
+skeleton, bones, bone, my bones, skeletal system, bone structure => node:skeletal_system, lm:People, node:compact_bone, node:spongy_bone, node:bone_marrow, node:skull, node:ribcage // In the body view choose Skeleton at the top to see every bone. // src: openstax-ap app-card
 spine, backbone, spinal column, vertebrae, back bone => node:cervical_spine, node:thoracic_spine, node:lumbar_spine, node:sacrum, node:intervertebral_discs, node:spinal_cord // src: openstax-ap
-tailbone, coccyx => node:sacrum // The tailbone (coccyx) sits just below the sacrum; the model shows the sacrum. // near: node:sacrum // src: openstax-ap
+tailbone, coccyx => node:coccyx, node:sacrum // src: openstax-ap
 ribs, rib cage, chest bones, ribcage => node:ribcage, node:sternum // src: openstax-ap
 breastbone => node:sternum // src: openstax-ap
 jaw, jawbone, chin => node:mandible // src: openstax-ap
@@ -27,7 +27,7 @@ tendon, tendons, achilles, sinew, ligament, ligaments => node:tendon, node:dense
 growing taller, growth, height, growth plate => node:growth_plate, node:bone_remodeling // src: openstax-ap
 
 # ---------------- muscles ----------------
-muscle, muscles, my muscles, muscular system, muscle tissue, six pack => lm:You, node:muscular_system, node:muscle_contraction, node:skeletal_muscle_fiber, node:rectus_abdominis, node:biceps_brachii // src: openstax-ap
+muscle, muscles, my muscles, muscular system, muscle tissue, six pack => lm:People, node:muscular_system, node:muscle_contraction, node:skeletal_muscle_fiber, node:rectus_abdominis, node:biceps_brachii // src: openstax-ap
 bicep, biceps, arm muscle => node:biceps_brachii, node:triceps_brachii // src: openstax-ap
 tricep, triceps => node:triceps_brachii // src: openstax-ap
 abs, abdominals, six pack abs, stomach muscles => node:rectus_abdominis, node:external_obliques // src: openstax-ap
@@ -201,3 +201,14 @@ soil life, worms in soil, decomposition, rot, rotting, compost, decay => node:bi
 symbiosis, parasite, parasites, tapeworm, mutualism => node:bio_symbiosis, node:bio_parasites_helminths // src: openstax-bio
 migration, bird migration, navigation, how birds find their way => node:bio_migration_navigation // src: openstax-bio
 hibernation, hibernate, torpor => node:bio_torpor_hibernation // src: openstax-bio
+woman, women, female body, female, a woman, the woman, womans body, female anatomy => lm:Woman, node:model_woman, node:breast, node:uterus // The woman: one woman's body, the Visible Human Female, beside the man // src: app-card
+man, men, male body, male, a man, the man, mans body, male anatomy => lm:Man, node:model_man // The man: one man's body (BodyParts3D), beside the woman // src: app-card
+people, two people, both bodies, man and woman => lm:People, node:model_woman, node:model_man // src: app-card
+breast, breasts, mammary gland, mammary glands => node:breast, node:mammary_lobes, node:nipple_areola // src: openstax-ap
+milk ducts, milk duct => node:lactiferous_ducts // src: openstax-ap
+nipple, nipples, areola => node:nipple_areola // src: openstax-ap
+fallopian tube, fallopian tubes, oviduct, oviducts, uterine tube => node:uterine_tubes // src: openstax-ap
+cervix, neck of the womb => node:cervix // src: openstax-ap
+vagina, birth canal => node:vagina // src: openstax-ap
+womb lining, uterine lining, menstruation, menstrual cycle => node:endometrium, node:uterus // src: openstax-ap
+ovary, ovaries, egg store => node:ovaries // src: openstax-ap

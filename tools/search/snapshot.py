@@ -27,6 +27,8 @@ JS = r'''(() => {
     if (!P.length && of) P = of === 'skin' ? ix.parts.filter(p => p.id === 'skin') : parts(of);
     if (!P.length && GOTO_NEAR[id]) { P = parts(GOTO_NEAR[id]); if (P.length) return 'near'; }
     if (P.length && body) return 'part';
+    const her = FR.body_f;   // the woman: a structure only she has (her uterus, her breasts) flies to her
+    if (her && typeof bodyHas === 'function') { if (her.children.some(c => c.type === 'organ' && c.opts.organ === id)) return 'organ'; if (bodyHas(her, id)) return 'part'; }
     return null;
   };
   Object.keys(NODE).forEach(id => { const k = kindOf(id); if (k) out.nodes[id] = k; });
@@ -34,6 +36,7 @@ JS = r'''(() => {
   (FR.things || []).forEach(f => out.things.push({ id: f.opts.thing, title: f.name, n: f.opts.n }));
   out.places = bodyPlaces().map(p => p.title);
   out.anatParts = ix ? ix.parts.filter(p => !p.parent).map(p => ({ id: p.id, name: p.name, node: nodeForMesh(p.id) })) : [];
+  const ixf = FR.body_f && ANAT_SYNC_BY[FR.body_f.anatDir]; if (ixf) ixf.parts.filter(p => !p.parent).forEach(p => out.anatParts.push({ id: 'vhf_' + p.id, name: p.name + ' (the woman)', node: nodeForMesh(p.id) }));
   out.thingParts = {};
   if (typeof TH !== 'undefined') for (const k in TH.loaded) out.thingParts[k] = TH.loaded[k].parts.map(p => ({ id: p.id, name: p.name, node: p.node }));
   return out;

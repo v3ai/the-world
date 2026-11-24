@@ -156,7 +156,12 @@ log('%d parts (%d whole-body, %d detail); triangles %d whole-body + %d detail = 
 # organ's centre (the mean of the centres of the organ's whole-body parts, as makeOrganFrames computes it). The man's offsets were
 # set on his model; hers are measured here: the centre of the part that is that structure, or of the source node that is.
 ORG = {'heart': ['heart'], 'brain': ['cerebrum_l', 'cerebrum_r'], 'eye_r': ['eyeball_r'], 'eye_l': ['eyeball_l'], 'kidney_r': ['kidney_r'], 'kidney_l': ['kidney_l'],
-       'lung_r': ['lung_r'], 'lung_l': ['lung_l'], 'liver': ['liver'], 'pancreas': ['pancreas'], 'small_intestine': ['small_intestine']}
+       'lung_r': ['lung_r'], 'lung_l': ['lung_l'], 'liver': ['liver'], 'pancreas': ['pancreas'], 'small_intestine': ['small_intestine'],
+       'uterus': ['uterus'], 'breast': ['breast_fat_l']}
+# her two cut-open views that the man has no counterpart of: which parts each shows (meshes: the organ itself, its detail parts if it
+# has any; with: whole parts shown beside it). The breast view is of her left breast.
+ORGAN_VIEWS = {'uterus': {'meshes': ['uterus'], 'with': ['cervix', 'uterine_tube_l', 'uterine_tube_r', 'ovary_l', 'ovary_r', 'broad_ligament', 'uterine_ligaments', 'vagina']},
+               'breast': {'meshes': ['breast_fat_l'], 'with': ['breast_lobes_l', 'lactiferous_ducts_l', 'nipple_areola_l', 'breast_ligaments_l']}}
 def ocen(o):
     cs = [(by[i]['v'].min(0) + by[i]['v'].max(0)) / 2 for i in ORG[o]]; return np.mean(cs, 0)
 def node_cen(pat):
@@ -191,7 +196,35 @@ for sd in 'lr':
     hot(K, 'renal_cortex', near_point('kidney_cortex_' + sd, ocen(K) + np.array([(1 if sd == 'l' else -1) * .1, 0, 0])))
     hot(K, 'renal_medulla', cen('renal_pyramids_' + sd)); hot(K, 'renal_pelvis', cen('renal_pelvis_' + sd))
 hot('lung_r', 'bronchi', near_point('bronchi', ocen('lung_r')))
+# the uterus view: the wall's layers on the front wall, the cervix, tubes, ovaries and ligaments at their own parts
+hot('uterus', 'endometrium', cen('uterus_body')); hot('uterus', 'myometrium', near_point('uterus_wall_front', cen('uterus') + np.array([0, .02, .03])))
+for nid, pid in [('cervix', 'cervix'), ('uterine_tubes', 'uterine_tube_l'), ('ovaries', 'ovary_l'), ('broad_ligament', 'broad_ligament'), ('vagina', 'vagina')]:
+    hot('uterus', nid, cen(pid))
+hot('uterus', 'ligaments_of_uterus', near_point('uterine_ligaments', cen('uterus') + np.array([.06, 0, .02])))
+for nid, pid in [('mammary_lobes', 'breast_lobes_l'), ('lactiferous_ducts', 'lactiferous_ducts_l'), ('nipple_areola', 'nipple_areola_l'), ('suspensory_ligaments_breast', 'breast_ligaments_l')]:
+    hot('breast', nid, cen(pid))
+hot('breast', 'adipose_tissue', near_point('breast_fat_l', ocen('breast') + np.array([.05, .04, 0])))
 log('markers measured on her parts: ' + ', '.join('%s %d' % (o, len(v)) for o, v in HOT.items()))
+
+# ---------- the man's parts that her atlas does not have ----------
+# Base ids of parts of the man's model (data/anatomy) with no counterpart in either source file: the app says so on their cards ("Not in
+# her model"). Each is checked here against every node name of both files, so the claim stays true for the files this was built from.
+ABSENT = {'skull': r'skull|cranium|frontal_bone|occipital_bone|parietal_bone|temporal_bone', 'mandible': r'(^|/)mandible', 'hyoid': r'hyoid', 'ribs': r'(^|_|/)ribs?(_|$)|costal_cartilage',
+          'clavicle': r'clavic', 'scapula': r'scapul', 'humerus': r'humer', 'radius': r'(^|_|/)radius', 'ulna': r'ulna', 'hand_bones': r'carpal|metacarp|phalan',
+          'foot_bones': r'tarsal|calcane|talus|metatars', 'pectoralis_major': r'pectoral', 'deltoid': r'deltoid', 'biceps_brachii': r'biceps', 'triceps_brachii': r'triceps',
+          'trapezius': r'trapez', 'sternocleidomastoid': r'sternocleido', 'gluteus_maximus': r'glute', 'hamstrings': r'hamstring|semitend|semimemb|biceps_fem',
+          'gastrocnemius': r'gastrocnem', 'forearm_muscles': r'flexor_carpi|extensor_carpi|brachiorad|pronator', 'back_muscles': r'erector|latissimus|multifid',
+          'diaphragm': r'(^|/)diaphragm(_|$)', 'abdominal_muscles': r'abdominis|external_oblique|internal_oblique', 'esophagus': r'(^|/)(o)?esophagus', 'stomach': r'(^|/)stomach|pylor|cardia_of|fundus_of_stomach',
+          'adrenal': r'adrenal|suprarenal_gland', 'pituitary': r'pituitar|hypophys'}
+for b, rx in ABSENT.items():
+    hit = [p for t in 'up' for n, p, v, f in SRC[t] if re.search(rx, p, re.I)]
+    assert not hit, (b, hit[:3])
+log('absent from her atlas (checked by name): ' + ', '.join(ABSENT))
+
+# ---------- the regions of her skin (see regions_f.py) ----------
+from regions_f import regions
+REG = regions(by)
+log('skin regions: ' + ', '.join('%s %d' % (v, REG['codes'].count(k)) for k, v in REG['segs'].items()) + '; armpit at %.2f m' % REG['armpit'])
 
 # ---------- write data/anatomy_f ----------
 OUT = args.out; os.makedirs(OUT, exist_ok=True)
@@ -252,7 +285,7 @@ idx = {'format': 'anatomy-v1', 'units': 'm', 'up': '+Y', 'front': '+Z', 'left': 
                   'doi': ['https://doi.org/10.48539/HBM637.DWBM.744', 'https://doi.org/10.48539/HBM853.VCFM.778'], 'licence': 'CC BY 4.0',
                   'files': {'3d-vh-f-united.glb': '95f0c3d2f918582608692ca1139e8bdb18c147a16470e9ee9af8b276bd77c422', '3d-vh-f-pelvis.glb': '6ef3436e42b7203afcdfa075e57098e97c4e1aaaec08cfdacf6300ba3d5a551d'}},
        'frame': {'shift_m': [r_(x, 5) for x in SHIFT], 'scale': 1},
-       'hotspots': HOT,
+       'hotspots': HOT, 'organ_views': ORGAN_VIEWS, 'regions': REG, 'absent': sorted(ABSENT),
        'systems': [{'id': a, 'name': b, 'color': c, 'count': sum(1 for e in index if e['system'] == a), 'file': a + '.json'} for a, b, c in SYS],
        'parts': index}
 open(os.path.join(OUT, 'index.json'), 'w').write(json.dumps(idx, separators=(',', ':')))

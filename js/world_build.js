@@ -32,10 +32,15 @@ async function buildWorld() {
   const region = FR.earth.addChild(regionFrame(FR.earth, PARK.lat, PARK.lon, 'grass', true)); FR.region = region;
   const park = region.addChild(new Frame({ type: 'park', name: 'Greenwich Park', unit: 1, radius: 500, r0: 2e-4, r1: 3500, up: new V3(0, 1, 0), maxPolar: Math.PI / 2 - .03 }));
   FR.park = park;
-  const body = park.addChild(new Frame({ type: 'body', name: 'Human body', unit: 1, radius: 1.0, center: new V3(0, .875, 0), r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
+  const body = park.addChild(new Frame({ type: 'body', name: 'Man', unit: 1, radius: 1.0, center: new V3(0, .875, 0), r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(0, 0, 0) }));
   body.noFade = true; body.coRender = true; body.coMax = 400; FR.body = body;
   const devLM = buildTeardown(body);
   const AN = await loadAnatomyIndex(); await loadNodes(); if (AN) makeOrganFrames(body, AN);
+  /* the woman, beside him at her own height (1.66 m; js/nodes.js FT.body, data/anatomy_f): 1.2 m to his right, so their hands are
+     half a metre apart. Her skin is fetched at once, her inner systems when the camera comes near her (or something of hers is asked for). */
+  const body_f = park.addChild(new Frame({ type: 'body', name: 'Woman', unit: 1, radius: 1.0, center: new V3(0, .83, 0), r0: 0, r1: 90, up: new V3(0, 1, 0), pos: new V3(-1.2, 0, 0), opts: { anat: 'data/anatomy_f/', prefix: 'vhf_', who: 'woman' } }));
+  body_f.noFade = true; body_f.coRender = true; body_f.coMax = 400; FR.body_f = body_f;
+  const ANF = await loadAnatomyIndex('data/anatomy_f/'); if (ANF) makeOrganFrames(body_f, ANF);
   const skin = park.addChild(microFrame('skin', new V3(0, 1.2, .2)));
   skin.place = () => {
     if (skin._placed || !park.built || !park.v2) return; skin._placed = true;
@@ -69,6 +74,7 @@ async function buildWorld() {
     const o = organId && organ(organId);
     return o ? LM(label, o, new V3(), o.opts.R * 2.2, { side: true }) : LM(label, body, new V3(...p.center), D, { side: true });
   };
+  const PEOPLE = new V3(-.6, .95, 0);   // between the two of them
   LANDMARKS = [
     LM('Proton', pr, null, 3e-15),
     LM('Oxygen nucleus', nuc, null, 2.2e-14),
@@ -76,9 +82,10 @@ async function buildWorld() {
     LM('Base pair (molecule)', bp, null, 3e-9),
     LM('DNA', dna, null, 2e-8),
     LM('Skin cell', cell, null, 4e-5),
-    LM('Your skin', skin, null, 1.5e-3),
-    ...devLM, bodyLM('cerebrum_r', 'Your brain', .5, 'brain'), bodyLM('heart', 'Your heart', .4, 'heart'),
-    LM('You', body, new V3(0, .95, 0), 6),   // the person (the place "Human body" the start view shows), not the park around them
+    LM('Skin', skin, null, 1.5e-3),
+    ...devLM, bodyLM('cerebrum_r', 'Brain', .5, 'brain'), bodyLM('heart', 'Heart', .4, 'heart'),
+    LM('Man', body, new V3(0, .95, 0), 3.2, { side: true }), LM('Woman', body_f, new V3(0, .9, 0), 3.1, { side: true }),   // each of the two people, near enough to see them whole
+    LM('People', park, PEOPLE, 6.5),   // the two people (the place the start view shows), not the park around them
     LM('Greenwich Park', park, new V3(0, 0, 0), 450),   // near enough that the oaks (drawn out to 700 m) are all there, far enough to see the park whole
     LM('London', region, null, 8e4),
     LM('Earth', FR.earth, null, 3e7),
@@ -104,8 +111,8 @@ function startView() {
   const park = FR.park;
   // make sure the chain down to the park exists and is placed
   chainOf(park).reverse().forEach(f => { f.ensure(); if (f.place) f.place(); });
-  cam.A = park; cam.T.set(0, 1.1, 0); cam.D = 7; cam.dir.set(.35, .28, 1).normalize(); cam.up.set(0, 1, 0);
-  if (innerWidth <= 860 && innerHeight > innerWidth) { cam.T.set(.62, .95, .3); cam.D = 8.4; }   // a phone held upright sees a narrow strip: stand a little further back and look between the person and the dog, so the dog is not cut off at the edge
+  cam.A = park; cam.T.set(-.6, 1.05, 0); cam.D = 7.5; cam.dir.set(.35, .28, 1).normalize(); cam.up.set(0, 1, 0);   // the man and the woman side by side
+  if (innerWidth <= 860 && innerHeight > innerWidth) { cam.T.set(-.2, .95, .3); cam.D = 9.5; }   // a phone held upright sees a narrow strip: stand further back and look between the two people and the dog, so neither she nor the dog is cut off
 }
 /* "What is it made of?" — jump straight to the material, wherever you are */
 function diveMaterial(h, quiet) {   // returns the frame it flies into, or null when there is none for this material (quiet: say nothing then)

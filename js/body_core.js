@@ -66,17 +66,26 @@ function boneCloud(F) {
    Names follow surface anatomy: chest above the costal margin, abdomen below it down to the hip bone, lower abdomen and pelvis
    below that; at the back upper back (thoracic), lower back (lumbar) and buttock. */
 function bodyRegion(F, p, normal) {
-  if (F.type !== 'body' || !F.parts || !F.parts.femur_l) return null;
-  const C = boneCloud(F), P = C.pos; let bd = Infinity, bi = 0;
+  if (F.type !== 'body' || !F.parts) return null;
+  let C, seg;
+  if (F.who === 'woman') {   // her model has no skull, arm, hand or foot bones: each vertex of her skin carries its region (tools/anatomy/female/regions_f.py)
+    C = F.A && F.A.regions; const sk = F.parts.skin; if (!C || !sk) return null;
+    const P = sk.g.userData.main.geometry.attributes.position.array; let bd = Infinity, bi = 0;
+    for (let i = 0, n = P.length / 3; i < n; i++) { const dx = P[i * 3] - p.x, dy = P[i * 3 + 1] - p.y, dz = P[i * 3 + 2] - p.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
+    seg = C.segs[C.codes[bi]];
+  } else {
+  if (!F.parts.femur_l) return null;
+  C = boneCloud(F); const P = C.pos; let bd = Infinity, bi = 0;
   for (let i = 0, n = C.seg.length; i < n; i++) { const dx = P[i * 3] - p.x, dy = P[i * 3 + 1] - p.y, dz = P[i * 3 + 2] - p.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; bi = i; } }
-  let seg = C.segs[C.seg[bi]];
+  seg = C.segs[C.seg[bi]];
+  }
   let back = false; // is this the back of the body? Face normals are not oriented, so turn the normal to face the viewer first
   if (normal) { const n = normal.clone(); if (raycaster && raycaster.ray && n.dot(raycaster.ray.direction) > 0) n.negate(); back = n.z < -.35; }
   const side = p.x > .045 ? 'left' : p.x < -.045 ? 'right' : '', ax = Math.abs(p.x);
   let name;
   if (seg === 'torso') {
     let band;
-    if (p.y > 1.4 && ax > .07) band = 'shoulder';
+    if (p.y > (C.shoulderY || 1.4) && ax > .07) band = 'shoulder';
     else if (back) band = p.y >= C.thMinY ? 'upper back' : p.y >= C.luMinY ? 'lower back' : 'buttock';
     else { const costal = C.xiphY - (C.xiphY - C.lowY) * Math.min(ax / C.lowX, 1); band = p.y >= costal + .06 ? 'chest' : p.y >= costal ? 'lower chest' : p.y >= C.hipMaxY ? 'abdomen' : p.y >= C.hipMinY + .08 ? 'lower abdomen' : 'pelvis'; }
     seg = band === 'lower chest' ? 'chest' : band === 'upper back' ? 'chest' : band === 'lower back' ? 'abdomen' : band === 'buttock' ? 'pelvis' : band === 'lower abdomen' ? 'abdomen' : band;
@@ -124,8 +133,8 @@ function coreHtml(F, h) {
   const li = rows.slice(0, max).map((r, i) => `<li class="${r.id === cur ? 'cur' : ''}${F.hidden.has(r.id) ? ' off' : ''}"><button class="core-go" data-i="${i}">${r.name}</button><span class="dp">${cm(r.depth)}</span>${i > 0 ? `<button class="core-peel" data-i="${i}" title="Hide everything in front of this part">Peel to here</button>` : ''}</li>`).join('');
   const more = rows.length > max ? `<li class="more">and ${rows.length - max} more, deeper</li>` : '';
   const body = F.type === 'body', T = F.coreText || {}, cr = rows.find(r => r.id === cur), gap = body && cr && F.parts[cur] && cr.depth > .12 && peelRank(F.parts[cur].p) <= 2 ? `<p class="gap">Seen through a gap between the parts in front of it: this one is on the far side of the body, ${cm(cr.depth)} behind the skin.</p>` : '';
-  const where = S.region ? `<p class="where">You clicked your <b>${S.region.name}</b>.</p>${gap}` : gap;
-  return `<div class="core">${where}<div class="rh">${T.head || 'Under this point, from the skin inward'}</div><ol>${li}${more}</ol><p class="cnote">${T.note || 'Depths are on the model, an average adult: not a scan of you.'}</p></div>`;
+  const where = S.region ? `<p class="where">You clicked ${F.who === 'woman' ? 'her' : 'his'} <b>${S.region.name}</b>.</p>${gap}` : gap;
+  return `<div class="core">${where}<div class="rh">${T.head || 'Under this point, from the skin inward'}</div><ol>${li}${more}</ol><p class="cnote">${T.note || (F.who === 'woman' ? 'Depths are on this model of one woman: not a scan of you.' : 'Depths are on this model of one man: not a scan of you.')}</p></div>`;
 }
 function wireCore(F, h) {
   const S = h.stack; if (!S) return;
@@ -340,6 +349,10 @@ function lungShellGeo(tree, heart) {
   sph.computeVertexNormals(); sph.computeBoundingSphere(); sph.computeBoundingBox();
   return sph;
 }
+/* the woman's model note (js/nodes.js FT.body, BLK.recolor): what is hers, what is missing, what is not her own tissue */
+const BODY_F_NOTE = 'Model: one woman\'s body, the Visible Human Female (U.S. National Library of Medicine; 59 years old), from the Human Reference Atlas\'s 3D models of her frozen sections. Not resized: she stands 1.66 m in this model (her recorded height is 171.2 cm). Shown are her skin, spine, breastbone, pelvis and leg bones, heart and the vessels of her trunk, lungs, airway, liver, gut, kidneys, bladder, uterus, ovaries and their ligaments, breasts, spinal cord and eyes. Her skull, ribs, shoulders, arm, hand and foot bones, almost all her muscles, her stomach and the vessels of her head and limbs were not made from her sections, so they are missing here; nothing is borrowed from anyone else. Not her own tissue: the inside of each breast is a sculpted reference model; the large intestine follows her bowel\'s path only roughly; the brain is another woman\'s (Allen atlas), mirrored and resized; the spinal discs are modelled. The atlas makers adjusted her skin to fit the organs. Tissue colours are those of living tissue, approximately.';
+const BODY_F_NOTE_REAL = 'The skin tone is one choice of many. Her eyes are closed in the data, and are shown closed. The hair is a colour on the scalp by rule: the data has no hair. The data has no fingernails, and none are drawn.';
+const BODY_BOTH_NOTE = 'The man is BodyParts3D scaled to 1.75 m; the woman is not scaled. The difference between them is between these two people, not between men and women on average.';
 const LUNG_NOTE = 'The lung outline is drawn schematically around the airway tree, because the model data holds only the airways. Its size and shape are approximate.';
 
 /* ---------- surface grain ----------
@@ -394,8 +407,14 @@ const BLK = (() => {
   };
   const SYSREAL = { skeletal: 0xd8cbb0, muscular: 0x8e3a33, nervous: 0xe8dfcb, respiratory: 0xdcc8bc, digestive: 0xd2a08e, urinary: 0xd8b9a8,
     endocrine: 0xd3a24e, lymphatic: 0xd8b9a0, sensory: 0xe9e3d8, integumentary: 0xc4a08a };
-  const realOf = p => REAL[p.id] || (/^arteries_|^carotid/.test(p.id) ? 0xc98f84 : /^veins_/.test(p.id) ? 0x5f4b6c : /^pulmonary_vessels/.test(p.id) ? 0xa6736e : 0) || SYSREAL[p.system] || 0xc8b8a8;
-  B.colorOf = p => realOf(p);
+  /* the woman's parts the man has no counterpart of, and her detail parts (by id pattern); her skin tone is another choice of many */
+  const REAL_F = [[/^breast_fat/, 0xe0c38e], [/^breast_lobes|^lactiferous/, 0xd9aa9c], [/^nipple_areola/, 0x7e5242], [/^breast_ligaments|^broad_ligament|^uterine_ligaments|^uterovesical/, 0xe2d4c4],
+    [/^uterus|^cervix|^vagina/, 0xc78a82], [/^uterine_tube/, 0xd6a49a], [/^ovary/, 0xe0cbb8], [/^uterine_vessels/, 0xb98078], [/^lseg/, 0xd59a92], [/^lvseg/, 0x7a3328],
+    [/^kidney_cortex|^kidney_capsule|^renal_pyramids/, 0x7e322d], [/^renal_pelvis/, 0xe2cdb8], [/_lobe_|^cingulate|^cerebral_white|^thalamus|^basal_ganglia|^hippocampus|^amygdala|^hypothalamus|^corpus_callosum/, 0xcfa79a],
+    [/^rectus_femoris|^extraocular/, 0x8e3a33], [/^cardiac_veins/, 0x5f4b6c], [/^omentum/, 0xe6cf98], [/^biliary/, 0x7f8f4a], [/^gums_palate/, 0xc07a72], [/^salivary/, 0xd8b89a], [/^knee_cartilage/, 0xd8dcd4]];
+  const SKIN_F = 0x9c6c50;
+  const realOf = (p, who) => (who === 'woman' && p.id === 'skin' ? SKIN_F : 0) || REAL[p.id] || (/^arteries_|^carotid/.test(p.id) ? 0xc98f84 : /^veins_/.test(p.id) ? 0x5f4b6c : /^pulmonary_vessels/.test(p.id) ? 0xa6736e : 0) || (REAL_F.find(r => r[0].test(p.id)) || [])[1] || SYSREAL[p.system] || 0xc8b8a8;
+  B.colorOf = (p, who) => realOf(p, who);
   /* the convention a view of one system uses, and says it uses */
   const ATLAS_MODE = { nervous: 'nervous', circulatory: 'cardiovascular' };
   B.NOTE = 'Model: one man\'s body, from anatomical data made from his scans (BodyParts3D), scaled to 1.75 m and lit by the real Sun and sky. Tissue colours are those of living tissue, approximately, and where each muscle turns into tendon is drawn approximately. The skin tone is one choice of many. The eyes are the model\'s eyeballs, with an iris drawn on; lips, brows and the short hair are colours on the skin, because the model\'s surface is too coarse for them. It has no nails.';
@@ -472,10 +491,10 @@ float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2
   const FACE = `
 	{ vec3 bkVd = normalize( vViewPosition ); float bkNd = dot( normal, bkVd ); if ( bkNd < 0.06 ) normal = normalize( normal + bkVd * ( 0.06 - bkNd ) ); }
 `;
-  let aoP = null;
-  B.loadAO = () => aoP || (aoP = (LOOK.part('ao') ? getJSON('data/anatomy/ao.json') : Promise.resolve(null)).then(j => (B.aoData = j && j.parts) || null, () => null));
+  const aoP = {}, aoData = {};   // per anatomy folder (the man's, the woman's)
+  B.loadAO = (dir = 'data/anatomy/') => aoP[dir] || (aoP[dir] = (LOOK.part('ao') ? getJSON(dir + 'ao.json') : Promise.resolve(null)).then(j => (aoData[dir] = j && j.parts) || null, () => null));
   B.applyAO = F => {
-    const D = B.aoData; if (!D) return;
+    const D = aoData[F.anatDir || 'data/anatomy/']; if (!D) return;
     for (const id in F.parts) { const s = D[id], g = F.parts[id].g.userData.main.geometry; if (!s || g.attributes.bkOcc) continue;
       const b = atob(s), n = g.attributes.position.count; if (b.length !== n) continue; const o = new Uint8Array(n); for (let i = 0; i < n; i++) o[i] = 255 - b.charCodeAt(i);
       g.setAttribute('bkOcc', new THREE.BufferAttribute(o, 1, true)); }
@@ -593,19 +612,27 @@ float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2
      bkThin marks what is thin enough for light to come through (ears, fingers, the tip of the nose). */
   const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
   const blob = (x, y, z, cx, cy, cz, r) => 1 - sm(r * .4, r, Math.hypot(x - cx, y - cy, z - cz));
-  function skinZones(g, keepNormals) {
-    const P = g.attributes.position, n = P.count, col = new Float32Array(n * 3), thin = new Float32Array(n), lids = new Float32Array(n);
+  /* where the zones are, per body: the man's measured on his skin; the woman's moved by where her eyes, nose tip, hands, elbows and knee
+     caps are on hers (her head is 7 cm lower and 2 cm further forward in her frame; her arms hang further out) */
+  const ZONES = { man: { face: [1.48, 1.54, -.03, .03, 1.66, 1.72], cheek: [.046, 1.585, .074], nose: [0, 1.592, .1], ear: [.076, 1.645, -.045], hand: [.2, .23, .88, .93, .77, .815],
+      knee: [.083, .47, .04], elbow: [.215, 1.13, -.045], out: [.066, .075], lid: [.031, 1.627, .052], earThin: [.07, .077], noseThin: [.095, .105], head: 1.45 },
+    woman: { face: [1.41, 1.47, -.01, .05, 1.59, 1.65], cheek: [.055, 1.517, .096], nose: [0, 1.512, .118], ear: [.085, 1.577, -.023], hand: [.37, .40, .9, .95, .79, .83],
+      knee: [.135, .44, .06], elbow: [.29, 1.07, -.04], out: [.075, .084], lid: [.040, 1.559, .074], earThin: [.079, .086], noseThin: [.111, .121], head: 1.38,
+      hair: [1.50, 1.625, -.06, .07] } };   // her data has no hair: a colour on the scalp above a hairline set by rule (from 1.50 m at the nape to 1.625 m over the brow)
+  function skinZones(g, keepNormals, who) {
+    const P = g.attributes.position, n = P.count, col = new Float32Array(n * 3), thin = new Float32Array(n), lids = new Float32Array(n), Z = ZONES[who] || ZONES.man;
     for (let i = 0; i < n; i++) {
       const x = Math.abs(P.getX(i)), y = P.getY(i), z = P.getZ(i);
-      const face = sm(1.48, 1.54, y) * sm(-.03, .03, z) * (1 - sm(1.66, 1.72, y));
-      const cheek = blob(x, y, z, .046, 1.585, .074, .035), nose = blob(x, y, z, 0, 1.592, .1, .026), ear = blob(x, y, z, .076, 1.645, -.045, .034);
-      const hand = sm(.2, .23, x) * (1 - sm(.88, .93, y)), finger = hand * (1 - sm(.77, .815, y)), foot = 1 - sm(.06, .12, y);
-      const knee = blob(x, y, z, .083, .47, .04, .07), elbow = blob(x, y, z, .215, 1.13, -.045, .06);
-      const out = sm(.066, .075, x);   // the ear's own surface, not the side of the head behind it (the coarse ear has almost no shape to hold a colour)
-      const lid = blob(x, y, z, .031, 1.627, .052, .024);   // round the eyes: the face's flush is kept off the deep sockets, where it read as make-up
+      const face = sm(Z.face[0], Z.face[1], y) * sm(Z.face[2], Z.face[3], z) * (1 - sm(Z.face[4], Z.face[5], y));
+      const cheek = blob(x, y, z, ...Z.cheek, .035), nose = blob(x, y, z, ...Z.nose, .026), ear = blob(x, y, z, ...Z.ear, .034);
+      const hand = sm(Z.hand[0], Z.hand[1], x) * (1 - sm(Z.hand[2], Z.hand[3], y)), finger = hand * (1 - sm(Z.hand[4], Z.hand[5], y)), foot = 1 - sm(.06, .12, y);
+      const knee = blob(x, y, z, ...Z.knee, .07), elbow = blob(x, y, z, ...Z.elbow, .06);
+      const out = sm(Z.out[0], Z.out[1], x);   // the ear's own surface, not the side of the head behind it (the coarse ear has almost no shape to hold a colour)
+      const lid = blob(x, y, z, ...Z.lid, .024);   // round the eyes: the face's flush is kept off the deep sockets, where it read as make-up
       const red = Math.min(1, (.35 * face + .55 * cheek + .5 * nose + .55 * ear * out + .45 * hand + .35 * finger + .45 * foot + .35 * knee + .3 * elbow) * (1 - .6 * lid));
       col[i * 3] = 1 + .02 * red; col[i * 3 + 1] = 1 - .09 * red; col[i * 3 + 2] = 1 - .1 * red;
-      thin[i] = Math.min(1, ear * sm(.07, .077, x) + finger + .6 * nose * sm(.095, .105, z));
+      if (Z.hair) { const h = Z.hair[0] + (Z.hair[1] - Z.hair[0]) * sm(Z.hair[2], Z.hair[3], z), k = sm(h, h + .012, y) * .78; col[i * 3] *= 1 - k * .8; col[i * 3 + 1] *= 1 - k * .84; col[i * 3 + 2] *= 1 - k * .86; }
+      thin[i] = Math.min(1, ear * sm(Z.earThin[0], Z.earThin[1], x) + finger + .6 * nose * sm(Z.noseThin[0], Z.noseThin[1], z));
       lids[i] = lid;
     }
     g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('bkThin', new THREE.BufferAttribute(thin, 1));
@@ -617,7 +644,7 @@ float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2
       let a = Float32Array.from(N.array); const b = new Float32Array(a.length);
       for (let r = 0; r < 3; r++) {
         b.set(a); for (let t = 0; t < I.length; t += 3) for (let e = 0; e < 3; e++) { const i = I[t + e] * 3, j = I[t + (e + 1) % 3] * 3; b[i] += a[j]; b[i + 1] += a[j + 1]; b[i + 2] += a[j + 2]; b[j] += a[i]; b[j + 1] += a[i + 1]; b[j + 2] += a[i + 2]; }
-        for (let i = 0; i < b.length; i += 3) { const l = Math.hypot(b[i], b[i + 1], b[i + 2]) || 1, k = P.getY(i / 3) > 1.45 ? .45 : 1;   // the head less: its nose and brows are most of the shape it has
+        for (let i = 0; i < b.length; i += 3) { const l = Math.hypot(b[i], b[i + 1], b[i + 2]) || 1, k = P.getY(i / 3) > Z.head ? .45 : 1;   // the head less: its nose and brows are most of the shape it has
           a[i] += (b[i] / l - a[i]) * k; a[i + 1] += (b[i + 1] / l - a[i + 1]) * k; a[i + 2] += (b[i + 2] / l - a[i + 2]) * k; const m = Math.hypot(a[i], a[i + 1], a[i + 2]) || 1; a[i] /= m; a[i + 1] /= m; a[i + 2] /= m; }
       }
       N.array.set(a); N.needsUpdate = true;
@@ -711,9 +738,9 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
 		bkIrr *= PI;
 	#endif
 	reflectedLight.directDiffuse += ( 1.0 - clearcoatDHR ) * bkIrr * BRDF_Diffuse_Lambert( material.diffuseColor ); }`];
-  B.skin = (m, g) => {
+  B.skin = (m, g, who) => {
     if (!m || !m.isMeshStandardMaterial) return;
-    skinZones(g);
+    skinZones(g, false, who);
     if (!g.attributes.bkMask) g.setAttribute('bkMask', new THREE.BufferAttribute(new Uint8Array(g.attributes.position.count * 4), 4, true));
     skinMat(m);
   };
@@ -799,8 +826,8 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
   /* each tick (applyMode): the colour code of the view, and the eyes, which show while the skin does */
   B.recolor = F => {
     const sys = ATLAS_MODE[F.mode] || null, n = F.pickables.length; if (F._bkSys === sys && F._bkN === n) return; F._bkSys = sys; F._bkN = n;
-    for (const id in F.parts) { const { g, p } = F.parts[id], m = g.userData.main.material; if (m.color) m.color.setHex(sys && p.system === sys ? g.userData.atlas : realOf(p)); }
-    const base = HD.near ? B.NOTE_HD : B.NOTE; F.note = sys ? base + ' ' + B.ATLAS_NOTE[sys] : base;
+    for (const id in F.parts) { const { g, p } = F.parts[id], m = g.userData.main.material; if (m.color) m.color.setHex(sys && p.system === sys ? g.userData.atlas : realOf(p, F.who)); }
+    const base = F.who === 'woman' ? BODY_F_NOTE + ' ' + BODY_F_NOTE_REAL + ' ' + BODY_BOTH_NOTE : (HD.near ? B.NOTE_HD : B.NOTE) + (FR.body_f ? ' ' + BODY_BOTH_NOTE : ''); F.note = sys ? base + ' ' + B.ATLAS_NOTE[sys] : base;
     const el = document.querySelector('#capNote'); if (el && typeof capFrame !== 'undefined' && capFrame === F && el.textContent !== F.note) el.textContent = F.note;
   };
   B.eyes = (F, focus) => {
@@ -859,6 +886,7 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
     return { H, G };
   }
   B.hd = F => {
+    if (F.who === 'woman') return;   // the detailed skin is the man's (data/anatomy/skin_hd.bin); the woman's is drawn from her data's own skin
     if (HD.fade && HD.fade.t0 >= 0) hdFade(F);
     if (HD.on && F.C) { const d = F.C.distanceTo(HD.C); if (HD.near ? d > 5 : d < 4) hdUse(F, !HD.near); return; }   // 4 m in, 5 m out: the park's views draw the coarse skin
     if (HD.p || !F.partsReady || !LOOK.part('hd') || !F.C || F.C.distanceTo(HD.C) > 4) return;
@@ -964,6 +992,7 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
      skin's 20 thousand while the skeleton is shown. */
   const SHD = { proxy: null, skin: null, all: null, start: {}, sets: new Map(), sig: 'skin', t: 0, sun: null };
   B.shadow = F => {
+    if (F.who === 'woman') return;   // the park's shadow proxy is the man's skin (js/look.js)
     const now = performance.now(); if (now - SHD.t < 250) return; SHD.t = now;
     const pk = typeof FR !== 'undefined' && FR.park, sk = F.parts.skin; if (!pk || !pk.built || !sk || !F.partsReady) return;
     const skG = sk.g.userData.baseGeo || sk.g.userData.main.geometry;   // the coarse skin stands in for the person in the park's shadow, also once the detailed one is drawn

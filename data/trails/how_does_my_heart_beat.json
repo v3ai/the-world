@@ -55,7 +55,7 @@
    "title": "Inside the heart",
    "scale": "about 16 cm",
    "where": {
-    "landmark": "Your heart"
+    "landmark": "Heart"
    },
    "expect": {
     "frame": "eart"
@@ -101,7 +101,7 @@
    "title": "One heartbeat",
    "scale": "about 16 cm",
    "where": {
-    "landmark": "Your heart"
+    "landmark": "Heart"
    },
    "do": [
     {

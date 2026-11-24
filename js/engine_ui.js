@@ -66,7 +66,7 @@ function navBack() {
   } finally { navQuiet--; }
   navUpdate();
 }
-const CRUMB_NAME = { 'Observable universe': 'Universe', 'Human body': 'You', 'Greenwich, London': 'London' };
+const CRUMB_NAME = { 'Observable universe': 'Universe', 'Greenwich, London': 'London' };
 function crumbGo(f) {
   cancelTour();
   const lms = LANDMARKS.filter(l => l.frame === f).sort((a, b) => b.D - a.D); // the widest landmark of that frame is its overview
@@ -265,7 +265,7 @@ function wireGrab() {
 function closeInfo() {
   infoEl.classList.remove('open'); infoEl.innerHTML = ''; document.body.classList.remove('cardOpen'); panelEl.classList.remove('hasSel'); infoState = null; curCard = null; selLeave = null;
   if (typeof selHit !== 'undefined' && selHit) setSelected(null);
-  if (typeof FR !== 'undefined' && FR.body) { FR.body.sel = null; FR.body.reveal = null; }
+  if (typeof FR !== 'undefined') [FR.body, FR.body_f].forEach(b => { if (b) { b.sel = null; b.reveal = null; } });
 }
 /* "No closer view of this has been built yet": said in the panel, on the card of what the thing is made of when there is one, else on
    the thing's own card; with nothing selected, on the place. A toast says it too (the panel may be minimised). */

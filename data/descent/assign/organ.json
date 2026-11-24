@@ -59,6 +59,23 @@
   "small_intestine": "gut_lining",
   "villi": "gut_lining",
   "stomach": "organ_wall",
-  "gastric_pits": "lining"
+  "gastric_pits": "lining",
+  "uterus": "smooth_muscle",
+  "myometrium": "smooth_muscle",
+  "endometrium": "lining",
+  "cervix": "organ_wall",
+  "vagina": "organ_wall",
+  "uterine_tubes": "organ_wall",
+  "ovaries": "gland_tissue",
+  "broad_ligament": "collagen",
+  "ligaments_of_uterus": "collagen",
+  "breast": "adipose",
+  "adipose_tissue": "adipose",
+  "mammary_lobes": "gland_tissue",
+  "lactiferous_ducts": "gland_tissue",
+  "nipple_areola": "epithelium",
+  "suspensory_ligaments_breast": "collagen",
+  "bronchopulmonary_segment": "lung_tissue",
+  "liver_segments": "liver_tissue"
  }
 }
