@@ -229,7 +229,7 @@ FT.body = {
     F.showAllBtn = actBtn('Show everything', () => { F.hidden.clear(); F.reveal = null; applyMode(F); toast('Everything is back.'); }); F.showAllBtn.style.display = 'none';
     F.env = { bg: BLK.on ? BLK.BG : 0x0e1422, opaque: false };
     if (BLK.on) F.note = BLK.NOTE; if (her) F.note = BODY_F_NOTE + (BLK.on ? ' ' + BODY_F_NOTE_REAL : '') + ' ' + BODY_BOTH_NOTE;
-    F.placeAs = () => { const pk = FR.park; if (!FR.body_f || !pk || !F.C) return null; return F.C.distanceTo(F.center || V3Z) > 4.2 ? BODY_PEOPLE : null; };   // (engine_ui.js updateCaption)
+    F.placeAs = () => { const pk = FR.park; if (!FR.body_f || !pk || !F.C) return null; return F.C.distanceTo(F.center || V3Z) > 5 ? BODY_PEOPLE : null; };   // (engine_ui.js updateCaption)
     if (her) F.gapNote = () => { if (!F.partsReady || cam.D > 3.5 || bodyFocus(F)) return ''; const k = F.mode === 'auto' ? (F._layer && F._layer !== 'skin' ? 'auto' : '') : F.mode; return BODY_F_GAP[k] || ''; };
     F.t0 = performance.now(); F.loadAll = () => { F.wantAll = true; return F.readyP; }; F.skinPasses = her ? 1 : 2;   // her skin is one surface, his a thin shell of two (bodyRayStack)   // until the index is in: remember that everything is wanted
     F.update = (dt, t) => { if (!F.partsReady) F.hideStandIn(); if (her && !F.partsReady && !F.wantAll && (performance.now() - F.t0 > 15000 || (F.C && F.C.distanceTo(F.center || V3Z) < 4))) F.loadAll(); F._k = 1 - Math.exp(-Math.min(dt, .25) * 9); bodyAutoUpdate(F, dt); applyMode(F); pulse(F, t); F.env.opaque = cam.D < .75 && chainOf(cam.A).includes(F) && !chainOf(cam.A).some(f => f.type === 'tissue' || f.type === 'cell'); };
