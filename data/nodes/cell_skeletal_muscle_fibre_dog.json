@@ -1,0 +1,156 @@
+[
+ {
+  "id": "cell_skeletal_muscle_fibre_dog",
+  "title": "Skeletal muscle fibre (dog)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "skeletal_muscle_fiber"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "skeletal_muscle_fiber"
+  ],
+  "summary": "A dog's muscle cell is a long cylinder, tens of micrometres thick, with many nuclei under its membrane and a striped interior of contracting filaments.",
+  "layers": {
+   "basics": "A muscle of a dog is made of long cells called fibres. Each is a single cell, but it formed when many small cells fused, so it has many nuclei, all pressed against the outer membrane. Inside, the cell is almost filled with thin rods called myofibrils, and the stripes that give skeletal muscle its name come from the regular pattern along them. The fibre drawn here is about 47 micrometres across. Fibre thickness varies with breed, muscle and age; 47 micrometres is a typical size, not the size of any one fibre.",
+   "deeper": "Each myofibril is a chain of short units, the sarcomeres, and a sarcomere is the part that shortens. In the dog thigh muscle called the semitendinosus, a sarcomere is about 2.8 micrometres long at the length where the muscle pulls hardest. Dog muscle holds a mix of fibre types; the fast and fatigue-resistant kind is the commonest in a study of 16 breeds, and dog muscle is rich in the enzymes of oxidative metabolism, so it suits long effort. Breeds bred for work have fibres that are larger and carry more nuclei per fibre than companion breeds.",
+   "expert": "The number of nuclei per millimetre, the mitochondrial share and the thin filament length are not known for the dog; the drawing uses 120 per millimetre, 10% and 1.27 micrometres as stand-ins. Fibre size varies with breed, muscle, fibre type and age; 47 micrometres lies between the 1100 and 2500 square micrometre size limits reported for the fibres of unaffected old corgis (mean age 13.8 years), and is not a measured mean. The T-tubules, the sarcoplasmic reticulum, capillaries, satellite cells and nucleoli are not drawn."
+  },
+  "facts": [
+   [
+    "Sarcomere length at best pull (semitendinosus)",
+    "about 2.8 um"
+   ],
+   [
+    "Thick filament length",
+    "about 1.65 um (all species examined)"
+   ],
+   [
+    "Drawn fibre thickness",
+    "47 um (illustrative)"
+   ],
+   [
+    "Nuclei per millimetre drawn",
+    "120 (illustrative)"
+   ],
+   [
+    "Length of a whole fibre",
+    "up to centimetres"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What is the number of nuclei per millimetre in a healthy dog fibre, and how does it differ between breeds?",
+   "What share of a dog fibre is mitochondria?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ]
+ },
+ {
+  "id": "cell_smf_dog_sarcomere",
+  "title": "Sarcomere and myofibril (dog muscle)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "cell_skeletal_muscle_fibre_dog"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "skeletal_muscle_fiber"
+  ],
+  "summary": "A sarcomere is one repeat of the striped pattern along a myofibril; in dog thigh muscle it is about 2.8 micrometres long at its best working length.",
+  "layers": {
+   "basics": "A myofibril is a thin rod, about a micrometre across, that runs along the muscle cell. Along it the same pattern repeats again and again: dark bands where thick filaments lie, light bands where only thin filaments are. One repeat is a sarcomere, and the muscle shortens because every sarcomere shortens a little at once.",
+   "deeper": "Thick filaments of myosin pull on thin filaments of actin, which slide past each other. How hard a sarcomere pulls depends on how much the two overlap, so there is a best length. For the dog semitendinosus that length is about 2.8 micrometres, found with electron micrographs of muscle held at different lengths. The thick filaments are about 1.65 micrometres in every species examined; the thin ones vary between about 0.95 and 1.40 micrometres.",
+   "expert": "The length of a dog thin filament has not been measured in the sources found; thin filaments of 0.95 to 1.40 micrometres are reported across muscles and species. The bands follow from the filament lengths: the dark band equals the thick filament length and the central pale zone is the sarcomere length minus twice the thin filament length. A live sarcomere shortens and lengthens as the muscle works, so a single length is a snapshot."
+  },
+  "facts": [
+   [
+    "Sarcomere length at best pull",
+    "about 2.8 um (dog semitendinosus)"
+   ],
+   [
+    "Thick filament",
+    "about 1.65 um"
+   ],
+   [
+    "Thin filament range, all muscles and species",
+    "0.95-1.40 um"
+   ],
+   [
+    "Myofibril width",
+    "about 1.2 um"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How does thin-filament length differ between dog muscles and breeds?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ]
+ },
+ {
+  "id": "cell_smf_dog_nucleus",
+  "title": "Muscle fibre nucleus (dog)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "cell_skeletal_muscle_fibre_dog"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "skeletal_muscle_fiber"
+  ],
+  "summary": "A dog muscle fibre has many flattened nuclei lying just under its membrane, each one looking after a stretch of the fibre.",
+  "layers": {
+   "basics": "A muscle fibre does not have one nucleus but many, because it was made by many small cells joining together. They lie just under the cell membrane, around the edge, which leaves the middle free for the contracting filaments. Each nucleus is long and flat, and holds a copy of the dog's genes.",
+   "deeper": "Each nucleus runs the part of the fibre nearest to it, so a thicker fibre needs more of them. In dog sections the nuclei are counted per fibre; working breeds have more per fibre than companion breeds, and the authors suggest that the smaller number in companion dogs may mean slower repair of muscle. The same idea has been measured in human fibres, with more than 100 nuclei for every millimetre of length.",
+   "expert": "The number of nuclei per millimetre in the dog is not known; the size and shape drawn (about 10 by 4 by 2 micrometres, flattened) and the count of 120 per millimetre are stand-ins. Nucleoli are not drawn. Resting satellite cells, which can add nuclei when a muscle is repaired, are not drawn."
+  },
+  "facts": [
+   [
+    "Nuclei per millimetre drawn",
+    "120 (illustrative)"
+   ],
+   [
+    "Position",
+    "just under the membrane"
+   ],
+   [
+    "Nuclei per mm in human fibres",
+    "over 100"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many nuclei per millimetre does a healthy dog fibre have?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "10.2",
+    "10-2-skeletal-muscle"
+   ]
+  ]
+ }
+]

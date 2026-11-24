@@ -1,0 +1,143 @@
+{
+ "id": "corneal_keratocyte",
+ "name": "Corneal keratocyte",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_corneal_keratocyte",
+ "blurb": "The resting cell of the clear front window of the eye: a very flat body with long thin processes, lying between the sheets of collagen and joined to its neighbours into a net.",
+ "note": "Model: a corneal keratocyte of the human cornea, cut through its flat body. Measured in living human corneas: how many keratocytes lie in a cubic millimetre of the stroma (26,610 on average) and, from that, the average room each one has. Measured in human cornea: the thickness of the collagen sheets it lies between (up to 2 µm). Reported by reviews and in pig cornea, not in a human cell: the flat shape, the long processes, the gap junctions between neighbours and the crystallin proteins of the cytoplasm. Illustrative: the size of the body, the nucleus and its place, the number, length and paths of the processes, the organelle counts and the colours. The collagen sheets around the cell are not drawn.",
+ "shape": {
+  "type": "stellate",
+  "soma_um": 20,
+  "processes": 9,
+  "reach_um": 28,
+  "branch_points": 14,
+  "process_um": 0.8,
+  "endfeet": 0,
+  "endfoot_um": 2,
+  "lacuna_um": 0,
+  "flat": 0.1
+ },
+ "dimensions": {
+  "density": {
+   "value": 26610,
+   "range": [19244, 33976],
+   "unit": "per_mm3",
+   "measured": true,
+   "source": "patel2007",
+   "note": "cells per cubic millimetre of the whole depth of the stroma, mean of 63 normal human corneas (SD 3,683); the range shown is the mean ± 2 SD, calculated, not a measured range; counted as bright nuclei in confocal images. Counts differ with the instrument and with depth, and are higher in the front of the stroma.",
+   "compare": "22,579 ± 2,387 per mm³ in control eyes of contact lens wearers (erie2002)"
+  },
+  "room_per_cell": {
+   "value": 37600,
+   "unit": "um3",
+   "measured": true,
+   "calc": "1,000,000,000 µm³ in a cubic millimetre divided by 26,610 cells; this is the stroma's volume per cell, not the volume of the cell",
+   "source": "patel2007"
+  },
+  "mean_spacing": {
+   "value": 33.5,
+   "unit": "um",
+   "measured": true,
+   "calc": "cube root of the room per cell (37,600 µm³); the spacing the cells would have if evenly spread in a cube lattice",
+   "source": "patel2007"
+  },
+  "collagen_sheet_thickness": {
+   "value": 2,
+   "unit": "um",
+   "measured": true,
+   "source": "sridhar2018",
+   "note": "the lamellae of the human stroma are up to 0.2 mm broad and 2 µm thick; about 200 to 250 of them; the cell lies between two of them, so its body cannot be thicker than a few micrometres"
+  },
+  "crystallin_share": {
+   "value": 0.275,
+   "range": [0.25, 0.30],
+   "unit": "fraction",
+   "measured": false,
+   "source": "squishy2024",
+   "note": "illustrative for a human cell: a review gives 25 to 30% of the soluble protein of keratocytes as crystallins without naming a species; the primary measurement is in rabbit, where two enzymes (ALDH1 and transketolase) were about 30% of the soluble protein (jester1999). The human share was not found; the midpoint of the review's range is shown"
+  },
+  "body_width": {
+   "value": 20,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: no opened source gave the size of a human keratocyte body"
+  },
+  "body_thickness": {
+   "value": 2,
+   "unit": "um",
+   "measured": false,
+   "calc": "20 µm wide times the flat factor 0.1; chosen to fit between sheets 2 µm thick",
+   "note": "illustrative"
+  },
+  "process_reach": {
+   "value": 28,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a little under the mean spacing of 33.5 µm, so the tips of neighbours meet"
+  },
+  "processes": {
+   "value": 9,
+   "unit": "count",
+   "measured": false,
+   "note": "illustrative; the number of primary processes was not found"
+  },
+  "process_width": {
+   "value": 0.8,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: thicker than real fine processes so they can be seen"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": { "value": [9, 7, 1.4], "unit": "um", "measured": false, "note": "illustrative: a thin disc, as the cell is thin; the human size was not found" },
+  "nucleoli": 1,
+  "position": "central",
+  "note": "One nucleus, thin in this cell: in pig cornea the nuclear area of keratocytes seen from the front of the eye was thin, and thicker in those at the back (hoshino2022). The lysosomes seen in pig were in the cells of the back of the stroma, which have thicker nuclei, so the thin nucleus and the lysosomes here come from different cell populations. Its size and place here are illustrative.",
+  "source": "hoshino2022"
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.02, "measured": false, "note": "illustrative; no opened source gave it" }, "size_um": [0.8, 0.3], "max_drawn": 30 },
+  "lysosomes": { "count": { "value": 4, "measured": false, "note": "illustrative; lysosomes were seen in pig keratocytes (hoshino2022), their number here is chosen" }, "size_um": { "value": 0.3, "measured": false } },
+  "golgi": { "stacks": { "value": 1, "measured": false, "note": "illustrative" } },
+  "not_drawn": ["rough endoplasmic reticulum", "ribosomes", "vesicles and phagosomes", "the cytoskeleton", "individual crystallin molecules"]
+ },
+ "special": [
+  { "kind": "gap_junctions", "part": "process", "source": "hoshino2022", "note": "In pig cornea, gap junctions (connexin 43) were found along the surfaces of the processes, joining one keratocyte to the next in a net (hoshino2022). Reviews describe the same net in the human cornea (squishy2024). The tips of the processes are drawn meeting; the junctions themselves are not drawn." },
+  { "kind": "crystallins", "part": "cytosol", "source": "squishy2024", "note": "The cytoplasm is rich in a few ordinary enzymes, called corneal crystallins by analogy with the lens, such as an aldehyde dehydrogenase and transketolase; they are thought to help keep the cell clear. The 25 to 30% of soluble protein in a review (squishy2024) names no species; the measurement is from rabbit (jester1999); the human share was not found. Not drawn as molecules." }
+ ],
+ "cut": "A cut through the flat middle of the body: a thin oval nucleus with one nucleolus, a thin rim of cytoplasm with a few mitochondria, a lysosome and a Golgi stack, and the long thin processes leaving the edge in the plane of the sheet and running out of the cut. The collagen sheets above and below are not drawn.",
+ "colours": {
+  "convention": "Cell body and processes a muted green, the nucleus violet, mitochondria orange. All are a code: a living keratocyte is clear and almost invisible, which is how the cornea stays transparent.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytoplasm with crystallins", "card": "cell_keratocyte_crystallins", "material": "water", "source": "squishy2024" },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "process": { "name": "Cell process", "card": "cell_keratocyte_process", "material": "membrane", "source": "hoshino2022" }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "cornea_layers", "structure": "kerato" }]
+ },
+ "view": { "radius_um": 32, "r1_m": 0.0004, "arrive_m": 7e-05, "spawn_m": 2e-06 },
+ "about": [
+  "A human cornea holds about 26,610 keratocytes in each cubic millimetre of its stroma (the mean of 63 normal eyes), which leaves each cell about 37,600 µm³ of stroma, the room of a cube about 34 µm on a side. The cell itself is far smaller than that room: it is flat and thin, and the rest is collagen. The cell volume drawn is {drawn.cellVolume} µm³, an illustrative size.",
+  "The cell lies between the collagen sheets, which in the human cornea are up to 2 µm thick, so it is drawn flat: 20 µm wide and 2 µm thick. {drawn.nuclei} nucleus is drawn as a thin disc. The processes are drawn {drawn.processes} in number and reach 28 µm, a little under the average spacing, so that neighbours meet. All of these are illustrative. The real processes are finer than those drawn (the drawn width is chosen so that they can be seen); their number was not found. In pig cornea they join those of neighbouring cells through gap junctions.",
+  "A living keratocyte is clear. Its cytoplasm is rich in a few ordinary enzymes, called corneal crystallins by analogy with the lens (in rabbit, two of them were about 30% of the soluble protein; the human share was not found), and it is thought that this helps the cornea stay transparent. The colours here are a code.",
+  "Not drawn: the collagen sheets and fibrils around the cell, rough endoplasmic reticulum, ribosomes, vesicles, the cytoskeleton, and the gap junctions. After an injury a keratocyte can change into a repair cell that looks different; this picture shows the resting cell."
+ ],
+ "sources": {
+  "patel2007": { "cite": "Patel SV, Erie JC, McLaren JW, Bourne WM (2007) Keratocyte and subbasal nerve density after penetrating keratoplasty, Trans Am Ophthalmol Soc 105:180 (abstract read through Europe PMC; PMID 18427608)", "url": "https://europepmc.org/article/MED/18427608", "opened": "2026-11-23", "used_for": "full-thickness keratocyte density of normal human corneas, 26,610 ± 3,683 per mm³ (n = 63, confocal microscopy)" },
+  "erie2002": { "cite": "Erie JC, Patel SV, McLaren JW, Nau CB, Hodge DO, Bourne WM (2002) Keratocyte density in keratoconus. A confocal microscopy study, Am J Ophthalmol 134:689 (abstract read through Europe PMC; PMID 12429244)", "url": "https://europepmc.org/article/MED/12429244", "opened": "2026-11-23", "used_for": "control corneas of contact lens wearers: 22,579 ± 2,387 cells per mm³" },
+  "sridhar2018": { "cite": "Sridhar MS (2018) Anatomy of cornea and ocular surface, Indian J Ophthalmol 66:190", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5819093/", "opened": "2026-11-23", "used_for": "200 to 250 lamellae in the human stroma, up to 0.2 mm broad and 2 µm thick; keratocytes the main cell type of the stroma, most of them in the front" },
+  "squishy2024": { "cite": "Squishy matters: corneal mechanobiology in health and disease (2024), Prog Retin Eye Res, full text read through Europe PMC (PMC11193890)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193890", "opened": "2026-11-23", "used_for": "stellate cells with dendritic processes forming a net joined by gap junctions; crystallins 25 to 30% of soluble protein, no species named (ALDH1A1, transketolase); thin, evenly spaced cells scatter little light. A review mixing several species; the human parts are not separated." },
+  "hoshino2022": { "cite": "Hoshino N, Takehana K, Hosotani M et al (2022) Morphological analysis of cell distribution and network structure via gap junctions in swine corneal stroma, J Vet Med Sci (PMC9791234); the cells are from pigs", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9791234/", "opened": "2026-11-23", "used_for": "in pig cornea: flat keratocytes with long processes between collagen layers; connexin 43 gap junctions on the processes joining cells into a net; thin nuclear area toward the epithelium, thicker nucleus with lysosomes and phagosomes toward the endothelium" },
+  "jester1999": { "cite": "Jester JV, Moller-Pedersen T, Huang J et al (1999) The cellular basis of corneal transparency: evidence for 'corneal crystallins', J Cell Sci 112:613 (abstract read through Europe PMC; PMID 9973596)", "url": "https://europepmc.org/article/MED/9973596", "opened": "2026-11-23", "used_for": "in rabbit: transketolase and aldehyde dehydrogenase class 1 about 30% of the soluble protein of transparent keratocytes; the rabbit epithelium accumulates ALDH1 rather than ALDH3, a species pattern like the enzyme-crystallins of the lens" }
+ }
+}

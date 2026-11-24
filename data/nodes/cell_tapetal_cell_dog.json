@@ -1,0 +1,131 @@
+[
+ {
+  "id": "cell_tapetal_cell_dog",
+  "title": "Tapetal cell (dog)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 2.4e-05,
+  "area": "bio_animals",
+  "parents": [
+   "dog_tapetal_cells"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "dog_tapetum"
+  ],
+  "summary": "A tapetal cell is a flat cell in the shiny layer behind a dog's retina, filled with thin rods that reflect light.",
+  "layers": {
+   "basics": "Behind the light-sensing layer of a dog's eye lies a mirror made of living cells. Each one is a flat, many-sided slab, and its inside is packed with slender rods. Light that passes through the retina without being caught hits these rods and is thrown back for a second chance, which helps the dog see in dim light. It is also why a dog's eyes glow in a torch beam at night.",
+   "deeper": "Where the layer is thickest it is up to 20 cells deep, and in a study of dogs the thickest part averaged 53 micrometres, with a spread from 20 to 70. The cells are stacked like bricks. The rods are rich in zinc and in the amino acid cysteine, and beagles with a hereditary tapetal abnormality lacked both. The rods of the dog are about the size of those in the cat, but they sit closer together and are less well lined up, so the dog's mirror reflects a different colour and is less efficient. A cat's tapetal cell is 3 to 4 micrometres thick; the dog's was not found, so the picture uses the cat's thickness. The width of the cell, the nucleus and the number of rods drawn are illustrative.",
+   "expert": "The rods in the cat lie in a hexagonal lattice, parallel to each other inside a bundle and with all bundles lying in the plane of the layer, which turns the stack into a multilayer reflector: light bouncing off many rod surfaces adds up when the spacing suits its wavelength. The dog's closer packing shifts the wavelength that is returned most strongly. The picture draws the rods in random directions and shortened to 3 micrometres so that they stay inside the thin cell; the real direction is flat in the layer."
+  },
+  "facts": [
+   [
+    "Cells in the thickest part of the dog tapetum",
+    "up to 20"
+   ],
+   [
+    "Thickness of the dog tapetum, thickest part (study of dogs)",
+    "mean 53 um, range 20-70 um"
+   ],
+   [
+    "Rodlet length (cat)",
+    "about 5 um"
+   ],
+   [
+    "Rodlet diameter (cat)",
+    "about 100 nm in several reports, up to 230 nm in others"
+   ],
+   [
+    "Cell thickness (cat)",
+    "3-4 um"
+   ],
+   [
+    "Cell width drawn",
+    "24 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How wide and how thick is a single tapetal cell in the dog, and where in the cell does the nucleus lie?",
+   "How many rods does one dog cell hold?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Macroscopic and histological variations in the cellular tapetum in dogs (J Vet Med Sci 2014)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4155189"
+   },
+   {
+    "title": "Fine structure of the canine tapetum lucidum (J Anat 1983)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1171936"
+   }
+  ]
+ },
+ {
+  "id": "cell_tapetal_rodlet_dog",
+  "title": "Reflecting rodlet of a tapetal cell",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-07,
+  "area": "bio_animals",
+  "parents": [
+   "cell_tapetal_cell_dog"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "dog_tapetum"
+  ],
+  "summary": "A rodlet is a slender rod, about a tenth of a micrometre across, that reflects light inside a tapetal cell.",
+  "layers": {
+   "basics": "The rods are far thinner than a hair: about a tenth of a micrometre across and many times longer. They lie side by side, thousands to a cell. The rods of normal beagles contain zinc and cysteine; beagles with a hereditary tapetal abnormality lacked both.",
+   "deeper": "Measurements of the rods come mostly from the cat, where they are about 5 micrometres long and sit 150 to 400 nanometres apart. The dog's rods are described as about the same size but closer together. Each rod is wrapped in its own membrane, which in the cat is rich in zinc. In normal beagles the zinc was found in two rings within a rod. What the rod is made of inside is still debated: zinc bound to cysteine in the dog, and the vitamin riboflavin has been proposed in the cat.",
+   "expert": "A light-reflecting rod needs a refractive index different from the cytoplasm around it; for the cat a value of about 1.69 for the rod against 1.33 for the cytoplasm has been proposed. In the descent, the rod is shown with a generic protein as a stand-in because its exact make-up is not settled."
+  },
+  "facts": [
+   [
+    "Length (cat)",
+    "about 5 um"
+   ],
+   [
+    "Diameter (cat)",
+    "about 0.1 um"
+   ],
+   [
+    "Spacing, centre to centre (cat)",
+    "0.15-0.4 um"
+   ],
+   [
+    "Main metal",
+    "zinc"
+   ],
+   [
+    "Amino acid linked to the zinc (dog)",
+    "cysteine"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What exactly is a tapetal rod made of in the dog?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Chemical and ultrastructural changes in tapetum of beagles with a hereditary abnormality (IOVS 1982)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/6815125/"
+   },
+   {
+    "title": "Multilayer subwavelength gratings in the tapetum lucidum (J Biophotonics 2022)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9487202/"
+   }
+  ]
+ }
+]

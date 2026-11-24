@@ -29,7 +29,7 @@ const TISSUE2 = {}; for (const f of readdirSync(join(ROOT, 'data/things/tissues'
 const wm = readFileSync(join(ROOT, 'js/world_matter.js'), 'utf8'), mi = wm.indexOf('const MICRO = {'), microSrc = wm.slice(mi, wm.indexOf('\n};', mi));
 const MICRO = new Set([...microSrc.matchAll(/^\s{2}(\w+): \{/gm)].map(m => m[1]));
 const TISSUE_KINDS = new Set(['cardiac', 'skeletal', 'smooth', 'blood', 'bone', 'cartilage', 'adipose', 'nervous', 'alveoli', 'villi', 'liver', 'epithelium']);   // FT.tissue, js/nodes.js
-const CELLS = new Set(['animal', 'plant', 'bacterium', 'fungal']);
+const CELLS = new Set(['animal', 'plant', 'bacterium', 'fungal', ...readdirSync(join(ROOT, 'data/cells')).filter(f => f.endsWith('.json') && !f.startsWith('_')).map(f => f.slice(0, -5))]);   // the generic cells, and every cell type with a spec (data/cells; checked by tools/cells/check.mjs)
 const TERMINAL = new Set(['mol', 'crystal', 'liquid', 'gas', 'plasma', 'atom']);
 /* scenes whose every part leads on in code: a cell (organelles to molecules, water or DNA; js/world_matter.js), a micro scene (grains to crystals, cells, water or air),
    an FT.tissue scene (every structure to a cell or, through assign/tissue.json, to a material), a landscape (ground to a micro scene) */
@@ -121,6 +121,8 @@ for (const [tid, d] of Object.entries(TISSUE2)) for (const p0 of d.populations |
   if (p.material) { used.add(p.material); if (!M[p.material]) err(`tissue scene ${tid}, ${p.id}: material "${p.material}" does not exist`); }
   else if (!p.deeper || p.deeper.type === 'none') deadPops.push(`${tid}.${p.id}`);
 }
+/* the parts of every cell type with a spec (data/cells/<id>.json) lead to materials too */
+for (const id of CELLS) { if (!existsSync(join(ROOT, 'data/cells', id + '.json'))) continue; for (const [pid, pd] of Object.entries(J('data/cells/' + id + '.json').parts || {})) { if (!pd.material) continue; if (!M[pd.material]) err(`cell spec ${id}, part ${pid}: material "${pd.material}" does not exist`); else used.add(pd.material); } }
 for (const m of Object.values(M)) for (const c of m.inside || []) { if (c.material) used.add(c.material); const sc = c.scene && parseScene(c.scene); if (sc && sc.material) used.add(sc.material); }
 
 const ids = Object.keys(M), stops = ids.filter(i => M[i].stop), standIns = ids.filter(i => (M[i].inside || []).some(c => c.standIn));

@@ -1,0 +1,162 @@
+[
+ {
+  "id": "cell_lymphocyte_t",
+  "title": "T lymphocyte (T cell)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 8e-06,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "lymphocyte_t"
+  ],
+  "summary": "A T cell is a small white blood cell, about 7 micrometres across, almost filled by one round nucleus.",
+  "layers": {
+   "basics": "A T cell is a kind of white blood cell that helps defend the body. In blood it looks like a small ball: one large round nucleus fills most of it, with just a thin rim of cytoplasm around it. The surface is covered in tiny fingers (not drawn here). T cells are made ready in an organ called the thymus, and each one carries a receptor that fits a single kind of invader or damaged cell, a fit set in the thymus.",
+   "deeper": "Freshly isolated, mostly unactivated human T cells from healthy donors had an average volume of about 209 cubic micrometres, which is a ball about 7.4 micrometres across; an older electron-microscope study found a smaller value of about 125 cubic micrometres for lymphocytes in general, so the number depends on the method. Mature T cells carry either a protein called CD4 or one called CD8, never both. Helper cells mostly carry CD4 and killer cells mostly CD8. After meeting the antigen it recognises, a T cell grows to roughly three times its volume. Memory T cells can live for many years. A resting T cell and a resting B cell look the same under a light microscope, and nearly so under an electron microscope; they are told apart by the proteins on their surface.",
+   "expert": "The nucleus share drawn (55 per cent of the cell) is taken from activated T cells; the share in resting cells was not found in a source and is illustrative, as are its range, the single small nucleolus, and the numbers of mitochondria and lysosomes. The volume spread is the mean plus or minus 2 SD, not a measured range. Helper, killer and regulatory T cells cannot be told apart by shape alone. Surface fingers, receptors, ribosomes and the cytoskeleton are not drawn."
+  },
+  "facts": [
+   [
+    "Cell volume (human, freshly isolated, mostly unactivated)",
+    "about 209 um3"
+   ],
+   [
+    "Diameter if a sphere",
+    "about 7.4 um"
+   ],
+   [
+    "Nucleus share drawn",
+    "55% (illustrative; measured in activated cells)"
+   ],
+   [
+    "Small lymphocyte size range",
+    "6-9 um"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What share of a resting T cell does the nucleus take, and how does it change as the cell grows after activation?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.3",
+    "21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   ],
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Activation effects on the physical characteristics of T lymphocytes",
+    "url": "https://www.frontiersin.org/articles/10.3389/fbioe.2023.1175570/full"
+   }
+  ]
+ },
+ {
+  "id": "cell_lymphocyte_t_microvilli",
+  "title": "Microvilli of a T cell",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 3e-07,
+  "area": "bio_animals",
+  "parents": [
+   "lymphocyte_t"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "lymphocyte_t"
+  ],
+  "summary": "Microvilli are fine, finger-like folds of the surface, a few hundred nanometres long; they are not drawn on this cell.",
+  "layers": {
+   "basics": "The outside of a T cell is not smooth. It is covered in short fingers of membrane, called microvilli, thinner than a hundredth of the cell's width. They stand out from the surface like fur. They are not drawn on this model.",
+   "deeper": "On resting T cells microvilli are about 70 to 150 nanometres wide and from 100 nanometres to several micrometres long, most often 300 to 400 nanometres. This was measured by electron microscopy of resting T cells, in a review that does not give the species for these values; human and mouse lymphocytes were reported to have microvilli of similar size.",
+   "expert": "These fingers are not drawn on this cell; the 0.35 x 0.1 micrometre size is only the median length and a typical width from the cited range."
+  },
+  "facts": [
+   [
+    "Width",
+    "70-150 nm"
+   ],
+   [
+    "Length",
+    "100 nm to several um (median 300-400 nm)"
+   ],
+   [
+    "Drawn",
+    "not drawn"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What do the microvilli do for a T cell as it searches other cells?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "Membrane Ultrastructure and T Cell Activation",
+    "url": "https://www.frontiersin.org/articles/10.3389/fimmu.2018.02152/full"
+   }
+  ]
+ },
+ {
+  "id": "cell_lymphocyte_t_tcr",
+  "title": "T cell receptor",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-08,
+  "area": "bio_animals",
+  "parents": [
+   "lymphocyte_t"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "lymphocyte_t"
+  ],
+  "summary": "The T cell receptor is a two-chain protein on the surface; each T cell makes only one kind.",
+  "layers": {
+   "basics": "The T cell receptor is the part of the cell that recognises an invader. It is a protein built of two chains, sticking out of the cell surface. Each T cell has receptors of one kind only, so it answers to a single antigen.",
+   "deeper": "Each receptor is built of two protein chains. A mature T cell carries either CD4 or CD8 on its surface, never both; these two are called co-receptors because they assist the receptor in binding.",
+   "expert": "The receptors are far smaller than the surface fingers and are not drawn on this cell. Only the two chains, the one-kind-per-cell rule and the CD4 or CD8 rule are taken from a source; no size or count of receptors per cell is claimed here."
+  },
+  "facts": [
+   [
+    "Chains",
+    "2"
+   ],
+   [
+    "Kinds per cell",
+    "1"
+   ],
+   [
+    "Co-receptor",
+    "CD4 or CD8, not both"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How few receptor-antigen contacts are enough to switch a T cell on?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "21.3",
+    "21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "OpenStax Anatomy and Physiology 2e, 21.3",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-3-the-adaptive-immune-response-t-lymphocytes-and-their-functional-types"
+   }
+  ]
+ }
+]

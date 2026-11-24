@@ -1,0 +1,102 @@
+{
+ "id": "sebocyte_dog",
+ "name": "Sebaceous gland cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_sebocyte_dog",
+ "blurb": "A ripening oil-gland cell from a dog's skin: a rounded cell crowded with droplets of oil, which will burst open at the end to release them whole.",
+ "note": "Model: a ripening sebaceous gland cell (sebocyte) of a dog (Canis lupus familiaris), cut in half. Measured in dogs: that these cells sit in glands beside hair follicles, look foamy or vacuolated under the microscope because they are full of lipid, burst to release their contents (holocrine secretion), and keep their nuclei at the gland's edge but lose them in the centre; and what the finished oil is made of. Described for mammals in general, not measured in dogs: that cells ripen from the rim towards the duct. Stand-in: a double click on an oil droplet opens a triglyceride (tripalmitin), the one lipid class dog sebum largely lacks, because the materials list has no sebum entry; the molecule shown is not in the oil. Illustrative: the size and shape of this cell, the size, number and spacing of its droplets, the size of its nucleus, the mitochondria and the colours. No source gives a size for a single dog sebocyte, so nothing about its own size is measured. The cells around it are not drawn.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 26,
+  "b_um": 22,
+  "c_um": 22,
+  "bumps": 0.1
+ },
+ "dimensions": {
+  "length": { "value": 26, "unit": "um", "measured": false, "note": "illustrative: a rounded cell somewhat longer than wide; no study of dogs gives the size of one sebocyte" },
+  "width": { "value": 22, "unit": "um", "measured": false, "note": "illustrative" },
+  "volume": { "value": 6590, "unit": "um3", "measured": false, "calc": "the volume of an ellipsoid of 26 x 22 x 22 µm: pi/6 x 26 x 22 x 22", "note": "follows from the illustrative size; nothing measured in dogs" },
+  "droplet_diameter": { "value": 2.5, "unit": "um", "measured": false, "note": "illustrative; a ripening cell holds many droplets of different sizes" },
+  "droplet_share_of_cell": { "value": 0.37, "unit": "fraction", "measured": false, "calc": "300 droplets of 2.5 µm across (8.2 µm³ each) in a cell of 6590 µm³; the share is a result of the illustrative sizes, not a measurement" },
+  "sebum_wax_diesters": { "value": 0.35, "unit": "fraction", "measured": true, "source": "pfannkuche2026", "note": "the oil of domestic dogs, by thin-layer chromatography as reviewed there (Lindholm 1981, Wheatley 1986); this is the finished oil, not the contents of one cell" },
+  "sebum_sterol_esters": { "value": 0.42, "unit": "fraction", "measured": true, "source": "pfannkuche2026", "note": "same source (its Table 1 reads 'steryl monoesters', i.e. sterol esters; its text says 'stearoyl'); free sterols 9% and unidentified or polar parts 12% make up the rest" },
+  "single_layer_rim": { "value": 1, "unit": "count", "measured": true, "source": "tufts_dog", "note": "the mass of secretory cells is enclosed by one layer of low cuboidal cells on a basal lamina (dog gland, light micrograph)" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": { "value": [7, 6, 7], "measured": false, "note": "illustrative; in life the nucleus of a ripening sebocyte shrinks and goes dark before it disappears, and this one is drawn at the stage where it is still round and clear" },
+  "nucleoli": 1,
+  "source": "pmc_postmortem_dog",
+  "note": "Nuclei are present in the outer, younger cells of a dog's gland; the central cells that are about to burst have lost or darkened theirs (pyknotic nuclei in cells breaking down, tufts_dog)."
+ },
+ "organelles": {
+  "lipid_droplets": {
+   "count": { "value": 300, "measured": false, "calc": "illustrative: enough 2.5 µm droplets to fill roughly a third of the cell, so that they crowd the cytoplasm as a foamy appearance requires" },
+   "size_um": { "value": 2.5, "measured": false },
+   "position": "any",
+   "max_drawn": 400,
+   "source": "pmc_postmortem_dog",
+   "also": "pfannkuche2026"
+  },
+  "mitochondria": {
+   "volume_fraction": { "value": 0.02, "range": [0.005, 0.05], "measured": false, "note": "illustrative; the cell is drawn with a few mitochondria squeezed between the droplets, and no source gives their share in a dog sebocyte" },
+   "size_um": [1.0, 0.35],
+   "size_measured": false,
+   "max_drawn": 200
+  },
+  "not_drawn": ["smooth endoplasmic reticulum", "peroxisomes", "ribosomes", "the cell's keratin and the junctions with its neighbours", "the Golgi apparatus"]
+ },
+ "special": [
+  { "kind": "holocrine_secretion", "source": "pfannkuche2026", "also": "libretexts_vethisto", "note": "The cell does not pour its oil out; it fills with it, loses its other contents and breaks apart near the duct, so the whole cell becomes the oil (holocrine secretion). Only the filling stage is drawn; the bursting is not." },
+  { "kind": "ripening_order", "source": "pfannkuche2026", "note": "Described for mammalian glands in general in the review, not measured in dogs. New cells divide at the rim of the gland, take up oil as they are pushed towards the centre and burst near the duct. This cell is drawn between the rim and the duct." }
+ ],
+ "cut": "A cut through the middle of a rounded cell: a round nucleus with its nucleolus sits among many droplets of oil of different positions and sizes, with a few mitochondria squeezed in the thin cytoplasm between them, inside the cell membrane.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; nucleus violet; mitochondria orange; the oil droplets a pale code colour. All of it is a code: none of these colours is the colour of the real thing. Under the microscope the droplets of a stained slide look empty because the oil is washed out in preparation."
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, here squeezed into thin walls between the droplets of oil." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "lipid_droplet": { "name": "Oil droplet", "card": "cell_sebocyte_droplet", "material": "fat", "standIn": true, "source": "pfannkuche2026" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" }
+ },
+ "reached": {
+  "tissue2": [{ "scene": "dog_skin", "structure": "sebaceous" }]
+ },
+ "view": { "radius_um": 16, "r1_m": 0.00025, "arrive_m": 4e-05, "spawn_m": 1.5e-06 },
+ "about": [
+  "A cell of an oil (sebaceous) gland in a dog's haired skin, the kind that lies beside a hair follicle and, in most cases, opens into it. The gland's oil, sebum, moisturises and protects the hair and skin. This cell is drawn {drawn.cellVolume} µm³ in volume, with a size chosen for the picture: no study of dogs gives the size of a single sebocyte.",
+  "As this cell ripens it fills with droplets of oil, {drawn.lipid_droplets} of them drawn in this half, and loses its other contents. Its nucleus ({drawn.nuclei} drawn) is still round here; later it shrinks and goes dark. The droplet number and size are illustrative. The foamy look of these cells under the microscope comes from the oil washed out of the droplets when a slice is prepared.",
+  "The oil that the cells finally make is not a fat like the stored fat of other cells. In dogs it is mostly wax esters and sterol esters, with very little triglyceride, and the picture of a fat molecule (a triglyceride, tripalmitin) that a double click opens is a stand-in: it is of the one class the oil largely lacks. Not drawn: the smooth endoplasmic reticulum and peroxisomes, which make the lipids, the cells' neighbours, the gland's duct and the single layer of small cells that rims the gland."
+ ],
+ "sources": {
+  "pfannkuche2026": {
+   "cite": "Pfannkuche H, Maus J, Engel KM, Schiller J (2026) Decoding sebaceous gland functions and diseases: insights from domestic animals. Vet Res Commun, doi:10.1007/s11259-026-11128-0 (PMC12987846)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12987846/",
+   "opened": "2026-11-23",
+   "used_for": "gland structure and holocrine ripening; dog gland sites; dog sebum composition (35% wax diesters, 42% sterol esters, 9% free sterols, 12% other; little triglyceride)"
+  },
+  "tufts_dog": {
+   "cite": "Tufts University histology images, canine sebaceous gland (labelled Dog, 50x)",
+   "url": "https://sites.tufts.edu/histologyimages/?p=291",
+   "opened": "2026-11-23",
+   "used_for": "dog gland: vacuolated cells because lipid is extracted in processing; holocrine release; pyknotic nuclei in disintegrating cells; one rim layer of low cuboidal cells on a basal lamina"
+  },
+  "pmc_postmortem_dog": {
+   "cite": "Postmortem Changes in Skin Appendages of Domestic Dogs: A Preliminary Comparative Histological Study. Animals (Basel) 2026 (PMC13663342)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13663342/",
+   "opened": "2026-11-23",
+   "used_for": "normal dog sebocytes have foamy cytoplasm; peripheral sebocytes keep nuclei that can be assessed, central ones disintegrate in holocrine secretion"
+  },
+  "libretexts_vethisto": {
+   "cite": "Jennings and Premanandan, Veterinary Histology, 7.09 Dermal Adnexa: Sebaceous Glands (LibreTexts)",
+   "url": "https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Veterinary_Histology_(Jennings_and_Premanandan)/07%3A_Integument/7.09%3A_Dermal_Adnexa_-_Sebaceous_Glands",
+   "opened": "2026-11-23",
+   "used_for": "sebocytes are pale, highly vacuolated cells in clusters beside follicles; sebum is released when they rupture into the duct"
+  }
+ }
+}

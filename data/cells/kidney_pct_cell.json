@@ -1,0 +1,255 @@
+{
+ "id": "kidney_pct_cell",
+ "name": "Proximal tubule cell (kidney)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_kidney_pct_cell",
+ "blurb": "A cell lining the first winding tube of the kidney: a cube-shaped cell with a thick fur of fingers facing the passing fluid and a base packed with energy-making mitochondria.",
+ "note": "Model: a proximal tubule cell of the human kidney, cut in half. Measured: the length of its surface fingers (microvilli) and the share of the cell filled by mitochondria, both in the mouse kidney (human values are not yet measured), and the jobs it does, from human physiology. Illustrative: the width and height of the cell, the number and size of its organelles, the nucleus size, the neighbours and the colours. The folds of the base are drawn faint, at an illustrative spacing. Not drawn: the pits and vesicles that take up protein, and the molecular pumps.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 14,
+  "height_um": 16,
+  "taper": 1,
+  "irregularity": 0.12,
+  "round_um": 1.2,
+  "apical": "microvilli",
+  "apical_um": 2.6,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "microvillus_length": {
+   "value": 2.6,
+   "range": [
+    2.0,
+    3.5
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "kumaran2020",
+   "also": "cong2021",
+   "note": "mouse: 2.55 ± 0.28 µm measured in sections, about 2.6 µm (kumaran2020); the rat value quoted there is 2.7 µm and an adult mouse value of 2.76 µm is quoted second-hand (cong2021). Human values are not yet measured"
+  },
+  "width": {
+   "value": 14,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: no source for a human cell's width was found"
+  },
+  "height": {
+   "value": 16,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a tall cube, taller than wide, with the brush border added on top"
+  },
+  "mitochondrial_share": {
+   "value": 0.44,
+   "range": [
+    0.2,
+    0.6
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "cong2021",
+   "note": "mouse: about 44% of volume in the adult kidney, as quoted in a paper on embryonic tubules (cong2021, from earlier work); that paper does not say whether the share is of the cell or of its cytoplasm"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.06,
+   "range": [
+    0.03,
+    0.12
+   ],
+   "measured": false,
+   "note": "illustrative"
+  },
+  "nucleoli": 1,
+  "position": "basal",
+  "note": "One round nucleus in the lower half of the cell, below the apical endocytic region; the exact position and the size are illustrative (round nucleus; no position was found stated in an opened source)."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.3,
+    "range": [
+     0.1,
+     0.5
+    ],
+    "measured": false,
+    "note": "illustrative: kept under the mouse figure of 0.44 so that the cut stays readable (cong2021)"
+   },
+   "size_um": [
+    2.0,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 500,
+   "position": "basal",
+   "source": "wiki_pt",
+   "note": "Mostly rod-shaped and lying upright in the folds of the base, as described for the adult cell (wiki_pt, openstax_anat); rod-shaped mitochondria were also seen in developing mouse tubules (cong2021). The drawn size is illustrative."
+  },
+  "lysosomes": {
+   "count": {
+    "value": 25,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": {
+    "value": 0.5,
+    "measured": false
+   },
+   "position": "any"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative; Golgi complexes were seen close to the nucleus in developing mouse tubules (cong2021); their place in the adult human cell is illustrative"
+   }
+  },
+  "not_drawn": [
+   "endosomes, coated pits and vesicles",
+   "rough endoplasmic reticulum",
+   "peroxisomes"
+  ]
+ },
+ "special": [
+  {
+   "kind": "brush_border",
+   "part": "brush_border",
+   "source": "openstax_anat",
+   "note": "Microvilli cover the surface facing the tube. In mouse sections they are about 2.6 µm long (kumaran2020); each has a core of actin filaments. They are drawn at their measured length; their number and spacing are illustrative."
+  },
+  {
+   "kind": "basal_folds",
+   "part": "basolateral_folds",
+   "source": "wiki_pt",
+   "note": "The base of the cell and its sides are folded into the neighbours, and rod-shaped mitochondria lie in these folds (wiki_pt). Drawn as thin upright folds from the base, faint; their spacing and height are illustrative.",
+   "params": {
+    "spacing_um": 1.0,
+    "height": 0.5
+   }
+  },
+  {
+   "kind": "transport",
+   "source": "openstax_reabs",
+   "note": "Describes only, nothing is drawn: sodium and glucose enter together through carriers in the microvillus membrane, and sodium-potassium pumps on the base and sides push sodium out, which powers the rest. About 67% of the water, sodium and potassium that enter the nephron are taken back in this tube, and almost all of the glucose and amino acids."
+  }
+ ],
+ "cut": "The cell is cut in half from the surface facing the tube down to its base: a fringe of microvilli across the top, the round nucleus in the lower half, rod-shaped mitochondria standing upright in the base, and lysosomes and a Golgi stack between. Neighbouring cells show faintly at the sides.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; microvilli pale yellow; nucleus violet; mitochondria orange; lysosomes brown. All colours are a code, not the real colour of the cell.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "brush_border": {
+   "name": "Brush border (microvilli)",
+   "card": "cell_kidney_pct_brush_border",
+   "material": "membrane",
+   "source": "openstax_anat"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "openstax_anat"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "lysosome",
+   "material": "membrane"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "neighbour": {
+   "name": "Neighbouring tubule cell",
+   "card": "cell_kidney_pct_cell",
+   "material": "membrane"
+  },
+  "basolateral_folds": {
+   "name": "Folds of the base",
+   "card": null,
+   "material": "membrane",
+   "about": "The base and sides of the cell are folded deeply into thin plates that interlock with the neighbouring cells; rod-shaped mitochondria lie between them, close to the pumps in the membrane that drive the cell's work. Drawn faint; their spacing and height are illustrative."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "kidney_cortex",
+    "structure": "pct"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 14,
+  "r1_m": 0.00022,
+  "arrive_m": 3.5e-05,
+  "spawn_m": 1e-06
+ },
+ "about": [
+  "The cell is drawn as a six-sided block {drawn.cellVolume} µm³ in volume, cut in half. Its width and height are illustrative; only the length of the surface fingers (about 2.6 µm, from mouse kidney) is measured.",
+  "Facing the tube is the brush border, a fur of microvilli that multiplies the surface for taking back water, salts, sugar and amino acids from the filtered fluid. The base holds the mitochondria that power the pumps; {drawn.mitochondria} are drawn in this half, out of {drawn.mitochondriaWanted} the chosen share asks for.",
+  "In life the base and the sides of the cell are deeply folded and interlock with the neighbouring cells; the folds of the base are drawn faint, at an illustrative spacing. The mitochondrial share drawn is lower than the mouse figure of 44%."
+ ],
+ "sources": {
+  "kumaran2020": {
+   "cite": "Kumaran GK, Hanukoglu I (2020) Identification and classification of epithelial cells in nephron segments by actin cytoskeleton patterns, FEBS J 287:1176",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7384063/",
+   "opened": "2026-11-23",
+   "used_for": "mouse proximal tubule: microvillus height 2.55 ± 0.28 µm; 19 actin filaments in each microvillus core; rat value 2.7 µm quoted"
+  },
+  "cong2021": {
+   "cite": "Cong J et al. (2021) Ultrastructural identification of developing proximal tubules based on three-dimensional reconstruction, Vet Med Sci 7:2349 (mouse)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8464306/",
+   "opened": "2026-11-23",
+   "used_for": "adult mouse kidney values quoted in its text from earlier work: microvilli 2.76 µm, mitochondrial volume density 44%; in the embryonic tubules themselves: rod-shaped mitochondria in basolateral processes (capillary loop stage), Golgi close to the nucleus (renal vesicle stage)"
+  },
+  "openstax_anat": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 25.4 Microscopic Anatomy of the Kidney",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney",
+   "opened": "2026-11-23",
+   "used_for": "simple cuboidal cells with prominent microvilli forming a brush border; many mitochondria for the active transport"
+  },
+  "openstax_reabs": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 25.6 Tubular Reabsorption",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-6-tubular-reabsorption",
+   "opened": "2026-11-23",
+   "used_for": "about 67% of water, sodium and potassium and almost all glucose and amino acids taken back in this tube; sodium-glucose symport on the apical side, sodium-potassium pump on the basal side"
+  },
+  "wiki_pt": {
+   "cite": "Wikipedia, Proximal tubule (a secondary source, used for the qualitative description only)",
+   "url": "https://en.wikipedia.org/wiki/Proximal_tubule",
+   "opened": "2026-11-23",
+   "used_for": "cuboidal cells with lateral interdigitations; densely packed microvilli; mitochondria mostly in the basal region within membrane infoldings; segments S1, S2, S3"
+  }
+ }
+}

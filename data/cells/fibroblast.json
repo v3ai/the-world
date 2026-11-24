@@ -1,0 +1,300 @@
+{
+ "id": "fibroblast",
+ "name": "Fibroblast",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_fibroblast",
+ "blurb": "The main cell of connective tissue: a long, flat, tapering cell with an oval nucleus and a well-developed protein-making and packaging system. It makes the fibres and gel that fill the space around it.",
+ "note": "Model: a human fibroblast of connective tissue, drawn as an active (matrix-making) cell and cut in half along its length. Measured: its shape as a long, spindle-like cell with an oval nucleus of about 500 µm³ (human fibroblasts), and a rough endoplasmic reticulum and Golgi apparatus that are prominent when the cell is active. Two or more nucleoli are described in the literature; two are drawn (illustrative). Illustrative: the nucleus placed at the centre of the cell, the number of nucleoli, the length, width and thickness drawn, the nucleus axes (chosen to match the measured volume), the numbers and sizes of mitochondria, lysosomes, Golgi stacks and stacks of rough endoplasmic reticulum, the number, length and paths of the thin processes, and all colours. Real fibroblasts vary with the tissue; this is one simplified example.",
+ "shape": {
+  "type": "spindle",
+  "length_um": 80,
+  "width_um": 14,
+  "flat": 0.5,
+  "bend": 0,
+  "pair": 0,
+  "wall_um": 0,
+  "processes": 6,
+  "process_um": 0.8,
+  "process_reach_um": 18
+ },
+ "dimensions": {
+  "length": {
+   "value": 80,
+   "range": [
+    20,
+    200
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative. In one thin section of the wall of the small intestine (jejunum; species not stated) a fibroblast measured about 25 µm along its long axis (histguide_em006), but a section cuts the cell short, so this is a lower bound. The range is a guess."
+  },
+  "length_in_section": {
+   "value": 25,
+   "unit": "um",
+   "measured": true,
+   "source": "histguide_em006",
+   "note": "estimated from the scale bar of one electron micrograph of a spindle-shaped fibroblast in the wall of the small intestine (jejunum); the species is not stated on the page. A thin slice, so a lower bound on the true length."
+  },
+  "width": {
+   "value": 14,
+   "range": [
+    5,
+    30
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: wide enough to hold the nucleus drawn (9 µm across)"
+  },
+  "thickness": {
+   "value": 7,
+   "unit": "um",
+   "measured": false,
+   "calc": "width 14 µm x flat 0.5",
+   "note": "illustrative: a flattened cell, not a round rod"
+  },
+  "nucleus_volume": {
+   "value": 500,
+   "unit": "um3",
+   "measured": true,
+   "source": "bionumbers_nuc",
+   "note": "a database entry for the volume of a human fibroblast nucleus, taken from a review of nuclear structure; BioNumbers flags the entry as needing a better reference, so treat it as a rough value"
+  },
+  "nucleus_axes": {
+   "value": 19,
+   "unit": "um",
+   "measured": false,
+   "calc": "an ellipsoid 19 x 9 x 5.5 µm has a volume of pi/6 x 19 x 9 x 5.5 = 493 µm³, close to the 500 µm³ measured",
+   "note": "illustrative axes; only their product is tied to the measurement. 'Elongated nucleus' is the shape in the sources (histguide_em006)."
+  },
+  "cultured_cell_volume": {
+   "value": 2260,
+   "unit": "um3",
+   "measured": true,
+   "source": "mitsui1976",
+   "note": "mean volume of human diploid fibroblasts that had stopped dividing, grown in dish culture and sized with an electron counter; not a cell in tissue. Given only to show the order of size; the drawn cell is not tuned to it."
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "elongated",
+  "size_um": {
+   "value": [
+    19,
+    9,
+    5.5
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative axes giving the measured volume of about 500 µm³ (bionumbers_nuc); the sources call the nucleus oval or elongated, not give its axes"
+  },
+  "nucleoli": 2,
+  "nucleoli_note": "illustrative: two or more are described in life (wikipedia_fibroblast); the nucleolus is not visible in the micrograph (histguide_em006)",
+  "position": "central",
+  "position_note": "illustrative: placed at the centre of the cell; no source read gives a position"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.05,
+    "measured": false,
+    "note": "illustrative; no source read gives a volume share for fibroblasts"
+   },
+   "size_um": [
+    1.5,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 300,
+   "note": "the micrograph description calls them oval or rod-shaped with visible cristae (histguide_em006); their number and size here are illustrative"
+  },
+  "lysosomes": {
+   "count": {
+    "value": 30,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": {
+    "value": 0.4,
+    "measured": false
+   },
+   "position": "any"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative number; the sources say only that the Golgi apparatus is prominent in an active fibroblast (histguide_em006)"
+   }
+  },
+  "not_drawn": [
+   "collagen fibres and the gel outside the cell",
+   "actin stress fibres",
+   "adhesions to the fibres",
+   "a primary cilium",
+   "neighbouring cells"
+  ]
+ },
+ "special": [
+  {
+   "kind": "rough_er",
+   "source": "histguide_em006",
+   "also": "openstax_endo",
+   "note": "In an active fibroblast the rough endoplasmic reticulum is abundant: flattened sacs studded with ribosomes, in which proteins for export are made and first modified. It is the most striking feature of the cell in an electron micrograph. Not drawn: the picture shows the Golgi apparatus that follows the rough endoplasmic reticulum but not the reticulum itself, so it should not be read as a cell without it."
+  },
+  {
+   "kind": "secretion",
+   "part": "golgi",
+   "source": "openstax_endo",
+   "also": "openstax_ct",
+   "note": "Proteins made on the rough endoplasmic reticulum pass to the Golgi apparatus, are modified and sorted there, and leave in secretory vesicles that fuse with the cell surface. Fibroblasts export the protein and sugar parts of the fibres and gel of connective tissue this way. The vesicles and the matrix they feed are not drawn."
+  },
+  {
+   "kind": "cell_processes",
+   "source": "wikipedia_fibroblast",
+   "also": "openstax_ct",
+   "note": "A fibroblast is described as having a branched cytoplasm and more projections than its parent mesenchymal cell. The cell here is drawn smooth with two tapering tips; the branches are not drawn."
+  },
+  {
+   "kind": "setting",
+   "source": "buffalo_cartilage",
+   "also": "openstax_ct",
+   "note": "Two places reach this cell: loose connective tissue between organs and around fat cells, and the outer fibrous layer of the perichondrium around cartilage, which holds type I collagen, fibroblasts and blood vessels. The cell is the same kind in both; how long and how flat it is in each place is not measured here."
+  },
+  {
+   "kind": "rough_er_stacks",
+   "part": "rough_er",
+   "params": {
+    "stacks": 45,
+    "sheets": 5,
+    "width_um": 1.6,
+    "spacing_um": 0.14
+   },
+   "note": "illustrative number and size of the stacks"
+  }
+ ],
+ "cut": "The cell is cut in half along its length, through the middle of the flattened body: the long oval nucleus with two nucleoli lies in the thick middle, with Golgi stacks beside it, rod-shaped mitochondria and small lysosomes scattered through the cytoplasm, and the body tapering to a point at each end.",
+ "colours": {
+  "convention": "Cell membrane pale and the inside dark; nucleus violet; mitochondria orange; the other organelles in code colours. None of these colours is real: in life the cell is nearly colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins. In an active fibroblast much of it is taken up by the protein-making and packaging system."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "cell_fibroblast_nucleus",
+   "material": "cell_nucleus",
+   "source": "wikipedia_fibroblast"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "lysosome",
+   "material": "membrane"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "cell_fibroblast_golgi",
+   "material": "membrane",
+   "source": "openstax_endo"
+  },
+  "rough_er": {
+   "name": "Rough endoplasmic reticulum",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of flat membrane sacs covered in ribosomes, where the fibroblast makes collagen and the other proteins of the fibres and gel around it. The ribosomes are shown as one RNA nucleotide, a stand-in. Their number and size here are illustrative."
+  },
+  "processes": {
+   "name": "Cell processes",
+   "card": null,
+   "material": "membrane",
+   "about": "Thin, branching arms of the cell that reach out through the fibres around it and touch other cells. Their number and length here are illustrative."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "loose_connective_fat",
+    "structure": "fibroblast"
+   },
+   {
+    "scene": "hyaline_cartilage",
+    "structure": "fibroblast"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 45,
+  "r1_m": 0.00075,
+  "arrive_m": 9e-05,
+  "spawn_m": 3.4e-06
+ },
+ "about": [
+  "A fibroblast lies among the fibres of connective tissue: in the loose tissue that packs spaces between organs and around fat cells, and in the outer layer of the perichondrium, the skin around cartilage, where it is described as lying among type I collagen with blood vessels. It is the most abundant cell of connective tissue, and it makes the fibres and the gel between them.",
+  "The cell is drawn about 80 µm long, 14 µm wide and 7 µm thick, with a volume of {drawn.cellVolume} µm³. These sizes are illustrative: the only measured length quoted here, about 25 µm, comes from one thin slice that cuts the cell short. Only the nucleus is tied to a measurement, a volume of about 500 µm³ in human fibroblasts (a BioNumbers entry that its own compilers flag as needing a better reference), drawn here as a long oval {drawn.nuclei} nucleus with two nucleoli (the number is illustrative).",
+  "This is drawn as an active cell, with stacks of rough endoplasmic reticulum ({drawn.erStacks} drawn) where it makes collagen, and {drawn.processes} thin branching processes reaching out from its edges (their number and length are illustrative). A resting cell, sometimes called a fibrocyte, is smaller and has less rough endoplasmic reticulum. Not drawn: the fibres around it and the filaments inside the cell that pull on them. No neighbouring cells or junctions are drawn."
+ ],
+ "sources": {
+  "openstax_ct": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 4.3 Connective Tissue Supports and Protects",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects",
+   "opened": "2026-11-23",
+   "used_for": "fibroblasts are the most abundant cell of connective tissue proper and secrete the ground substance; the fibroblast resembles the mesenchymal cell but is larger with more projections; collagen, elastic and reticular fibres"
+  },
+  "histguide_em006": {
+   "cite": "Histology Guide (Brelje and Sorenson), electron micrograph EM 006 Fibroblast, small intestine (jejunum), 11,250x",
+   "url": "https://histologyguide.com/EM-view/EM-006-fibroblast/01-photo-1.html",
+   "opened": "2026-11-23",
+   "used_for": "spindle-shaped cell with an elongated nucleus; abundant rough endoplasmic reticulum and prominent Golgi apparatus in an active cell; rod-shaped mitochondria; length about 25 µm in the slice"
+  },
+  "bionumbers_nuc": {
+   "cite": "BioNumbers, Volume of nucleus of fibroblast (human), citing Lamond AI, Sleeman JE (2003) Nuclear substructure and dynamics, Curr Biol 13:R825",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=105995",
+   "opened": "2026-11-23",
+   "used_for": "nucleus volume 500 µm³ (the entry is marked as needing a better reference)"
+  },
+  "mitsui1976": {
+   "cite": "Mitsui Y, Schneider EL (1976) Relationship between cell replication and volume in senescent human diploid fibroblasts, Mech Ageing Dev 5:45-56, as listed by BioNumbers",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=108244",
+   "opened": "2026-11-23",
+   "used_for": "2260 µm³ mean volume of non-dividing cultured human fibroblasts (Coulter counter); only the BioNumbers entry was read, not the paper"
+  },
+  "wikipedia_fibroblast": {
+   "cite": "Wikipedia, Fibroblast (read as a secondary summary)",
+   "url": "https://en.wikipedia.org/wiki/Fibroblast",
+   "opened": "2026-11-23",
+   "used_for": "branched cytoplasm around an elliptical, speckled nucleus with two or more nucleoli; inactive fibrocytes are smaller, spindle-shaped, with less rough ER"
+  },
+  "openstax_endo": {
+   "cite": "OpenStax Biology 2e, 4.4 The Endomembrane System and Proteins",
+   "url": "https://openstax.org/books/biology-2e/pages/4-4-the-endomembrane-system-and-proteins",
+   "opened": "2026-11-23",
+   "used_for": "rough ER is abundant in cells that secrete protein; the Golgi apparatus receives, modifies, sorts and packs proteins into secretory vesicles; lysosomes"
+  },
+  "buffalo_cartilage": {
+   "cite": "University at Buffalo Jacobs School of Medicine, Cartilage/Bone/Muscle Histology Notes",
+   "url": "https://ubwp.buffalo.edu/histology/muscle-histology-notes/",
+   "opened": "2026-11-23",
+   "used_for": "perichondrium has an outer fibrous layer of type I collagen, fibroblasts and blood vessels"
+  }
+ }
+}

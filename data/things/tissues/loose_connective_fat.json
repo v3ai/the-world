@@ -1123,10 +1123,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell"
-   },
-   "material": "animal_cells",
+   "material": "adipocyte",
    "priority": 1
   },
   {
@@ -2155,12 +2152,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "mol",
-    "mol": "tripalmitin",
-    "name": "Tripalmitin, a typical fat (triglyceride) of a lipid droplet"
-   },
-   "material": "fat",
+   "material": "adipocyte",
    "priority": 2
   },
   {
@@ -4860,10 +4852,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell"
-   },
-   "material": "animal_cells",
+   "material": "fibroblast",
    "priority": 4
   },
   {
@@ -4968,11 +4957,6 @@
      }
     ]
    },
-   "deeper": {
-    "type": "mol",
-    "mol": "heme_b",
-    "name": "Haem, the iron-holding part of haemoglobin"
-   },
    "material": "red_blood_cell",
    "priority": 5
   },
@@ -5001,10 +4985,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell"
-   },
-   "material": "animal_cells",
+   "material": "mast_cell",
    "priority": 4
   },
   {
@@ -5076,10 +5057,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell"
-   },
-   "material": "animal_cells",
+   "material": "macrophage",
    "priority": 4
   }
  ]

@@ -1,0 +1,269 @@
+[
+ {
+  "id": "cell_kidney_dct_cell",
+  "title": "Distal tubule cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-05,
+  "parents": [
+   "kidney_cortex_dct"
+  ],
+  "parts": [
+   "dct_basolateral_folds",
+   "dct_ncc_carrier",
+   "dct_sodium_potassium_pump"
+  ],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "nephron",
+   "kidney_cortex_dct",
+   "kidney_cortex_pct"
+  ],
+  "mesh": null,
+  "summary": "A cell of the winding tube after the loop of Henle: a low cube that spends much energy pumping salts, with its nucleus near the top and mitochondria packed into the folds of its base.",
+  "layers": {
+   "basics": "The kidney filters the blood and then takes back what the body needs. The distal tubule is the winding stretch near the end of the tube, and a single layer of cells forms its wall. Each cell is a small cube. On the side facing the fluid it has numerous short microvilli, fewer and shorter than on the cells of the first stretch of the tube. Its job is to fine-tune the fluid, mainly the salt, calcium and magnesium in it, moving them back into the blood against their pull.",
+   "deeper": "The nucleus lies close to the surface facing the fluid. Under it and around it the cell is filled with mitochondria, and at the base and sides the membrane is folded into narrow sheets that reach between neighbouring cells, with mitochondria standing in rows between them. This gives the stained cell a striped, palisaded base. The folds hold the sodium-potassium pump, which pushes sodium out of the cell into the blood and keeps the inside low in sodium; that pull draws sodium in through a carrier at the top. The early part of the tube takes in sodium and chloride through one carrier that thiazide water tablets block.",
+   "expert": "Cells of the early and late parts differ: the early part carries the sodium chloride carrier, the late part also has sodium channels and responds more to the hormone aldosterone, and cells of other kinds start to appear towards the end. The height, volume and share of mitochondria of a human distal tubule cell are not well measured, so the drawing uses illustrative sizes; the layout of the parts comes from reviews and micrographs of mainly rat and rabbit tissue (the species of the histology image is not given), and the width of the tube from the mouse."
+  },
+  "facts": [
+   [
+    "Cell type",
+    "Simple cuboidal, one nucleus"
+   ],
+   [
+    "Nucleus",
+    "Close to the surface facing the fluid"
+   ],
+   [
+    "Microvilli",
+    "Short; fewer than the proximal tubule"
+   ],
+   [
+    "Mitochondria",
+    "Most per length of any cell of the nephron (rat)"
+   ],
+   [
+    "Base and sides",
+    "Folded; membrane area about twice the top surface (rat, rabbit)"
+   ],
+   [
+    "Tubule width (long axis)",
+    "About 40 um (mouse)"
+   ],
+   [
+    "Cell size drawn",
+    "Illustrative, not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How tall is a human distal tubule cell, and what share of it is mitochondria?",
+   "How many cells line one turn of a human distal tubule?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ],
+   [
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The distal convoluted tubule (Comprehensive Physiology review)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5810970/"
+   },
+   {
+    "title": "OpenStax: microscopic anatomy of the kidney",
+    "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/25-4-microscopic-anatomy-of-the-kidney"
+   }
+  ]
+ },
+ {
+  "id": "dct_basolateral_folds",
+  "title": "Folded base and sides of the distal tubule cell",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 5e-06,
+  "parents": [
+   "cell_kidney_dct_cell"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "mitochondrion"
+  ],
+  "processes": [],
+  "related": [
+   "dct_sodium_potassium_pump",
+   "cell_kidney_dct_cell"
+  ],
+  "mesh": null,
+  "summary": "Narrow sheets of membrane on the base and sides of the cell that reach between its neighbours, with mitochondria standing between them.",
+  "layers": {
+   "basics": "The side of the cell that faces the blood is not smooth. It is folded into many narrow sheets, which gives it far more membrane than a smooth side would have. Rows of mitochondria stand between the sheets, close to where the energy is used.",
+   "deeper": "The sheets of one cell fit between those of its neighbours, so the cells are tightly interlocked. In the rat and the rabbit the membrane area of the base and sides is about twice that of the surface facing the fluid. More membrane means room for more sodium-potassium pumps. Near the base the sheets split into low ridges that hold bundles of filaments, thought to fasten the cell to the layer beneath it.",
+   "expert": "The twofold figure is from rat and rabbit; no human value is known. In the next part of the tube, the connecting tubule, more of the extra membrane comes from folds of the base and less from the sides, and it holds fewer mitochondria. The drawing shows the folds as simple sheets with an illustrative spacing."
+  },
+  "facts": [
+   [
+    "Membrane area, base and sides over top",
+    "About 2 (rat, rabbit)"
+   ],
+   [
+    "Contains",
+    "Mitochondria, sodium-potassium pumps"
+   ],
+   [
+    "Human value",
+    "Not measured"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much more membrane does a human distal tubule cell have at its base than at its top?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.4",
+    "25-4-microscopic-anatomy-of-the-kidney"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The distal convoluted tubule (Comprehensive Physiology review)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5810970/"
+   },
+   {
+    "title": "Digital Histology: tubules and collecting system",
+    "url": "https://digitalhistology.org/organs-systems/urinary/tubules-and-collecting-system/tubules-and-collecting-system-6"
+   }
+  ]
+ },
+ {
+  "id": "dct_sodium_potassium_pump",
+  "title": "Sodium-potassium pump (distal tubule)",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 1e-08,
+  "parents": [
+   "cell_kidney_dct_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "dct_basolateral_folds",
+   "dct_ncc_carrier",
+   "bio_active_transport"
+  ],
+  "mesh": null,
+  "summary": "A protein in the folded membrane that pushes sodium out of the cell and potassium in, using the energy of ATP.",
+  "layers": {
+   "basics": "This pump sits in the folded sides and base of the cell. Each cycle it pushes sodium out toward the blood and takes potassium in, and it spends one ATP molecule to do it. That keeps the sodium inside the cell low, so more sodium flows in from the tube through the carrier at the top.",
+   "deeper": "The distal tubule has more pump activity than any other stretch of the nephron. The cell's many mitochondria make the ATP for it, and the folded membrane gives room for the pumps. Because the pump moves more positive charge out than in, it also helps to make the inside of the cell electrically negative.",
+   "expert": "The statements are from rat and rabbit tissue and from reviews of several species. Pump numbers per cell are not known, so none is drawn: the pump is a single protein far smaller than the drawn cell."
+  },
+  "facts": [
+   [
+    "Position",
+    "Folded base and sides"
+   ],
+   [
+    "Energy",
+    "ATP"
+   ],
+   [
+    "Activity in the nephron",
+    "Highest in this tubule"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many pumps does one human distal tubule cell hold?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The distal convoluted tubule (Comprehensive Physiology review)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5810970/"
+   }
+  ]
+ },
+ {
+  "id": "dct_ncc_carrier",
+  "title": "Sodium chloride carrier (NCC)",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 1e-08,
+  "parents": [
+   "cell_kidney_dct_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "dct_sodium_potassium_pump",
+   "bio_facilitated_transport"
+  ],
+  "mesh": null,
+  "summary": "A protein in the surface facing the fluid that lets sodium and chloride in together; thiazide water tablets block it.",
+  "layers": {
+   "basics": "At the top of the cell, a carrier protein takes one sodium and one chloride from the fluid in the tube and moves them into the cell together. The pump at the base then sends the sodium on to the blood. It is the main way sodium enters cells of the first part of this tube, and the target of thiazide diuretics, which lower blood pressure.",
+   "deeper": "The carrier belongs to the early part of the tube. The later part also has sodium channels and is more strongly governed by the hormone aldosterone. In mice that lack the carrier the early part shrinks, and in Gitelman syndrome it is atrophic, so the carrier seems needed to build and keep that part. A fault in the human gene causes Gitelman syndrome, with low blood magnesium and little calcium in the urine.",
+   "expert": "Much of the evidence is from the rat and mouse. The human gene is SLC12A3. The carrier is not drawn: it is a single protein, and its number per cell is not known."
+  },
+  "facts": [
+   [
+    "Moves",
+    "Sodium and chloride together"
+   ],
+   [
+    "Where",
+    "Surface facing the fluid, early part of the tube"
+   ],
+   [
+    "Blocked by",
+    "Thiazide diuretics"
+   ],
+   [
+    "Human disease",
+    "Gitelman syndrome"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many carriers sit in the surface of one human distal tubule cell?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "25.6",
+    "25-6-tubular-reabsorption"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The distal convoluted tubule (Comprehensive Physiology review)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5810970/"
+   }
+  ]
+ }
+]

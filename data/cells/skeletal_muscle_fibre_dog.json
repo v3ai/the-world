@@ -1,0 +1,270 @@
+{
+ "id": "skeletal_muscle_fibre_dog",
+ "name": "Skeletal muscle fibre (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_skeletal_muscle_fibre_dog",
+ "blurb": "One dog skeletal muscle cell: a long cylinder, about 47 µm thick, with many nuclei under its membrane and packed with striped myofibrils.",
+ "note": "Model: a 0.4 mm piece of one dog (Canis lupus familiaris) muscle fibre, a window cut into its front. Measured in dog muscle: the sarcomere length at which the muscle pulls hardest (2.8 µm, semitendinosus). Measured in other animals and taken over for the dog because no dog value was found: the thick filament length (about 1.65 µm, stated for all muscle types and species examined) and the width of a myofibril (about 1.2 µm, human). Illustrative: the thickness of the fibre (47 µm, chosen inside the size limits reported for dog fibre areas), the number of nuclei per millimetre, the size and shape of each nucleus, the thin filament length, the share and places of the mitochondria, the colours, and the length (a fibre goes on for centimetres; the ends are breaks). The T-tubules, the sarcoplasmic reticulum and the nucleoli are not drawn.",
+ "shape": {
+  "type": "fibre",
+  "diameter_um": 47,
+  "drawn_length_um": 400,
+  "window_um": 120,
+  "sarcomere_um": 2.8,
+  "thick_um": 1.65,
+  "thin_um": 1.27,
+  "myofibril_um": 1.2,
+  "nuclei_per_mm": 120,
+  "nucleus_position": "peripheral"
+ },
+ "dimensions": {
+  "diameter": {
+   "value": 47,
+   "range": [
+    37,
+    56
+   ],
+   "unit": "um",
+   "measured": false,
+   "calc": "a circle of area 1735 µm²; areas of 1100 to 2500 µm² correspond to 37 to 56 µm",
+   "note": "illustrative: chosen to sit between the size limits of 1100 and 2500 µm² in the tibialis cranialis of unaffected old Pembroke Welsh Corgis (mean age 13.8 years); the paper gives them as the limits beyond which more fibres lay in dogs with degenerative myelopathy, not as a healthy range; dog fibres are smaller than human ones (16 breeds); the value is also the thickness the tissue scene draws",
+   "also": "vanboom2023"
+  },
+  "diameter_source_band": {
+   "value": 1735,
+   "range": [
+    1100,
+    2500
+   ],
+   "unit": "um2",
+   "measured": false,
+   "source": "corgi2026",
+   "note": "a mid-band area, not a measured mean; the paper gives no control mean in its text; 1100 and 2500 µm² are size limits beyond which more fibres lay in affected dogs than in unaffected old controls"
+  },
+  "sarcomere": {
+   "value": 2.8,
+   "range": [
+    2.75,
+    2.8
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "allen2022",
+   "note": "average sarcomere length of the semitendinosus at the length where it pulls hardest (L0), from electron micrographs; the paper also states 2.75 µm; 54 mongrel dogs of 8 to 12 kg"
+  },
+  "thick_filament": {
+   "value": 1.65,
+   "unit": "um",
+   "measured": true,
+   "source": "gokhin2014",
+   "note": "stated as constant, about 1.65 µm, in all muscle types and species examined; no dog-only measurement was found"
+  },
+  "thin_filament": {
+   "value": 1.27,
+   "range": [
+    0.95,
+    1.4
+   ],
+   "unit": "um",
+   "measured": false,
+   "source": "gokhin2014",
+   "note": "illustrative: a value inside the range of 0.95 to 1.40 µm reported across muscles and species; no dog measurement was found"
+  },
+  "myofibril": {
+   "value": 1.2,
+   "unit": "um",
+   "measured": true,
+   "source": "openstax_muscle",
+   "note": "about 1.2 µm across (human); taken over for the dog because no dog value was found"
+  },
+  "length_max": {
+   "value": 300000,
+   "unit": "um",
+   "measured": true,
+   "source": "openstax_muscle",
+   "note": "fibres in human muscle can be up to 30 cm long; in the dog semitendinosus (11 cm long at its working length) the fibres are described as running the full length of the muscle, functionally, past a tendinous inscription; the break label is a statement about whole fibres, not a dog figure"
+  }
+ },
+ "nucleus": {
+  "count": 48,
+  "shape": "flattened",
+  "per_mm": {
+   "value": 120,
+   "range": [
+    60,
+    200
+   ],
+   "unit": "1/mm",
+   "measured": false,
+   "note": "illustrative: no dog count per millimetre was found; human thigh fibres have about 154 per mm and the count rises with fibre size, so a smaller dog fibre is given fewer",
+   "source": "hansson2020"
+  },
+  "size_um": [
+   10,
+   4,
+   2
+  ],
+  "position": "peripheral",
+  "position_source": "corgi2026",
+  "nucleoli": 0,
+  "note": "Each fibre is multinucleate; in dog muscle sections nuclei are counted per fibre, and working breeds have more per fibre than companion breeds. The size and the shape of each nucleus are illustrative. Nucleoli are not drawn.",
+  "source": "osiak2024"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.1,
+    "range": [
+     0.05,
+     0.15
+    ],
+    "measured": false,
+    "note": "illustrative: dog muscle is described as highly oxidative (abstract: 'high oxidative capacity'; electron micrographs show 'many mitochondria'), but no dog volume share was found",
+    "source": "allen2022",
+    "also": "vanboom2023"
+   },
+   "size_um": [
+    1.0,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 1800
+  },
+  "not_drawn": [
+   "T-tubules",
+   "sarcoplasmic reticulum",
+   "glycogen",
+   "myoglobin",
+   "satellite cells",
+   "capillaries",
+   "motor end plate",
+   "nucleoli"
+  ]
+ },
+ "special": [
+  {
+   "kind": "striation",
+   "params": {
+    "bands": [
+     "Z line",
+     "I band",
+     "A band",
+     "H zone",
+     "M line"
+    ]
+   },
+   "source": "allen2022",
+   "note": "the bands drawn from the filament lengths: A band = thick filament length; H zone = sarcomere minus twice the thin filament; faded where a sarcomere is under a few pixels"
+  },
+  {
+   "kind": "window",
+   "params": {
+    "length_um": 120
+   },
+   "note": "a window cut into the front half shows the myofibrils lying lengthwise; the cut ends show them end on"
+  }
+ ],
+ "cut": "A window in the front of the fibre: under the membrane the myofibrils lie side by side along the fibre, each banded at the same places, which makes the whole fibre striped. At the ends of the window and of the piece they are seen end on, as dots. Flattened nuclei lie just under the membrane all round.",
+ "colours": {
+  "convention": "Myofibrils and sarcoplasm in muscle reds, the bands darker and lighter as in a stained section; nuclei violet; mitochondria orange; the membrane a clear film. The red of muscle is real (myoglobin); the shades of the bands and the other colours are a code.",
+  "true_colour": [
+   "sarcoplasm"
+  ]
+ },
+ "parts": {
+  "sarcolemma": {
+   "name": "Cell membrane (sarcolemma)",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "myofibril": {
+   "name": "Myofibril",
+   "card": "cell_smf_dog_sarcomere",
+   "material": "myofibril"
+  },
+  "sarcomere": {
+   "name": "Sarcomere",
+   "card": "cell_smf_dog_sarcomere",
+   "material": "myofibril"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "cell_smf_dog_nucleus",
+   "material": "cell_nucleus"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_muscle",
+    "structure": "fibre"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 260,
+  "r1_m": 0.0016,
+  "arrive_m": 0.00023,
+  "spawn_m": 2e-06,
+  "break": {
+   "text": "The fibre goes on: whole fibres run for centimetres",
+   "text_short": "The fibre goes on"
+  }
+ },
+ "about": [
+  "One dog muscle cell, about {drawn.drawnLength} µm of it. Its thickness, 47 µm, is a choice: dog fibres are smaller than human ones, and 47 µm is the width of a circle of 1735 µm², between the size limits (1100 and 2500 µm²) reported for the fibres of unaffected old corgis. It is not a measured mean. Whole fibres run for centimetres.",
+  "It has many nuclei, all just under its membrane: {drawn.nucleiWanted} in this piece, from an illustrative 120 per millimetre (no dog count was found; those that lay where the window is were cut away with it).",
+  "Inside, myofibrils about 1.2 µm across fill the cell (about {drawn.myofibrilsInSection} in a cross-section of this size). Each is a chain of sarcomeres 2.8 µm long, the length measured in the dog semitendinosus where it pulls hardest; the stripes are where thick myosin filaments (1.65 µm) and thin actin filaments overlap.",
+  "Mitochondria take up an illustrative 10% of the fibre: about {drawn.mitochondriaWanted} would lie in the floor of the window, and {drawn.mitochondria} of them are drawn. Dog muscle is highly oxidative, so the fibre is built for sustained work, but no dog volume share was found."
+ ],
+ "sources": {
+  "allen2022": {
+   "cite": "Allen PD, Barclay JK (2022) The mechanical properties of in situ canine skeletal muscle, Front Physiol 13:862189",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9207469",
+   "opened": "2026-11-23",
+   "used_for": "54 mongrel dogs of 8-12 kg; average sarcomere length of the semitendinosus at L0 2.8 µm (2.75 in the discussion), from electron micrographs; the muscle fibres 'functionally run the full length of the muscle' (semitendinosus 11 cm at L0, with a tendinous inscription); micrographs show 'the characteristic picture of an oxidative skeletal muscle with many mitochondria'"
+  },
+  "vanboom2023": {
+   "cite": "Van Boom et al. (2023) Fiber type and metabolic characteristics of skeletal muscle in 16 breeds of domestic dogs, Anat Rec 10.1002/ar.25207 (abstract page only)",
+   "url": "https://repository.up.ac.za/items/4d4060c4-7be3-4de5-8c78-b6446eabbbb9/full",
+   "opened": "2026-11-23",
+   "used_for": "35 dogs, 16 breeds; fibre areas smaller than in humans; type IIA the commonest fibre type; high oxidative capacity (no numbers; abstract only)"
+  },
+  "corgi2026": {
+   "cite": "Pembroke Welsh Corgi tibialis cranialis study of canine degenerative myelopathy (2026), Europe PMC PMC13603699",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13603699",
+   "opened": "2026-11-23",
+   "used_for": "healthy muscle fibres have 'peripherally located nuclei'; fibre areas below 1100 and above 2500 µm² were more common in dogs with degenerative myelopathy than in unaffected Pembroke Welsh Corgis over 8 years (control mean age 13.8 y); used only as a size plausibility band (read through the Europe PMC full text)"
+  },
+  "gokhin2014": {
+   "cite": "Gokhin DS, Dubuc EA, Lian KQ, Peters LL, Fowler VM (2014) Alterations in thin filament length during postnatal skeletal muscle development and aging in mice, Front Physiol 5:375",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4178374",
+   "opened": "2026-11-23",
+   "used_for": "thick filaments constant at about 1.65 µm in all muscle types and species examined; thin filaments 0.95 to 1.40 µm across muscles and species"
+  },
+  "openstax_muscle": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 10.2 Skeletal Muscle",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle",
+   "opened": "2026-11-23",
+   "used_for": "multinucleate fibres; myofibrils about 1.2 µm across; fibres up to 30 cm long (human); T-tubules and sarcoplasmic reticulum"
+  },
+  "hansson2020": {
+   "cite": "Hansson KA, Eftestøl E, Bruusgaard JC et al. (2020) Myonuclear content regulates cell size with similar scaling properties in mice and humans, Nat Commun 11:6288",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7722898/",
+   "opened": "2026-11-23",
+   "used_for": "a human muscle cell can have more than 100 myonuclei per mm (154 per mm in human thigh fibres); nuclei per mm rises with fibre cross-section but less than in proportion; says nothing on nucleus position"
+  },
+  "osiak2024": {
+   "cite": "Osiak-Wicha C, Kras K, Arciszewski MB (2024) Comparative analysis of muscle fibers in selected muscles of working and companion dog breeds, Animals 14:3576",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11672843",
+   "opened": "2026-11-23",
+   "used_for": "12 dogs; triceps brachii and biceps femoris; working breeds have more nuclei per fibre than companion breeds (values only in figures)"
+  }
+ }
+}

@@ -1,0 +1,281 @@
+[
+ {
+  "id": "cell_rpe_cell_dog",
+  "title": "Pigment cell of the dog retina (retinal pigment epithelium)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "dog_rpe",
+   "dog_retina_scene",
+   "cell_cone_cell_dog",
+   "rod_cell",
+   "dog_tapetal_cells",
+   "cell_rpe_melanosome",
+   "cell_rpe_apical_processes",
+   "cell_rpe_tight_junction"
+  ],
+  "summary": "One of the six-sided cells that form the dark lining behind a dog's retina, packed side by side in a single sheet and serving the light-sensing cells above them.",
+  "layers": {
+   "basics": "Behind the light-sensing cells of a dog's eye lies a single sheet of six-sided cells, packed like tiles. Each one has a fringe of fine fingers at its top that reaches down between the tips of the rods and cones, and brown pigment granules gathered in its upper half. In the part of the eye above the tapetum, the mirror-like layer that makes a dog's eyes glow at night, these cells have almost no pigment, so the mirror shows through. Beyond the tapetum these cells are usually densely pigmented, and the narrow edge of the tapetum is covered by lightly pigmented ones.",
+   "deeper": "The cells are joined to one another near their tops by tight junctions, so the sheet works as a barrier between the retina and the blood supply behind it. Each morning the cells take in the tips of the light-sensing cells' outer segments, which are shed continuously, and a whole outer segment is renewed in about eleven days. In people, whose cells have been measured best, a cell covers roughly 180 to 330 square micrometres depending on where it sits in the eye, and fewer than half have exactly six sides (a cell has 5.7 neighbours on average). In the one human cell that has been rebuilt in three dimensions, the nucleus took about 7% of the volume and mitochondria about 5%, with most mitochondria in the lower half and most pigment near the top.",
+   "expert": "The numbers drawn for the dog are illustrative: they borrow the human values for the area, the height, the share taken by the nucleus and mitochondria, and the length of the apical fingers. The dog findings that rest on measurement are that the layer over the tapetum is nearly unpigmented, that the edge of the tapetum is covered by lightly pigmented cells, and that the tapetum itself lies in the choroid. How a dog cell compares with a human one in size, nucleus number and pigment load has not been measured in the sources used."
+  },
+  "facts": [
+   [
+    "Shape",
+    "six-sided in a single sheet"
+   ],
+   [
+    "Area from above (human, measured)",
+    "177 to 329 um2 by region; dog not measured"
+   ],
+   [
+    "Height drawn",
+    "12 um (illustrative)"
+   ],
+   [
+    "Nucleus",
+    "1 drawn (illustrative for the dog)"
+   ],
+   [
+    "Over the tapetum",
+    "almost no pigment (dog, 53 animals)"
+   ],
+   [
+    "Outer segment renewal",
+    "about 11 days (general account, not dog)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How large is a dog pigment cell, and does it have one nucleus or two?",
+   "How much pigment does a dog cell hold outside the tapetum, and how quickly does it change from the tapetum's edge?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cell area and density of the pigment epithelium in human eyes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968610"
+   },
+   {
+    "title": "Three-dimensional reconstruction of one human pigment epithelium cell",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10746928"
+   },
+   {
+    "title": "Unpigmented epithelium over the tapetum in 53 dogs",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4155189"
+   }
+  ]
+ },
+ {
+  "id": "cell_rpe_melanosome",
+  "title": "Pigment granule of the retina's pigment cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 6e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "cell_rpe_cell_dog",
+   "melanocyte",
+   "dog_rpe"
+  ],
+  "summary": "A small membrane-bound granule filled with brown melanin, gathered near the top of the pigment cells behind the retina.",
+  "layers": {
+   "basics": "The dark colour of the lining behind a dog's retina comes from granules of melanin, the same brown-black pigment that colours skin and hair. In the pigment cells they gather in the upper part of the cell and in its long fingers, close to the light-sensing cells. Over the tapetum the cells have almost none.",
+   "deeper": "In the one human cell that has been rebuilt in three dimensions, 714 dark granules were counted in the cell body, with 72 more inside the slim fingers at the top; they were crowded towards the top of the cell and took about 14% of its volume. That count includes other dark granules besides melanosomes, so it is an upper bound for the pigment granules alone. In the general account of the pigment epithelium, the granules move into the apical processes in the light (Webvision, not specific to dogs).",
+   "expert": "The drawn size (about 1 micrometre by 0.4) and the count of about 300 are illustrative for the dog. No source with the size of the granules in dog cells was opened."
+  },
+  "facts": [
+   [
+    "Contents",
+    "melanin"
+   ],
+   [
+    "Where",
+    "upper cell and apical fingers"
+   ],
+   [
+    "Dark granules in one human cell",
+    "714 in the body (includes other kinds)"
+   ],
+   [
+    "Drawn count",
+    "about 300 (illustrative)"
+   ],
+   [
+    "Drawn size",
+    "1.0 x 0.4 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many pigment granules does a dog cell outside the tapetum hold, and of what sizes?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Three-dimensional reconstruction of one human pigment epithelium cell",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10746928"
+   },
+   {
+    "title": "The retinal pigment epithelium (Webvision)",
+    "url": "https://webvision.pitt.edu/?p=89"
+   }
+  ]
+ },
+ {
+  "id": "cell_rpe_apical_processes",
+  "title": "Apical fingers of the retina's pigment cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "cell_rpe_cell_dog",
+   "cell_cone_cell_dog",
+   "rod_cell"
+  ],
+  "summary": "The many long thin processes at the top of each pigment cell, which reach down between the tips of the light-sensing cells.",
+  "layers": {
+   "basics": "The top of each pigment cell is not smooth. It carries a crowd of long, thin fingers that reach down between the outer ends of the rods and cones, so that each light-sensing cell is held in a sleeve of them. They are where the cell takes in the tips that the light-sensing cells shed.",
+   "deeper": "In the one human cell that has been rebuilt in three dimensions there were slightly over 800 of these processes, 8.8 micrometres long on average and about a quarter of a micrometre across, and together they took about 38% of the cell's volume and 69% of its surface. The authors describe them as unlike simple microvilli.",
+   "expert": "The fingers are drawn as a plain fringe of uniform fingers about 8 micrometres long, an illustrative length taken from the human cell. Their number, length and branching in dogs are not known from the sources used."
+  },
+  "facts": [
+   [
+    "Per human cell",
+    "slightly over 800"
+   ],
+   [
+    "Length, human",
+    "8.8 +/- 6.1 um"
+   ],
+   [
+    "Share of human cell volume",
+    "38%"
+   ],
+   [
+    "Drawn",
+    "fringe of fingers, 8 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long are the fingers of a dog pigment cell, and how do they differ over the tapetum?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Three-dimensional reconstruction of one human pigment epithelium cell",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10746928"
+   }
+  ]
+ },
+ {
+  "id": "cell_rpe_tight_junction",
+  "title": "Tight junctions of the retina's pigment cells",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "cell_rpe_cell_dog",
+   "bio_cell_junctions",
+   "dog_rpe"
+  ],
+  "summary": "Rings of sealing proteins near the top of each pigment cell that join it to its neighbours and close the gaps between them.",
+  "layers": {
+   "basics": "Where one pigment cell meets the next, a ring of proteins near the top of the cell seals the gap, like the seal between tiles. Together the rings make the sheet a barrier, so that what passes between the blood supply behind the retina and the retina itself must go through the cells, not around them.",
+   "deeper": "In the one human cell that has been rebuilt in three dimensions the junctions lay in the top fifth of the cell body, where the cell is widest. The same sealing is shown for the sheet in general: its cells are joined by tight junctions between their sides and it forms part of the blood-retina barrier. Only the cell's outline marks them in the drawing.",
+   "expert": "The junction belt is not drawn as a separate structure, and no dog-specific measurement of it was found in the sources used."
+  },
+  "facts": [
+   [
+    "Position",
+    "near the top of each cell"
+   ],
+   [
+    "Job",
+    "seal the gaps between cells"
+   ],
+   [
+    "Part of",
+    "the blood-retina barrier"
+   ],
+   [
+    "Drawn",
+    "not drawn separately"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How tight is the barrier in the dog, and does it change over the tapetum?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "The retinal pigment epithelium (Webvision)",
+    "url": "https://webvision.pitt.edu/?p=89"
+   },
+   {
+    "title": "Three-dimensional reconstruction of one human pigment epithelium cell",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10746928"
+   }
+  ]
+ }
+]

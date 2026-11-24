@@ -1,0 +1,98 @@
+[
+ {
+  "id": "cell_choroid_cells_dog",
+  "title": "Choroid pigment cell (dog)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 4.5e-05,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "melanocyte",
+   "dog_choroid",
+   "dog_tapetal_cells"
+  ],
+  "summary": "The choroid behind a dog's retina is a layer of blood vessels with pigment cells and fibroblasts between them; the pigment cell is a flat, star-shaped cell full of dark granules.",
+  "layers": {
+   "basics": "Behind the retina of the eye lies the choroid, a spongy layer that feeds the retina with blood and, away from the tapetum, is dark with pigment that soaks up stray light. It is not one kind of cell. Most of its thickness is blood vessels, and between them lie fibroblasts, which build the fibres, and pigment cells (a general description of the choroid). A pigment cell is a flat body with a few arms, and its inside is crowded with small dark granules of melanin, the brown-black pigment. The picture shows one such cell, cut in half. The vessels are not drawn.",
+   "deeper": "In a dog the choroid has layers. Nearest the retina are the pigment layer of the retina and a sheet of very fine capillaries; next comes the tapetum, the shiny layer that makes a dog's eyes glow in the dark; then medium-sized vessels and, outermost, large vessels against the white of the eye. Where there is no tapetum, the fine capillaries lie straight on the medium vessels. The dark granules, called melanosomes, are made in the cell and stay in it.",
+   "expert": "Measured in dogs: the order of the layers; a whole-choroid thickness of about 183 micrometres over the tapetum and about 110 below it, found by optical scanning in living dogs, so it includes the tapetum; and a tapetum 20 to 70 micrometres thick. Every number for the cell itself is illustrative: the body width, the reach of the arms, the nucleus, the granule count and size, the mitochondria. A thickness of the finest capillary layer, about 7 micrometres, comes from human eyes, not dog; in dogs only the whole layer under the retina (about 8 micrometres) was measured. The vessels, fibroblasts and collagen are not drawn."
+  },
+  "facts": [
+   [
+    "Whole choroid, over the tapetum",
+    "about 183 µm (living dogs)"
+   ],
+   [
+    "Whole choroid, below it",
+    "about 110 µm (living dogs)"
+   ],
+   [
+    "Tapetum",
+    "20-70 µm thick, up to 20 cell layers"
+   ],
+   [
+    "Cell drawn",
+    "12 µm body, arms reaching about 45 µm (illustrative)"
+   ],
+   [
+    "Not drawn",
+    "vessels, fibroblasts, collagen, tapetum"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many melanin granules does one choroidal pigment cell of a dog hold, and how large are they?",
+   "How far do the arms of a dog's choroidal pigment cell reach among the vessels?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ]
+ },
+ {
+  "id": "cell_choroid_cells_dog_melanosome",
+  "title": "Melanosome in a choroid pigment cell",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 6e-07,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "melanocyte",
+   "cell_choroid_cells_dog"
+  ],
+  "summary": "A small oval granule in which the cell stores melanin, the dark pigment that darkens the choroid.",
+  "layers": {
+   "basics": "A melanosome is a tiny bag inside a pigment cell, filled with melanin. Melanin is dark brown to black and absorbs light, so a layer crowded with these granules looks nearly black. In the eye that darkness stops light from bouncing around inside and blurring the picture.",
+   "deeper": "The granule is built inside the cell: an enzyme called tyrosinase turns an amino acid, tyrosine, into the pigment step by step, and the finished granule is dense and dark. In a dog, the part of the choroid with the shiny tapetum reflects light back through the retina, while the dark pigment sits in the layers around it and in the part of the eye below the tapetum.",
+   "expert": "The granule size and the number per cell drawn here are illustrative: 0.6 micrometres, slightly oval, and 600 for the half-cell shown. Melanin is a mixed polymer without one fixed formula, so the molecular view that opens from here is a stand-in made from the building blocks."
+  },
+  "facts": [
+   [
+    "Colour",
+    "dark brown to black (real colour)"
+   ],
+   [
+    "Size drawn",
+    "about 0.6 µm (illustrative)"
+   ],
+   [
+    "Made from",
+    "the amino acid tyrosine"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What is the size range of melanosomes in the choroidal pigment cells of a dog?"
+  ],
+  "refs": []
+ }
+]

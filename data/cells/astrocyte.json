@@ -1,0 +1,266 @@
+{
+ "id": "astrocyte",
+ "name": "Astrocyte",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_astrocyte",
+ "blurb": "A star-shaped support cell of the human brain: a small body with dozens of fine branching processes that reach out to synapses, some ending as feet on the wall of a blood vessel.",
+ "note": "Model: a protoplasmic astrocyte of human cerebral cortex, cut through its middle. Measured in human cortex: the width of the whole cell (about 143 µm across its processes). Measured in rat brain: the share of the cell that the GFAP filament stain shows and the share of a capillary's endothelium in direct contact with endfeet. Illustrative: the number and paths of the processes and branches, their thickness, the nucleus and its size, the endfoot size, the organelle counts, the one vessel drawn and the colours. Only the processes thick enough to see are drawn; in life most are far finer.",
+ "shape": {
+  "type": "stellate",
+  "soma_um": 15,
+  "processes": 37,
+  "reach_um": 71.3,
+  "branch_points": 120,
+  "process_um": 1.2,
+  "endfeet": 1,
+  "endfoot_um": 3,
+  "flat": 1,
+  "vessel_um": 8
+ },
+ "dimensions": {
+  "diameter": {
+   "value": 142.6,
+   "unit": "um",
+   "measured": true,
+   "source": "oberheim2009",
+   "note": "mean width of GFAP-labelled protoplasmic astrocytes of human neocortex (142.6 ± 5.8 µm SEM; 50 cells, 6 patients); 56.0 µm in rodent"
+  },
+  "reach": {
+   "value": 71.3,
+   "unit": "um",
+   "measured": true,
+   "calc": "half the measured diameter, taken as the distance from the cell body to the tips of the processes",
+   "source": "oberheim2009",
+   "note": "a radius, not the longest process: single processes can reach further than half the width"
+  },
+  "fibrous_diameter": {
+   "value": 183.2,
+   "unit": "um",
+   "measured": true,
+   "source": "oberheim2009",
+   "note": "the fibrous astrocytes of white matter are wider still; not drawn here"
+  },
+  "soma": {
+   "value": 15,
+   "range": [
+    10,
+    20
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "synapseweb",
+   "note": "rat/unspecified (SynapseWeb tutorial, mainly rat hippocampus); no human cell-body measurement was found; the page says processes extend a further 20-30 µm"
+  },
+  "synapses_in_domain": {
+   "value": 270000,
+   "range": [
+    270000,
+    2000000
+   ],
+   "unit": "count",
+   "measured": false,
+   "source": "oberheim2009",
+   "note": "an estimate of synapses within one human astrocyte's territory, reported by the paper; not counted"
+  },
+  "domain_volume_rat": {
+   "value": 65900,
+   "unit": "um3",
+   "measured": true,
+   "source": "bushong2002",
+   "note": "rat hippocampus (CA1), 20 cells; no human value was found"
+  },
+  "gfap_volume_share": {
+   "value": 0.13,
+   "unit": "fraction",
+   "measured": true,
+   "source": "bushong2002",
+   "note": "GFAP stain shows 13 ± 1% of a rat astrocyte's volume (n = 9; the abstract says about 15%), so the thick branches drawn here are the stained part only"
+  },
+  "endothelium_ensheathed": {
+   "value": 0.63,
+   "unit": "fraction",
+   "measured": true,
+   "source": "mathiisen2010",
+   "note": "share of the endothelial tube in direct contact with endfeet (the rest lies under a pericyte, and the endfeet lie over the pericyte); mean of 3 rats from single-section counts in rat hippocampus; endfeet overlap with no slits"
+  },
+  "processes": {
+   "value": 37.5,
+   "unit": "count",
+   "measured": false,
+   "note": "illustrative: human cells carry about ten times more GFAP-stained primary processes than rodent cells (oberheim2009); the per-cell mean of 37.5 (rodent 3.75) is consistent with that ratio"
+  },
+  "branch_points": {
+   "value": 120,
+   "unit": "count",
+   "measured": false,
+   "note": "illustrative"
+  },
+  "process_width": {
+   "value": 1.2,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative, thicker than most real processes so they can be seen"
+  },
+  "endfoot": {
+   "value": 3,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": {
+   "value": [
+    9,
+    7,
+    7
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: one oval nucleus inside a 15 µm body"
+  },
+  "nucleoli": 1,
+  "position": "central"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.03,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    1.0,
+    0.3
+   ],
+   "max_drawn": 250
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  }
+ },
+ "special": [],
+ "cut": "The cell is cut through its body: one oval nucleus with a nucleolus, a pale watery cytoplasm with mitochondria, and the processes branching out from the body, thinning toward their tips. Where a process reaches the drawn blood vessel it widens into an endfoot lying on the vessel wall.",
+ "colours": {
+  "convention": "Astrocyte in warm gold, GFAP filament bundles in the cell body and thick processes in pale orange, the nucleus violet, mitochondria orange, the blood vessel dull red. All are a code; a living astrocyte is nearly colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell. In sections it looks pale, with bundles of filaments and many small glycogen granules (stored sugar); the filaments and granules are named here but not drawn singly."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondria": {
+   "name": "Mitochondria",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "process": {
+   "name": "Process",
+   "card": null,
+   "material": "membrane",
+   "source": "oberheim2009",
+   "about": "A process is one of the branches that give the cell its star shape. Human cortical astrocytes carry about ten times more main branches than a rodent's, and they span about 143 µm. The finest twigs, which touch synapses, are far thinner than anything drawn here.",
+   "also": "openstax_nt"
+  },
+  "gfap": {
+   "name": "GFAP filaments",
+   "card": "bio_actin_intermediate",
+   "material": "protein",
+   "source": "bushong2002",
+   "about": "GFAP is the protein of the astrocyte's intermediate filaments, the bundles that give the body and the thick branches their strength. A stain for it shows only about 13% of the cell's volume (measured in rat), so the cell is much bigger than a GFAP picture suggests."
+  },
+  "endfoot": {
+   "name": "Endfoot on a blood vessel",
+   "card": "cell_astrocyte_endfoot",
+   "material": "membrane",
+   "source": "mathiisen2010",
+   "about": "The wide end of a process on the vessel wall. The vessel wall is covered all round by endfeet, over the pericytes where there are any."
+  },
+  "vessel": {
+   "name": "Capillary",
+   "card": null,
+   "material": "vessel_wall",
+   "about": "A small blood vessel of the brain. Astrocytes press flat end-feet against it, covering most of its tube (63% of the lining cells were in direct contact with end-feet in rat brain); the rest lies under pericytes. Its width here (8 µm across) is illustrative."
+  }
+ },
+ "reached": {
+  "tissue": [
+   {
+    "kind": "nervous",
+    "id": "astrocyte"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 85,
+  "r1_m": 0.0005,
+  "arrive_m": 0.00011,
+  "spawn_m": 3e-06,
+  "break": {
+   "text": "The processes end here: the cell's finest twigs are too thin to draw"
+  }
+ },
+ "about": [
+  "The cell is 142.6 µm wide, the mean of 50 protoplasmic astrocytes from the cortex of 6 people (rodent cells in the same study: 56 µm). Its processes are grown out to that reach; their number, branching and paths are illustrative, not traced from a real cell. As drawn, the cell takes up {drawn.cellVolume} µm³.",
+  "A GFAP stain shows only about 13% of an astrocyte's volume (measured in rat), because most of the cell is a sponge of fine, unstained twigs around synapses. Those are not drawn; the thick branches shown stand for the stained part.",
+  "Some processes end on the wall of a capillary. Endfeet overlap with no slits and form a nearly complete sheath. About 63% of the endothelial tube touches endfeet directly; the rest lies under pericytes (rat hippocampus). One vessel is drawn and its size is illustrative.",
+  "The nucleus, its size, the mitochondria and the Golgi stacks are illustrative. Glycogen granules, gap junctions to other astrocytes and the cell's neighbours are not drawn."
+ ],
+ "sources": {
+  "oberheim2009": {
+   "cite": "Oberheim NA et al. (2009) Uniquely hominid features of adult human astrocytes. J Neurosci 29:3276",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/2819812/",
+   "opened": "2026-11-23",
+   "used_for": "human protoplasmic astrocyte width 142.6 µm (rodent 56.0), ten times more GFAP processes, fibrous width 183.2 µm, synapse estimate"
+  },
+  "bushong2002": {
+   "cite": "Bushong EA et al. (2002) Protoplasmic astrocytes in CA1 stratum radiatum occupy separate anatomical domains. J Neurosci 22:183",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6757596",
+   "opened": "2026-11-23",
+   "used_for": "rat: domain volume 65,900 µm³; GFAP shows about 13% of cell volume"
+  },
+  "mathiisen2010": {
+   "cite": "Mathiisen TM et al. (2010) The perivascular astroglial sheath provides a complete covering of the brain microvessels. Glia 58:1094",
+   "url": "https://synapseweb.clm.utexas.edu/sites/default/files/legacy/documents/2010gliamathiisenottersentheperivascastrosheath.pdf",
+   "opened": "2026-11-23",
+   "used_for": "rat: endfeet overlap with no slits; 63% of the endothelial tube in direct contact with endfeet, the rest under pericytes"
+  },
+  "synapseweb": {
+   "cite": "SynapseWeb, Kristen Harris lab, University of Texas: Astrocytes",
+   "url": "https://synapseweb.clm.utexas.edu/astrocytes",
+   "opened": "2026-11-23",
+   "used_for": "cell body 10-20 µm (rat/unspecified); glycogen granules, filament bundles, clear cytoplasm, stellate shape"
+  },
+  "openstax_nt": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 12.2 Nervous Tissue",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-2-nervous-tissue",
+   "opened": "2026-11-23",
+   "used_for": "star-shaped, many processes from the body, contributes to the blood-brain barrier"
+  }
+ }
+}

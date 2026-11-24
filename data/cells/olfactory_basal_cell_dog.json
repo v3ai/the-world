@@ -1,0 +1,262 @@
+{
+ "id": "olfactory_basal_cell_dog",
+ "name": "Olfactory basal (stem) cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_olfactory_basal_cell_dog",
+ "blurb": "A small, low stem cell lying on the floor of the dog's smell lining: it rests on the basement membrane and, when needed, makes new smell neurons and supporting cells.",
+ "note": "Model: a basal (stem) cell of the smell lining of a dog, cut in half through its middle. Measured: that basal cells lie next to the basement membrane under the other cells, that the round-type basal cell of the human lining is small (5 to 7 µm across in a human study), that basal cells are described as having scant cytoplasm, that they carry keratins 5 and 14 and are tied down by hemidesmosomes; the studies are mostly of rats, mice and people, with only a few dog observations, so the dog's cell is assumed to match. Illustrative: every size drawn, the nucleus share, the numbers of organelles and bundles, the flat, wedge-shaped form chosen from the two basal cell types (narrower above than below), the basement membrane drawn under it, and the colours. The neighbouring cells are drawn faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 8,
+  "height_um": 4,
+  "taper": 0.55,
+  "irregularity": 0.25,
+  "round_um": 1.0,
+  "apical": "none",
+  "neighbours": 1,
+  "desmosomes": 0
+ },
+ "dimensions": {
+  "diameter_human": {
+   "value": 6,
+   "range": [
+    5,
+    7
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "humanmucosa",
+   "note": "5 to 7 µm across: the human basal cell that resembles the round (globose) basal cell of the rat; not a flat horizontal basal cell and not a dog."
+  },
+  "width": {
+   "value": 8,
+   "range": [
+    5,
+    12
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: wider than the human value because the flat type of basal cell is drawn, which spreads along the basement membrane"
+  },
+  "height": {
+   "value": 4,
+   "range": [
+    2,
+    8
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: low, as the flat basal cells are described (flat morphology, humanmucosa)"
+  },
+  "volume": {
+   "value": 130,
+   "range": [
+    50,
+    250
+   ],
+   "unit": "um3",
+   "measured": false,
+   "calc": "the area of a six-sided cell 8 µm across (about 55 µm²) times its height of 4 µm, about 220 µm³ for a straight prism, reduced by the rounded edges and the irregular outline; no source read gives a basal cell volume"
+  },
+  "depth_in_lining": {
+   "value": 0,
+   "unit": "um",
+   "measured": false,
+   "source": "barrios2014",
+   "also": "dogpcna2007",
+   "note": "the cell lies on the basement membrane, the deepest cell layer of the lining; no thickness of the dog's lining was found in the sources read (the dog study gives no figure)"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": {
+   "value": 0.4,
+   "range": [
+    0.3,
+    0.7
+   ],
+   "measured": false,
+   "note": "illustrative: no source read gives the nuclear share of a flat basal cell; the cell is drawn with a large nucleus because basal cells are described as having little cytoplasm (round type)"
+  },
+  "nucleoli": 1,
+  "position": "centre",
+  "note": "Oval nucleus. Basal cells of the lining are described as small with scant cytoplasm; a nucleus with chromatin condensed at its edge is described for one type of basal cell in the review (schwob2017), not shown to be the flat one."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.02,
+    "range": [
+     0.005,
+     0.05
+    ],
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 60
+  },
+  "lysosomes": {
+   "count": {
+    "value": 4,
+    "measured": false,
+    "note": "illustrative; lysosome-rich basal regions were reported in an old study of the nose of the rat, cat and dog (not opened here)"
+   },
+   "size_um": {
+    "value": 0.3,
+    "measured": false
+   },
+   "position": "peripheral"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "absent": [
+   "cilia",
+   "microvilli",
+   "dendrite",
+   "axon"
+  ],
+  "absent_source": "schwob2017"
+ },
+ "special": [
+  {
+   "kind": "keratin_bundles",
+   "part": "keratin",
+   "params": {
+    "bundles": 8,
+    "drawn_um": 0.25
+   },
+   "source": "schwob2017",
+   "note": "The flat basal cells carry keratins 5 and 14 (measured, mostly in rodents); how many bundles they form, and where, is illustrative. 8 bundles are drawn, thick enough to see, running close to the underside of the cell."
+  },
+  {
+   "kind": "basement_membrane",
+   "part": "basement_membrane",
+   "params": {
+    "thickness_um": 0.15
+   }
+  }
+ ],
+ "cut": "The cell is cut in half through its middle: a low, wide cell lying on the basement membrane, with its large oval nucleus and nucleolus filling a large part of the section, a thin rim of cytoplasm with a few mitochondria and keratin bundles, and the points on its underside where it is anchored to the membrane. The neighbouring cells show faintly beside and above it.",
+ "colours": {
+  "convention": "Cell membrane pale lilac, the inside dark; nucleus violet; keratin straw yellow; mitochondria orange; the basement membrane below pale blue-grey. All are a code, not true colours.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell. In this stem cell it is only a thin rim around the nucleus."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "source": "schwob2017"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "keratin": {
+   "name": "Keratin filaments",
+   "card": "bio_actin_intermediate",
+   "material": "protein",
+   "source": "schwob2017",
+   "about": "Keratins 5 and 14 are the marker of the flat basal cells: filaments of these proteins form a strong inner scaffold that keeps the cell anchored and flat on its floor."
+  },
+  "hemidesmosome": {
+   "name": "Hemidesmosome",
+   "card": "cell_olfactory_hemidesmosome",
+   "material": "protein",
+   "source": "schwob2017",
+   "about": "A hemidesmosome is half a desmosome: a button of proteins that rivets the underside of the cell to the basement membrane below, where an ordinary desmosome rivets one cell to another. These are what hold the flat basal cells so firmly to the floor of the lining."
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "neighbour": {
+   "name": "Neighbouring cell of the smell lining",
+   "card": null,
+   "material": "membrane",
+   "about": "The smell lining is packed: basal cells, supporting cells and smell neurons touch each other, with many adherens junctions in the lower part of the lining (schwob2017)."
+  },
+  "basement_membrane": {
+   "name": "Basement membrane",
+   "card": null,
+   "material": "collagen",
+   "about": "The thin sheet of protein, rich in collagen, that the lining rests on. The basal cells lie directly against it, and the bundles of smell-neuron fibres pass through it on their way to the brain. It is built mostly of type IV collagen and laminin."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_olfactory_epithelium",
+    "structure": "basal"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 8,
+  "r1_m": 0.00012,
+  "arrive_m": 2e-05,
+  "spawn_m": 6e-07
+ },
+ "about": [
+  "This is a basal cell of the smell lining (olfactory epithelium) of the nose, the cell that makes the lining new. It is {drawn.cellVolume} µm³ in volume as drawn; that and the width of 8 µm and height of 4 µm are illustrative, since no source read gives the size of a dog's basal cell. For comparison, the round-type basal cell of the human lining is 5 to 7 µm across.",
+  "Two kinds of basal cell are known from rats and mice. The flat kind lies right on the basement membrane, is anchored by hemidesmosomes, carries keratins 5 and 14, and in the healthy lining stays quiet; it is a reserve that wakes when the lining is badly damaged. The round kind lies just above it and is the one that divides all the time, giving rise to new smell neurons. This model draws the flat kind. Which of the two the dog has, and how they differ in size, was not found in the dog studies read; a study of mongrel dogs found dividing cells beside the basement membrane, which points to the same arrangement.",
+  "Not drawn: the second, round kind of basal cell; the cell division itself; the wrapping of nerve fibre bundles that flat basal cells are reported to make in rats; and the endoplasmic reticulum and ribosomes."
+ ],
+ "sources": {
+  "schwob2017": {
+   "cite": "Review of stem and progenitor cells of the mammalian olfactory epithelium, PMC5805156 (mostly rodent studies)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5805156",
+   "opened": "2026-11-23",
+   "used_for": "first 100,000 characters read: flat basal cells adhere to the basement membrane by hemidesmosomes; keratins 5 and 14; quiet in the uninjured lining; round basal cells lie just above, with scant cytoplasm; condensed chromatin round the nucleus is described for a third basal cell type; adherens junctions in the basal region"
+  },
+  "humanmucosa": {
+   "cite": "Anatomy and Cellular Constituents of the Human Olfactory Mucosa: A Review (PMC4176544)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4176544/",
+   "opened": "2026-11-23",
+   "used_for": "first 100,000 characters read: the single human basal cell type, which resembles the rat round (globose) cell, is 5 to 7 µm across; flat basal cells lie deepest, round ones above them"
+  },
+  "dogpcna2007": {
+   "cite": "Study of the olfactory epithelium of mongrel dogs (3 males, 2 females) by PCNA staining and transmission electron microscopy, Pesquisa Veterinaria Brasileira (2007), abstract only",
+   "url": "https://scielo.br/j/pvb/a/ZrbWN4p38ncHNG3wtjMP4gD/abstract/?lang=en",
+   "opened": "2026-11-23",
+   "used_for": "dividing (PCNA-positive) cells near the basement membrane in dogs; cells beside it that look like supporting cells"
+  },
+  "barrios2014": {
+   "cite": "Barrios AW et al. (2014) Dog and mouse: toward a balanced view of the mammalian olfactory system, Front Neuroanat 8:106",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4174761/fullTextXML",
+   "opened": "2026-11-23",
+   "used_for": "dog olfactory epithelium has sustentacular, basal and neuronal cell layers; no thickness or cell numbers given"
+  }
+ }
+}

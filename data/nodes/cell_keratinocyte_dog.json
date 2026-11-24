@@ -1,0 +1,195 @@
+[
+ {
+  "id": "cell_keratinocyte_dog",
+  "title": "Keratinocyte of dog skin",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.3e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "keratinocyte",
+   "dog_skin_epidermis",
+   "epidermis",
+   "skin"
+  ],
+  "summary": "The main cell of a dog's outer skin: a many-sided cell in a very thin living layer only two to four cells deep, replaced about every three weeks.",
+  "layers": {
+   "basics": "A dog's skin is covered by hair, and under the hair the living part of the outer skin is very thin. Most of it is keratinocytes, cells that make keratin, the tough protein that also builds hair and claws. They are made in the bottom layer, pushed upward as new cells form beneath them, and end as flat dead scales that flake off. The living layers are replaced in roughly three weeks (measured in Beagles and Cocker Spaniels).",
+   "deeper": "Where hair covers the body, the living part of a dog's epidermis is only two to four cells deep. Measured across 16 body regions, it is just under 9 micrometres thick in the armpit and just over 37 micrometres between the toes (the digital web). Dog skin has little material between its cells, so the cells sit tightly packed. Inside, a keratinocyte has a nucleus, mitochondria, bundles of keratin filaments and small lipid-filled sacs called lamellar bodies, and it is riveted to its neighbours by desmosomes. In thin skin such as the armpit and groin the grainy layer near the surface may be missing.",
+   "expert": "The renewal time of the living layers was calculated as about 23 days in Beagles and about 21 days in Cocker Spaniels, not directly comparable with the roughly four weeks quoted for replacing the human outer dead layer, which covers a different thing. The drawn cell is a stand-in sized to fit a layer of about three cells: no study of dogs gives the volume of one keratinocyte, the share of it taken by its nucleus or organelles, or the number of desmosomes. Those drawn values are illustrative."
+  },
+  "facts": [
+   [
+    "Living layers (haired skin)",
+    "at least 2 to 4 nucleated cells deep (27 dogs of 5 breeds, 16 regions)"
+   ],
+   [
+    "Living epidermis, thinnest site",
+    "8.8 um (armpit)"
+   ],
+   [
+    "Living epidermis, thickest site",
+    "37.2 um (between the toes)"
+   ],
+   [
+    "Renewal time",
+    "about 21 to 23 days (2 breeds)"
+   ],
+   [
+    "Nucleus",
+    "1 per cell"
+   ],
+   [
+    "Drawn cell size",
+    "about 13 um across, 7 um tall (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How big is one living keratinocyte in dog skin, and how much of it does the nucleus take?",
+   "How much do the layers and cell sizes differ between breeds and coat types?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dog epidermal thickness and layers in 16 body regions (27 dogs)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3386341"
+   },
+   {
+    "title": "Electron microscopy of dog epidermis: desmosomes, keratin filaments, lamellar bodies",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12420878"
+   }
+  ]
+ },
+ {
+  "id": "cell_dog_desmosome",
+  "title": "Desmosome of dog skin",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "keratinocyte",
+   "cell_keratinocyte_dog",
+   "bio_actin_intermediate"
+  ],
+  "summary": "A button-like rivet of proteins that holds two skin cells together and anchors the keratin filaments inside each.",
+  "layers": {
+   "basics": "A desmosome is a small spot where two neighbouring skin cells grip each other. On each side, keratin filaments from the inside of the cell are anchored to the spot, so a pull on one cell is passed on to its neighbours and spread over the whole sheet. This is what lets skin stretch without its cells coming apart.",
+   "deeper": "Desmosomes were seen between the keratinocytes of dog skin in electron micrographs, together with keratin filaments. Dog epidermis has little material between its cells, so the cells sit tightly against each other. In the dead outer scales, matching rivets called corneodesmosomes were also seen.",
+   "expert": "The number drawn on this cell is illustrative: it is not counted in dog skin. Desmosome density in the human spinous layer was counted per area of section in a different study and is not carried over to the dog."
+  },
+  "facts": [
+   [
+    "Where",
+    "between neighbouring living keratinocytes"
+   ],
+   [
+    "Anchors",
+    "keratin filaments of both cells"
+   ],
+   [
+    "Seen in dog skin",
+    "yes, in electron micrographs"
+   ],
+   [
+    "Number drawn",
+    "140 per cell (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many desmosomes does one dog keratinocyte carry, and does it change from layer to layer?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Electron microscopy of dog epidermis, showing desmosomes",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12420878"
+   }
+  ]
+ },
+ {
+  "id": "cell_dog_lamellar_body",
+  "title": "Lamellar body of dog skin",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2.2e-07,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "keratinocyte",
+   "cell_keratinocyte_dog"
+  ],
+  "summary": "A tiny membrane-bound sac of stacked lipid sheets that a skin cell empties into the gaps outside it, sealing the skin against water loss.",
+  "layers": {
+   "basics": "Skin has to keep water in and germs out. Cells near the surface do part of that job by making lamellar bodies, small sacs packed with layers of fat. When the cell reaches the top of the living layer it releases them, and the fat spreads between the cells like mortar between bricks.",
+   "deeper": "Lamellar bodies were seen in dog epidermal keratinocytes by electron microscopy as well-layered organelles with an outer membrane. In skin, the lipid they release forms a seal between the dead outer scales. Their size and number per cell are not measured in dog skin; the drawn bodies are illustrative.",
+   "expert": "That the bodies carry lipids and enzymes that are turned into the seal after release is known from human skin; this was not checked for dogs here. The drawn size and number are illustrative."
+  },
+  "facts": [
+   [
+    "Contents",
+    "stacked lipid sheets"
+   ],
+   [
+    "Job",
+    "seal the gaps between the outer scales"
+   ],
+   [
+    "Seen in dog skin",
+    "yes, in electron micrographs"
+   ],
+   [
+    "Drawn size",
+    "about 0.2 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many lamellar bodies does a dog keratinocyte hold, and how large are they?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "5.1",
+    "5-1-layers-of-the-skin"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Electron microscopy of dog epidermis, showing lamellar bodies",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12420878"
+   }
+  ]
+ }
+]

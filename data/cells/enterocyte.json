@@ -1,0 +1,100 @@
+{
+ "id": "enterocyte",
+ "name": "Enterocyte (gut lining cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_enterocyte",
+ "blurb": "The absorbing cell of the small intestine: a tall, narrow column with a fur of thousands of tiny fingers on its gut-facing end, sealed to its neighbours just below them.",
+ "note": "Model: an absorbing cell of the human small intestine (enterocyte), cut in half from gut side to base. Measured: the size, spacing and inner structure of its microvilli (from reviews and a textbook that do not all name the species, so some of these figures may come from animals), the share of surface they add, and the fact that it lives only a few days. Illustrative: the height and width of the cell, the nucleus size, the exact number and paths of everything else, the sizes of the small organelles, the number of desmosomes and the colours. The two neighbouring cells are drawn faintly; the mucus-making goblet cells that sit among them are not drawn.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 8,
+  "height_um": 25,
+  "taper": 1,
+  "irregularity": 0.12,
+  "round_um": 0.8,
+  "apical": "microvilli",
+  "apical_um": 1.0,
+  "neighbours": 1,
+  "desmosomes": 120
+ },
+ "dimensions": {
+  "height": { "value": 25, "range": [15, 40], "unit": "um", "measured": false, "note": "illustrative: a tall column, several times taller than wide; no source opened here gives a height, and in untreated coeliac disease (gluten sensitivity) the lining cells become smaller and cube-like (crowemarsh1993)" },
+  "width": { "value": 8, "range": [5, 12], "unit": "um", "measured": false, "note": "illustrative: a six-sided column across its width" },
+  "volume": { "value": 1100, "range": [600, 2000], "unit": "um3", "measured": false, "calc": "the area of a six-sided cell 8 µm across (about 45 µm²) times its height of 25 µm, which gives roughly 1,100 µm³; human enterocyte volumes were worked out by others (crowemarsh1993), but their values were not read here" },
+  "microvillus_length": { "value": 1.0, "range": [1, 3], "unit": "um", "measured": true, "source": "crawley2014", "also": "wheater_bn", "note": "about 1 to 3 µm depending on the part of the gut; about 1 µm in a histology textbook; all the same length within a cell" },
+  "microvillus_diameter": { "value": 0.1, "unit": "um", "measured": true, "source": "crawley2014", "note": "about 100 nm" },
+  "microvilli_per_cell": { "value": 3000, "unit": "per_cell", "measured": true, "source": "wheater_bn", "note": "up to 3,000 per cell, a ceiling and not a mean; organism not stated; other texts give about 1,000" },
+  "microvillus_actin_filaments": { "value": 35, "range": [30, 40], "unit": "per_core", "measured": true, "source": "crawley2014", "note": "about 30 to 40 actin filaments bundled in each core, from electron tomography" },
+  "glycocalyx_thickness": { "value": 1.0, "unit": "um", "measured": true, "source": "muc17_2026", "note": "a mucin coat about 1 µm thick over the microvillus tips, with pores of about 30 nm" },
+  "surface_gain_microvilli": { "value": 30, "range": [9, 30], "unit": "fold", "measured": true, "source": "wheater_bn", "also": "crawley2014", "note": "textbook: about 30-fold; review of morphometry: 9 to 16-fold" },
+  "surface_gain_villi_and_microvilli": { "value": 90, "range": [60, 120], "unit": "fold", "measured": true, "source": "helander2014", "note": "human biopsies of healthy adults: villi and microvilli together enlarge the small-intestine surface 60 to 120 times (the value drawn here is mid-range)" },
+  "lifespan": { "value": 4, "range": [3, 7], "unit": "days", "measured": true, "source": "muc17_2026", "also": "openstax_digest", "note": "3 to 5 days in one review; about a week for the gut lining in a textbook" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": [4.5, 4.5, 9],
+  "position": "basal",
+  "nucleoli": 1,
+  "source": "casselbrant2022",
+  "note": "One oval nucleus lies in the middle-to-lower part of the cell, with cytoplasm above (supranuclear) and below (infranuclear) it. The position is measured in human jejunal biopsies; its size and shape here are illustrative."
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.07, "measured": false, "note": "illustrative; mitochondria were counted above and below the nucleus in human jejunum (casselbrant2022), but the shares are not in the text read" }, "size_um": [1.0, 0.4], "size_measured": false, "max_drawn": 300, "position": "any" },
+  "lysosomes": { "count": { "value": 12, "measured": false }, "size_um": { "value": 0.4, "measured": false }, "position": "supranuclear" },
+  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative; the stacks lie above the nucleus, the side the cell sends its products toward the gut" } },
+  "not_drawn": ["rough endoplasmic reticulum", "smooth endoplasmic reticulum, where fat is re-packed", "ribosomes", "fat droplets after a meal", "the digestive enzymes bound in the microvillus membrane"]
+ },
+ "special": [
+  { "kind": "microvilli", "part": "microvillus", "params": { "count": 3000, "length_um": 1.0, "diameter_um": 0.1 }, "source": "crawley2014", "size_source": "wheater_bn", "note": "Each microvillus is about 100 nm wide and 1 µm long, packed side by side in a hexagonal array. The drawn fingers are the measured size; the count drawn is only what shows on the cut and the visible face, a fraction of the up to 3,000 a whole cell may carry." },
+  { "kind": "microvillus_core", "part": "actin_core", "params": { "filaments": 35 }, "source": "crawley2014", "note": "Inside each finger runs a core of about 30 to 40 actin filaments held together by bundling proteins (villin, espin and fimbrin), which keeps it stiff. Drawn as a single rod; the filaments themselves are far too thin to show at this size." },
+  { "kind": "glycocalyx", "part": "glycocalyx", "params": { "thickness_um": 1.0 }, "source": "muc17_2026", "note": "A fuzzy coat of long mucin molecules, mostly sugar chains on a protein backbone, about 1 µm thick, stands over the tips of the microvilli. Drawn as a faint haze above the brush border; its thickness is measured, its look is illustrative." },
+  { "kind": "terminal_web", "part": "terminal_web", "params": {}, "source": "crawley2014", "note": "Each microvillus is rooted in a dense mesh of filaments just under the gut-facing surface. Drawn as a thin band; its thickness is illustrative." },
+  { "kind": "tight_junction", "part": "tight_junction", "params": {}, "source": "openstax_absorb", "note": "Neighbouring cells are bound together by tight junctions at their gut-facing ends, so that food molecules and bacteria cannot pass between the cells; nutrients are taken up mainly through them, though water and ions also cross between cells. Drawn as a ring just below the microvilli; its thickness is exaggerated." },
+  { "kind": "desmosomes", "source": "openstax_absorb", "note": "Rivet-like desmosomes join the cell's sides to its neighbours below the tight junction. 120 are drawn, an illustrative number." }
+ ],
+ "cut": "The cell is cut in half from the gut side to the base: at the top the fur of microvilli, each with a rod-like core, under a faint mucin coat; just beneath, the terminal web and the ring of tight junction; then supranuclear cytoplasm with Golgi stacks, lysosomes and mitochondria, the oval nucleus in the lower half, and more mitochondria below it. The two neighbouring cells show faintly behind.",
+ "colours": {
+  "convention": "Membrane pale peach, the inside dark; microvilli and their cores pale straw; the mucin coat a faint blue haze; tight junctions and desmosomes brown; nucleus violet; mitochondria orange. None of these is a real colour: all are a code.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins. In this cell it is tall and narrow, with the working parts stacked above and below the nucleus." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "microvillus": { "name": "Microvillus", "card": "cell_enterocyte_brush_border", "material": "membrane", "source": "crawley2014", "about": "A finger of the cell membrane wrapped round an actin core; the membrane is shown here, and the protein core inside is a separate part." },
+  "actin_core": { "name": "Actin core of a microvillus", "card": "cell_enterocyte_brush_border", "material": "protein", "source": "crawley2014" },
+  "glycocalyx": { "name": "Mucin coat (glycocalyx)", "card": "cell_enterocyte_glycocalyx", "material": "protein", "source": "muc17_2026", "about": "Stand-in: the chain shown is the protein backbone only; up to about 80% of the mass of a mucin such as MUC17 is sugar chains, which are not shown." },
+  "terminal_web": { "name": "Terminal web", "card": null, "material": "protein", "source": "crawley2014", "about": "A dense mesh of filaments just under the gut-facing surface. The roots of the microvilli are anchored in it, which keeps the fur of fingers standing upright and steady." },
+  "tight_junction": { "name": "Tight junction", "card": "cell_enterocyte_tight_junction", "material": "protein", "source": "openstax_absorb" },
+  "desmosome": { "name": "Desmosome", "card": "bio_cell_junctions", "material": "desmosome", "source": "openstax_absorb" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion", "source": "casselbrant2022" },
+  "lysosome": { "name": "Lysosome", "card": "lysosome", "material": "membrane" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "neighbour": { "name": "Neighbouring cell of the gut lining", "card": "simple_columnar_epithelium", "material": "membrane" }
+ },
+ "reached": {
+  "tissue": [{ "kind": "villi", "id": "enterocyte" }, { "kind": "villi", "id": "villi", "note": "a villus is covered by enterocytes (with some goblet cells): its next level down is the cell that covers it" }]
+ },
+ "view": { "radius_um": 14, "r1_m": 2.0e-4, "arrive_m": 3.5e-5, "spawn_m": 1.0e-6 },
+ "about": [
+  "The cell drawn here is a six-sided column {drawn.cellVolume} µm³ in volume, 25 µm tall and 8 µm across. Those two sizes are illustrative: no source read for this picture gives them, though the column shape is the textbook look of the gut lining. The shape is not fixed in life: in untreated coeliac disease (gluten sensitivity) the lining cells become smaller and cube-like.",
+  "The end facing the food is the apical end. It carries the brush border: fingers about 100 nm wide and about 1 µm long (up to 3 µm in other parts of the gut), standing in a hexagonal array. A cell may carry up to about 3,000, which adds roughly 30 times to its surface by one textbook's count, or 9 to 16 times by a review of measurements. Together with the folds and villi, the lining of a healthy adult small intestine has 60 to 120 times the area of a smooth tube. Only a fraction of the fingers are drawn.",
+  "Each finger holds a core of about 30 to 40 actin filaments. Over the tips stands a mucin coat about 1 µm thick, with pores of about 30 nm. Just below the fingers, tight junctions seal the gaps between neighbours, so food molecules and bacteria cannot pass between the cells; nutrients are taken up mainly through them, though water and ions also cross between cells.",
+  "The nucleus sits in the lower half; mitochondria lie both above and below it. These cells live only a few days before they are shed into the gut and replaced from stem cells deep in the pits between the villi.",
+  "Not drawn: the adherens junction belt just below the tight junction, the sheet (basement membrane) the base rests on, the folds of the side and base membrane, the endoplasmic reticulum, ribosomes, fat droplets, the enzymes built into the brush border, the mucus-making goblet cells that lie among these cells, and the blood vessels and nerves under them."
+ ],
+ "sources": {
+  "crawley2014": { "cite": "Crawley SW, Mooseker MS, Tyska MJ (2014) Shaping the intestinal brush border, J Cell Biol 207:441-451 (open full text, PMC4242837)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4242837", "opened": "2026-11-23", "used_for": "microvilli about 100 nm wide and 1-3 µm long, uniform, hexagonal packing; cores of about 30-40 actin filaments bundled by villin, espin and fimbrin; roots in the terminal web; 9-16-fold surface gain; species not stated in the text read (figures from mouse and chicken)" },
+  "wheater_bn": { "cite": "Young B et al., Wheater's Functional Histology, 6th ed., p. 269, as entered in BioNumbers BNID 111734", "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=111734", "opened": "2026-11-23", "used_for": "microvilli of uniform length of about 1 µm; up to 3,000 per enterocyte; about 30-fold gain in surface (BioNumbers summary of the textbook)" },
+  "helander2014": { "cite": "Helander HF, Fändriks L (2014) Surface area of the digestive tract - revisited, Scand J Gastroenterol 49:681-689", "url": "https://europepmc.org/article/MED/24694282", "opened": "2026-11-23", "used_for": "abstract: biopsies of healthy adults; villi and microvilli together enlarge the small-intestine surface 60-120 times" },
+  "openstax_digest": { "cite": "OpenStax Anatomy and Physiology 2e, 23.1 Overview of the Digestive System", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-1-overview-of-the-digestive-system", "opened": "2026-11-23", "used_for": "goblet cells lie among the lining cells; cells of the gut lining last about a week" },
+  "openstax_absorb": { "cite": "OpenStax Anatomy and Physiology 2e, 23.7 Chemical Digestion and Absorption: A Closer Look", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-7-chemical-digestion-and-absorption-a-closer-look", "opened": "2026-11-23", "used_for": "absorptive cells (enterocytes) of the villi are bound together by tight junctions; brush-border cells carry digestive enzymes" },
+  "muc17_2026": { "cite": "MUC17 and the intestinal glycocalyx: structure, regulation, and barrier function in health and disease (2026), open full text PMC13643018", "url": "https://europepmc.org/article/PMC/PMC13643018", "opened": "2026-11-23", "used_for": "mucin filaments forming a glycocalyx about 1 µm thick over microvillus tips with pores of about 30 nm; enterocyte lifespan about 3-5 days (review statement, species not specific)" },
+  "casselbrant2022": { "cite": "Casselbrant A et al. (2022) Morphological Adaptation in the Jejunal Mucosa after Iso-Caloric High-Fat versus High-Carbohydrate Diets in Healthy Volunteers, Nutrients 14:4123 (open full text, PMC9572503)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9572503", "opened": "2026-11-23", "used_for": "15 healthy human volunteers; electron microscopy of jejunal enterocytes with microvilli, nucleus in the middle of the section and cytoplasm above (supranuclear) and below (infranuclear) it; mitochondria counted in those parts (numbers are in its figures, not read)" },
+  "crowemarsh1993": { "cite": "Crowe PT, Marsh MN (1993) Morphometric analysis of small intestinal mucosa. IV. Determining cell volumes, Virchows Arch A 422:459-466", "url": "https://europepmc.org/article/MED/8333150", "opened": "2026-11-23", "used_for": "abstract only: human jejunal biopsies; the cube-like enterocyte of untreated gluten sensitivity reflects cells of smaller volume (no values read)" }
+ }
+}

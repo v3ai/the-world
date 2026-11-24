@@ -1,0 +1,161 @@
+[
+ {
+  "id": "cell_alveolar_macrophage",
+  "title": "Alveolar macrophage",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "bio_animals",
+  "parents": [
+   "lung_alveolar_macrophage"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage",
+   "lung_alveolar_macrophage",
+   "lysosome"
+  ],
+  "summary": "The lung's resident scavenger: a cell about 21 micrometres across that lives in the air space of the alveolus and engulfs dust and microbes that get past the airways.",
+  "layers": {
+   "basics": "Air carries dust, smoke and microbes deep into the lung. Most of it is stopped higher up, but what reaches the tiny air sacs meets the alveolar macrophage. It is a big, round cell that sits in the air space, not inside the wall, and eats what it finds. It reaches out finger-like pseudopods, wraps them round a particle, and digests it.",
+   "deeper": "Each cell is about 21 micrometres across, with a volume near 5,000 cubic micrometres, which is large next to most cells of the body. The nucleus is one oval body near the middle. Many lysosomes hold the enzymes that break down what the cell takes in. Some cells are free in the air space and some cling to the alveolar wall. Nearly all alveolar macrophages counted (about 95% in one study of right upper lobes of human lungs) lie in the gas-exchange air spaces rather than in airway lumens.",
+   "expert": "Size figures come from cells washed out of volunteers' lungs and measured in suspension, where they are round; on the wall they spread. The nuclear width is from tissue sections of a different set of lungs, so the share of the cell taken by the nucleus is only approximate. All counts of organelles in the picture are illustrative."
+  },
+  "facts": [
+   [
+    "Diameter (washed-out cells)",
+    "21.2 um"
+   ],
+   [
+    "Volume",
+    "about 4,990 um3"
+   ],
+   [
+    "Nucleus width",
+    "about 8.3 um"
+   ],
+   [
+    "Share in gas-exchange air spaces",
+    "about 95%"
+   ],
+   [
+    "Species",
+    "human"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How many macrophages sit in each alveolus, and how many wander between them?",
+   "How does the cell's shape change between floating free and clinging to the wall?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "22.1",
+    "22-1-organs-and-structures-of-the-respiratory-system"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "cell_alveolar_macrophage_pseudopod",
+  "title": "Pseudopod",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "bio_animals",
+  "parents": [
+   "cell_alveolar_macrophage"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage",
+   "lung_alveolar_macrophage",
+   "lysosome"
+  ],
+  "summary": "A pseudopod is a temporary finger of the cell body that the macrophage pushes out to feel its way, to move, or to wrap round something it will eat.",
+  "layers": {
+   "basics": "The macrophage has no fixed shape. When it meets a particle it pushes out a pseudopod, a bulge of the cell, and the bulge curls round the particle. A pseudopod appears in minutes and is drawn back again afterwards.",
+   "deeper": "A pseudopod that closes round a particle lets the cell membrane pinch off a bag, the phagosome, and the particle is then inside the cell.",
+   "expert": "The number, length and position of the pseudopods in the picture are illustrative; real ones change continuously and differ between cells."
+  },
+  "facts": [
+   [
+    "Lifetime",
+    "minutes"
+   ],
+   [
+    "Job",
+    "wraps round what the cell eats"
+   ],
+   [
+    "Drawn length",
+    "5 um (illustrative)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How far can a lung macrophage reach with one pseudopod before it must move?"
+  ],
+  "refs": [
+   [
+    "MIC",
+    "17.4",
+    "17-4-pathogen-recognition-and-phagocytosis"
+   ]
+  ],
+  "ext": []
+ },
+ {
+  "id": "cell_alveolar_macrophage_phagosome",
+  "title": "Phagosome",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 2e-05,
+  "area": "bio_animals",
+  "parents": [
+   "cell_alveolar_macrophage"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "macrophage",
+   "lung_alveolar_macrophage",
+   "lysosome"
+  ],
+  "summary": "A phagosome is a membrane bag inside the cell that holds something the cell has just engulfed, before and while it is digested.",
+  "layers": {
+   "basics": "After a pseudopod has wrapped a particle, the cell membrane closes behind it and pinches off, so the particle floats inside the cell in its own bag. That bag is the phagosome. It then joins with lysosomes, and their enzymes break the contents down.",
+   "deeper": "When a phagosome merges with one or more lysosomes it becomes a phagolysosome, which turns more acid and so lets the digestive enzymes work.",
+   "expert": "The drawn bags, their number (eight) and size (1.5 micrometres) are illustrative; real ones range from tiny to a large part of the cell."
+  },
+  "facts": [
+   [
+    "Made by",
+    "pinching off of the cell membrane"
+   ],
+   [
+    "Becomes",
+    "a phagolysosome after joining lysosomes"
+   ],
+   [
+    "Drawn",
+    "8, each 1.5 um (illustrative)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "Which particles can a lung macrophage never fully digest, and where do they go?"
+  ],
+  "refs": [
+   [
+    "MIC",
+    "17.4",
+    "17-4-pathogen-recognition-and-phagocytosis"
+   ]
+  ],
+  "ext": []
+ }
+]

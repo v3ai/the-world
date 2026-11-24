@@ -1,6 +1,7 @@
 # Writes data/things/tissues/loose_connective_fat.json and data/nodes/tissue_loose_connective_fat.json.  Run from the repo root.
 # Sources and the illustrative list: .devtools/notes/tissues/loose_connective_fat.md
 import json, math, random
+import tissue_material as TM
 R = random.Random(11)
 def pop(id, name, node, shape, size, color, opacity, arrange, material=None, deeper=None, extra=None):
     p = {'id': id, 'name': name, 'node': node, 'shape': shape, 'size': size, 'color': color, 'opacity': opacity, 'ink': 1, 'arrange': arrange}
@@ -69,7 +70,7 @@ scene = {'id': 'loose_connective_fat', 'title': 'Inside fat and loose connective
  'bg': '#f6f1e4', 'center': [0, 0, -20], 'D_um': 720,
  'labels': [{'text': 'Fat cell (white adipocyte)', 'at': [-330, 150, 40], 'pop': 'adipocyte'}, {'text': 'Lipid droplet', 'at': [-330, 215, 40], 'pop': 'droplet'}, {'text': 'Nucleus at the rim', 'at': [330, 120, 40], 'pop': 'nucleus'}, {'text': 'Collagen fibre', 'at': [-330, 30, 40], 'pop': 'collagen'}, {'text': 'Elastic fibre', 'at': [200, 32, 40], 'pop': 'elastic'}, {'text': 'Fibroblast', 'at': [-230, -34, 40], 'pop': 'fibroblast'}, {'text': 'Capillary with red blood cells', 'at': [-330, -4, 40], 'pop': 'capillary'}, {'text': 'Mast cell', 'at': [-60, 40, 40], 'pop': 'mast'}, {'text': 'Macrophage', 'at': [140, 44, 40], 'pop': 'macrophage'}],
  'populations': pops}
-json.dump(scene, open('data/things/tissues/loose_connective_fat.json', 'w'), indent=1)
+json.dump(TM.apply(scene), open('data/things/tissues/loose_connective_fat.json', 'w'), indent=1)
 print('populations', len(pops), 'fat cells', len(cells), 'collagen', len(col), 'elastic', len(ela))
 # ---------------- cards ----------------
 SRC_OS = {'title': 'Connective Tissue Supports and Protects (OpenStax Anatomy and Physiology 2e, 4.3)', 'url': 'https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects'}

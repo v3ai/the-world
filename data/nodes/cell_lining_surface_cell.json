@@ -1,0 +1,110 @@
+[
+ {
+  "id": "cell_lining_surface_cell",
+  "title": "Living surface cell of a lining",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 6e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "cytoskeleton",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "epithelial_tissue",
+   "stratified_squamous_epithelium",
+   "keratinocyte"
+  ],
+  "mesh": null,
+  "summary": "A flat, wide cell on the surface of a moist lining, such as the inside of the cheek. It is alive and keeps its nucleus.",
+  "layers": {
+   "basics": "The wet linings of the mouth and gullet are covered by sheets of flat cells. The outer cells look like thin paving stones: wide, very thin, with a bulge where the nucleus sits. Unlike the outer cells of dry skin, they are not dead scales. They stay alive until they are shed into the wet surface, and new cells rise from below to replace them.",
+   "deeper": "Rope-like bundles of protein filaments fill most of the cell and are thought to tie into desmosomes, the rivets between neighbours, so the sheet can stretch and resist rubbing as one piece. Small dark-cored granules are seen near the surface. A scraped cheek cell spread on a glass slide measures roughly 60 µm across.",
+   "expert": "Surface cells of a lining of this kind are not keratinised in the way of skin: the nucleus is kept and the filament meshwork fills about 70% of the cytoplasm in the broad subsurface and surface layers (measured in ten girls aged 10 to 15). The numbers here come from human cheek cells; the surface ridges come from the human gullet, and the thickness of a single surface cell is a drawn guess, and the 0.48 mm lining thickness comes from children aged 10 to 15. Other moist linings (gullet, vagina) have surface cells of the same kind but of different sizes. The filaments are soft cytokeratins (mainly K4 and K13) with few sulfur bridges."
+  },
+  "facts": [
+   [
+    "Width of a scraped cheek cell",
+    "about 63 µm (area 3,100 µm²)"
+   ],
+   [
+    "Nucleus area",
+    "about 84 µm²"
+   ],
+   [
+    "Filament width",
+    "8 nm"
+   ],
+   [
+    "Filament share of cytoplasm",
+    "about 70% in the outer layers"
+   ],
+   [
+    "Nuclei per cell",
+    "1"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How thick is one surface cell in place, as opposed to flattened on a slide?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ },
+ {
+  "id": "lining_coating_granule",
+  "title": "Membrane-coating granule",
+  "kind": "cell_part",
+  "template": "cell",
+  "scale_m": 3e-07,
+  "parents": [
+   "cell_lining_surface_cell"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "cell_lining_surface_cell",
+   "keratinocyte"
+  ],
+  "mesh": null,
+  "summary": "A tiny dark-cored packet seen near the surface of the cell.",
+  "layers": {
+   "basics": "Cells near the surface of this lining hold small packets, seen under the electron microscope with dark cores. In the skin, packets of this kind carry layers of fat that the cell empties into the gaps between cells. Whether the cheek's granules do the same is not settled by the source read here.",
+   "deeper": "Electron microscopy of the human cheek lining shows these granules with dark cores. They are called membrane-coating granules, a name from skin, where they release fatty layers into the gaps between cells.",
+   "expert": "Only their presence is taken from the cheek study read here. How many a cell holds, and how big they are, are drawn as illustrative values."
+  },
+  "facts": [
+   [
+    "Drawn size",
+    "about 0.25 µm (illustrative)"
+   ],
+   [
+    "Drawn count",
+    "60 per cell (illustrative)"
+   ]
+  ],
+  "certainty": "C4",
+  "open_questions": [
+   "What do the granules of a moist lining release, and how much do they seal it?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ }
+]

@@ -1,0 +1,48 @@
+{
+ "id": "red_blood_cell_dog",
+ "name": "Red blood cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_red_blood_cell_dog",
+ "blurb": "A dog's red blood cell: a small biconcave disc with no nucleus, packed with haemoglobin.",
+ "note": "Model: a dog's red blood cell, cut through its middle. Measured in dogs: the width (about 7 µm on stained smears of two breeds), and the reference intervals of a blood count for healthy dogs that bracket its volume and its haemoglobin (laboratory intervals, not one measured mean). Illustrative: the thickness profile of the disc (the human Evans–Fung curve, narrowed to the dog's width, because the thickness of a dog cell has not been measured in the sources used), the colours, and the membrane band, drawn far thicker than in life. The haemoglobin molecules are drawn at the size of the human molecule, as the dog's own size is not known here.",
+ "shape": {"type": "disc_biconcave", "diameter_um": 7.02, "c0_um": 0.81, "c2_um": 7.38, "c4_um": -4.39},
+ "dimensions": {
+  "diameter": {"value": 7.02, "range": [6.3, 7.71], "unit": "um", "measured": true, "source": "adili2016", "compare": "a human cell is about 7.4–7.8 µm (7.43 µm mean in 500 cells in the human spec; 7.8 µm in the Evans–Fung profile)", "note": "mean of the dogs of the summary table (Sloughi and German Shepherd, May-Grünwald-Giemsa smears, 30 animals per breed); measured on dried smears, where cells may be somewhat flattened, unlike the human profile of cells in suspension"},
+  "centre_thickness": {"value": 0.81, "unit": "um", "measured": false, "calc": "the thickness at the axis of the human Evans–Fung profile (C0), reused unchanged", "source": "evansfung", "note": "illustrative for the dog: a dog's centre is not measured in any source opened"},
+  "max_thickness": {"value": 2.41, "unit": "um", "measured": false, "calc": "the largest thickness of the profile at the dog's radius of 3.51 µm, found at 2.43 µm from the axis", "source": "evansfung"},
+  "volume": {"value": 71.2, "range": [66, 77], "unit": "um3", "measured": false, "calc": "volume of the profile (human coefficients, radius 3.51 µm) turned about its axis", "source": "evansfung", "compare": "the mean corpuscular volume (the average cell volume in a blood count) reported for healthy dogs is 66–77 fL (1 fL = 1 µm³), a laboratory reference interval (merck_hema); the drawn volume falls inside it, but only by choice of an unchanged profile"},
+  "surface_area": {"value": 109.3, "unit": "um2", "measured": false, "calc": "area of both faces of the profile turned about its axis", "source": "evansfung", "note": "not measured for a dog"},
+  "mean_cell_volume": {"value": 71.5, "range": [66, 77], "unit": "um3", "measured": false, "calc": "mid-point of the 66–77 fL reference interval for healthy dogs", "source": "merck_hema", "note": "the interval is what a laboratory reports for healthy dogs, not one measured mean"}
+ },
+ "nucleus": {"count": 0, "note": "A mature dog red blood cell has no nucleus; the cell extrudes it, and loses its other organelles, as it matures in the marrow.", "source": "pbvd_blood"},
+ "organelles": {"absent": ["nucleus", "mitochondria", "endoplasmic reticulum", "ribosomes"], "absent_source": "openstax_rbc"},
+ "special": [
+  {"kind": "crowd", "part": "haemoglobin", "role": "haemoglobin", "params": {"count": 220000000, "size_nm": [5.4, 5.6, 6.6], "show_below_um": 0.3, "max_drawn": 6000}, "source": "merck_hema", "size_source": "pdb_4hhb", "note": "About 220 million per cell, worked out from the dog's haemoglobin mass per cell and the mass of one molecule (the human molecule is used for the mass and the size); drawn only under 0.3 µm, at the true spacing."}
+ ],
+ "cut": "A cut through the axis of the disc: the section is a dumbbell, thick at the rim and thin in the middle, filled with haemoglobin and with no nucleus; the membrane runs round its edge as a pale band.",
+ "colours": {"convention": "Haemoglobin red (the real colour); membrane pale, a code.", "true_colour": ["haemoglobin", "rbc"]},
+ "parts": {
+  "membrane": {"name": "Cell membrane", "card": "cell_membrane", "material": "membrane"},
+  "haemoglobin": {"name": "Haemoglobin", "card": "cell_red_blood_cell_dog_haemoglobin", "material": "haemoglobin"}
+ },
+ "reached": {
+  "materials": ["red_blood_cell_dog"],
+  "tissue2": [{"scene": "dog_muscle", "structure": "rbc"}]
+ },
+ "view": {"radius_um": 6.3, "r1_m": 1.1e-4, "arrive_m": 2e-5, "spawn_m": 6e-8},
+ "about": [
+  "The width of 7.0 µm is the average of dogs of two breeds measured on stained blood smears; a human cell is about 7.4–7.8 µm. The disc is drawn with the thickness curve of the human cell, narrowed to the dog's width. Turned about its axis this gives a volume of {drawn.cellVolume} µm³, inside the 66–77 µm³ reference interval of a blood count for healthy dogs, but the thickness is illustrative: the dog cell's profile has not been measured in the sources used.",
+  "Under the microscope a dog's cells show a broad pale centre; in most other domestic species the dip is not easy to see on a smear. This model does not draw a dip deeper than the human one, because that depth was not measured.",
+  "There is no nucleus and there are no mitochondria. Haemoglobin takes up the inside; its molecules are shown only when you are close, at the real spacing. They are drawn at the size of the human molecule, and the count is worked out from the reference value for haemoglobin per cell in healthy dogs.",
+  "The membrane is a band thick enough to see; in life it is a few nanometres thick. The net of spectrin under the membrane is not drawn. A dog's red cell lives about 100 days, against about 120 for a human cell."
+ ],
+ "sources": {
+  "adili2016": {"cite": "Adili N, Melizi M, Belabbas H (2016) Species determination using the red blood cells morphometry in domestic animals. Veterinary World 9:960", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5057034/", "opened": "2026-11-23", "used_for": "dog red cell diameter 7.02 µm (range 6.30–7.71) from smears"},
+  "merck_hema": {"cite": "Merck Veterinary Manual, Hematology Reference Ranges (reviewed Sept 2022)", "url": "https://www.merckvetmanual.com/appendixes/reference-guides/hematologic-reference-ranges", "opened": "2026-11-23", "used_for": "dog MCV 66–77 fL; MCH 21.0–26.2 pg; Hb 11.9–18.9 g/dL"},
+  "pbvd_blood": {"cite": "Boes KM, Durham AC (2017) Bone Marrow, Blood Cells, and the Lymphoid/Lymphatic System, in Zachary JF (ed) Pathologic Basis of Veterinary Disease, Elsevier", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7158316/", "opened": "2026-11-23", "used_for": "metarubricytes extrude their nuclei and mature erythrocytes lack organelles (domestic mammals); RNA-rich organelles lost as red cells mature; dog red cell life span about 100 days; dog cells show central pallor, concavity may not be apparent microscopically in other species"},
+  "openstax_rbc": {"cite": "OpenStax Anatomy and Physiology 2e, 18.3 Erythrocytes", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes", "opened": "2026-11-23", "used_for": "human red cell extrudes its nucleus and most organelles; no mitochondria; haemoglobin of four globin chains with a heme each"},
+  "evansfung": {"cite": "Totero Gongora JS, Fratalocchi A (2016) arXiv:1605.04509 (Evans-Fung coefficients from Evans & Fung 1972, Microvasc Res 4:335)", "url": "https://arxiv.org/abs/1605.04509", "opened": "2026-11-23", "used_for": "human profile R0 3.91, C0 0.81, C2 7.38, C4 -4.39 µm, used here with the dog's width"},
+  "pdb_4hhb": {"cite": "Fermi G et al. (1984) PDB 4HHB, human deoxyhaemoglobin", "url": "https://www.rcsb.org/structure/4HHB", "opened": "2026-11-23", "used_for": "molecule mass 64.74 kDa; size 5.4 x 5.6 x 6.6 nm (calculated from atom positions)"}
+ }
+}

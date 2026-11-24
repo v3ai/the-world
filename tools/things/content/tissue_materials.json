@@ -19,36 +19,38 @@
   "tracheole": "insect_air_tube"
  },
  "dog_muscle": {
-  "capillary": "animal_cells",
-  "rbc": "red_blood_cell",
+  "capillary": "endothelial_cell",
+  "rbc": "red_blood_cell_dog",
   "nuclei": "cell_nucleus",
-  "axon": "animal_cells",
-  "fibre": "muscle_fibre"
+  "axon": "motor_axon_dog",
+  "fibre": "skeletal_muscle_fibre_dog"
  },
  "dog_olfactory_epithelium": {
-  "dendrite": "animal_cells",
-  "sust": "animal_cells",
-  "basal": "animal_cells",
-  "lamina": "animal_cells",
-  "gland": "animal_cells",
-  "axons": "animal_cells"
+  "dendrite": "olfactory_neuron_dog",
+  "sust": "sustentacular_cell_dog",
+  "basal": "olfactory_basal_cell_dog",
+  "lamina": "olfactory_neuron_dog",
+  "gland": "bowman_gland_cell_dog",
+  "axons": "olfactory_neuron_dog"
  },
  "dog_retina": {
-  "bip": "animal_cells",
-  "cones": "animal_cells",
-  "rpe": "animal_cells",
-  "tap": "animal_cells",
-  "choroid": "animal_cells",
-  "sclera": "collagen"
+  "bip": "bipolar_cell_dog",
+  "cones": "cone_cell_dog",
+  "rpe": "rpe_cell_dog",
+  "tap": "tapetal_cell_dog",
+  "choroid": "choroid_cells_dog",
+  "sclera": "collagen",
+  "gang": "retinal_ganglion_cell_dog"
  },
  "dog_skin": {
   "dermis": "collagen",
   "fat": "fat",
   "guard": "keratin",
   "under": "keratin",
-  "bulb": "animal_cells",
-  "sebaceous": "animal_cells",
-  "apocrine": "animal_cells"
+  "bulb": "hair_matrix_cell_dog",
+  "sebaceous": "sebocyte_dog",
+  "apocrine": "apocrine_cell_dog",
+  "epi": "keratinocyte_dog"
  },
  "flower_anther": {
   "wall": "plant_cells",
@@ -92,7 +94,8 @@
  },
  "leaf_section": {
   "cuticle_top": "plant_wax",
-  "cuticle_bottom": "plant_wax"
+  "cuticle_bottom": "plant_wax",
+  "palisade": "palisade_cell"
  },
  "mushroom_ecm": {
   "hartig": "fungal_cells",
@@ -137,7 +140,7 @@
   "hooklet": "keratin"
  },
  "robin_flight_muscle": {
-  "capillary": "animal_cells",
+  "capillary": "endothelial_cell",
   "fibre": "muscle_fibre"
  },
  "robin_retina": {
@@ -173,5 +176,41 @@
  "oak_ecm_tip": {
   "mantle": "fungal_cells",
   "grain": "rock_grain"
+ },
+ "loose_connective_fat": {
+  "adipocyte": "adipocyte",
+  "fibroblast": "fibroblast",
+  "macrophage": "macrophage",
+  "mast": "mast_cell",
+  "rbc": "red_blood_cell",
+  "droplet": "adipocyte"
+ },
+ "lung_alveoli": {
+  "macro": "alveolar_macrophage",
+  "rbc": "red_blood_cell",
+  "type2": "type2_pneumocyte"
+ },
+ "hyaline_cartilage": {
+  "cell1": "chondrocyte",
+  "cell2": "chondrocyte",
+  "cell3": "chondrocyte",
+  "gcell1": "chondrocyte",
+  "gcell2": "chondrocyte",
+  "gcell3": "chondrocyte",
+  "fibroblast": "fibroblast"
+ },
+ "cornea_layers": {
+  "endo": "corneal_endothelial_cell",
+  "sup": "corneal_surface_cell",
+  "wing": "corneal_epithelial_cell",
+  "basal": "corneal_basal_cell",
+  "kerato": "corneal_keratocyte"
+ },
+ "kidney_cortex": {
+  "dct": "kidney_dct_cell",
+  "pct": "kidney_pct_cell"
+ },
+ "dense_connective": {
+  "tenocyte": "tenocyte"
  }
 }

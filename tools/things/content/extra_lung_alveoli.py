@@ -1,6 +1,7 @@
 # Writes data/things/tissues/lung_alveoli.json and data/nodes/tissue_lung_alveoli.json.  Run from the repo root.
 # All lengths are micrometres. Sources are listed in .devtools/notes/tissues/lung_alveoli.md.
 import json, math
+import tissue_material as TM
 M = {
   'alveolus': 200,        # OpenStax A&P 2e 22.1: "approximately 200 um in diameter"
   'barrier': 0.6,         # harmonic mean thickness of the blood-air barrier (app card; human, see note file)
@@ -36,7 +37,7 @@ rb = []
 for i in range(3):
     for k, s in enumerate([edge * .18, edge * .36, edge * .6, edge * .8]):
         rb.append({'at': at(i, s, [0.4, -0.5, 0.3, -0.3][k]), 'rot': [0, 0, angs[i] + [10, -15, 20, -5][k]]})
-P.append(pop('rbc', 'Red blood cell', 'lung_red_cell', 'ellipsoid', [M['rbc_d'], M['rbc_t'], M['rbc_d']], '#d83a34', 1, rb, 'red_blood_cell'))
+P.append(pop('rbc', 'Red blood cell', 'lung_red_cell', 'ellipsoid', [M['rbc_d'], M['rbc_t'], M['rbc_d']], '#d83a34', 1, rb, 'red_blood_cell', priority=4))   # in its capillary: what a click through the capillary's wall finds
 bar = M['barrier'] - M['type1_thick']; cap2 = M['capillary'] / 2
 bi, ti = [], []
 for i in range(3):
@@ -88,7 +89,7 @@ scene = {'id': 'lung_alveoli', 'title': 'Lung: alveoli and capillaries', 'node':
          'center': [0, -41, 0], 'D_um': 1250,   # the middle of the three sacs: a scene is entered looking at its center from about 0.4 mm (js/descent.js VIEW_D), so the airway is at the left edge
          'blurb': 'A slice through three air sacs (alveoli) of a lung and a small airway. The thin wall between air and blood holds a capillary with red cells in single file. Zoom into the wall to reach the barrier, drawn 0.6 micrometres thick. Click a part.',
          'note': note, 'labels': labels, 'populations': P}
-json.dump(scene, open('data/things/tissues/lung_alveoli.json', 'w'), indent=1)
+json.dump(TM.apply(scene), open('data/things/tissues/lung_alveoli.json', 'w'), indent=1)
 
 def card(id, title, scale, summary, basics, deeper, expert, facts, certainty='C2', refs=None, related=None, parents=None, oq=None, ext=None):
     return {'id': id, 'title': title, 'kind': 'tissue', 'template': 'thing', 'scale_m': scale, 'area': 'body_systems',

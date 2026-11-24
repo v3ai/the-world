@@ -1,0 +1,238 @@
+{
+ "id": "palisade_cell",
+ "name": "Palisade cell (leaf)",
+ "organism": "plant (measured in thale cress, drawn for a broadleaf leaf such as the oak's)",
+ "species": "Arabidopsis thaliana",
+ "card": "oak_leaf_palisade",
+ "blurb": "The main light-catching cell of a leaf: a tall column with a thin wall, a huge clear vacuole filling its middle, and about a hundred chloroplasts lying flat against the wall.",
+ "note": "Model: a palisade mesophyll cell, cut in half lengthways. Measured, in thale cress (Arabidopsis thaliana), from a quantitative atlas of its leaf (tolleter2024): the cell's volume (100 pL, about 100,000 µm³), the number of chloroplasts per cell (100) and the volume of one (93 fL, about 93 µm³), and the mitochondria's share of the cell (2.4%). The vacuole's share is given there for the whole leaf (84%), not for this cell. No oak value was found except the volume of young palisade cells in growing oak leaves (1,200 to 3,000 µm³, saito2006), so the cress cell stands in. Illustrative: the column's proportions (2.5 times as tall as wide), its six sides, the wall's thickness, the thickness of the cytoplasm layer and so the vacuole's share, the chloroplasts' lens shape (drawn to the measured volume), the nucleus size and place, and the colours. The neighbouring columns are drawn faintly.",
+ "dimensions": {
+  "volume": {
+   "value": 100000,
+   "unit": "um3",
+   "measured": true,
+   "source": "tolleter2024",
+   "note": "100 pL, the average palisade cell volume used in the Arabidopsis leaf atlas (from 3D reconstructions, Wuyts et al. 2012, as cited there)"
+  },
+  "width": {
+   "value": 36,
+   "unit": "um",
+   "measured": false,
+   "calc": "a six-sided column 2.5 times as tall as wide holding 100,000 µm³: (√3/2) w² × 2.5 w = 100,000 gives w = 36 µm (calculated from the measured volume and an illustrative shape)"
+  },
+  "height": {
+   "value": 90,
+   "unit": "um",
+   "measured": false,
+   "calc": "2.5 × 36 µm (illustrative ratio)"
+  },
+  "chloroplasts": {
+   "value": 100,
+   "unit": "per cell",
+   "measured": true,
+   "source": "tolleter2024",
+   "note": "palisade cells of Arabidopsis (Crumpton-Taylor et al. 2012, as cited there)"
+  },
+  "chloroplast_volume": {
+   "value": 93,
+   "unit": "fL",
+   "measured": true,
+   "source": "tolleter2024",
+   "note": "average chloroplast volume in palisade cells; chloroplasts are then 9.3% of the cell"
+  },
+  "mitochondria_share": {
+   "value": 0.024,
+   "unit": "fraction",
+   "measured": true,
+   "source": "tolleter2024",
+   "note": "2.4% of a palisade cell (Armstrong et al. 2006, as cited there)"
+  },
+  "vacuole_share_leaf": {
+   "value": 0.84,
+   "unit": "fraction",
+   "measured": true,
+   "source": "tolleter2024",
+   "note": "the vacuoles' share of the whole leaf; 79.4% in spongy cells; no palisade value given"
+  },
+  "oak_young_cell_volume": {
+   "value": [
+    1200,
+    3000
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "saito2006",
+   "note": "growing oak leaves (Quercus glauca, Q. serrata): about 1,200 µm³ a week before the leaf unfolds, 3,000 and 2,000 µm³ nine days after; mature cells not given"
+  }
+ },
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 36,
+  "height_um": 90,
+  "taper": 1,
+  "irregularity": 0.1,
+  "round_um": 1.5,
+  "apical": "none",
+  "neighbours": 1
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": {
+   "value": [
+    5,
+    14,
+    12
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a lens pressed against a side wall in the layer of cytoplasm"
+  },
+  "nucleoli": 1,
+  "position": "peripheral",
+  "position_note": "illustrative place; in a cell with a central vacuole the nucleus lies in the thin cytoplasm round it"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.024,
+    "measured": true,
+    "source": "tolleter2024"
+   },
+   "size_um": [
+    1.2,
+    0.5
+   ],
+   "size_measured": false,
+   "max_drawn": 300
+  },
+  "golgi": {
+   "stacks": {
+    "value": 3,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "peroxisomes (about 92 per cell in the atlas)",
+   "the endoplasmic reticulum",
+   "the strands of cytoplasm that cross the vacuole",
+   "plasmodesmata"
+  ]
+ },
+ "special": [
+  {
+   "kind": "plant_cell",
+   "part": "chloroplast",
+   "vacuole_part": "vacuole",
+   "wall_part": "wall",
+   "params": {
+    "chloroplasts": 100,
+    "chloroplast_fl": 93,
+    "cytoplasm_um": 2.5,
+    "wall_um": 0.5
+   },
+   "source": "tolleter2024",
+   "note": "chloroplast number and volume measured; the cytoplasm layer's thickness (and so the vacuole's share) and the wall's thickness are illustrative"
+  }
+ ],
+ "cut": "The column is cut in half from top to bottom: the clear central vacuole fills the middle, the chloroplasts lie flat in the thin layer of cytoplasm against the wall all round it, and the nucleus is pressed against one side. The wall shows as a pale skin outside the membrane, and the next columns faintly beside it.",
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "A thin layer of watery cytoplasm between the vacuole and the wall, holding the chloroplasts, mitochondria and nucleus."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "chloroplast": {
+   "name": "Chloroplast",
+   "card": "bio_chloroplasts_plastids",
+   "material": "chloroplast",
+   "source": "tolleter2024",
+   "about": "Where the leaf catches light and makes sugar from carbon dioxide and water. About 100 lie in each palisade cell of thale cress, each about 93 µm³; they lie flat against the wall, where the light reaches them, and can slide along it to face more or less of the light."
+  },
+  "vacuole": {
+   "name": "Central vacuole",
+   "card": null,
+   "material": "water",
+   "about": "A huge sac of watery sap, wrapped in its own membrane, that fills most of the cell. Pressing out against the wall, it keeps the cell firm (a wilted leaf has lost this pressure) and it stores salts, sugars and waste. In the whole leaf of thale cress the vacuoles take 84% of the volume. Its share in this drawing follows from the illustrative thickness of the cytoplasm."
+  },
+  "wall": {
+   "name": "Cell wall",
+   "card": "bio_cell_wall_ecm",
+   "material": "plant_wall",
+   "about": "A thin, tough wall of cellulose fibres outside the membrane, which holds the cell's shape against the pressure of the vacuole. Its thickness here is illustrative."
+  },
+  "neighbour": {
+   "name": "Neighbouring palisade cell",
+   "card": "oak_leaf_palisade",
+   "material": "plant_cells",
+   "about": "Palisade cells stand side by side like a fence under the leaf's upper skin, with narrow air spaces between them. Drawn faintly."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "leaf_section",
+    "structure": "palisade"
+   }
+  ]
+ },
+ "about": [
+  "A palisade cell is one of the tall cells that stand side by side like a fence under the upper skin of a leaf, where most of the light falls. The measurements come from thale cress, the small weed that plant biologists study most: a palisade cell there holds about 100,000 µm³; drawn here as a six-sided column 36 µm wide and 90 µm tall ({drawn.cellVolume} µm³), proportions that are illustrative. Oak cells were measured only while the leaf was still growing, at 1,200 to 3,000 µm³.",
+  "Most of the cell is one clear central vacuole, a sac of watery sap that presses out against the wall and keeps the leaf firm; drawn, it takes about {drawn.vacuoleShare}% of the cell (in the whole leaf, vacuoles take 84%). The living part is a thin layer around it.",
+  "About 100 chloroplasts, each about 93 µm³, lie flat in that layer against the wall, together 9.3% of the cell. {drawn.chloroplasts} are drawn in this half, as lenses {drawn.chloroplastLength} µm long, a shape drawn to the measured volume. The nucleus ({drawn.nuclei}) lies against one side, and {drawn.mitochondria} mitochondria (2.4% of the cell) sit among the chloroplasts. Not drawn: the peroxisomes, the endoplasmic reticulum, the strands of cytoplasm that cross the vacuole, and the channels through the wall to the neighbours."
+ ],
+ "colours": {
+  "convention": "Chloroplasts green, their true colour. Everything else is a code: the wall pale green, the vacuole a faint clear blue, the cytoplasm dark, the nucleus violet, mitochondria orange.",
+  "true_colour": [
+   "chloroplast"
+  ]
+ },
+ "view": {
+  "radius_um": 70,
+  "r1_m": 0.0006,
+  "arrive_m": 0.00016,
+  "spawn_m": 2e-06
+ },
+ "sources": {
+  "tolleter2024": {
+   "cite": "Tolleter D, Smith EN, Dupont-Thibert C, Uwizeye C, Vile D, Gloaguen P, Falconet D, Finazzi G, Vandenbrouck Y, Curien G (2024) The Arabidopsis leaf quantitative atlas: a cellular and subcellular mapping through unified data integration, Quantitative Plant Biology 5:e2",
+   "url": "https://doi.org/10.1017/qpb.2024.1",
+   "opened": "2026-11-24",
+   "used_for": "palisade mesophyll cell volume 100 pL; 100 chloroplasts per palisade cell, average chloroplast volume 93 fL, chloroplasts 9.3% of the cell; mitochondria 2.4% of a palisade cell; vacuoles 84% of the leaf volume, 79.4% of a spongy cell, 94% of an epidermal cell; peroxisomes about 92 per cell"
+  },
+  "saito2006": {
+   "cite": "Saito T, Soga K, Hoson T, Terashima I (2006) The bulk elastic modulus and the reversible properties of cell walls in developing Quercus leaves, Plant Cell Physiol 47:715-725 (via BioNumbers 104797)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=104797",
+   "opened": "2026-11-24",
+   "used_for": "mean palisade cell volume in developing oak leaves: about 1,200 µm³ about 7 days before unfolding, about 3,000 µm³ (Q. glauca) and 2,000 µm³ (Q. serrata) 9 days after"
+  }
+ }
+}

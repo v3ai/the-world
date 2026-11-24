@@ -1,0 +1,202 @@
+{
+ "about": "The shape vocabulary of cell specs (data/cells/<id>.json, field shape.type). Each parameter: [min, max, default, unit, meaning]. js/cells.js draws each shape; tools/cells/check.mjs checks every parameter is in range. A parameter left out takes its default. Lengths are in micrometres (_um), counts are whole numbers, flags are 0 or 1. Text parameters list their allowed values in place of min and max.",
+ "shapes": {
+  "ellipsoid": {
+   "fits": "a rounded cell: lymphocyte, monocyte, neutrophil (lobed nucleus), eosinophil, basophil, mast cell, macrophage (pseudopods: blunt fingers and flat ruffles), egg (with zona), yeast (with bud), coccus, amoeba (pseudopods), ciliate (cilia), chondrocyte (lacuna), adipocyte (one lipid droplet), platelet (flat), bird red blood cell (flat, with nucleus)",
+   "params": {
+    "a_um": [0.3, 300, 10, "um", "full length along x (a diameter, not a semi-axis)"],
+    "b_um": [0.3, 300, 10, "um", "full length along y (height)"],
+    "c_um": [0.3, 300, 10, "um", "full length along z"],
+    "bumps": [0, 1, 0, "", "surface roughness: 0 smooth, 1 strongly ruffled"],
+    "pseudopods": [0, 12, 0, "count", "finger-like extensions"],
+    "pseudopod_um": [0, 60, 4, "um", "length of a pseudopod"],
+    "cilia": [0, 1, 0, "flag", "cilia over the whole surface (drawn near only)"],
+    "cilium_um": [1, 20, 8, "um", "length of a cilium"],
+    "coat_um": [0, 20, 0, "um", "a coat round the cell (an egg's zona, a lacuna's rim, a capsule); 0 none"],
+    "bud": [0, 1, 0, "", "a daughter bud as a fraction of the cell's size (yeast); 0 none"]
+   }
+  },
+  "disc_biconcave": {
+   "fits": "a mammalian red blood cell (the Evans-Fung profile: half-thickness z(r) = 0.5 sqrt(1 - (r/R)^2) (c0 + c2 (r/R)^2 + c4 (r/R)^4), R = diameter/2)",
+   "params": {
+    "diameter_um": [4, 12, 7.82, "um", "diameter across the disc"],
+    "c0_um": [0.1, 2, 0.81, "um", "Evans-Fung coefficient C0 (the thickness at the centre)"],
+    "c2_um": [0, 12, 7.38, "um", "Evans-Fung coefficient C2"],
+    "c4_um": [-8, 0, -4.39, "um", "Evans-Fung coefficient C4"]
+   }
+  },
+  "polyhedron": {
+   "fits": "a many-sided epithelial or packed cell: squamous (flat), cuboidal, columnar, keratinocyte by layer, hepatocyte, pancreatic acinar cell (taper), endothelial cell (flat), hair cell (stereocilia), plant cells with a wall (palisade, spongy, epidermal, xylem vessel element: hollow, sieve tube element)",
+   "params": {
+    "sides": [3, 9, 6, "count", "number of side faces"],
+    "width_um": [1, 200, 12, "um", "width across the cell"],
+    "height_um": [0.3, 300, 12, "um", "height from base to top (y)"],
+    "taper": [0.2, 2, 1, "", "top width over base width (below 1 a pyramid, as an acinar cell)"],
+    "irregularity": [0, 0.5, 0.15, "", "how unequal the faces are"],
+    "round_um": [0.1, 10, 1, "um", "radius of the rounded edges"],
+    "apical": ["none", "microvilli", "cilia", "stereocilia", "goblet", "none", "", "what stands on the top face"],
+    "apical_um": [0, 30, 1, "um", "length of what stands on the top face"],
+    "wall_um": [0, 10, 0, "um", "a cell wall round it (plants); 0 none"],
+    "hollow": [0, 1, 0, "flag", "dead and empty inside (a xylem vessel element)"],
+    "neighbours": [0, 1, 0, "flag", "draw the neighbouring cells behind the cut, faintly"],
+    "desmosomes": [0, 2000, 0, "count", "desmosomes on its surface (drawn as plaques; a keratinocyte)"],
+    "half_lid": [0, 1, 0, "flag", "a flat cell cut through its own plane keeps the lid over its left half, so its top face shows"]
+   }
+  },
+  "spindle": {
+   "fits": "a spindle-shaped cell: smooth muscle cell, fibroblast; a bent pair: guard cells",
+   "params": {
+    "length_um": [5, 600, 100, "um", "length from tip to tip"],
+    "width_um": [1, 40, 6, "um", "widest diameter"],
+    "flat": [0.2, 1, 1, "", "depth over width (1 round in section)"],
+    "bend": [0, 1, 0, "", "how far it bends into an arc (guard cells)"],
+    "pair": [0, 1, 0, "flag", "two mirrored cells round a pore (guard cells)"],
+    "wall_um": [0, 10, 0, "um", "a cell wall (plants); 0 none"],
+    "processes": [0, 20, 0, "count", "thin branching processes from the rim, in the cell's plane (a fibroblast)"],
+    "process_um": [0.2, 5, 1, "um", "thickness of a process at its root"],
+    "process_reach_um": [0, 200, 20, "um", "length of a process"]
+   }
+  },
+  "fibre": {
+   "fits": "a long striated cell: skeletal muscle fibre (many peripheral nuclei); with branched = 1, a cardiac muscle cell (branches, intercalated discs, central nuclei)",
+   "params": {
+    "diameter_um": [5, 150, 50, "um", "diameter of the fibre"],
+    "drawn_length_um": [20, 1500, 400, "um", "length of the piece that is drawn (the rest is a labelled break)"],
+    "window_um": [5, 600, 120, "um", "length of the window cut into its front half"],
+    "sarcomere_um": [1.5, 4, 2.6, "um", "sarcomere length (Z line to Z line)"],
+    "thick_um": [1, 2, 1.65, "um", "thick (myosin) filament length: the A band"],
+    "thin_um": [0.5, 2, 1.27, "um", "thin (actin) filament length from the Z line"],
+    "myofibril_um": [0.3, 3, 1.2, "um", "myofibril diameter"],
+    "nuclei_per_mm": [0, 400, 150, "count/mm", "nuclei per millimetre of fibre"],
+    "nucleus_position": ["peripheral", "central", "peripheral", "", "where the nuclei lie"],
+    "branched": [0, 1, 0, "flag", "branches with intercalated discs (cardiac)"],
+    "disc_spacing_um": [20, 200, 100, "um", "distance between intercalated discs (cardiac)"]
+   }
+  },
+  "neuron": {
+   "fits": "a neuron: pyramidal (apical dendrite, basal dendrites), stellate or multipolar (motor neuron), bipolar; with spines, an axon with myelin, nodes and boutons",
+   "params": {
+    "soma": ["pyramidal", "stellate", "round", "bipolar", "pyramidal", "", "form of the cell body"],
+    "soma_w_um": [4, 120, 16, "um", "width of the cell body"],
+    "soma_h_um": [4, 120, 22, "um", "height of the cell body"],
+    "basal_n": [0, 16, 6, "count", "primary basal (or, for a stellate cell, all) dendrites"],
+    "basal_total_um": [0, 30000, 6000, "um", "total length of the basal dendrites"],
+    "basal_branch_points": [0, 200, 30, "count", "branch points of the basal dendrites"],
+    "apical_trunk_um": [0, 3000, 200, "um", "main apical trunk to the first tuft branch"],
+    "apical_reach_um": [0, 3000, 600, "um", "how far the apical dendrite reaches from the cell body (to the tuft's top)"],
+    "oblique_total_um": [0, 30000, 4000, "um", "total length of the oblique dendrites off the apical trunk"],
+    "oblique_branch_points": [0, 200, 13, "count", "branch points of the obliques"],
+    "tuft_total_um": [0, 30000, 3600, "um", "total length of the apical tuft"],
+    "tuft_branch_points": [0, 200, 12, "count", "branch points of the tuft"],
+    "dendrite_um": [0.2, 10, 1.2, "um", "diameter of a dendrite near the cell body (thinner further out)"],
+    "trunk_um": [0.5, 15, 3, "um", "diameter of the apical trunk at the cell body"],
+    "spines_basal_per_um": [0, 10, 1.5, "1/um", "spines per micrometre of basal dendrite"],
+    "spines_apical_per_um": [0, 10, 2, "1/um", "spines per micrometre of apical dendrite"],
+    "spine_um": [0.2, 5, 1.4, "um", "length of a spine"],
+    "spine_head_um": [0.1, 2, 0.6, "um", "diameter of a spine's head"],
+    "axon_um": [0.1, 20, 0.5, "um", "diameter of the axon"],
+    "ais_um": [0, 100, 40, "um", "length of the axon initial segment (unmyelinated)"],
+    "myelin": [0, 1, 1, "flag", "the axon is myelinated after its initial segment"],
+    "internode_um": [10, 2000, 80, "um", "length of one myelin segment"],
+    "node_um": [0.5, 5, 1, "um", "length of a node of Ranvier"],
+    "g_ratio": [0.4, 0.95, 0.7, "", "axon diameter over the diameter of axon and myelin"],
+    "axon_drawn_um": [20, 3000, 600, "um", "how much of the axon is drawn before the labelled break"],
+    "collaterals": [0, 10, 3, "count", "local axon branches drawn"],
+    "collateral_um": [0, 1000, 150, "um", "length of a drawn collateral"],
+    "bouton_spacing_um": [1, 50, 5, "um", "distance between boutons along a collateral"],
+    "bouton_um": [0.2, 5, 0.8, "um", "diameter of a bouton"]
+   }
+  },
+  "stellate": {
+   "fits": "a cell body with many branching processes and no axon: astrocyte (end-feet), melanocyte (dendrites carrying melanosomes), osteocyte (fine canaliculi in a lacuna), podocyte (foot processes), microglia",
+   "params": {
+    "soma_um": [2, 60, 8, "um", "diameter of the cell body"],
+    "processes": [1, 40, 8, "count", "primary processes"],
+    "reach_um": [1, 500, 40, "um", "how far the processes reach"],
+    "branch_points": [0, 400, 20, "count", "branch points over all processes"],
+    "process_um": [0.05, 5, 0.8, "um", "diameter of a process near the cell body"],
+    "endfeet": [0, 1, 0, "flag", "processes end in end-feet (astrocyte on a vessel, podocyte's feet)"],
+    "endfoot_um": [0.2, 10, 2, "um", "diameter of an end-foot"],
+    "lacuna_um": [0, 80, 0, "um", "the cell sits in a cavity of this size (osteocyte); 0 none"],
+    "flat": [0.1, 1, 1, "", "depth over width (melanocytes and podocytes spread flat)"],
+    "vessel_um": [0, 30, 0, "um", "with endfeet: a capillary of this width under the cell; only the processes that reach toward it end on it in end-feet (0: every tip has a foot)"]
+   }
+  },
+  "segmented": {
+   "fits": "a cell built of segments along one axis: rod and cone photoreceptors (outer segment discs, inner segment, nucleus, synaptic terminal), sperm (head, midpiece with a mitochondrial helix, tail)",
+   "params": {
+    "segments": ["list", "list", [], "", "from the top down: [{part, length_um, d0_um, d1_um, fill: none|discs|mito_helix|mito_packed|axoneme|nucleus}] (mito_packed: long mitochondria side by side inside a see-through segment, a cone's ellipsoid)"],
+    "disc_spacing_um": [0.01, 1, 0.03, "um", "spacing of the stacked discs of an outer segment"],
+    "bend": [0, 1, 0.1, "", "how far the tail curves"]
+   }
+  },
+  "rod": {
+   "fits": "a rod or curved prokaryote (bacillus, vibrio, with helix_turns a spirillum), and a fungal hypha compartment (septa, a wall)",
+   "params": {
+    "length_um": [0.3, 1000, 2, "um", "length"],
+    "width_um": [0.1, 20, 0.7, "um", "width"],
+    "curve": [0, 1, 0, "", "how far it curves (a vibrio)"],
+    "helix_turns": [0, 20, 0, "count", "turns of a helix (a spirillum); 0 straight"],
+    "flagella": [0, 30, 0, "count", "flagella"],
+    "flagellum_um": [0, 30, 6, "um", "length of a flagellum"],
+    "pili": [0, 400, 0, "count", "pili (drawn near only)"],
+    "wall": ["none", "gram_positive", "gram_negative", "chitin", "cellulose", "none", "", "the wall and its kind"],
+    "septa": [0, 20, 0, "count", "cross-walls (a hypha); 0 none"]
+   }
+  },
+  "wrapped_sheet": {
+   "fits": "a thin cell curled round a channel: a capillary's endothelial cell (its nucleus bulging into the lumen), drawn cut along the vessel with its neighbours faint and the junctions as seams",
+   "params": {
+    "lumen_um": [1, 60, 7.5, "um", "width of the channel the sheet lines"],
+    "length_um": [3, 300, 30, "um", "length of the cell along the vessel"],
+    "thickness_um": [0.05, 5, 0.6, "um", "thickness of the sheet away from the nucleus"],
+    "wrap": [0.1, 1, 0.85, "", "share of the ring round the channel that this one cell covers"],
+    "seam_deg": [-180, 180, 55, "deg", "where round the ring the cell's own edge lies (0 at the back of the cut tube)"],
+    "coat_um": [0, 3, 0, "um", "the coat on the blood face (glycocalyx); 0 none"],
+    "neighbours": [0, 1, 1, "flag", "draw the rest of the ring and the cells before and after along the vessel, faintly"]
+   }
+  }
+ },
+ "nucleus": {
+  "about": "read by every shape from the spec's nucleus block (js/cells.js, nucleiFromSpec)",
+  "shape": "round | oval | flattened | elongated or cigar | indented (kidney, bean) | lobed (with lobes: n, joined by thin strands); the volume is kept as the shape changes",
+  "size_um": "a {value: [x, y, z]} or a bare list; else the volume share (volume_fraction) of the drawn cell",
+  "position": "basal | apical | central (a column's nucleus low or high in it); a fibre: nucleus_position peripheral | central",
+  "orientation": "the nucleus's longest axis lies along the cell's longest extent"
+ },
+ "drawn_from_special": {
+  "microvilli or brush_border": "params {count, diameter_um}: the apical fringe of a polyhedron with apical microvilli (cilia, stereocilia likewise)",
+  "unilocular_droplet": "an ellipsoid filled by one fat droplet, a thin rim of cytoplasm, its nucleus a lens pressed against the edge",
+  "keratin_bundles": "params {bundles, drawn_um}",
+  "crowd": "params {count, size_nm, show_below_um, max_drawn}",
+  "keratin_matrix": "params {texture_um}: a dead scale's cut face filled with a felt of keratin (a corneocyte); a flat cell with neighbours also gets three of its stack beneath it, faint",
+  "side_microvilli": "params {length_um, diameter_um, spacing_um, channel_um, channel_part}: microvilli on the side face toward the blood, and a faint blood channel beyond it (a hepatocyte)",
+  "canaliculus": "params {diameter_um, faces}: a channel grooved into the faces shared with neighbours (a bile canaliculus)",
+  "rough_er_stacks": "params {stacks, sheets, width_um, spacing_um}: stacks of flat rough-ER sacs through the cytoplasm",
+  "glycogen": "params {clumps, per_clump, clump_um, granule_um}: clumps of glycogen granules",
+  "basal_folds": "params {spacing_um, height}: upright folds of the base, the mitochondria standing in rows between them (with mitochondria align: y, rows_um)",
+  "apical_bleb": "params {diameter_um, height, granules}: a dome of cytoplasm pinching off the free face (apocrine secretion)",
+  "basement_membrane": "params {thickness_um}: the sheet under the cell's base, faint",
+  "dense_bodies": "params {count, size_um, reach_um, filament_um}: dense bodies and the slanting contractile filament bundles between them (smooth muscle)",
+  "bundle": "params {offsets: [[x, y, z] in cell lengths and widths]}: more cells of the same spindle round it, faint (a bundle; a row)",
+  "collagen_fibres": "params {diameter_um, wing_deg}: two collagen fibres the cell lies between, and wings of cytoplasm part way round them (a tenocyte)",
+  "phagosomes": "params {count, size_um, content: debris | dust}: sacs of swallowed things",
+  "vacuoles": "params {count, size_um, role}: small clear sacs (a foamy cell; swallowed surfactant)",
+  "ruffles": "params {sheets, sheet_um, arc, arc_from}: thin wavy sheets spreading from the cell's edge (lamellipodia), over an arc of the rim (radians, from arc_from)",
+  "microplicae": "params {spacing_um, height_um}: low winding ridges over the free face (a corneal surface cell)",
+  "hemidesmosomes": "params {spacing_um}: rivets along the base (a basal epithelial cell)",
+  "plant_cell": "params {chloroplasts, chloroplast_fl, cytoplasm_um, wall_um}: a plant cell on a polyhedron: the wall outside, a central vacuole, the chloroplasts flat against the wall in the cytoplasm layer, the nucleus against a side",
+  "matrix_block": "params {size_um, gap_um}: a faint block of matrix round a cell that lies alone in it, and the wall of its cavity (a chondrocyte in its lacuna)",
+  "marginal_band": "params {thickness_um, inset_um, coils}: the ring of microtubules round the rim of a platelet"
+ },
+ "flat_cells": "a polyhedron under 0.3 times as tall as it is wide is cut through its own plane (lid off), so the whole cell shows from above; its neighbours are not drawn",
+ "lacks": [
+  "an oligodendrocyte or Schwann cell wrapping its myelin round an axon (the neuron draws the myelin; the glial cell itself is not a shape yet)",
+  "a diatom's two-part silica shell with its pores (frustule)",
+  "a ciliate's oral groove and contractile vacuoles (an ellipsoid with cilia is the nearest)",
+  "the sieve plates of a sieve tube element and its companion cell as one pair",
+  "a sperm's acrosome cap and an egg's corona of follicle cells",
+  "the jigsaw outline of many plant epidermal cells (a polyhedron with high irregularity is the nearest)",
+  "insect cells that differ from vertebrate ones (asynchronous flight muscle, the ommatidium's cells) beyond the shapes above"
+ ]
+}

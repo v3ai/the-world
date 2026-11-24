@@ -1,0 +1,189 @@
+[
+ {
+  "id": "cell_endothelial_cell",
+  "title": "Capillary endothelial cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-05,
+  "parents": [],
+  "parts": [
+   "cell_endothelial_caveola",
+   "cell_endothelial_glycocalyx",
+   "cell_endothelial_junction"
+  ],
+  "made_of": [
+   "cell_endothelial_caveola",
+   "cell_endothelial_glycocalyx",
+   "cell_endothelial_junction",
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "capillary"
+  ],
+  "mesh": null,
+  "summary": "The very thin cell that forms the wall of the smallest blood vessels.",
+  "layers": {
+   "basics": "The smallest blood vessels are lined by a single layer of flat cells. Each one is a thin sheet, so thin that oxygen can pass straight across it into the muscle next to it; water, sugars and other small molecules cross through narrow gaps between cells, through carriers in the membrane, or in small pits. The sheet curls round the channel, and in a small capillary one cell may bend all the way round and touch its own edge. Only where the oval nucleus sits does the cell bulge into the blood.",
+   "deeper": "A capillary channel is 5 to 10 micrometres wide, about the width of one red blood cell. The cells are joined edge to edge by tight junctions, which leave narrow clefts that let water and very small molecules through. Larger things cross by other routes, including small pits in the membrane called caveolae. Outside the cells lies a thin basement membrane. The face toward the blood carries a soft coat of sugar-bearing proteins.",
+   "expert": "Muscle capillaries are of the continuous kind, with no windows in the cell. The thickness of the drawn plate (0.6 micrometres) is illustrative; the real cytoplasm is much thinner away from the nucleus. The caveola size and the coat thickness come from human, rat and hamster work; no dog or robin value is known to this page, so the dog and robin are drawn with the same cell. The curve round the vessel is not drawn: the cell is shown as a flat plate."
+  },
+  "facts": [
+   [
+    "Channel width",
+    "5 to 10 µm"
+   ],
+   [
+    "Surface of one human cell",
+    "about 20 µm × 50 µm"
+   ],
+   [
+    "Caveola size",
+    "50 to 100 nm"
+   ],
+   [
+    "Coat on the blood face",
+    "about 0.4 to 0.5 µm (rat and hamster)"
+   ],
+   [
+    "Thickness drawn",
+    "0.6 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How thick is the sheet of a capillary cell between the nucleus and the cleft, in dog and bird muscle?",
+   "How many caveolae does one capillary cell carry, and how does it change with exercise?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "20.1",
+    "20-1-structure-and-function-of-blood-vessels"
+   ]
+  ]
+ },
+ {
+  "id": "cell_endothelial_caveola",
+  "title": "Caveola",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 7.5e-08,
+  "parents": [
+   "cell_endothelial_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_endothelial_cell"
+  ],
+  "mesh": null,
+  "summary": "A small flask-shaped pit in the membrane of a capillary cell.",
+  "layers": {
+   "basics": "A caveola is a tiny dimple in the cell membrane, about a thousand times smaller than the cell. Capillary cells have many of them on both faces. They help carry material from the blood to the tissue next to it.",
+   "deeper": "Caveolae are 50 to 100 nanometres wide. They are specially common in cells that line blood vessels, in fat cells and in a few other cell types. One job linked to them is transcytosis: a pit takes up a load on one face, and the load is released on the other face of the thin cell.",
+   "expert": "The drawn count of 20,000 per cell is illustrative, and they are drawn only close up, at their true size. The size and the abundance in endothelium are well established; the share of the surface they cover is given only for fat cells (up to half), not for capillary cells."
+  },
+  "facts": [
+   [
+    "Width",
+    "50 to 100 nm"
+   ],
+   [
+    "Drawn count",
+    "20,000 (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What fraction of the surface of a capillary cell is taken by caveolae in muscle?"
+  ],
+  "refs": []
+ },
+ {
+  "id": "cell_endothelial_glycocalyx",
+  "title": "Coat on the blood face (glycocalyx)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-07,
+  "parents": [
+   "cell_endothelial_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_endothelial_cell"
+  ],
+  "mesh": null,
+  "summary": "A soft coat of sugar-bearing proteins on the side of the cell that faces the blood.",
+  "layers": {
+   "basics": "The side of the cell that faces the blood is covered in a fuzzy coat of long molecules with sugar chains. It is too soft to show up well in most pictures, but it sits between the flowing blood and the cell and keeps blood cells from rubbing against the wall.",
+   "deeper": "A layer up to about 0.5 micrometres thick shows in stained thin sections of rat heart capillaries, and a similar 0.4 to 0.5 micrometres is estimated in hamster cremaster capillaries from how far red cells are kept from the wall. An inner layer, 100 to 150 nanometres thick, lies close to the membrane. The measured thickness depends strongly on the method.",
+   "expert": "Estimates of the thickness differ by more than an order of magnitude with the method of preparation: 400 to 500 nanometres in some work, and over 5 micrometres after rapid freezing of cultured cells. The coat is thought to collapse when tissue is prepared for the electron microscope. Its drawn form is a faint haze; its real structure is not drawn."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "about 0.4 to 0.5 µm (rat, hamster)"
+   ],
+   [
+    "Inner layer",
+    "about 100 to 150 nm (frog)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How thick is the coat in a living dog or bird capillary?"
+  ],
+  "refs": []
+ },
+ {
+  "id": "cell_endothelial_junction",
+  "title": "Junction between capillary cells",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 5e-08,
+  "parents": [
+   "cell_endothelial_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_endothelial_cell",
+   "bio_cell_junctions"
+  ],
+  "mesh": null,
+  "summary": "Where the edges of two capillary cells meet and are sealed.",
+  "layers": {
+   "basics": "Where two capillary cells touch, their edges are joined by a seal of proteins. The seal keeps blood cells and large molecules in the vessel, yet leaves narrow gaps through which water and very small molecules can go.",
+   "deeper": "The cells are joined by tight junctions and by adherens junctions, which hold the cells together; the tight junctions are leaky, not fully sealed. A lining joined this way is called continuous, and most tissues have capillaries of this type. The small gaps between the sealed stretches are called intercellular clefts.",
+   "expert": "The junction is not drawn in detail: the neighbours show faintly at the edge of the plate and the seal is only marked, not modelled. The width of the clefts is not stated in the sources used here."
+  },
+  "facts": [
+   [
+    "Kind",
+    "tight and adherens junctions"
+   ],
+   [
+    "What passes",
+    "water and very small molecules"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How wide are the clefts of a muscle capillary in the dog?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "20.1",
+    "20-1-structure-and-function-of-blood-vessels"
+   ]
+  ]
+ }
+]

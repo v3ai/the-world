@@ -1,0 +1,160 @@
+[
+ {
+  "id": "cell_animal_cell_generic",
+  "title": "Animal cell (a plain one)",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1.5e-05,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane"
+  ],
+  "summary": "The parts most animal cells have: a membrane, a nucleus, mitochondria, lysosomes and a Golgi apparatus, drawn without the special equipment of any one kind.",
+  "layers": {
+   "basics": "Most cells of the human body are built on the same plan. A thin membrane wraps a watery inside; a nucleus holds the DNA; mitochondria burn food for energy; lysosomes break things down; the Golgi apparatus packs and sorts proteins. This picture shows only that plan. No cell in the body looks exactly like it, because each kind adds its own shape and tools: a neuron grows long branches, a red blood cell throws away its nucleus.",
+   "deeper": "All the cells of a body carry the same DNA. They differ because each one reads only the genes its job needs. That is why the same parts appear in different amounts: muscle cells and neurons hold many mitochondria, white blood cells that swallow germs hold many lysosomes, liver cells hold many peroxisomes. A human cell is often put at around 2250 cubic micrometres, within a crude range of 500 to 4000, but real kinds of cell fall far outside it: a red blood cell is much smaller, a fat cell or an egg many times larger.",
+   "expert": "The volume is a crude figure for mammalian cells in general. The nucleus share is about 10% in mammals, 5 to 10% in rat liver. The mitochondria share is worked out from the HeLa cell line (about a tenth of the cytoplasm); in rat liver it reaches 22%. The lysosome count and size are from human breast cells. Not drawn: the endoplasmic reticulum, ribosomes, peroxisomes, centrosome, cytoskeleton and vesicles."
+  },
+  "facts": [
+   [
+    "Volume (human cell, crude)",
+    "about 2250 um3 (a crude range of 500-4000 for mammalian cells)"
+   ],
+   [
+    "Nucleus share of the cell",
+    "about 10% (mammals)"
+   ],
+   [
+    "Mitochondria share of the cytoplasm",
+    "9-11% (human HeLa cells)"
+   ],
+   [
+    "Lysosomes per cell",
+    "about 220 (human breast cells)"
+   ],
+   [
+    "Lysosome diameter, median",
+    "0.5 um"
+   ],
+   [
+    "Species of the numbers",
+    "human, with rat liver for comparison"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How much of this plain plan is shared by every cell type in the body, and how much differs?",
+   "How many distinct cell types does the human body have?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ],
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "ANP",
+    "3.6",
+    "3-6-cellular-differentiation"
+   ]
+  ]
+ },
+ {
+  "id": "cell_animal_cell_generic_cytosol",
+  "title": "Cytosol",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 5e-06,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane"
+  ],
+  "summary": "The watery, protein-crowded fluid that fills a cell between its organelles.",
+  "layers": {
+   "basics": "The cytosol is the jelly-like fluid inside the membrane. The organelles float in it, and many of the cell's chemical reactions happen in it. It is mostly water with a very high load of proteins, so it is crowded rather than thin.",
+   "deeper": "Together with the organelles it makes up the cytoplasm. Small molecules move through it by diffusion; large cargo is carried along the cytoskeleton by motor proteins.",
+   "expert": "Water is the main component, but the cytosol is far from pure water: it is crowded with proteins, so molecules move through it more slowly than through water. The share varies from cell to cell."
+  },
+  "facts": [
+   [
+    "Main component",
+    "water"
+   ],
+   [
+    "Contains",
+    "dissolved ions, small molecules and a high load of proteins"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ]
+  ]
+ },
+ {
+  "id": "cell_animal_cell_generic_nucleolus",
+  "title": "Nucleolus",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 5e-06,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nucleus",
+   "mitochondrion",
+   "cell_membrane"
+  ],
+  "summary": "A dense spot inside the nucleus where the parts of ribosomes are made.",
+  "layers": {
+   "basics": "The nucleolus is a darker patch inside the nucleus. It is where the cell makes the parts that ribosomes are built from, the machines that read instructions and build proteins. It has no membrane of its own.",
+   "deeper": "Its genes for ribosomal RNA sit here, and the RNA is joined with proteins into the two halves of ribosomes, which then leave the nucleus. A cell that makes a lot of protein usually has a larger nucleolus. A textbook figure puts it at about a tenth of the size of the nucleus.",
+   "expert": "Many human cells have more than one nucleolus; some cells have one large one."
+  },
+  "facts": [
+   [
+    "Size",
+    "about a tenth of the nucleus (a textbook figure; the page does not say whether across or by volume)"
+   ],
+   [
+    "Made of",
+    "DNA, RNA and protein"
+   ],
+   [
+    "Membrane",
+    "none"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Why do some cells hold several nucleoli and others one?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "4.3",
+    "4-3-eukaryotic-cells"
+   ]
+  ]
+ }
+]

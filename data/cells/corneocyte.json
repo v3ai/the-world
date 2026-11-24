@@ -1,0 +1,223 @@
+{
+ "id": "corneocyte",
+ "name": "Corneocyte (dead skin cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_corneocyte",
+ "blurb": "A dead cell of the skin's outer layer: a wide, paper-thin six-sided scale with no nucleus, packed solid with keratin and wrapped in a tough protein shell.",
+ "note": "Model: a human corneocyte from the outer layer of the skin of the forearm, cut through its thickness. Measured in human skin: the area of the cell (from forearm cells lifted with tape), the thickness of the whole outer layer, its number of cell layers, the thickness of the protein shell and the fact that nucleus and organelles are gone. Illustrative: the thickness drawn for this one cell (only a range is known), the six-sided outline, the number of rivets between cells, the felt drawn for the keratin filling (each strand stands for many filaments of about 10 nm), and the colours. The cut is taken through its plane, so the whole filled scale is seen from above; three cells of the layer beneath show faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 42,
+  "height_um": 0.8,
+  "taper": 1,
+  "irregularity": 0.12,
+  "round_um": 0.2,
+  "apical": "none",
+  "hollow": 0,
+  "neighbours": 1,
+  "desmosomes": 120
+ },
+ "dimensions": {
+  "area": {
+   "value": 1148,
+   "range": [
+    695,
+    1148
+   ],
+   "unit": "um2",
+   "measured": true,
+   "source": "evora2023",
+   "note": "projected area of forearm corneocytes by atomic force microscopy (mean 1148 ± 231 µm², 10 young adults, 5 cells each); the range runs from the cheek (695 µm²) to the forearm; cells from the extracted protein shell alone measured 780 µm² on the forearm"
+  },
+  "width": {
+   "value": 42,
+   "unit": "um",
+   "measured": true,
+   "calc": "a regular six-sided cell of 1148 µm² is 42 µm from corner to corner (area = 0.6495 x width²); a circle of the same area is 38 µm across",
+   "source": "evora2023",
+   "compare": "10 to 30 µm wide in a general statement in the discussion of evora2025, citing earlier papers; about 30 µm long and wide (suetterlin2017); the sources differ by site and method"
+  },
+  "thickness": {
+   "value": 0.8,
+   "range": [
+    0.2,
+    1.0
+   ],
+   "unit": "um",
+   "measured": false,
+   "calc": "only a range is stated (0.2 to 1.0 µm, a general statement in evora2025; under 1 µm, suetterlin2017). The drawn 0.8 µm lies in it and is near the outer layer's 18.3 µm divided by about 20 cell layers (0.9 µm, which also counts the lipid between the cells)",
+   "note": "illustrative: the value drawn for this cell"
+  },
+  "volume": {
+   "value": 918,
+   "unit": "um3",
+   "measured": false,
+   "calc": "measured area 1148 µm² x drawn thickness 0.8 µm; the thickness is illustrative, so the volume is too"
+  },
+  "layer_thickness": {
+   "value": 18.3,
+   "range": [
+    11.0,
+    18.3
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "sandby2003",
+   "note": "thickness of the whole outer layer: 18.3 ± 4.9 µm on the dorsal forearm, 14.9 µm at the buttock and 11.0 µm at the shoulder (71 volunteers); the layer holds usually 15 to 30 cell layers (openstax_skin)",
+   "also": "openstax_skin"
+  },
+  "envelope_thickness": {
+   "value": 35,
+   "range": [
+    10,
+    50
+   ],
+   "unit": "nm",
+   "measured": false,
+   "source": "evora2025",
+   "note": "illustrative: the sources differ. About 15 nm (10 to 20 nm) by electron microscopy, a protein layer of about 10 nm plus about 5 nm of bound lipid (Jarnik 1998, seen in a search result only, not opened); 20 to 50 nm in one general sentence of the discussion of an atomic force microscopy paper, which cites another paper and gives no body site for it (evora2025). The 35 nm drawn is the middle of the AFM range, not a measurement"
+  }
+ },
+ "nucleus": {
+  "count": 0,
+  "note": "A corneocyte has no nucleus: the nucleus breaks up as the cell dies on the way to the outer layer.",
+  "source": "openstax_skin"
+ },
+ "organelles": {
+  "absent": [
+   "nucleus",
+   "mitochondria",
+   "endoplasmic reticulum",
+   "Golgi apparatus",
+   "ribosomes"
+  ],
+  "absent_source": "openstax_skin"
+ },
+ "special": [
+  {
+   "kind": "desmosomes",
+   "part": "desmosome",
+   "source": "haftek2022",
+   "note": "Corneodesmosomes, the rivets that remain from the desmosomes of the living cell, hold neighbouring corneocytes together, at the cell's edges and between layers; they are broken down in the last step before cells flake off (haftek2022). 120 are drawn round the edge, an illustrative number; no count per cell was found."
+  },
+  {
+   "kind": "lipid_matrix",
+   "part": "lipids",
+   "source": "openstax_skin",
+   "note": "Between the cells lies a sealing lipid; it is released from lamellar bodies while the cells are still alive (openstax_skin). The mixture in the gaps (mostly ceramides, cholesterol and free fatty acids) differs from the lamellar-body contents. Not drawn as layers: the gaps between cells are only a few tens of nanometres, too thin to show."
+  },
+  {
+   "kind": "keratin_matrix",
+   "part": "keratin",
+   "params": {
+    "texture_um": 6
+   }
+  }
+ ],
+ "cut": "The cell is cut through its thickness: a long thin slab, a sliver under a micrometre tall and some 42 µm wide, with no nucleus or organelles, filled with keratin filaments; the protein shell runs round the edge, and rivets (corneodesmosomes) join it to the cells above and beside it, which show faintly. The cut face is the keratin filling seen from above.",
+ "colours": {
+  "convention": "The shell pale peach, the inside straw yellow for keratin, rivets brown, the neighbours faint. All of these colours are a code; none is the real colour of the cell, which is nearly clear.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Protein shell (cornified envelope)",
+   "card": "cell_corneocyte_envelope",
+   "material": "protein",
+   "source": "evora2025"
+  },
+  "keratin": {
+   "name": "Keratin filling",
+   "card": "cell_corneocyte_keratin",
+   "material": "keratin",
+   "source": "hoober2022"
+  },
+  "desmosome": {
+   "name": "Corneodesmosome (rivet between cells)",
+   "card": null,
+   "material": "desmosome",
+   "source": "haftek2022",
+   "about": "A corneodesmosome is what is left of a desmosome after the cell has died. It rivets a corneocyte to its neighbours and is the main link that keeps the outer layer in one piece. Near the surface, enzymes cut the rivets and the cells come away as flakes."
+  },
+  "lipids": {
+   "name": "Sealing lipid between cells",
+   "card": "cell_corneocyte_lipids",
+   "material": "lamellar_body",
+   "source": "openstax_skin",
+   "about": "The lamellar bodies are where this lipid is made, in the living cells below. The lipid that fills the gaps between the dead cells is a different mixture, mostly ceramides, cholesterol and free fatty acids, with almost no phospholipid. A double click goes on down to the lamellar body's lipid, a stand-in."
+  },
+  "neighbour": {
+   "name": "Neighbouring corneocyte",
+   "card": "cell_corneocyte",
+   "material": "keratin"
+  }
+ },
+ "reached": {
+  "materials": [
+   "corneocytes"
+  ],
+  "tissue": [
+   {
+    "kind": "epithelium",
+    "id": "stratum_corneum"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 26,
+  "r1_m": 0.0004,
+  "arrive_m": 6e-05,
+  "spawn_m": 1.5e-06
+ },
+ "about": [
+  "A corneocyte is a skin cell in its last form. It began as a living keratinocyte deep in the skin; as it rose, its nucleus and organelles broke up and its inside filled with keratin. The cell here is drawn as a six-sided scale 42 µm across, which is the size that fits the measured area of forearm cells (1148 µm²). Its volume as drawn is {drawn.cellVolume} µm³, worked out from that area and a thickness of 0.8 µm.",
+  "Its thickness is the least certain number: only the range of 0.2 to 1.0 µm was found, so the 0.8 µm here is illustrative. The whole outer layer on the forearm is 18.3 µm thick and holds roughly 15 to 30 stacked cells. The nucleus count drawn is {drawn.nuclei}, and {drawn.desmosomes} rivets between cells are drawn.",
+  "Not drawn: the separate lipid layers between the cells, the fine ridges on the cell's surface, how the edges of neighbouring cells overlap and interlock, and the water held inside. The whole layer is replaced in about 4 weeks."
+ ],
+ "sources": {
+  "evora2023": {
+   "cite": "Évora AS, Zhang Z, Johnson SA, Adams MJ (2023) Characterisation of topographical, biomechanical and maturation properties of corneocytes with respect to anatomical location, Skin Res Technol 29:e13507",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10591027/",
+   "opened": "2026-11-23",
+   "used_for": "projected area of corneocytes from five body sites by atomic force microscopy: forearm 1148.3 ± 230.8 µm², cheek 695.3 ± 97.4 µm²; 10 healthy adults (six men, four women, ages given as 24 to 29); cells lifted with tape"
+  },
+  "evora2025": {
+   "cite": "Évora AS, Zhang Z, Johnson SA, Zhang Z, Adams MJ (2025) Atomic force microscope protocols for characterising the elastoviscoplastic biomechanical properties of corneocytes, Commun Biol 8:1747",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12678835/",
+   "opened": "2026-11-23",
+   "used_for": "flat dead cells without nucleus or organelles; thickness 0.2 to 1.0 µm and width 10 to 30 µm (a general statement in the discussion, citing earlier papers); cornified envelope 20 to 50 nm thick (one general sentence in the discussion, citing another paper, no body site; older electron microscopy gives about 15 nm)"
+  },
+  "suetterlin2017": {
+   "cite": "Sütterlin T, Tsingos E, Bensaci J, Stamatas GN, Grabe N (2017) A 3D self-organizing multicellular epidermis model of barrier formation and hydration with realistic cell morphology based on EPISIM, Sci Rep 7:43472",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5338006/",
+   "opened": "2026-11-23",
+   "used_for": "corneocytes typically about 30 µm in length and width and under 1 µm in height (a figure it attributes to another study)"
+  },
+  "sandby2003": {
+   "cite": "Sandby-Møller J, Poulsen T, Wulf HC (2003) Epidermal thickness at different body sites: relationship to age, gender, pigmentation, blood content, skin type and smoking habits, Acta Derm Venereol 83:410-413",
+   "url": "https://europepmc.org/article/MED/14690333",
+   "opened": "2026-11-23",
+   "used_for": "abstract: outer layer 18.3 (SD 4.9) µm on the dorsal forearm, 11.0 µm shoulder, 14.9 µm buttock; 71 volunteers"
+  },
+  "openstax_skin": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 5.1 Layers of the Skin",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin",
+   "opened": "2026-11-23",
+   "used_for": "usually 15 to 30 layers of cells; the cells are dead; nuclei and organelles break up as cells die; the layer is replaced in about 4 weeks; lamellar bodies release lipid that forms a water barrier"
+  },
+  "hoober2022": {
+   "cite": "Hoober JK, Eggink LL (2022) The Discovery and Function of Filaggrin, Int J Mol Sci 23:1455",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8835998/",
+   "opened": "2026-11-23",
+   "used_for": "filaggrin binds keratin filaments and collapses the cytoplasm into the main part of the flattened corneocytes; its breakdown gives amino acids that help hold water"
+  },
+  "haftek2022": {
+   "cite": "Haftek M, Oji V, Feldmeyer L, Hohl D, Hadj-Rabia S, Abdayem R (2022) The Fate of Epidermal Tight Junctions in the stratum corneum, Int J Mol Sci 23:7486",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9267462/",
+   "opened": "2026-11-23",
+   "used_for": "corneodesmosomes at the cell edges and between layers as the main link between cells; cross-linking of the cell envelope by transglutaminases; lamellar lipids released into the gaps"
+  }
+ }
+}

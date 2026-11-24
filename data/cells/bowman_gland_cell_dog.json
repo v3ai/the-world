@@ -1,0 +1,245 @@
+{
+ "id": "bowman_gland_cell_dog",
+ "name": "Bowman's gland cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_bowman_gland_cell_dog",
+ "blurb": "A mucus-making cell from a gland under the dog's smell lining: a small pyramid with its pointed end toward the gland's narrow channel, its nucleus low down and its upper part filled with secretion granules.",
+ "note": "Model: a secretory cell of a Bowman's gland in the nose of a dog (Canis lupus familiaris), cut in half. Measured, but in other species: the cell's size range and the width of the gland it belongs to (human), the round nucleus in the lower half, the pyramid shape and the narrow central channel (human, sheep), and the large secretion granules and the organelles that make them (rat). Measured in the dog itself: only that the glands lie under the smell lining. Illustrative: the exact outline, the nucleus size, the number and size of the granules and mitochondria, the Golgi stack and the colours. The cells beside it are drawn faintly. No measurement of a dog Bowman's gland cell was found, so every size is a stand-in from another species or is made up.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 8,
+  "height_um": 9,
+  "taper": 0.55,
+  "irregularity": 0.12,
+  "round_um": 0.7,
+  "apical": "none",
+  "apical_um": 0,
+  "neighbours": 1,
+  "desmosomes": 0
+ },
+ "dimensions": {
+  "cell_size": {
+   "value": 8.5,
+   "range": [
+    7,
+    10
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "the middle of the 7 to 10 µm given for the secretory cells; the report does not say whether this is height or width",
+   "source": "pafmj",
+   "note": "measured in human olfactory mucosa under the light microscope, not in the dog; used here as a stand-in"
+  },
+  "acinus_diameter": {
+   "value": 22.5,
+   "range": [
+    20,
+    25
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "the middle of the 20 to 25 µm range",
+   "source": "pafmj",
+   "note": "the round end-piece of the gland as cut across, human, 20 autopsy cases; not drawn whole, only as faint neighbours"
+  },
+  "olfactory_epithelium_thickness": {
+   "value": 72.5,
+   "unit": "um",
+   "measured": true,
+   "source": "kavoi2010",
+   "note": "the smell lining above the gland in adult dogs: 72.5 ± 2.9 µm. The gland lies below this lining, in the layer under it, and its channel runs up through it"
+  },
+  "height": {
+   "value": 9,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: drawn inside the measured 7 to 10 µm range"
+  },
+  "base_width": {
+   "value": 8,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative"
+  },
+  "taper": {
+   "value": 0.55,
+   "unit": "fraction",
+   "measured": false,
+   "note": "illustrative: the width of the pointed end over the width of the base. Only the pyramid shape is measured (human, sheep), not how sharp it is"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": [
+   4.5,
+   4.5,
+   4.5
+  ],
+  "position": "basal",
+  "nucleoli": 1,
+  "source": "pafmj",
+  "note": "One round nucleus lies in the lower, wide half of the cell, away from the channel: measured in human glands (pafmj) and sheep glands (sheep2014). Its size is illustrative."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.04,
+    "measured": false,
+    "note": "illustrative; mitochondria are seen in these cells in rat (uraih1990) but their share was not measured in anything read"
+   },
+   "size_um": [
+    1.0,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 150,
+   "position": "any"
+  },
+  "granules": {
+   "count": {
+    "value": 60,
+    "measured": false,
+    "note": "illustrative; the granules are described as large and numerous in rat (uraih1990) but not counted"
+   },
+   "size_um": {
+    "value": 0.6,
+    "measured": false,
+    "note": "illustrative; no diameter was found"
+   },
+   "position": "apical",
+   "max_drawn": 300
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative; a Golgi stack packs the product into granules (anp32)"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum and ribosomes, where the proteins are made",
+   "the concentric folded smooth endoplasmic reticulum seen in rat cells",
+   "the brownish granules low in the cell seen in sheep glands",
+   "the junctions that seal neighbouring cells, and any cells other than the secretory kind",
+   "the duct cells and the long channel that carries the mucus up through the lining"
+  ]
+ },
+ "special": [
+  {
+   "kind": "channel",
+   "part": "granule",
+   "params": {},
+   "source": "sheep2014",
+   "note": "The cells of one gland end ring around a narrow central channel (lumen) that joins a duct. The duct climbs through the smell lining and opens on its surface (sheep2014, uraih1990). Here the pointed end of the cell is its end toward that channel; the channel and duct are not drawn."
+  }
+ ],
+ "cut": "A cut through the middle of one pyramid-shaped cell: the round nucleus with its nucleolus low in the wide half, a Golgi stack beside it, mitochondria between, and pale round secretion granules packed in the narrow upper half, next to the channel of the gland. Faint neighbouring cells show behind.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; nucleus violet; Golgi gold; mitochondria orange; secretion granules pale straw. None of these is a real colour: all are a code.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins. In a gland cell the lower part is busy making the product and the upper part is full of it.",
+   "source": "anp42"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "source": "pafmj"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "granule": {
+   "name": "Secretion granule",
+   "card": "cell_bowman_gland_cell_dog_granule",
+   "material": "protein",
+   "source": "uraih1990"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane",
+   "source": "anp32"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "uraih1990"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_olfactory_epithelium",
+    "structure": "gland"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 9,
+  "r1_m": 0.00015,
+  "arrive_m": 2.5e-05,
+  "spawn_m": 6e-07
+ },
+ "about": [
+  "The cell drawn here is a six-sided pyramid {drawn.cellVolume} µm³ in volume, 9 µm tall and 8 µm wide at the base. Its size is a stand-in: a report on human glands gives 7 to 10 µm for these cells, and no one seems to have measured them in the dog. The pyramid shape and the round nucleus in its lower half are described for human and sheep glands.",
+  "Bowman's glands lie in the layer under the smell lining. Each is a small branching tube whose end-pieces, about 20 to 25 µm across in people, are rings of cells round a narrow channel; a duct carries the mucus up through the lining to its surface. The pointed end of each cell faces that channel and is where the product leaves. The lining above the gland is about 72 µm thick in an adult dog.",
+  "The cell is a factory for one product. Proteins made in the lower part are sorted and packed by the Golgi stack into granules, which gather in the upper part and open into the channel when released. The product of these glands is mucus-like and, in other mammals, includes the mucin MUC5B (not measured in the dog); the granule and nucleolus are shown with protein and RNA stand-in materials; whether it is serous, mucous or both is still argued. {drawn.granules} granules are drawn, an illustrative number, as are {drawn.mitochondria} mitochondria; the cell would hold about {drawn.mitochondriaWanted} at the illustrative share.",
+  "Not drawn: the rough endoplasmic reticulum and its ribosomes, the folded smooth endoplasmic reticulum, the ducts, the junctions between cells, and the cells of other kinds that share the gland."
+ ],
+ "sources": {
+  "pafmj": {
+   "cite": "A histological study of Bowman's glands in human olfactory mucosa. Pakistan Armed Forces Medical Journal (20 autopsy cases, 2001 to 2003; abstract page)",
+   "url": "https://pafmj.org/index.php/PAFMJ/article/view/101",
+   "opened": "2026-11-23",
+   "used_for": "human: acini 20 to 25 µm across; pyramidal secretory cells 7 to 10 µm; round dark nuclei in the basal half; ducts reach the surface"
+  },
+  "sheep2014": {
+   "cite": "Histological and lectin histochemical studies on the olfactory and respiratory mucosae of the sheep. J Vet Med Sci 76:339 (2014)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4013359",
+   "opened": "2026-11-23",
+   "used_for": "sheep: acini of pyramidal cells with basal round or oval nuclei round a narrow lumen; ducts run up through the lining; mucus stains in the upper cytoplasm; brownish granules low in the cell"
+  },
+  "uraih1990": {
+   "cite": "Uraih LC, Maronpot RR (1990) Normal histology of the nasal cavity and application of special techniques. Environ Health Perspect 85:187 (Europe PMC full text)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1568325",
+   "opened": "2026-11-23",
+   "used_for": "rat: Bowman's glands are simple tubulo-alveolar glands with ducts through the lining; large secretory granules and concentric smooth endoplasmic reticulum are prominent; mitochondria present"
+  },
+  "kavoi2010": {
+   "cite": "Kavoi B, Makanya A, Hassanali J, Carlsson HE, Kiama S (2010) Comparative functional structure of the olfactory mucosa in the domestic dog and sheep. Ann Anat 192:329 (abstract via Europe PMC)",
+   "url": "https://doi.org/10.1016/j.aanat.2010.07.004",
+   "opened": "2026-11-23",
+   "used_for": "dog: the smell mucosa holds Bowman's glands in the layer under it; the lining is 72.5 ± 2.9 µm thick"
+  },
+  "anp32": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 3.2 The Cytoplasm and Cellular Organelles",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles",
+   "opened": "2026-11-23",
+   "used_for": "rough ER makes proteins for export; the Golgi sorts and packs them into vesicles that fuse with the cell surface"
+  },
+  "anp42": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 4.2 Epithelial Tissue",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-2-epithelial-tissue",
+   "opened": "2026-11-23",
+   "used_for": "epithelial cells have an apical and a basal side with organelles sorted between them; exocrine glands send products through ducts; merocrine release by exocytosis; serous and mucous kinds"
+  }
+ }
+}

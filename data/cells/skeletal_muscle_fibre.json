@@ -1,0 +1,77 @@
+{
+ "id": "skeletal_muscle_fibre",
+ "name": "Skeletal muscle fibre",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "skeletal_muscle_fiber",
+ "blurb": "One human skeletal muscle cell: a cylinder about 56 µm thick and centimetres long, with hundreds of nuclei under its membrane and packed with striped myofibrils.",
+ "note": "Model: a 0.4 mm piece of one human thigh-muscle fibre (vastus lateralis), a window cut into its front. Measured in human muscle: its thickness, the number of nuclei per millimetre, the lengths of the sarcomere's filaments and the share of mitochondria. Illustrative: the size and shape of each nucleus, where the mitochondria lie, the colours, and the length (a fibre goes on for centimetres; the ends are breaks). The T-tubules and the sarcoplasmic reticulum are not drawn.",
+ "shape": {
+  "type": "fibre",
+  "diameter_um": 55.9,
+  "drawn_length_um": 400,
+  "window_um": 120,
+  "sarcomere_um": 2.6,
+  "thick_um": 1.65,
+  "thin_um": 1.28,
+  "myofibril_um": 1.2,
+  "nuclei_per_mm": 154,
+  "nucleus_position": "peripheral"
+ },
+ "dimensions": {
+  "diameter": { "value": 55.9, "unit": "um", "measured": true, "calc": "the diameter of a circle of the measured mean cross-sectional area, 2453 µm²", "source": "hansson2020", "note": "men aged 20 to 29, vastus lateralis" },
+  "diameter_max": { "value": 100, "unit": "um", "measured": true, "source": "openstax_muscle", "note": "fibres can be up to 100 µm across" },
+  "length_max": { "value": 300000, "unit": "um", "measured": true, "source": "openstax_muscle", "note": "fibres can be up to 30 cm long" },
+  "sarcomere": { "value": 2.6, "range": [2.38, 2.94], "unit": "um", "measured": false, "source": "gokhin2012", "note": "a length chosen inside the range of optimal sarcomere lengths calculated for human muscles; a sarcomere shortens and lengthens as the muscle works" },
+  "thick_filament": { "value": 1.65, "unit": "um", "measured": true, "source": "gokhin2012" },
+  "thin_filament": { "value": 1.28, "range": [1.19, 1.37], "unit": "um", "measured": true, "source": "gokhin2012", "note": "the middle of the measured range of human thin-filament lengths" },
+  "myofibril": { "value": 1.2, "unit": "um", "measured": true, "source": "openstax_muscle", "note": "about 1.2 µm across" }
+ },
+ "nucleus": {
+  "count": 62,
+  "per_mm": { "value": 154, "range": [148, 161], "unit": "1/mm", "measured": true, "source": "hansson2020", "note": "mean and 95% confidence interval, men aged 20 to 29" },
+  "domain_pL": { "value": 16, "unit": "pL", "measured": true, "source": "hansson2020", "note": "the volume of fibre served by one nucleus" },
+  "size_um": { "value": [10, 4, 2], "unit": "um", "measured": false, "note": "length, width and depth of a flattened nucleus: illustrative" },
+  "position": "peripheral",
+  "position_source": "openstax_muscle",
+  "nucleoli": 0
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.0978, "range": [0.0865, 0.1091], "measured": true, "source": "zoladz2022", "note": "9.78 ± 1.13% of fibre volume, gastrocnemius of untrained young men (another leg muscle)" }, "size_um": [1.0, 0.3], "size_measured": false, "max_drawn": 1800 },
+  "not_drawn": ["T-tubules", "sarcoplasmic reticulum", "glycogen", "myoglobin"]
+ },
+ "special": [
+  { "kind": "striation", "params": { "bands": ["Z line", "I band", "A band", "H zone", "M line"] }, "source": "gokhin2012", "note": "the bands drawn from the filament lengths: A band = thick filament length; H zone = sarcomere minus twice the thin filament; faded where a sarcomere is under a few pixels" },
+  { "kind": "window", "params": { "length_um": 120 }, "note": "a window cut into the front half shows the myofibrils lying lengthwise; the cut ends show them end on" }
+ ],
+ "cut": "A window in the front of the fibre: under the membrane the myofibrils lie side by side along the fibre, each banded at the same places, which is what makes the whole fibre striped. At the ends of the window and of the piece they are seen end on, as dots. Nuclei lie just under the membrane all round.",
+ "colours": {
+  "convention": "Myofibrils and sarcoplasm in muscle reds, the bands darker and lighter as in a stained section; nuclei violet; mitochondria orange; the membrane a clear film. The red of muscle is real (myoglobin); the shades of the bands and the other colours are a code.",
+  "true_colour": ["sarcoplasm"]
+ },
+ "parts": {
+  "sarcolemma": { "name": "Cell membrane (sarcolemma)", "card": "cell_membrane", "material": "membrane" },
+  "myofibril": { "name": "Myofibril", "card": "sarcomere", "material": "myofibril" },
+  "sarcomere": { "name": "Sarcomere", "card": "sarcomere", "material": "myofibril" },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" }
+ },
+ "reached": {
+  "materials": ["skeletal_muscle_fibre"],
+  "tissue": [{ "kind": "skeletal", "id": "skeletal_muscle_fiber" }]
+ },
+ "view": { "radius_um": 260, "r1_m": 1.6e-3, "arrive_m": 2.3e-4, "spawn_m": 2e-6,
+  "break": { "text": "The fibre goes on: whole fibres are centimetres long, up to 30 cm", "text_short": "The fibre goes on" } },
+ "about": [
+  "One muscle cell, about {drawn.drawnLength} µm of it. Its thickness, 56 µm, is that of a circle of the mean cross-section measured in the thigh muscle of men in their twenties (2453 µm²). Whole fibres are centimetres long.",
+  "It has many nuclei, all just under its membrane: {drawn.nucleiWanted} in this piece, from the measured 154 per millimetre (each looks after about 16 picolitres of the fibre); those that lay where the window is were cut away with it.",
+  "Inside, myofibrils 1.2 µm across fill the cell (about {drawn.myofibrilsInSection} in a cross-section of this size). Each is a chain of sarcomeres; the stripes are where thick myosin filaments (1.65 µm) and thin actin filaments (about 1.3 µm) overlap.",
+  "Mitochondria take up about 10% of the fibre's volume: about {drawn.mitochondriaWanted} would lie in the floor of the window, and {drawn.mitochondria} of them are drawn. Their places between the myofibrils are illustrative."
+ ],
+ "sources": {
+  "hansson2020": { "cite": "Hansson KA, Eftestøl E, Bruusgaard JC et al. (2020) Myonuclear content regulates cell size with similar scaling properties in mice and humans, Nat Commun 11:6288", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7722898/", "opened": "2026-11-23", "used_for": "vastus lateralis of men aged 20-29: fibre cross-section 2453 µm², 154 myonuclei per mm (95% CI 148-161), myonuclear domain 16 pL" },
+  "gokhin2012": { "cite": "Gokhin DS, Kim NE, Lewis SA, Hoenecke HR, D'Lima DD, Fowler VM (2012) Thin-filament length correlates with fiber type in human skeletal muscle, Am J Physiol Cell Physiol 302:C555", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3287155/", "opened": "2026-11-23", "used_for": "thick filament 1.65 µm; human thin filaments 1.19 ± 0.08 to 1.37 ± 0.04 µm; optimal sarcomere lengths 2.38-2.94 µm" },
+  "zoladz2022": { "cite": "Zoladz JA, Majerczak J, Galganski L et al. (2022) Endurance training increases the running performance of untrained men without changing the mitochondrial volume density in the gastrocnemius muscle, Int J Mol Sci 23:10843", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9503714/", "opened": "2026-11-23", "used_for": "mitochondrial volume density 9.78 ± 1.13% before training" },
+  "openstax_muscle": { "cite": "OpenStax Anatomy and Physiology 2e, 10.2 Skeletal Muscle", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle", "opened": "2026-11-23", "used_for": "fibres up to 100 µm across and up to 30 cm long; many nuclei under the sarcolemma; myofibrils about 1.2 µm across; sarcomere about 2 µm" }
+ }
+}

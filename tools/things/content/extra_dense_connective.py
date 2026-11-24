@@ -1,5 +1,6 @@
 # Writes data/things/tissues/dense_connective.json and data/nodes/tissue_dense_connective.json.  Run from the repo root.
 import json, math
+import tissue_material as TM
 S = {  # sizes in micrometres; see .devtools/notes/tissues/dense_connective.md for sources
     'fascicle_w': 288, 'fibre_d': 22, 'pitch': 32, 'crimp_len': 100, 'crimp_deg': 10, 'seg': 50,
     'tenocyte': [8, 27, 8], 'fibril_d': 0.2, 'elastic_d': 1.5, 'capillary_d': 10,
@@ -52,7 +53,7 @@ note = ('Schematic, not a micrograph. Drawn is a tendon-type arrangement: fibres
 scene = {'id': 'dense_connective', 'title': 'Dense connective tissue (tendon)', 'node': 'dense_connective_scene', 'tag': 'Inside a tendon', 'cell': 'animal',
  'blurb': 'A slice of one tendon bundle (fascicle): wavy collagen fibres lie side by side, with rows of flat fibroblasts, a few elastic fibres and little blood supply. Click a part.',
  'note': note, 'bg': '#f3efe6', 'center': [0, 10, 0], 'D_um': 420, 'labels': labels, 'populations': pops}
-json.dump(scene, open('data/things/tissues/dense_connective.json', 'w'), indent=1)
+json.dump(TM.apply(scene), open('data/things/tissues/dense_connective.json', 'w'), indent=1)
 
 def card(id, title, summary, basics, deeper, expert, facts, cert, oq=(), refs=(), parents=('dense_connective_scene',), related=(), ext=()):
     return {'id': id, 'title': title, 'kind': 'tissue', 'template': 'thing', 'scale_m': 0.001, 'area': 'bio_animals', 'parents': list(parents), 'parts': [], 'processes': [],

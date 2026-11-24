@@ -1,0 +1,361 @@
+{
+ "id": "cardiomyocyte",
+ "name": "Cardiac muscle cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_cardiomyocyte",
+ "blurb": "One human heart muscle cell: a striped cell about 140 µm long and 20 µm thick, usually with one nucleus in its middle, joined end to end to its neighbours by intercalated discs.",
+ "note": "Model: one human heart muscle cell (left ventricle), cut lengthwise. Measured in human heart: the length and thickness of the cell, the share of its volume taken by mitochondria, the share of cells with one nucleus, and the parts of the intercalated disc. Illustrative: the sarcomere and filament lengths drawn, the width of a myofibril, the size and shape of the nucleus, the size and places of the mitochondria, the colours, and the way the cell branches. The T-tubules, the sarcoplasmic reticulum, lipid droplets and glycogen are not drawn.",
+ "shape": {
+  "type": "fibre",
+  "diameter_um": 21,
+  "drawn_length_um": 141,
+  "window_um": 60,
+  "sarcomere_um": 2.0,
+  "thick_um": 1.6,
+  "thin_um": 1.0,
+  "myofibril_um": 1.0,
+  "nuclei_per_mm": 7,
+  "nucleus_position": "central",
+  "branched": 1,
+  "disc_spacing_um": 141
+ },
+ "dimensions": {
+  "length": {
+   "value": 141,
+   "range": [
+    110,
+    200
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "gerdes1992",
+   "also": "mcdonald2020",
+   "note": "141 ± 9 µm, left-ventricle cells isolated from three non-failing human donor hearts with normal coronary arteries",
+   "compare": "148 ± 10 µm in permeabilized myocyte preparations from human donor hearts (mcdonald2020)"
+  },
+  "diameter": {
+   "value": 21,
+   "range": [
+    17,
+    25
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "mcdonald2020",
+   "note": "cell width 21 ± 2 µm, permeabilized left-ventricle myocyte preparations from human donor hearts; a cell is not round in cross-section, and the drawn cylinder takes this width as its diameter",
+   "compare": "length ÷ width 7.5 ± 0.6 in isolated donor cells (gerdes1992), which gives about 19 µm"
+  },
+  "length_to_width": {
+   "value": 7.5,
+   "unit": "fraction",
+   "measured": true,
+   "source": "gerdes1992",
+   "note": "ratio of length to width, 7.5 ± 0.6 in cells from non-failing donor hearts"
+  },
+  "volume": {
+   "value": 48800,
+   "range": [
+    30000,
+    60000
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "mcdonald2020",
+   "also": "gerdes1992",
+   "calc": "the volume of a cylinder 141 µm long and 21 µm across: π/4 × 21² × 141",
+   "compare": "50,564 ± 7,398 µm³ measured in human cardiomyocytes aged 10 to 20 years, n = 7 (mollova2013)",
+   "note": "the cell is not an exact cylinder, so this is an estimate of the order of size"
+  },
+  "sarcomere": {
+   "value": 2.0,
+   "range": [
+    1.6,
+    2.4
+   ],
+   "unit": "um",
+   "measured": false,
+   "source": "crocini2021",
+   "note": "illustrative length of about 2 µm; the source review does not state the species, and human donor-cell experiments used 1.95 to 2.25 µm (mcdonald2020), which is not a resting length in a living cell; it shortens and lengthens with each beat"
+  },
+  "thick_filament": {
+   "value": 1.6,
+   "range": [
+    1.0,
+    2.0
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the thick filament lengths drawn are not taken from a source opened for heart"
+  },
+  "thin_filament": {
+   "value": 1.0,
+   "range": [
+    0.5,
+    2.0
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative"
+  },
+  "myofibril": {
+   "value": 1.0,
+   "range": [
+    0.3,
+    3.0
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative width of one myofibril in the cut"
+  },
+  "disc_spacing": {
+   "value": 141,
+   "range": [
+    110,
+    200
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "the cell's length: one intercalated disc at each end of a cell, so the discs lie one cell length apart along a chain of cells",
+   "source": "gerdes1992"
+  },
+  "mono_nucleated_share": {
+   "value": 0.7,
+   "range": [
+    0.6,
+    0.75
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "cm_review2026",
+   "also": "mollova2013",
+   "note": "about 70% of adult human heart muscle cells have one nucleus; 63.5 ± 2.2% at 10 to 20 years"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "ellipsoid",
+  "size_um": {
+   "value": [
+    14,
+    6,
+    6
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative length, width and depth of an oval nucleus lying along the cell"
+  },
+  "per_mm": {
+   "value": 7,
+   "range": [
+    5,
+    10
+   ],
+   "unit": "1/mm",
+   "measured": false,
+   "calc": "one nucleus in a cell about 141 µm long gives 1 ÷ 0.141 mm = 7 per mm; some cells have two",
+   "source": "gerdes1992",
+   "note": "worked out from the measured cell length and the usual single nucleus"
+  },
+  "nucleoli": 1,
+  "position": "central",
+  "source": "openstax_electrical",
+  "note": "Most cells have a single nucleus in the middle of the cell, between the myofibrils; a minority have two."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.279,
+    "range": [
+     0.2,
+     0.34
+    ],
+    "measured": true,
+    "source": "sulkin2014",
+    "note": "27.9% of the volume in one block of about 15 × 15 × 2.2 µm cut from a left-ventricle cell of one non-failing donor heart (a 55-year-old woman with a history of hypertension), measured by serial electron-microscope slices cut with an ion beam; the range 0.20 to 0.34 is a bracket, not a measurement"
+   },
+   "size_um": [
+    1.0,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 1500
+  },
+  "not_drawn": [
+   "T-tubules",
+   "sarcoplasmic reticulum",
+   "lipid droplets",
+   "glycogen"
+  ],
+  "not_drawn_note": "In the same human cell block, T-tubules took 1.8% of the volume and lipid droplets 1.9% (sulkin2014); they are left out of the picture."
+ },
+ "special": [
+  {
+   "kind": "intercalated_disc",
+   "part": "intercalated_disc",
+   "role": "membrane",
+   "params": {
+    "spacing_um": 141,
+    "types": [
+     "fascia adherens",
+     "desmosome",
+     "gap junction"
+    ]
+   },
+   "source": "pruna2020",
+   "also": "kleber2014",
+   "note": "At each end of the cell the membrane meets the next cell's in an intercalated disc. Three kinds of contact lie in it: adherens junctions that bind the ends of the myofibrils to the neighbour, desmosomes that anchor the intermediate filaments, and gap junctions that let ions pass so the cells beat together. The disc is drawn as one stepped band across the cell; the three contacts are not drawn one by one."
+  },
+  {
+   "kind": "branching",
+   "params": {
+    "branches": 1
+   },
+   "source": "openstax_cardiac",
+   "note": "Heart muscle cells are branched and join their neighbours at several ends; the number and angle of branches drawn are illustrative."
+  },
+  {
+   "kind": "central_nucleus",
+   "part": "nucleus",
+   "source": "openstax_electrical",
+   "note": "The nucleus lies in the middle of the cell, not under the membrane as in a skeletal fibre."
+  }
+ ],
+ "cut": "A lengthwise cut through the middle of the cell: the myofibrils lie side by side along the cell, each banded at the same places so the cell looks striped, with orange-brown mitochondria packed in the gaps between them and an oval nucleus in the centre of the cut. At the ends the cut passes through the stepped intercalated disc where this cell meets its neighbour.",
+ "colours": {
+  "convention": "Myofibrils and cytoplasm in muscle reds, the bands darker and lighter as in a stained section; nuclei violet; mitochondria orange; the intercalated disc a darker line; the membrane a clear film. The red of heart muscle is real (myoglobin); the other colours are a code.",
+  "true_colour": [
+   "sarcoplasm"
+  ]
+ },
+ "parts": {
+  "sarcolemma": {
+   "name": "Cell membrane (sarcolemma)",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "myofibril": {
+   "name": "Myofibril",
+   "card": "sarcomere",
+   "material": "myofibril"
+  },
+  "sarcomere": {
+   "name": "Sarcomere",
+   "card": "sarcomere",
+   "material": "myofibril"
+  },
+  "nucleus": {
+   "name": "Nucleus (central)",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "about": "Most heart muscle cells have one nucleus, in the middle of the cell; about seven in ten have one; most of the others have two, a few more, and many single nuclei hold extra copies of the DNA, which the drawing does not show.",
+   "source": "cm_review2026"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "intercalated_disc": {
+   "name": "Intercalated disc",
+   "card": "cell_cardiomyocyte_disc",
+   "material": "desmosome",
+   "about": "The disc holds three kinds of contact: adherens junctions, desmosomes and gap junctions. The material shown below is the desmosome only, one of the three; its proteins anchor intermediate filaments (in heart muscle cells these are not keratin).",
+   "source": "pruna2020"
+  },
+  "branch": {
+   "name": "Branch",
+   "card": null,
+   "material": "myofibril",
+   "about": "Heart muscle cells often fork. Each branch is part of the same cell, striped like the rest, and ends in its own intercalated disc where it meets the next cell; the branching knits the cells into a net that squeezes as one. Where the fork sits and its angle are illustrative."
+  }
+ },
+ "reached": {
+  "tissue": [
+   {
+    "kind": "cardiac",
+    "id": "cardiomyocyte"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 95,
+  "r1_m": 0.0006,
+  "arrive_m": 0.00016,
+  "spawn_m": 1.5e-06,
+  "break": {
+   "text": "The cell ends in an intercalated disc; the next cell begins",
+   "text_short": "An intercalated disc: the next cell begins"
+  }
+ },
+ "about": [
+  "One heart muscle cell from the left ventricle, {drawn.drawnLength} µm of it. Isolated cells from non-failing human hearts measured 141 µm long, about 7.5 times their width; permeabilized cell preparations from donor hearts were 21 µm across. A cylinder of that size holds about 49,000 µm³, close to the 50,600 µm³ measured in human heart muscle cells aged 10 to 20 years.",
+  "The cell has {drawn.nucleiWanted} nucleus in the piece drawn, near the middle. About seven in ten human heart muscle cells have one nucleus; most of the rest have two, a few more. Its size and shape are illustrative.",
+  "Myofibrils fill the cell and are striped like those of skeletal muscle. A sarcomere is drawn about 2 µm (illustrative; human donor-cell experiments used 1.95 to 2.25 µm), shorter than the 2.6 µm drawn for a skeletal fibre; the filament lengths and the myofibril width drawn are illustrative.",
+  "Mitochondria took about 28% of the volume in one block (about 15 × 15 × 2.2 µm) of one non-failing human left-ventricle cell: {drawn.mitochondriaWanted} would lie in the floor of the window, and {drawn.mitochondria} are drawn. Their size and places are illustrative.",
+  "The ends of the cell are intercalated discs, where it grips its neighbour and passes the heartbeat on. Three kinds of contact lie in them: adherens junctions for the pull of the myofibrils, desmosomes, and gap junctions for ions. They are drawn as one band, not each contact.",
+  "Not drawn: the T-tubules (1.8% of the volume in the human cell block measured), the sarcoplasmic reticulum, lipid droplets (1.9%) and glycogen. How far the cell branches in a real heart is also not measured here; the branching drawn is illustrative."
+ ],
+ "sources": {
+  "gerdes1992": {
+   "cite": "Gerdes AM, Kellerman SE, Moore JA, et al. (1992) Structural remodeling of cardiac myocytes in patients with ischemic cardiomyopathy, Circulation (abstract, PMID 1638711)",
+   "url": "https://europepmc.org/article/MED/1638711",
+   "opened": "2026-11-23",
+   "used_for": "length 141 ± 9 µm and length-to-width ratio 7.5 ± 0.6 in left-ventricle cells isolated from three non-failing human donor hearts"
+  },
+  "mcdonald2020": {
+   "cite": "McDonald KS, Hanft LM, Robinett JC, et al. (2020) Regulation of myofilament contractile function in human donor and failing hearts, Front Physiol",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7261867/",
+   "opened": "2026-11-23",
+   "used_for": "donor-heart myocyte preparations 148 ± 10 µm long and 21 ± 2 µm wide (n = 13); sarcomere working range 1.95 to 2.25 µm"
+  },
+  "sulkin2014": {
+   "cite": "Sulkin MS, Yang F, Holzem KM, et al. (2014) Nanoscale three-dimensional imaging of the human myocyte, J Struct Biol",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4295200/",
+   "opened": "2026-11-23",
+   "used_for": "in a block of a human non-failing left-ventricle myocyte: mitochondria 27.9%, A-bands 10.8%, lipid droplets 1.9%, T-tubules 1.8% of volume"
+  },
+  "mollova2013": {
+   "cite": "Mollova M, et al. (2013) Cardiomyocyte proliferation contributes to heart growth in young humans, Proc Natl Acad Sci USA",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3557060/",
+   "opened": "2026-11-23",
+   "used_for": "cell volume 50,564 ± 7,398 µm³ at 10 to 20 years (n = 7); 63.5 ± 2.2% mononucleated at 10 to 20 years"
+  },
+  "cm_review2026": {
+   "cite": "Mechanisms and Therapeutic Potential of Human Cardiomyocyte Proliferation (2026) J Cardiovasc Dev Dis (review)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12941982/",
+   "opened": "2026-11-23",
+   "used_for": "human heart muscle cells about 70% mononuclear"
+  },
+  "crocini2021": {
+   "cite": "Crocini C, Gotthardt M (2021) Cardiac sarcomere mechanics in health and disease, Biophys Rev (review)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8553709/",
+   "opened": "2026-11-23",
+   "used_for": "sarcomere length about 2 µm (species not stated; not used as a measured value); active tension falls above 2.2 µm"
+  },
+  "pruna2020": {
+   "cite": "Pruna M, Ehler E (2020) The intercalated disc: a mechanosensing signalling node in cardiomyopathy, Biophys Rev (review)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7429531/",
+   "opened": "2026-11-23",
+   "used_for": "three kinds of contact in the intercalated disc: adherens junctions linked to actin, desmosomes anchoring intermediate filaments, gap junctions for electrical coupling"
+  },
+  "kleber2014": {
+   "cite": "Kleber AG, Saffitz JE (2014) Role of the intercalated disc in cardiac propagation and arrhythmogenesis, Front Physiol (review)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4201087/",
+   "opened": "2026-11-23",
+   "used_for": "fascia adherens junctions and desmosomes join actin and intermediate filaments of adjacent cells; gap junctions and sodium and potassium channels also lie in the disc"
+  },
+  "openstax_cardiac": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 10.7 Cardiac Muscle Tissue",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-7-cardiac-muscle-tissue",
+   "opened": "2026-11-23",
+   "used_for": "cells striped and in sarcomeres, branched, shorter than skeletal fibres, many mitochondria; intercalated disc with desmosomes and gap junctions"
+  },
+  "openstax_electrical": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 19.2 Cardiac Muscle and Electrical Activity",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/19-2-cardiac-muscle-and-electrical-activity",
+   "opened": "2026-11-23",
+   "used_for": "a single central nucleus, sometimes two or more; T-tubules half as many as in skeletal muscle; sarcoplasmic reticulum stores few calcium ions; intercalated discs hold desmosomes and gap junctions"
+  }
+ }
+}

@@ -118,9 +118,7 @@
     "jitter": 0.1
    },
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   }
+   "material": "retinal_ganglion_cell_dog"
   },
   {
    "id": "bip",
@@ -154,7 +152,7 @@
     "jitter": 0.1
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "bipolar_cell_dog"
   },
   {
    "id": "rods",
@@ -1374,7 +1372,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "cone_cell_dog"
   },
   {
    "id": "rpe",
@@ -1401,7 +1399,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "rpe_cell_dog"
   },
   {
    "id": "tap",
@@ -1435,7 +1433,7 @@
     "jitter": 0.03
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "tapetal_cell_dog"
   },
   {
    "id": "choroid",
@@ -1462,7 +1460,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "choroid_cells_dog"
   },
   {
    "id": "sclera",

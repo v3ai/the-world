@@ -1,0 +1,68 @@
+{
+ "id": "adipocyte",
+ "name": "White fat cell (adipocyte)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_adipocyte",
+ "blurb": "A human white fat cell: a round cell almost entirely filled by one droplet of fat, with a thin rim of living cytoplasm and a flattened nucleus pressed against the edge.",
+ "note": "Model: a white fat cell of a lean adult human, cut through its middle. Measured in humans: its width, and (in mouse and human fat together) the share of the cell taken by the fat droplet. Worked out from these: the cell and droplet volumes and the average thickness of the rim. Illustrative: the nucleus size and its exact place at the edge, the one nucleolus, the colours, the thickness drawn for the membrane, and every structure listed as not drawn. Other animals' fat cells, and the same cell in an obese person, differ in size.",
+ "shape": { "type": "ellipsoid", "a_um": 78, "b_um": 78, "c_um": 78, "bumps": 0.04 },
+ "dimensions": {
+  "diameter": { "value": 78, "range": [20, 300], "unit": "um", "measured": true, "source": "frontiers2022", "calc": "chosen inside the reported mean of 75 to 80 µm for lean people", "compare": "50 to 200 µm in normal adults and 90 to 270 µm in obese adults (mmegias); a plateau near 120 µm in severe obesity (frontiers2022)", "note": "the range runs from the smallest reported, 20 µm, up to the 'several hundred' reported; the sizes differ between fat depots and with body fat" },
+  "volume": { "value": 248500, "unit": "um3", "measured": false, "calc": "a sphere of 78 µm across: 4/3 x pi x 39³; about 0.25 nanolitres. Real cells are not perfect spheres, and size and volume were not compared directly in the sources.", "source": "frontiers2022" },
+  "droplet_volume_fraction": { "value": 0.9, "range": [0.8, 0.95], "unit": "fraction", "measured": true, "source": "unilocular2022", "note": "'about 90%' for the single large droplet of white fat cells; the paper covers mice and humans together and gives no range, so the range here is illustrative" },
+  "droplet_diameter": { "value": 75.3, "unit": "um", "measured": false, "calc": "a sphere holding 90% of the volume of a 78 µm sphere: 78 x 0.9^(1/3)", "source": "unilocular2022" },
+  "rim_thickness": { "value": 1.35, "unit": "um", "measured": false, "calc": "(78 - 75.3) / 2: the average thickness if the droplet sat in the middle of the cell. In life the rim is uneven, thicker where the nucleus lies, and this number is not measured." }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "flat",
+  "size_um": { "value": [14, 4, 14], "unit": "um", "measured": false, "note": "illustrative: a flat lens, thin in the direction away from the cell centre; the sources say the nucleus is flattened and pressed to the edge but give no size" },
+  "position": "peripheral",
+  "position_source": "histologyguide",
+  "nucleoli": 1,
+  "source": "histologyguide",
+  "note": "One nucleus, pressed against the membrane by the droplet (a fetal specimen, subcutaneous tissue; the textbook figure says the nucleus lies very close to the cell membrane)."
+ },
+ "organelles": {
+  "lipid_droplets": { "count": { "value": 1, "measured": true, "source": "openstax_ct", "note": "white fat cells store their fat as a single large drop" }, "size_um": { "value": 75.3, "measured": false, "calc": "see droplet_diameter" }, "position": "any", "max_drawn": 1, "source": "unilocular2022" },
+  "not_drawn": ["mitochondria (in the thin rim)", "endoplasmic reticulum", "Golgi apparatus", "caveolae on the membrane", "the perilipin coat of the droplet", "the vimentin cage round the droplet", "the external lamina", "the small blood vessels beside the cell"],
+  "not_drawn_source": "histologyguide"
+ },
+ "special": [
+  { "kind": "unilocular_droplet", "part": "lipid_droplet", "params": { "volume_fraction": 0.9 }, "source": "unilocular2022", "note": "The fat is held in one droplet that takes about 90% of the cell; it can exceed 100 µm in a large cell (fujimoto2011). The droplet is drawn as one sphere with the rest of the cell as a thin rim round it." },
+  { "kind": "droplet_surface", "part": "lipid_droplet", "source": "fujimoto2011", "size_source": "mmegias", "note": "The droplet is bounded by a single layer of phospholipid molecules, not a two-layer membrane (fujimoto2011); one atlas gives its thickness as about 5 nm (mmegias, rat tissue). On the surface sits perilipin 1, the protein that controls how fat is released (rutkowski2015, fujimoto2011). Not drawn." },
+  { "kind": "caveolae", "part": "membrane", "source": "rutkowski2015", "note": "Small pits called caveolae can cover up to 30% of the surface of the cell membrane, a figure the review takes from earlier work, species not stated there. Not drawn." }
+ ],
+ "cut": "A cut through the middle of the cell: the section is a large round disc of fat bounded by a thin ring of cytoplasm, with the flattened nucleus lying in the ring as a thin crescent at one edge.",
+ "colours": {
+  "convention": "Cell membrane pale; the fat droplet pale yellow; the thin rim of cytoplasm a darker tint; nucleus violet. All of it is a code.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "lipid_droplet": { "name": "Fat droplet", "card": "cell_adipocyte_droplet", "material": "fat", "source": "unilocular2022" },
+  "cytosol": { "name": "Rim of cytoplasm", "card": null, "material": "water", "about": "The living part of the cell is squeezed into a thin layer between the droplet and the membrane. It holds the nucleus, the mitochondria and the other organelles that run the cell.", "source": "histologyguide" },
+  "nucleus": { "name": "Nucleus", "card": "cell_adipocyte_nucleus", "material": "cell_nucleus", "source": "histologyguide" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" }
+ },
+ "reached": {
+  "tissue": [{ "kind": "adipose", "id": "adipocyte" }],
+  "tissue2": [{ "scene": "loose_connective_fat", "structure": "adipocyte" }, { "scene": "loose_connective_fat", "structure": "droplet", "note": "the fat droplet fills the fat cell: a click on a fat cell lands on its droplet, and opens the cell" }]
+ },
+ "view": { "radius_um": 45, "r1_m": 0.0004, "arrive_m": 7e-05, "spawn_m": 2e-06 },
+ "about": [
+  "The cell is drawn 78 µm across, the mean of lean people (75 to 80 µm); that is a volume of about 0.25 nanolitres, {drawn.cellVolume} µm³ as drawn. Fat cells range from about 20 µm to several hundred, and grow and shrink as fat is stored and used.",
+  "About 90% of the volume is one droplet of fat. If it sat in the middle, the living rim would be about 1.4 µm thick on average; in life it is uneven. The droplet pushes the nucleus, the mitochondria and the rest of the cell's machinery into this rim. The nucleus is thicker than the average rim, so in life it bulges into the droplet's outline; the drawn size is illustrative.",
+  "The nucleus is drawn as a flat lens, {drawn.nuclei} of {drawn.nucleiWanted}; its size is illustrative. Not drawn: mitochondria, endoplasmic reticulum, Golgi apparatus, the pits in the membrane, the proteins coating the droplet, and the small vessels that feed the cell."
+ ],
+ "sources": {
+  "frontiers2022": { "cite": "Frontiers in Cell and Developmental Biology (2022) 10:1003219, doi 10.3389/fcell.2022.1003219 (a review of adipocyte size, which cites a meta-analysis)", "url": "https://www.frontiersin.org/journals/cell-and-developmental-biology/articles/10.3389/fcell.2022.1003219/full", "opened": "2026-11-23", "used_for": "humans: mean diameter 75 to 80 µm in lean individuals, about 120 µm plateau in severe obesity, range 20 µm to several hundred µm" },
+  "unilocular2022": { "cite": "The Adipose Organ Is a Unitary Structure in Mice and Humans (2022), PMC9496043", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9496043/", "opened": "2026-11-23", "used_for": "white adipocytes show a unilocular droplet occupying about 90% of their volume (mice and humans, not separated)" },
+  "openstax_ct": { "cite": "OpenStax Anatomy and Physiology 2e, 4.3 Connective Tissue Supports and Protects", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-3-connective-tissue-supports-and-protects", "opened": "2026-11-23", "used_for": "white fat cells store lipid as a single large drop; adipocytes store lipids that fill most of the cytoplasm; many capillaries; figure caption: the nucleus lies very close to the cell membrane" },
+  "fujimoto2011": { "cite": "Fujimoto T, Parton RG (2011) Not just fat: the structure and function of the lipid droplet, Cold Spring Harb Perspect Biol 3:a004838", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3039932", "opened": "2026-11-23", "used_for": "droplets can exceed 100 µm in the white adipocyte; bounded by a phospholipid monolayer; perilipin A the major regulator of lipolysis in white adipocytes" },
+  "rutkowski2015": { "cite": "Rutkowski JM, Stern JH, Scherer PE (2015) The cell biology of fat expansion, J Cell Biol 208:501-512", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4347644", "opened": "2026-11-23", "used_for": "caveolae up to 30% of the plasma membrane of adipocytes; the droplet's border lies close to the ER and mitochondria; perilipin 1 enriched in white adipocytes; adipocytes over 100 µm near the diffusion limit of oxygen" },
+  "mmegias": { "cite": "Histology atlas, University of Vigo: white adipocyte", "url": "https://mmegias.webs.uvigo.es/02-english/8-tipos-celulares/adipocito-blanco.php?tema=w", "opened": "2026-11-23", "used_for": "human size ranges (50 to 200 µm normal adults; 90 to 270 µm obese adults); nucleus and organelles squeezed against the membrane; droplet monolayer about 5 nm; vimentin network; external lamina (figures from rat)" },
+  "histologyguide": { "cite": "Histology Guide, University of Leeds: electron micrograph of an adipocyte, subcutaneous tissue of a 6-month fetus", "url": "https://www.histologyguide.com/EM-view/EM-120-adipocyte/03-photo-1.html", "opened": "2026-11-23", "used_for": "the nucleus is pressed to one side by the large droplet; the cytoplasm is reduced to a thin rim containing mitochondria (a fetal specimen; species not named on the page)" }
+ }
+}

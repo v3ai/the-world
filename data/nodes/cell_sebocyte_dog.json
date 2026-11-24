@@ -1,0 +1,128 @@
+[
+ {
+  "id": "cell_sebocyte_dog",
+  "title": "Oil-gland cell of a dog (sebocyte)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2.6e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "dog_gland",
+   "dog_skin_scene",
+   "hair_follicle",
+   "cell_keratinocyte_dog",
+   "skin"
+  ],
+  "summary": "A cell of a dog's oil gland: it fills with droplets of oil as it ripens, then bursts, so that the whole cell becomes the oil that coats the hair.",
+  "layers": {
+   "basics": "Beside many of a dog's hairs sits a small gland made of these cells. They are born at the outer rim of the gland, and as newer cells push them inward they fill up with tiny droplets of oil. Near the opening into the hair follicle they burst, and the oil runs out along the hair. The oil moisturises the hair and skin and helps to guard them against germs. A cell is used up making it: nothing is poured out, the cell itself is the product.",
+   "deeper": "This way of releasing a product is called holocrine secretion, the opposite of a cell that pours out its contents and survives. A thin single layer of small cells on a basal lamina rims the gland and supplies new cells. As a cell ripens its other parts are lost, its nucleus shrinks and darkens, and at last it breaks apart. On a stained slide the droplets look empty, because the oil is washed out in preparation, which gives the cells their foamy look. The finished oil of dogs is mostly wax diesters and sterol esters of long, largely branched fatty acids, with very little triglyceride.",
+   "expert": "The oil of dogs, like that of other members of the dog family, is unlike the fat stored in fat cells: wax esters make up about a third and sterol esters about two fifths, from thin-layer chromatography, and the fatty acids are largely branched. The size drawn for the cell, its nucleus, its droplets and the mitochondria are illustrative, because no study of dogs gives the size of one oil-gland cell; the droplet fills a bit over a third of the volume as a choice. Not drawn are the smooth endoplasmic reticulum and the peroxisomes that make the lipids, and the keratinised duct. The gland is absent from the footpads and nose pad and densest at the mucocutaneous junctions (lips, anus and the like), between the toes and on the dorsal neck and trunk."
+  },
+  "facts": [
+   [
+    "Secretion",
+    "holocrine: the whole cell breaks down into the oil"
+   ],
+   [
+    "Where",
+    "most glands beside hair follicles, opening into the follicle; not on the footpads or nose pad"
+   ],
+   [
+    "Oil of dogs",
+    "about 35% wax diesters, 42% sterol esters, 9% free sterols, 12% other (domestic dog, thin-layer chromatography)"
+   ],
+   [
+    "Triglyceride in dog oil",
+    "very little"
+   ],
+   [
+    "Nucleus",
+    "one, shrinking and darkening as the cell ripens"
+   ],
+   [
+    "Drawn cell size",
+    "about 26 x 22 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How large is one ripe sebocyte of a dog, and what share of it is oil?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "5.2",
+    "5-2-accessory-structures-of-the-skin"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Decoding sebaceous gland functions and diseases: insights from domestic animals (review)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12987846/"
+   },
+   {
+    "title": "Canine sebaceous gland micrograph with notes (Tufts histology)",
+    "url": "https://sites.tufts.edu/histologyimages/?p=291"
+   }
+  ]
+ },
+ {
+  "id": "cell_sebocyte_droplet",
+  "title": "Oil droplet of a dog's oil-gland cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2.5e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_sebocyte_dog",
+   "cell_adipocyte_droplet",
+   "dog_gland"
+  ],
+  "summary": "A droplet of oil inside an oil-gland cell: a ball of waxy lipid that the cell stores until it bursts.",
+  "layers": {
+   "basics": "As an oil-gland cell ripens it packs itself with these droplets until little else is left. Each is a ball of oily material kept apart from the watery inside of the cell. When the cell bursts near the hair follicle the oil they held runs out along the hair.",
+   "deeper": "A lipid droplet is a core of oil wrapped in a single sheet of lipid molecules with proteins in it, not a double membrane. In a fat cell the core is triglyceride; in a dog's oil-gland cell the finished oil is mostly wax esters and sterols with very little triglyceride, so the picture of a fat molecule (a triglyceride) that a double click opens is only a stand-in, of the one class the oil largely lacks.",
+   "expert": "The number of droplets (300 in the whole cell) and their width (2.5 micrometres) are illustrative; real droplets of one cell vary in size. The proportions of the dog's finished oil are those of the oil on the skin, not a measure of one droplet."
+  },
+  "facts": [
+   [
+    "Core of the droplet",
+    "wax esters and sterols in dogs, little triglyceride"
+   ],
+   [
+    "Drawn droplet width",
+    "2.5 um (illustrative)"
+   ],
+   [
+    "Drawn count",
+    "300 per cell (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How do the droplet sizes of a ripening dog sebocyte change from the rim of the gland to the duct?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "3.3",
+    "3-3-lipids"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Decoding sebaceous gland functions and diseases: insights from domestic animals (review)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12987846/"
+   }
+  ]
+ }
+]

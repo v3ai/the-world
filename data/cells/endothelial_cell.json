@@ -1,0 +1,275 @@
+{
+ "id": "endothelial_cell",
+ "name": "Capillary endothelial cell",
+ "organism": "mammal and bird (measured in human, rat, hamster)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_endothelial_cell",
+ "blurb": "The cell that lines the smallest blood vessels: a very thin sheet bent round the channel, with its nucleus bulging into the blood and neighbours sealed edge to edge. Drawn as the same cell for the dog and the robin.",
+ "note": "Model: a capillary endothelial cell as found in muscle, cut across its sheet. Measured: the width of the channel it lines, the way its sheet wraps round it, the size of its caveolae (the small pits in its membrane), the thickness of the mucin-like coat on its blood face, and its overall surface area. These figures come from human, rat and hamster work and from textbooks; no dog or robin measurement is known to this page, so the same cell stands for both the dog (Canis lupus familiaris) and the robin. Illustrative: the sheet thickness drawn (in life much thinner away from the nucleus), the nucleus size, the share of the ring this one cell covers (85%), the number of caveolae and mitochondria, and the colours. The cell is drawn curled round the channel, cut along the vessel so the inside of the far half is seen; the rest of the ring and the cells before and after it along the vessel are drawn faintly, with the junctions as dark seams.",
+ "shape": {
+  "type": "wrapped_sheet",
+  "lumen_um": 7.5,
+  "length_um": 30,
+  "thickness_um": 0.6,
+  "wrap": 0.85,
+  "seam_deg": 55,
+  "coat_um": 0.45,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "lumen_diameter": {
+   "value": 7.5,
+   "range": [
+    5,
+    10
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "openstax_vessels",
+   "note": "the channel of a capillary is 5 to 10 µm wide; the middle of that range is used"
+  },
+  "wrap_circumference": {
+   "value": 23.6,
+   "unit": "um",
+   "measured": true,
+   "calc": "pi times the middle channel width of 7.5 µm, the length of the wall round the channel",
+   "source": "openstax_vessels",
+   "note": "a cell about 20 µm across can nearly close the ring by itself, which fits the textbook remark that in a small capillary one cell may wrap round and meet itself"
+  },
+  "surface_area": {
+   "value": 1000,
+   "unit": "um2",
+   "measured": true,
+   "calc": "20 µm times 50 µm, the two sides given for a human endothelial cell",
+   "source": "jaffe1987",
+   "note": "the source gives only the two sides; the vessel the cells came from is not stated there"
+  },
+  "width_drawn": {
+   "value": 30,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: between the 20 µm and 50 µm sides measured; the drawn sheet is one square plate, not a long strip"
+  },
+  "thickness_drawn": {
+   "value": 0.6,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: drawn thick enough to see. Histology texts say the cytoplasm is greatly thinned, but no source read here gives its thickness"
+  },
+  "caveola_size": {
+   "value": 0.075,
+   "range": [
+    0.05,
+    0.1
+   ],
+   "unit": "um",
+   "measured": true,
+   "calc": "the middle of 50 to 100 nm",
+   "source": "caveolae_review"
+  },
+  "glycocalyx_thickness": {
+   "value": 0.45,
+   "range": [
+    0.4,
+    0.5
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "glycocalyx_review",
+   "note": "400 to 500 nm in hamster and rat capillaries; estimates vary with the method and the organ"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": [
+   12,
+   5,
+   3
+  ],
+  "position": "central",
+  "nucleoli": 1,
+  "note": "One flattened oval nucleus bulges into the channel, the one place where the cell is thick. Textbook sections usually show a single nucleus at a time (digitalhistology). Its size is illustrative."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.03,
+    "measured": false,
+    "note": "illustrative: a few, small, near the nucleus"
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 40,
+   "position": "any"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum and ribosomes",
+   "Weibel-Palade bodies (store of clotting protein; mostly in larger vessels)",
+   "the pericyte that lies on the outside",
+   "the cell skeleton"
+  ]
+ },
+ "special": [
+  {
+   "kind": "crowd",
+   "part": "caveola",
+   "role": "caveola",
+   "params": {
+    "count": 20000,
+    "size_nm": [
+     75,
+     75,
+     75
+    ],
+    "show_below_um": 2,
+    "max_drawn": 900
+   },
+   "source": "caveolae_review",
+   "note": "Caveolae are flask-shaped pits 50 to 100 nm wide that are especially common in endothelial cells; one task they have is carrying material across the cell. The size is measured (75 nm drawn); the count of 20,000 is illustrative, and they are drawn only up close."
+  }
+ ],
+ "cut": "The vessel is cut along its length: the far half of the tube is seen from inside the channel. One thin cell curls round it, its nucleus bulging into the blood; caveolae dot both faces, a few mitochondria lie in the thin sheet, a faint coat covers the blood face, and the neighbouring cells finish the ring and continue the tube, joined to it at dark seams.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the inside dark; nucleus violet; mitochondria orange; the coat on the blood face a pale haze; caveolae light blue. All colours are a code, none is the real colour.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell. Away from the nucleus it is only a thin film between the blood face and the tissue face."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "source": "digitalhistology"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "caveola": {
+   "name": "Caveola",
+   "card": "cell_endothelial_caveola",
+   "material": "membrane",
+   "source": "caveolae_review"
+  },
+  "glycocalyx": {
+   "name": "Coat on the blood face (glycocalyx)",
+   "card": "cell_endothelial_glycocalyx",
+   "material": "protein",
+   "source": "glycocalyx_review"
+  },
+  "junction": {
+   "name": "Junction between cells",
+   "card": "cell_endothelial_junction",
+   "material": "protein",
+   "source": "openstax_vessels"
+  },
+  "basement_membrane": {
+   "name": "Basement membrane",
+   "card": null,
+   "material": "protein",
+   "source": "openstax_vessels",
+   "about": "A thin sheet of proteins, mostly collagen IV and laminin, that lies against the outer face of the cell and holds it in place. The wall of a capillary is the cell layer together with this sheet. The protein shown on closer view is a stand-in.",
+   "also": "vl_capillary"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "neighbour": {
+   "name": "Neighbouring endothelial cell",
+   "card": "cell_endothelial_cell",
+   "material": "membrane"
+  },
+  "lumen": {
+   "name": "Channel (lumen), 7.5 µm across",
+   "card": null,
+   "material": "blood",
+   "about": "The channel the cell lines, where blood flows: 5 to 10 µm wide in a capillary, about one red blood cell across. Drawn 7.5 µm, the middle of that range."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_muscle",
+    "structure": "capillary"
+   },
+   {
+    "scene": "robin_flight_muscle",
+    "structure": "capillary"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 24,
+  "r1_m": 0.0004,
+  "arrive_m": 4.2e-05,
+  "spawn_m": 1e-06
+ },
+ "about": [
+  "A capillary is a channel only 5 to 10 µm wide, about the width of one red blood cell. Its wall is a single layer of cells like this one, resting on a thin basement membrane. In a small capillary one cell can curl round and nearly meet its own edge: here it covers 85% of the ring (an illustrative share) and a neighbour fills the rest.",
+  "Most capillaries in muscle are of the continuous kind: the lining is complete, and neighbouring cells are joined by tight junctions (and by adherens junctions), leaving narrow clefts through which water and very small molecules pass. Larger things cross in the caveolae, 50 to 100 nm pits, which are drawn at their true size only when you are close. Their number here is illustrative.",
+  "The cell is only thick where its nucleus bulges into the channel. Elsewhere it is a thin film, thinner than drawn: the plate here is 0.6 µm so that it can be seen, which is illustrative. The blood face carries a soft coat of sugar-bearing proteins about 0.4 to 0.5 µm thick in rat and hamster capillaries.",
+  "The measurements come from human, rat and hamster capillaries; none from a dog or a robin, so the same cell stands for both, on the assumption that the plan of a muscle capillary is shared among mammals and birds. Not drawn: the pericyte, the rough endoplasmic reticulum, Weibel-Palade bodies and the cell skeleton."
+ ],
+ "sources": {
+  "openstax_vessels": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 20.1 Structure and Function of Blood Vessels",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/20-1-structure-and-function-of-blood-vessels",
+   "opened": "2026-11-23",
+   "used_for": "channel width 5 to 10 µm; wall = endothelial layer plus basement membrane; one cell may wrap round; continuous capillaries with tight junctions and clefts"
+  },
+  "jaffe1987": {
+   "cite": "Jaffe EA (1987) Cell biology of endothelial cells. Hum Pathol 18:234-9, as listed in BioNumbers 106178",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=106178",
+   "opened": "2026-11-23",
+   "used_for": "surface of a human endothelial cell, 20 x 50 µm (the BioNumbers entry was read, not the paper)"
+  },
+  "caveolae_review": {
+   "cite": "Caveolae and Lipid Rafts in Endothelium: Valuable Organelles for Multiple Functions (2020), PMC7563503",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7563503/",
+   "opened": "2026-11-23",
+   "used_for": "caveolae 50 to 100 nm; abundant in endothelial cells; transcytosis (first 100,000 characters read)"
+  },
+  "glycocalyx_review": {
+   "cite": "Review of the endothelial surface layer, PMC5042904",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5042904",
+   "opened": "2026-11-23",
+   "used_for": "layer 400 to 500 nm in hamster cremaster and rat myocardial capillaries (first 100,000 characters read)"
+  },
+  "digitalhistology": {
+   "cite": "Digital Histology, Continuous capillary",
+   "url": "https://digitalhistology.org/?p=5302",
+   "opened": "2026-11-23",
+   "used_for": "channel about one red cell wide; greatly thinned cytoplasm; usually one nucleus seen in a cross-section; pericyte inside the basal lamina"
+  },
+  "vl_capillary": {
+   "cite": "Study of capillary ultrastructure in human vastus lateralis biopsies, PMC7013089",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7013089",
+   "opened": "2026-11-23",
+   "used_for": "human muscle capillaries have an endothelial layer, a basement membrane and pericytes; no absolute numbers read"
+  }
+ }
+}

@@ -286,10 +286,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "kidney_pct_cell"
   },
   {
    "id": "pct_lumen",
@@ -5627,10 +5624,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "kidney_dct_cell"
   },
   {
    "id": "dct_lumen",

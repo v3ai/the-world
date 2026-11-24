@@ -1,0 +1,287 @@
+[
+ {
+  "id": "cell_platelet",
+  "title": "Platelet, drawn from measurements",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3.8e-06,
+  "parents": [],
+  "parts": [
+   "cell_platelet_alpha_granules",
+   "cell_platelet_dense_granules",
+   "cell_platelet_marginal_band",
+   "cell_platelet_canalicular"
+  ],
+  "made_of": [
+   "cell_membrane",
+   "mitochondrion",
+   "cytoskeleton"
+  ],
+  "processes": [
+   "blood_clotting"
+  ],
+  "related": [
+   "platelet",
+   "red_blood_cell"
+  ],
+  "summary": "A resting platelet is a flat oval about 4 micrometres long with no nucleus, packed with storage granules.",
+  "layers": {
+   "basics": "A platelet is not a whole cell. It is a small piece of a giant marrow cell that drifts in the blood as a flat oval. It has no nucleus, so it cannot copy its DNA or divide, but it carries everything needed to react in seconds when a vessel wall is torn: stores of sticky and signalling molecules packed in granules, a few mitochondria for energy, and a ring of fibres that keeps it flat.",
+   "deeper": "Electron microscopy of resting human platelets shows about fifty alpha granules, each a quarter of a micrometre or so across, taking about 8 percent of the volume. A handful of denser granules hold small molecules that other platelets answer to. About eleven mitochondria take 2 percent of the volume. The largest compartment, over 11 percent, is a labyrinth of channels that opens to the outside and gives a way out for the granule contents. Bigger platelets hold more alpha granules, while the number of mitochondria hardly changes with size.",
+   "expert": "The numbers come from 30 platelets of three adult donors, fixed at once so that they stay discoid, and imaged in 3D. Counts vary several-fold from one platelet to the next, so a mean describes no single platelet. Older counting methods gave 50 to 80 alpha granules, higher than the 3D counts of 42 to 58 per platelet. The drawn outline is a plain ellipsoid of the measured volume; the rim and the flatter middle of a real disc are not drawn, and neither are the dense granules, the channel system, the ring of microtubules or the actin network."
+  },
+  "facts": [
+   [
+    "Length",
+    "≈ 3.8 µm (individual platelets 2.3-5.1 µm)"
+   ],
+   [
+    "Short axis",
+    "≈ 1.5 µm"
+   ],
+   [
+    "Volume",
+    "≈ 7.7 µm³ (3.9-14.8 µm³)"
+   ],
+   [
+    "Alpha granules",
+    "≈ 50 per platelet"
+   ],
+   [
+    "Dense granules",
+    "≈ 5 per platelet"
+   ],
+   [
+    "Mitochondria",
+    "≈ 11 per platelet"
+   ],
+   [
+    "Nucleus",
+    "none"
+   ],
+   [
+    "Number in blood",
+    "≈ 150,000-160,000 per µL"
+   ],
+   [
+    "Lifespan",
+    "about 10 days"
+   ]
+  ],
+  "certainty": "C1",
+  "open_questions": [
+   "Why do counts of granules and mitochondria differ so much between single platelets of the same person?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "18.4",
+    "18-4-leukocytes-and-platelets"
+   ],
+   [
+    "ANP",
+    "18.5",
+    "18-5-hemostasis"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "3D ultrastructure of granules, mitochondria and canalicular system in resting human platelets",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6971324"
+   }
+  ]
+ },
+ {
+  "id": "cell_platelet_alpha_granules",
+  "title": "Platelet alpha granules",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 2.8e-07,
+  "parents": [
+   "cell_platelet"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [
+   "blood_clotting"
+  ],
+  "related": [
+   "cell_platelet_dense_granules"
+  ],
+  "summary": "Alpha granules are the platelet's main stores, about fifty small bags of proteins released at a wound.",
+  "layers": {
+   "basics": "Each alpha granule is a tiny membrane bag, roughly a quarter of a micrometre wide, filled with proteins that help to seal a wound, call in other platelets and start repair. They are the most numerous granule in a platelet and are spread through its inside.",
+   "deeper": "In resting human platelets the granules average about 0.25 by 0.30 micrometres and together take about 8 percent of the platelet's volume. The number per platelet rises with the platelet's size. They lie very close to each other: about 7 in 10 sit within 35 nanometres of another one.",
+   "expert": "The measured mean is 50 per platelet, with single platelets from 9 to 141. The drawn size is the mean of the two measured axes; each granule is drawn as a smooth ellipsoid, and its position inside the cut is chosen at random."
+  },
+  "facts": [
+   [
+    "Per platelet",
+    "≈ 50 (9-141)"
+   ],
+   [
+    "Size",
+    "≈ 0.25 × 0.30 µm"
+   ],
+   [
+    "Share of platelet volume",
+    "≈ 8 %"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What do the very close contacts between neighbouring granules do?"
+  ],
+  "refs": [],
+  "ext": [
+   {
+    "title": "3D ultrastructure of granules, mitochondria and canalicular system in resting human platelets",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6971324"
+   }
+  ]
+ },
+ {
+  "id": "cell_platelet_dense_granules",
+  "title": "Platelet dense granules",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 2.6e-07,
+  "parents": [
+   "cell_platelet"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [
+   "blood_clotting"
+  ],
+  "related": [
+   "cell_platelet_alpha_granules"
+  ],
+  "summary": "Dense granules are a few small, dark storage bags of small molecules that tell other platelets to join in.",
+  "layers": {
+   "basics": "Besides the many alpha granules, a platelet holds only a handful of dense granules. They look dark under the electron microscope because they are packed with small molecules, and when they are released those molecules call more platelets to the wound.",
+   "deeper": "A resting human platelet holds about five or six, each with a volume near 0.009 cubic micrometres, which is a ball about a quarter of a micrometre across. They make up well under 1 percent of the platelet. Unlike the alpha granules, their number hardly depends on the platelet's size, and they tend to lie nearer the edge.",
+   "expert": "Counts run from 2 to 14 per platelet in the 30 platelets measured. They are not drawn in this model, because the picture can only draw one kind of granule."
+  },
+  "facts": [
+   [
+    "Per platelet",
+    "≈ 5.5 (2-9)"
+   ],
+   [
+    "Volume each",
+    "≈ 0.009 µm³"
+   ],
+   [
+    "Share of platelet volume",
+    "≈ 0.7 %"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [],
+  "ext": [
+   {
+    "title": "3D ultrastructure of granules, mitochondria and canalicular system in resting human platelets",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6971324"
+   }
+  ]
+ },
+ {
+  "id": "cell_platelet_marginal_band",
+  "title": "Platelet marginal band",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 3.8e-06,
+  "parents": [
+   "cell_platelet"
+  ],
+  "parts": [],
+  "made_of": [
+   "cytoskeleton"
+  ],
+  "processes": [],
+  "related": [
+   "cell_platelet"
+  ],
+  "summary": "A ring of microtubules round the rim holds a resting platelet in its flat shape.",
+  "layers": {
+   "basics": "A platelet has no skeleton of bone, but it has a ring of stiff protein fibres, called microtubules, running just under the membrane at its rim. This ring is what keeps the platelet a flat disc while it travels in the blood.",
+   "deeper": "When a platelet is switched on at a wound, motor proteins coil the ring up, which rounds the disc into a sphere before it puts out arms and spreads; later the actin network squeezes the coil into a smaller ring.",
+   "expert": "The ring is a platelet's only organised set of microtubules: a platelet has no centre from which microtubules grow. It is not drawn in this model."
+  },
+  "facts": [
+   [
+    "Where",
+    "a ring under the rim of the disc"
+   ],
+   [
+    "Made of",
+    "microtubules"
+   ],
+   [
+    "Job",
+    "keeps the resting disc shape"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [],
+  "ext": [
+   {
+    "title": "Motor-driven marginal band coiling promotes cell shape change during platelet activation",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3897189"
+   }
+  ]
+ },
+ {
+  "id": "cell_platelet_canalicular",
+  "title": "Platelet channel system",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_platelet"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [
+   "blood_clotting"
+  ],
+  "related": [
+   "cell_platelet_alpha_granules"
+  ],
+  "summary": "Inside a platelet, a labyrinth of membrane channels takes up more room than any granule and links the inside to the outside.",
+  "layers": {
+   "basics": "The surface of a platelet folds inward into winding channels that fill much of its inside. They give the granules a short way out when the platelet is told to release what it has stored.",
+   "deeper": "In resting human platelets this channel system takes about 11 percent of the volume, more than the alpha granules at about 8 percent. Roughly half of it is open to the outside and half is closed off, with no connection that can be seen. The share varies a lot from one platelet to another and from one donor to another.",
+   "expert": "Volume per platelet averages about 0.9 cubic micrometres, with about half open and half closed. A second, separate network, the dense tubular system, is hard to trace automatically and was not measured. The authors multiplied the channel volumes by 2.3 to make up for thin channels falling between their 30 nm slices. Neither network is drawn in this model."
+  },
+  "facts": [
+   [
+    "Share of platelet volume",
+    "≈ 11 %"
+   ],
+   [
+    "Volume",
+    "≈ 0.9 µm³"
+   ],
+   [
+    "Open to the outside",
+    "about half"
+   ]
+  ],
+  "certainty": "C2",
+  "refs": [],
+  "ext": [
+   {
+    "title": "3D ultrastructure of granules, mitochondria and canalicular system in resting human platelets",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6971324"
+   }
+  ]
+ }
+]

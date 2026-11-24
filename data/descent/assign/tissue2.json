@@ -49,6 +49,11 @@
    "over": {
     "capillary": "vessel_wall"
    }
+  },
+  "dog_muscle": {
+   "over": {
+    "rbc": "red_blood_cell_dog"
+   }
   }
  }
 }

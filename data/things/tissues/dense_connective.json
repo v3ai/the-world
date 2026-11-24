@@ -1663,10 +1663,7 @@
      }
     ]
    },
-   "deeper": {
-    "type": "cell",
-    "cell": "animal"
-   }
+   "material": "tenocyte"
   },
   {
    "id": "elastic",

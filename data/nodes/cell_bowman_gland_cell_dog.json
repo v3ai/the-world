@@ -1,0 +1,135 @@
+[
+ {
+  "id": "cell_bowman_gland_cell_dog",
+  "title": "Bowman's gland cell (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 9e-06,
+  "parents": [
+   "dog_bowman"
+  ],
+  "parts": [
+   "cell_bowman_gland_cell_dog_granule"
+  ],
+  "made_of": [
+   "cell_bowman_gland_cell_dog_granule",
+   "nucleus",
+   "mitochondrion",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "dog_bowman",
+   "dog_olfactory_epithelium"
+  ],
+  "mesh": null,
+  "summary": "The cell that makes the mucus on a dog's smell lining: a small pyramid packed with secretion granules, sitting in a gland under the lining.",
+  "layers": {
+   "basics": "A dog smells by catching odour molecules in a thin film of mucus that covers its smell lining. That film is made by glands tucked in the layer just under the lining, named Bowman's glands. In people and sheep, each gland is a tiny cluster of cells arranged like the segments of an orange round a narrow channel; the dog's glands are thought to be built the same way. Every cell is thought to be a little pyramid: wide at the bottom, where the nucleus sits, and narrowing toward the channel, where its product is released. The channel joins a duct that climbs up through the lining and opens on its surface.",
+   "deeper": "Like other gland cells that export a product, it builds proteins in its lower part, sorts and packs them in a Golgi stack, and stores them as granules in the upper part. When the cell is told to release, the granules fuse with its membrane at the channel and their contents spill out, without the cell being lost. What the product is made of is not fully settled: in other mammals it has been found to include the mucin MUC5B, a sugar-coated protein that makes slime, but its make-up in the dog has not been measured, and the glands are called serous, mucous or both by different authors. The film they make is thought to dissolve odour molecules and carry them to the receptors, and it may also protect and moisten the lining.",
+   "expert": "No measurement of a dog Bowman's gland cell was found. The cell size (7 to 10 µm) and the acinus width (20 to 25 µm) are from human glands cut for the light microscope; the pyramid shape and the round nucleus low in the cell are from human and sheep; the large granules, the concentric smooth endoplasmic reticulum and the tubulo-alveolar form are from rat. The dog lining above is 72.5 µm thick. Drawn but illustrative: the exact outline, the nucleus size, the 60 granules of 0.6 µm, the mitochondria and the single Golgi stack. Not drawn: rough endoplasmic reticulum, ribosomes, folded smooth reticulum, cell junctions, duct cells and any other cell type of the gland."
+  },
+  "facts": [
+   [
+    "Cell size (human glands)",
+    "7 to 10 µm"
+   ],
+   [
+    "Gland end-piece width (human)",
+    "20 to 25 µm"
+   ],
+   [
+    "Nucleus",
+    "one, round, in the lower half of the cell"
+   ],
+   [
+    "Pointed end faces",
+    "the gland's narrow channel"
+   ],
+   [
+    "Dog smell lining above (adult)",
+    "72.5 ± 2.9 µm thick"
+   ],
+   [
+    "Granules drawn",
+    "60 of 0.6 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "Are the secretory cells of the dog's Bowman's glands serous, mucous or a mix, and how big are their granules?",
+   "How far does the product of these glands carry odour molecules to the receptors, and how far does it only moisten and protect?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ],
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ]
+  ]
+ },
+ {
+  "id": "cell_bowman_gland_cell_dog_granule",
+  "title": "Secretion granule (Bowman's gland cell)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 6e-07,
+  "parents": [
+   "cell_bowman_gland_cell_dog"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "cell_bowman_gland_cell_dog",
+   "golgi_apparatus"
+  ],
+  "mesh": null,
+  "summary": "A membrane-wrapped bubble of mucus ingredients stored near the top of the gland cell until it is released.",
+  "layers": {
+   "basics": "Before the cell releases its product it keeps it in small round bubbles called granules, each wrapped in a skin of membrane. They crowd the top of the cell, close to the channel. When the cell is signalled, a granule joins the cell's outer skin and opens, and what is inside flows out into the channel.",
+   "deeper": "The cargo is made in the endoplasmic reticulum, finished and sorted in the Golgi stack, and then budded off in a membrane bubble that moves to the cell surface. The release by fusion with the surface membrane is called exocytosis. In the stained sections of sheep glands the upper part of the cell takes up the stains for sugar-rich mucus, which fits granules full of mucin there.",
+   "expert": "Electron micrographs of rat glands show large secretory granules. Their cargo is thought to be mucin, a glycoprotein, drawn here with the protein stand-in material. No diameter was found in anything read, so the 0.6 µm drawn, the count of 60 and the pale colour are illustrative. Sheep glands also show brownish granules low in the cell; they are not drawn."
+  },
+  "facts": [
+   [
+    "Held in",
+    "a membrane bubble"
+   ],
+   [
+    "Where",
+    "the narrow upper half of the cell, by the channel"
+   ],
+   [
+    "Released by",
+    "exocytosis"
+   ],
+   [
+    "Size drawn",
+    "0.6 µm (illustrative)"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "What is the size and make-up of the granules in dog Bowman's gland cells?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "3.2",
+    "3-2-the-cytoplasm-and-cellular-organelles"
+   ],
+   [
+    "ANP",
+    "4.2",
+    "4-2-epithelial-tissue"
+   ]
+  ]
+ }
+]

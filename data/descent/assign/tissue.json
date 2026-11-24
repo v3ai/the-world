@@ -7,7 +7,7 @@
   "hyaline_cartilage": "cartilage_matrix",
   "osteon": "bone_mineral",
   "adipocyte": "fat",
-  "skeletal_muscle_fiber": "muscle_fibre"
+  "skeletal_muscle_fiber": "skeletal_muscle_fibre"
  },
  "sub": {
   "lining": {

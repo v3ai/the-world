@@ -1,0 +1,85 @@
+{
+ "id": "lining_surface_cell",
+ "name": "Living surface cell of a lining",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_lining_surface_cell",
+ "blurb": "A living flat cell from the outer layer of a moist lining such as the inside of the mouth: wide and thin, with its nucleus still in place and a mesh of protein filaments through its inside.",
+ "note": "Model: a surface cell of the moist, non-keratinised lining of the human mouth (the cheek), cut in half. Measured in human cheek cells: the area of the cell and of its nucleus (from scraped cells spread on a slide), the thickness of the whole lining, and the share and width of its filaments; the covering of the surface in ridges was measured on the human gullet. Illustrative: the thickness of this one cell, the nucleus's thickness, the count and place of the small organelles, the number of desmosomes, the paths of the filament bundles and the colours. The cells beside it are drawn faintly. Human numbers throughout.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 60,
+  "height_um": 4,
+  "taper": 1,
+  "irregularity": 0.2,
+  "round_um": 0.8,
+  "apical": "none",
+  "desmosomes": 120,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "cell_area": { "value": 3097, "unit": "um2", "measured": true, "calc": "mean cytoplasmic area 3013.07 µm² plus mean nuclear area 83.63 µm², healthy people, cheek smears", "source": "sahu2017", "note": "the area of a scraped cell lying flat on a slide, which is probably larger than the cell's footprint in place" },
+  "cell_equivalent_width": { "value": 62.8, "unit": "um", "measured": true, "calc": "the diameter of a circle of the same area as the cell: 2 x sqrt(3097 / pi)", "source": "sahu2017" },
+  "width": { "value": 60, "range": [30, 70], "unit": "um", "measured": false, "note": "illustrative: drawn near the width worked out from the measured area, rounded" },
+  "height": { "value": 4, "range": [2, 8], "unit": "um", "measured": false, "note": "illustrative: no source opened gives the thickness of one surface cell" },
+  "nucleus_area": { "value": 83.6, "unit": "um2", "measured": true, "source": "sahu2017", "note": "healthy cheek cells; 92.6 µm² in people with type 2 diabetes" },
+  "nucleus_width": { "value": 10.3, "unit": "um", "measured": true, "calc": "the diameter of a circle of the nuclear area: 2 x sqrt(83.63 / pi)", "source": "sahu2017" },
+  "filament_width": { "value": 8, "unit": "nm", "measured": true, "calc": "80 Å", "source": "landay1977", "note": "cheek lining of ten girls aged 10 to 15 (abstract confirmed)" },
+  "filament_share": { "value": 0.7, "unit": "fraction", "measured": true, "source": "landay1977", "note": "about 70% of the cytoplasm in the broad subsurface and surface layers of the lining; counted in girls aged 10 to 15" },
+  "lining_thickness": { "value": 480, "unit": "um", "measured": true, "source": "landay1977", "note": "the whole cheek epithelium, from base to surface; from ten girls aged 10 to 15, so a child's value, not an adult mean" },
+  "ridge_cover": { "value": 0.64, "unit": "fraction", "measured": true, "source": "shashaa1993", "note": "share of the surface of a human gullet surface cell covered by microridges; 51 to 65% among typical biopsies; the gullet, not the cheek" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": [10.3, 10.3, 3],
+  "nucleoli": 1,
+  "position": "centre",
+  "source": "sahu2017",
+  "note": "One nucleus, kept in the surface cell (digihist). Its width is worked out from the measured area; its thickness and the nucleolus are illustrative."
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.01, "measured": false, "note": "illustrative: no source opened gives it for this layer" }, "size_um": [0.8, 0.3], "size_measured": false, "max_drawn": 150 },
+  "lamellar_bodies": { "count": { "value": 60, "measured": false }, "size_um": { "value": 0.25, "measured": false }, "elongation": 1.4, "position": "peripheral", "source": "landay1977", "note": "membrane-coating granules with dark cores are reported in this lining (landay1977); what they hold is not settled, and the lipid layers shown inside are a stand-in from skin; their number and size are illustrative" },
+  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative" } }
+ },
+ "special": [
+  { "kind": "keratin_bundles", "part": "filaments", "params": { "bundles": 30, "drawn_um": 0.4 }, "source": "landay1977", "note": "Filaments 8 nm wide fill about 70% of the cytoplasm in the outer layers of the human cheek lining (measured). 30 bundles are drawn, thick enough to see; their number and paths are illustrative. The filaments of a moist lining are cytokeratins, mostly K4 and K13 (Bloor 1998, via search summary): soft keratins with few sulfur bridges. The material shown is keratin as a stand-in, and its sulfur bridge is that of hair keratin." },
+  { "kind": "desmosomes", "part": "desmosome", "source": "openstax_epi", "note": "Desmosomes hold epithelial cells together (openstax_epi). 120 are drawn on the cell's edges: the number is illustrative." }
+ ],
+ "cut": "The flat cell cut in half through its thickness: a thin, wide slab with the oval nucleus and its nucleolus in the middle, a mesh of filament bundles filling most of the rest, a few mitochondria, small coating granules near the edge, and desmosomes studding the sides where it meets its neighbours. The cells beside it show faintly.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the inside dark; filament bundles straw yellow; desmosomes brown; nucleus violet; mitochondria orange; coating granules grey-blue. All colours are a code; none is the real colour.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins and mostly taken up by the filament mesh." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "filaments": { "name": "Filament bundles", "card": "bio_actin_intermediate", "material": "keratin", "source": "landay1977", "about": "Ropes of protein filaments run through the cell, 8 nm wide and filling most of its inside. They give the sheet strength and let it stretch with the cheek, tongue or gullet, and they end at desmosomes. The filaments of a moist lining are soft keratins with few sulfur bridges; the sulfur bridge shown is that of hair keratin, a stand-in." },
+  "desmosome": { "name": "Desmosome", "card": "bio_cell_junctions", "material": "desmosome", "source": "openstax_epi" },
+  "coating_granule": { "name": "Membrane-coating granule", "card": "lining_coating_granule", "material": "lamellar_body", "source": "landay1977" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "neighbour": { "name": "Neighbouring surface cell", "card": "cell_lining_surface_cell", "material": "membrane" }
+ },
+ "reached": {
+  "materials": ["living_lining_cells"],
+  "tissue": [{ "kind": "epithelium", "id": "stratum_corneum", "variant": "lining" }]
+ },
+ "view": { "radius_um": 36, "r1_m": 5e-4, "arrive_m": 9e-5, "spawn_m": 2.5e-6 },
+ "about": [
+  "This is a cell of the outermost living layer of a moist lining, here taken from the cheek. Unlike the outer layer of skin it is not a dead scale: it keeps its nucleus and its organelles, and is shed one cell at a time from the surface. Drawn {drawn.cellVolume} µm³ in volume, a six-sided slab about 60 µm across and 4 µm thick.",
+  "Measured in human cheek cells: the area of the cell (about 3,100 µm²) and of its nucleus (about 84 µm², {drawn.nuclei} nucleus drawn), and the filaments that fill about 70% of the cytoplasm. The thickness of this single cell is not measured and is drawn as a guess.",
+  "Not drawn: the fine ridges that cover much of the surface of such a cell, the mucus on top, the stores of glycogen and the tight junctions near the surface."
+ ],
+ "sources": {
+  "sahu2017": { "cite": "Sahu M, Suryawanshi H, Nayak S, Kumar P (2017) Cytomorphometric analysis of gingival epithelium and buccal mucosa cells in type 2 diabetes mellitus patients, J Oral Maxillofac Pathol 21:224-228", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5596672", "opened": "2026-11-23", "used_for": "buccal smears of 50 healthy people: nuclear area 83.63 µm², cytoplasmic area 3013.07 µm² (cell area is their sum)" },
+  "landay1977": { "cite": "Landay MA, Schroeder HE (1977) Quantitative electron microscopic analysis of the stratified epithelium of normal human buccal mucosa, Cell Tissue Res 177:383-405 (abstract, Europe PMC record)", "url": "https://europepmc.org/article/MED/837415", "opened": "2026-11-23", "used_for": "epithelium 0.48 mm thick; filaments 80 Å wide filling about 70% of the cytoplasm in the broad outer layers; dark-cored membrane-coating granules; variable glycogen" },
+  "shashaa1993": { "cite": "Shasha'a S, Dickson GR, Gilmore RStC, Crean GC, Butt MM, Carr KE (1993) Rabbit and human non-keratinising stratified squamous oesophageal epithelium displays similar microridge structure by scanning electron microscopy, Scanning Microsc 7:3", "url": "https://digitalcommons.usu.edu/microscopy/vol7/iss3/19", "opened": "2026-11-23", "used_for": "about 64% of the surface of typical human gullet surface cells covered by microridges (51 to 65%)" },
+  "digihist": { "cite": "Digital Histology, Stratified epithelium 4 (electron micrograph of the oesophagus lining)", "url": "https://digitalhistology.org/tissues/epithelium/lining-and-covering/stratified/stratified-epithelium-4/", "opened": "2026-11-23", "used_for": "surface cells are living, with a variety of organelles including a prominent nucleus, and are being shed" },
+  "openstax_epi": { "cite": "OpenStax Anatomy and Physiology 2e, 4.2 Epithelial Tissue", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-2-epithelial-tissue", "opened": "2026-11-23", "used_for": "the lining of the mouth as the example of non-keratinised stratified squamous epithelium; apical cells squamous; desmosomes hold cells together" }
+ }
+}

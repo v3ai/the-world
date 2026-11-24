@@ -1,0 +1,200 @@
+[
+ {
+  "id": "cell_olfactory_neuron_dog",
+  "title": "Olfactory sensory neuron (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 7e-06,
+  "parents": [],
+  "parts": [
+   "cell_olfactory_neuron_dog_dendrite",
+   "cell_olfactory_neuron_dog_axon"
+  ],
+  "processes": [],
+  "related": [
+   "dog_osn",
+   "neuron",
+   "cell_olfactory_basal_cell_dog",
+   "dog_olfactory_epithelium"
+  ],
+  "mesh": null,
+  "summary": "A small nerve cell in the lining of the dog's nose that senses odour molecules with its cilia and sends the signal along a thin axon to the brain.",
+  "layers": {
+   "basics": "This is the cell that does the smelling. Its small round body sits in the lining of the nose. One thin dendrite runs up to the surface, where it ends in a knob with hair-like cilia lying in the mucus. Odour molecules dissolve in the mucus and bind to receptors on the cilia. The cell then sends a signal down its single axon, which leaves the lining and travels to the olfactory bulb of the brain. A dog has hundreds of millions of these cells.",
+   "deeper": "The cell is a bipolar neuron: one process toward the surface and one away from it. Each cell makes one kind of odour receptor out of the many in the genome, and cells with the same receptor send their axons to the same glomerulus in the olfactory bulb, where thousands of axons meet. The axons have no myelin and are extremely thin. These neurons wear out and are replaced throughout life from stem cells at the base of the lining.",
+   "expert": "Sizes here come mostly from the mouse, and a textbook gives similar figures for the human; for the dog only counts were found in the sources read: more than 200 million smell receptors (the same review also gives 6 to 10 million neurons), and about 5000 glomeruli of 5000 to 40,000 axons each. Reports of the number of neurons in the dog differ widely. The drawing is a model: the dendrite length, the nucleus, the organelles and the three stand-in cilia are illustrative, and the supporting cells and glia that surround the real cell are not drawn."
+  },
+  "facts": [
+   [
+    "Cell body",
+    "5 to 8 µm across (mouse)"
+   ],
+   [
+    "Dendrite",
+    "about 1 µm thick (mouse)"
+   ],
+   [
+    "Cilia per knob",
+    "5 to 10 in most isolated mouse cells; 20 to 35 in another report"
+   ],
+   [
+    "Axon",
+    "about 0.2 µm, no myelin"
+   ],
+   [
+    "Smell receptors in a dog",
+    "more than 200 million (one review; the same review also gives 6 to 10 million neurons)"
+   ],
+   [
+    "Axons per glomerulus (dog)",
+    "5000 to 40,000"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many cilia does a knob carry in the dog, and how long is the dendrite in its lining?",
+   "Why do reports of the number of smell neurons in the dog differ by more than ten times?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.3",
+    "36-3-taste-and-smell"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dog olfactory bulb review: more than 200 million smell receptors, glomeruli, unmyelinated axon",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10216273/"
+   },
+   {
+    "title": "Isolated mouse smell neurons: cell body, dendrite and cilia sizes (BioNumbers)",
+    "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=112193"
+   }
+  ]
+ },
+ {
+  "id": "cell_olfactory_neuron_dog_dendrite",
+  "title": "Dendrite and cilia of the smell neuron (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3e-05,
+  "parents": [
+   "cell_olfactory_neuron_dog"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "cell_olfactory_neuron_dog",
+   "dog_osn"
+  ],
+  "mesh": null,
+  "summary": "The single thin process that carries a smell neuron up to the surface of the nose lining, ending in a knob of cilia.",
+  "layers": {
+   "basics": "A smell neuron has one dendrite. It rises from the cell body to the surface of the lining and widens into a knob there. From the knob a tuft of fine cilia spreads out into the mucus. The cilia are where odour molecules are caught: their surface is covered with odour receptors. In this picture three thin branches at the top stand for the cilia.",
+   "deeper": "In the mouse the dendrite is about 1 µm thick, and the cilia are 10 to 25 µm long, most cells having 5 to 10 of them. The cilia do not beat: they lack the dynein arms needed to move (McClintock 2020). They spread along the surface, overlapping those of neighbouring neurons, which gives a large area for catching odour molecules.",
+   "expert": "Counts and lengths of cilia vary a great deal between reports and between ages of the cell, and none were found for the dog. A textbook gives the dendrite as about 2 µm thick in the human, twice the mouse value. In the picture the dendrite length of 30 µm is illustrative, the cilia are three stand-ins, and they point up although in life they lie along the surface."
+  },
+  "facts": [
+   [
+    "Dendrite thickness",
+    "about 1 µm (mouse); about 2 µm (human textbook)"
+   ],
+   [
+    "Dendrite length",
+    "5 to 15 µm in isolated mouse cells, up to 35 µm"
+   ],
+   [
+    "Cilia length",
+    "10 to 25 µm (mouse)"
+   ],
+   [
+    "Cilia drawn",
+    "3 (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long is the dendrite in the dog, whose lining is thicker than a mouse's?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.3",
+    "36-3-taste-and-smell"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Isolated mouse smell neurons: dendrite and cilia sizes (BioNumbers)",
+    "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=112193"
+   },
+   {
+    "title": "Review of the maturing smell neuron and its cilia",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8133333/"
+   }
+  ]
+ },
+ {
+  "id": "cell_olfactory_neuron_dog_axon",
+  "title": "Axon of the smell neuron (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0001,
+  "parents": [
+   "cell_olfactory_neuron_dog"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "cell_olfactory_neuron_dog",
+   "neuron"
+  ],
+  "mesh": null,
+  "summary": "The very thin, unwrapped axon that carries a smell neuron's signal from the nose to the brain.",
+  "layers": {
+   "basics": "The axon leaves the base of the cell body and runs down through the loose tissue beneath the lining. It is far thinner than the axons of most nerve cells and has no myelin wrapping. It joins many others in bundles that cross the skull into the olfactory bulb, where it ends on cells of the brain.",
+   "deeper": "A textbook gives the axon as about 0.2 µm across, in the human. In the dog's olfactory bulb there are about 5000 glomeruli, each formed by 5000 to 40,000 axons, so very many axons converge on each one.",
+   "expert": "The thickness is not measured in the dog here. The picture shows only the first 300 µm of the axon, broken off at a labelled end, and its path is illustrative; the bundles, the wrapping glial cells and the end in the bulb are not drawn."
+  },
+  "facts": [
+   [
+    "Thickness",
+    "about 0.2 µm (human textbook)"
+   ],
+   [
+    "Myelin",
+    "none"
+   ],
+   [
+    "Axons per glomerulus (dog)",
+    "5000 to 40,000"
+   ],
+   [
+    "Glomeruli in the dog's bulb",
+    "about 5000"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How thick is the dog's smell axon, and how many axons travel in one bundle?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.3",
+    "36-3-taste-and-smell"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Dog olfactory bulb review: glomeruli and the unmyelinated axon",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10216273/"
+   },
+   {
+    "title": "Anatomy resource: cell body, dendrite and axon sizes of the smell neuron",
+    "url": "https://elsevier.com/resources/anatomy/olfactory-organ/olfactory-epithelium/cell-body-of-olfactory-sensory-neuron/15901"
+   }
+  ]
+ }
+]

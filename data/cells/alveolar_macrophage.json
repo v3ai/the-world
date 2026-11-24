@@ -1,0 +1,287 @@
+{
+ "id": "alveolar_macrophage",
+ "name": "Alveolar macrophage",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_alveolar_macrophage",
+ "blurb": "A human alveolar macrophage: a large, rounded scavenger cell that lives in the air space of the lung, ruffled and reaching out fingers of membrane to engulf dust and microbes.",
+ "note": "Model: a human alveolar macrophage, cut through its middle. Measured in human lung: its diameter (21 µm, cells washed out of the lung) and volume (about 5,000 µm³), and the width of its nucleus (8.3 µm, lung sections). Illustrative: the number, length and place of the pseudopods, the ruffling, the shape and place of the nucleus, the number and size of the mitochondria, lysosomes and engulfed dust particles and surfactant sacs, and the colours.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 21.2,
+  "b_um": 21.2,
+  "c_um": 21.2,
+  "bumps": 0.3,
+  "pseudopods": 6,
+  "pseudopod_um": 5
+ },
+ "dimensions": {
+  "diameter": {
+   "value": 21.2,
+   "range": [
+    20.9,
+    21.5
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "krombach1997",
+   "note": "21.2 ± 0.3 µm (mean ± the reported ±, 10 healthy non-smoking volunteers); cells washed out of the lung and measured in suspension, where they are round. Clinging to the wall they spread flatter. Range shown is the reported mean ± 0.3 µm only; the spread among individuals is not in the source."
+  },
+  "volume": {
+   "value": 4990,
+   "range": [
+    4816,
+    5164
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "krombach1997",
+   "calc": "measured volume 4990 ± 174 µm³ by electrical-resistance flow cytometry; a sphere 21.2 µm across has 4/3 x pi x 10.6³ = 4,989 µm³, so the drawn ball matches it before the pseudopods are added",
+   "note": "same 10 volunteers; range is the reported mean ± 174 µm³ only, not the spread among individuals"
+  },
+  "nucleus_diameter": {
+   "value": 8.33,
+   "range": [
+    7.47,
+    9.19
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "crapo1982",
+   "note": "8.33 ± 0.86 µm (SD), lung macrophages in sections of 8 normal human lungs; nuclei measured in sections may read a little small"
+  },
+  "nucleus_share": {
+   "value": 0.061,
+   "unit": "fraction",
+   "measured": true,
+   "calc": "a sphere 8.33 µm across (303 µm³) over the cell volume 4,990 µm³; the two numbers come from different studies and the nucleus is not truly round, so this is approximate",
+   "source": "crapo1982",
+   "also": "krombach1997"
+  },
+  "pseudopod_length": {
+   "value": 5,
+   "range": [
+    0,
+    60
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: pseudopods change within minutes as the cell moves and feeds"
+  },
+  "share_in_air_spaces": {
+   "value": 0.95,
+   "range": [
+    0.95,
+    0.97
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "hume2020",
+   "note": "abstract: 95% of alveolar macrophages in gas-exchange air spaces, 5% in airways; Results text: over 97%; right upper lobes only, 12 donors without lung disease (6 smokers, 6 nonsmokers); both free and wall-attached cells seen; the paper gives no free versus attached percentages"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": {
+   "value": [
+    8.3,
+    7.0,
+    6.5
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the width of 8.3 µm is measured (crapo1982) but the oval shape, the other two axes and the position of the nucleus are not"
+  },
+  "nucleoli": 1,
+  "position": "central",
+  "source": "crapo1982"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.03,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    1.0,
+    0.4
+   ],
+   "max_drawn": 300
+  },
+  "lysosomes": {
+   "count": {
+    "value": 60,
+    "measured": false,
+    "note": "illustrative: a cell that digests what it engulfs holds many"
+   },
+   "size_um": {
+    "value": 0.5,
+    "measured": false
+   },
+   "position": "any"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum",
+   "ribosomes",
+   "cytoskeleton filaments",
+   "the layer of surfactant the cell sits in",
+   "contact points with the wall"
+  ]
+ },
+ "cut": "The cell is cut through its middle: a ruffled outline with finger-like pseudopods, an oval nucleus with a nucleolus near the centre (position illustrative), mitochondria and many small lysosomes through the cytoplasm, and a few larger bags near the edge holding engulfed particles.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the inside dark; nucleus violet; mitochondria orange; lysosomes green; engulfed particles grey-brown. All are a code, not the real colours.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane",
+   "source": "openstax_resp"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "pseudopod": {
+   "name": "Pseudopod",
+   "card": "cell_alveolar_macrophage_pseudopod",
+   "material": "protein",
+   "source": "openstax_phago"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "lysosome",
+   "material": "membrane"
+  },
+  "phagosome": {
+   "name": "Phagosome with dust",
+   "card": null,
+   "material": "membrane",
+   "about": "A sac of membrane round particles the cell has swallowed from the air in the lung: dust, soot or microbes. In a smoker or a city dweller these dark particles build up in the cells. The number and size drawn are illustrative."
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "surfactant_inclusion": {
+   "name": "Swallowed surfactant",
+   "card": null,
+   "material": "membrane",
+   "about": "Pale sacs of surfactant, the film of lipids and proteins that lines the air spaces. Alveolar macrophages take it up and break it down, helping to keep the amount right. Their number here is illustrative."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "lung_alveoli",
+    "structure": "macro"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 14,
+  "r1_m": 0.00016,
+  "arrive_m": 3e-05,
+  "spawn_m": 1e-07
+ },
+ "about": [
+  "The ball is 21.2 µm across, the size measured for human alveolar macrophages washed out of the lung; its volume is {drawn.cellVolume} µm³ with the pseudopods, against 4,990 µm³ measured. This is large for a body cell and about four times the volume of the same cell in a rat (1,166 µm³) or hamster (1,328 µm³) in the same study.",
+  "The cell lives in the air space of the lung, not inside the wall: most of these cells (about 95% in one count of human lungs) sit in the gas-exchange air spaces, some free and some attached to the wall. Clinging to the wall it flattens, so this round shape is the one seen in suspension.",
+  "When it meets a particle or microbe it wraps a pseudopod or a thin ruffled sheet round it and pinches it off into a bag, a phagosome, which then fuses with lysosomes full of digestive enzymes. {drawn.phagosomes} phagosomes are drawn holding dark dust, with {drawn.surfactantInclusions} pale sacs of swallowed surfactant, the lipid film that lines the air spaces. Their number, place and size are illustrative.",
+  "{drawn.nuclei} nucleus and {drawn.mitochondria} of about {drawn.mitochondriaWanted} mitochondria are drawn. The nucleus width is measured; its oval shape and position, and every organelle count, are illustrative. The rough endoplasmic reticulum, the ribosomes and the filament skeleton are not drawn."
+ ],
+ "sources": {
+  "krombach1997": {
+   "cite": "Krombach F, Münzing S, Allmeling AM, Gerlach JT, Behr J, Dörger M (1997) Cell size of alveolar macrophages: an interspecies comparison. Environ Health Perspect 105 (Suppl 5):1261-1263",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1470168",
+   "opened": "2026-11-23",
+   "used_for": "human diameter 21.2 µm, volume 4990 µm³ (human volunteers, lavage cells, flow cytometry)"
+  },
+  "crapo1982": {
+   "cite": "Crapo JD, Barry BE, Gehr P, Bachofen M, Weibel ER (1982) Cell number and cell characteristics of the normal human lung. Am Rev Respir Dis 126:332-337, as listed in BioNumbers 113410",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=113410",
+   "opened": "2026-11-23",
+   "used_for": "nuclear diameter of lung macrophages 8.33 ± 0.86 µm in 8 normal human lungs (read via the BioNumbers entry, not the paper)"
+  },
+  "hume2020": {
+   "cite": "Hume PS et al. (2020) design-based stereology of macrophages in human lungs, PMC7233346",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7233346",
+   "opened": "2026-11-23",
+   "used_for": "about 95% (abstract; over 97% in the Results text) of alveolar macrophages lie in gas-exchange air spaces, both free and attached to the wall; right upper lobes of 12 donors"
+  },
+  "openstax_phago": {
+   "cite": "OpenStax Microbiology, 17.4 Pathogen Recognition and Phagocytosis",
+   "url": "https://openstax.org/books/microbiology/pages/17-4-pathogen-recognition-and-phagocytosis",
+   "opened": "2026-11-23",
+   "used_for": "pseudopod wraps the microbe, phagosome, fusion with lysosomes into a phagolysosome"
+  },
+  "openstax_resp": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 22.1 Organs and Structures of the Respiratory System",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-1-organs-and-structures-of-the-respiratory-system",
+   "opened": "2026-11-23",
+   "used_for": "alveolar macrophages as phagocytes clearing debris and pathogens in the alveoli"
+  }
+ },
+ "special": [
+  {
+   "kind": "ruffles",
+   "ruffle_part": "pseudopod",
+   "params": {
+    "sheets": 3,
+    "sheet_um": 3.5,
+    "arc": 2.0,
+    "arc_from": 2.2
+   }
+  },
+  {
+   "kind": "phagosomes",
+   "part": "phagosome",
+   "params": {
+    "count": 10,
+    "size_um": 1.5,
+    "content": "dust"
+   },
+   "note": "illustrative"
+  },
+  {
+   "kind": "vacuoles",
+   "part": "surfactant_inclusion",
+   "count_key": "surfactantInclusions",
+   "params": {
+    "count": 16,
+    "size_um": 0.9,
+    "role": "lamellar"
+   },
+   "note": "illustrative"
+  }
+ ]
+}

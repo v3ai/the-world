@@ -1,0 +1,133 @@
+[
+ {
+  "id": "cell_smooth_muscle_cell",
+  "title": "Smooth muscle cell",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 0.00015,
+  "parents": [
+   "smooth_muscle_tissue"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": [
+   "smooth_muscle_tissue"
+  ],
+  "mesh": null,
+  "summary": "A slim spindle-shaped muscle cell with one long nucleus and no stripes, found in the walls of vessels and hollow organs.",
+  "layers": {
+   "basics": "A smooth muscle cell is a thin cell, fat in the middle and pointed at both ends, a bit like a grain of rice stretched out. It has one long nucleus and no stripes, which is where the name smooth comes from. Sheets of these cells wrap the gut, blood vessels, airways and bladder, and by shortening together they squeeze or narrow the tube they surround. You do not control them on purpose; they are driven by the autonomic nerves, hormones and local signals in the tissue.",
+   "deeper": "Inside, thick myosin filaments and thin actin filaments run in a loose net along the cell, not in the tidy repeating blocks (sarcomeres) of striped muscle. The thin filaments are held in patches called dense bodies, which do the job that Z-discs do in striped muscle, and the cell shortens along its whole length when they are pulled together. The signal to contract is calcium, which binds a small protein called calmodulin instead of the troponin used in striped muscle. Pits in the membrane called caveolae sit close to the cell's calcium store, and in many organs gap junctions let cells pass the signal to their neighbours, so a whole sheet can contract as one.",
+   "expert": "The textbook range for cell length is about 30 to 200 um, but cells in some organs are much longer (a general figure of 600 to 800 um is quoted for elongated cells), and a cell's length and width change as the muscle is stretched or shortened. Mitochondria take roughly 2 to 10% of the cytoplasm in mammalian smooth muscle, a wide range that depends on species and organ. In rat, guinea pig and human tissue (human ileum among them) the caveolae are 70 to 77 nm across, make up about 1.43 to 3.66% of the cell volume and enlarge the membrane area by about 80%. The numbers for the fine structure come mostly from animals, with some human tissue."
+  },
+  "facts": [
+   [
+    "Shape",
+    "spindle: wide in the middle, tapered at both ends"
+   ],
+   [
+    "Length",
+    "about 30-200 um (textbook range)"
+   ],
+   [
+    "Width",
+    "a few um at the widest"
+   ],
+   [
+    "Nuclei",
+    "one, long and often cigar-shaped"
+   ],
+   [
+    "Stripes",
+    "none: no sarcomeres"
+   ],
+   [
+    "Mitochondria",
+    "about 2-10% of cytoplasm (mammals)"
+   ],
+   [
+    "Caveola size",
+    "70-77 nm (rat, guinea pig, human ileum)"
+   ]
+  ],
+  "did_you_know": "In a thin slice of smooth muscle, a cigar-shaped nucleus often looks like a small round dot, so a slice can show far fewer nuclei than cells.",
+  "certainty": "C2",
+  "open_questions": [
+   "How much of the variation in length between organs is set by the cells themselves and how much by how stretched the muscle was when it was fixed?",
+   "What are the volume shares of the organelles in human smooth muscle cells, as opposed to those of rat, guinea pig and sheep?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "10.8",
+    "10-8-smooth-muscle"
+   ]
+  ],
+  "kn": [],
+  "molecules": []
+ },
+ {
+  "id": "cell_smooth_muscle_filaments",
+  "title": "Contractile filaments of smooth muscle",
+  "kind": "structure",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": [
+   "cell_smooth_muscle_cell"
+  ],
+  "parts": [],
+  "made_of": [],
+  "processes": [
+   "muscle_contraction"
+  ],
+  "related": [
+   "sarcomere",
+   "cell_smooth_muscle_cell"
+  ],
+  "mesh": null,
+  "summary": "The thick myosin and thin actin filaments that shorten a smooth muscle cell, anchored in dense bodies instead of lined up in sarcomeres.",
+  "layers": {
+   "basics": "Smooth muscle contracts with the same two proteins as striped muscle: actin in thin filaments and myosin in thick ones. They are not packed into neat repeating blocks, so the cell has no stripes. The filaments are tied to patches on the inside of the membrane and in the cytoplasm. When the myosin pulls on the actin, the whole cell gets shorter and fatter.",
+   "deeper": "The anchoring patches are called dense bodies. They do the work of the Z-discs of striped muscle: the thin filaments end in them, and they are linked to the membrane so that the pull of the filaments is passed to the cell's surroundings. Contraction is switched on by calcium, which binds calmodulin; this leads to a change in myosin that lets it grip actin.",
+   "expert": "The ratio of thin to thick filaments and the filament lengths vary between smooth muscles and are not given here."
+  },
+  "facts": [
+   [
+    "Thin filament",
+    "actin"
+   ],
+   [
+    "Thick filament",
+    "myosin"
+   ],
+   [
+    "Anchor",
+    "dense bodies (like Z-discs)"
+   ],
+   [
+    "Switch",
+    "calcium with calmodulin"
+   ],
+   [
+    "Sarcomeres",
+    "none"
+   ]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+   "How are the filaments and dense bodies arranged in three dimensions inside a living smooth muscle cell?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "10.8",
+    "10-8-smooth-muscle"
+   ]
+  ],
+  "kn": [
+   "muscle_contraction"
+  ],
+  "molecules": []
+ }
+]

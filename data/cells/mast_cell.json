@@ -1,0 +1,277 @@
+{
+ "id": "mast_cell",
+ "name": "Mast cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_mast_cell",
+ "blurb": "A human mast cell: a small round cell of loose connective tissue whose cytoplasm is packed with over a thousand granules of histamine, heparin and enzymes, around a round central nucleus.",
+ "note": "Model: a human mast cell, cut through its middle. Measured in human lung mast cells (isolated from lung tissue, fixed and cut for electron microscopy): the volume of the cell (391 µm³) and of its nucleus (83 µm³), and the number (1,352), volume and shape of its granules. Measured in micrographs of human connective tissue: the round, central nucleus and the granules around it. Illustrative: the three axes of the outline (chosen to give the measured volume), the faint roughness of the surface, the mitochondria (number, size and share), the single Golgi stack, the exact positions of the granules and the colours. Cells in skin or gut may differ from lung cells in their granule count and size. Not drawn: the many fine surface folds and microvilli of the living cell, the scroll-like patterns inside the granules, the endoplasmic reticulum, the lipid bodies found in lung mast cells, the surface receptors for IgE, and the cell's change when it releases its granules.",
+ "shape": {
+  "type": "ellipsoid",
+  "a_um": 10.4,
+  "b_um": 9.2,
+  "c_um": 7.8,
+  "bumps": 0.15
+ },
+ "dimensions": {
+  "volume": {
+   "value": 391,
+   "range": [
+    300,
+    500
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "hammel1985",
+   "note": "mean of 150 profiles of human lung mast cells (391 ± 20 µm³), worked out from the average cut area by the Weibel-Gomez formula; fixed cells may be smaller than living ones; the range is illustrative"
+  },
+  "equivalent_diameter": {
+   "value": 9.07,
+   "unit": "um",
+   "measured": true,
+   "calc": "the diameter of a sphere of 391 µm³: (6 x 391 / π)^(1/3)",
+   "source": "hammel1985",
+   "note": "the connective-tissue scene draws a mast cell of 11.5 µm, from a stated range of 10 to 13 µm that was not opened here"
+  },
+  "axes": {
+   "value": 10.4,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: the long axis; with 9.2 x 7.8 µm the three axes enclose 391 µm³ (π/6 x 10.4 x 9.2 x 7.8). The real cell is not known to be this much flattened."
+  },
+  "nucleus_volume": {
+   "value": 83,
+   "unit": "um3",
+   "measured": true,
+   "source": "hammel1985",
+   "note": "83 ± 5 µm³, human lung mast cells"
+  },
+  "cytoplasm_volume": {
+   "value": 308,
+   "unit": "um3",
+   "measured": true,
+   "calc": "391 - 83 µm³",
+   "source": "hammel1985"
+  },
+  "granule_volume": {
+   "value": 0.025,
+   "range": [
+    0.005,
+    0.12
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "hammel1985",
+   "note": "mean 0.025 ± 0.008 µm³ for granules that hold one or more scroll-like inclusions; the range is illustrative"
+  },
+  "granule_diameter": {
+   "value": 0.363,
+   "unit": "um",
+   "measured": true,
+   "calc": "the diameter of a sphere of 0.025 µm³; the granules are slightly elongated (axial ratio 1.32), about 0.44 x 0.33 µm",
+   "source": "hammel1985"
+  },
+  "granule_share_of_cell": {
+   "value": 0.086,
+   "unit": "fraction",
+   "measured": true,
+   "calc": "1,352 granules x 0.025 µm³ = 33.8 µm³, over a cell of 391 µm³",
+   "source": "hammel1985",
+   "compare": "a different set of lung mast cells (dvorak1984) gave 28% of the cut area to granules; the two studies differ and the cause was not found"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.212,
+   "range": [
+    0.177,
+    0.212
+   ],
+   "measured": true,
+   "calc": "83 µm³ of nucleus over a cell of 391 µm³",
+   "source": "hammel1985",
+   "also": "dvorak1984",
+   "note": "17.7% of the cell in the second study (dvorak1984); the range runs between the two"
+  },
+  "position": "central",
+  "note": "Spherical and central, with moderate heterochromatin at its edge, seen in connective-tissue micrographs; no nucleolus is drawn.",
+  "source": "digihisto17",
+  "also": "digihisto18"
+ },
+ "organelles": {
+  "granules": {
+   "count": {
+    "value": 1352,
+    "range": [
+     1000,
+     1700
+    ],
+    "measured": true,
+    "source": "hammel1985",
+    "note": "1,352 ± 81 per cell, human lung mast cells; the range is illustrative"
+   },
+   "size_um": {
+    "value": 0.331,
+    "measured": true,
+    "calc": "the short axis of a granule of 0.025 µm³ and axial ratio 1.32: (0.025 / (π/6 x 1.32))^(1/3)",
+    "source": "hammel1985"
+   },
+   "elongation": 1.32,
+   "position": "any",
+   "max_drawn": 700,
+   "source": "hammel1985"
+  },
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.02,
+    "range": [
+     0.005,
+     0.05
+    ],
+    "measured": false,
+    "calc": "illustrative: mitochondria are named among the 'other organelles' of human lung mast cells (dvorak1984), but no volume share was found"
+   },
+   "size_um": [
+    0.8,
+    0.3
+   ],
+   "size_measured": false,
+   "max_drawn": 200
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative: Golgi structures are named among the 'other organelles' (dvorak1984); the number and place are not"
+   }
+  },
+  "not_drawn": [
+   "scroll-like and crystalline patterns inside the granules",
+   "rough and smooth endoplasmic reticulum",
+   "lipid bodies (71 per human lung mast cell, hammel1985; not seen in human skin mast cells, dvorak1984)",
+   "surface receptors for IgE",
+   "surface folds and microvilli",
+   "the channels that form when granules fuse and open to the outside"
+  ]
+ },
+ "special": [
+  {
+   "kind": "granule_contents",
+   "part": "granule",
+   "source": "sagi2025",
+   "note": "Each granule is a membrane-bound store of histamine, heparin and related sugar-chain molecules, proteases such as tryptase (and, in one of the two human cell types, chymase), and some signalling proteins (sagi2025). Their contents are not drawn."
+  },
+  {
+   "kind": "degranulation",
+   "part": "granule",
+   "source": "dvorak1984",
+   "note": "When anti-IgE is added to human lung mast cells, the granules swell and fuse with their neighbours within minutes, forming chains and channels that open to the cell surface; 77% of the granule volume was changed within 20 minutes (dvorak1984). The cell is drawn at rest, before this."
+  },
+  {
+   "kind": "inflammation",
+   "part": "granule",
+   "source": "openstax_innate",
+   "note": "Released histamine widens nearby blood vessels and makes capillaries leak, which produces the swelling of inflammation (openstax_innate). Not drawn."
+  }
+ ],
+ "cut": "The cell is cut through its middle: a round nucleus near the centre with a thin heterochromatin edge, and around it more than six hundred small granules of slightly different shapes packing the cytoplasm, with a few mitochondria and one Golgi stack between them.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the inside dark; nucleus violet; granules a warm gold so that they stand out; mitochondria orange; Golgi yellow. All the colours are a code: a living mast cell is nearly colourless, and the granules appear coloured only under a stain.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane (with IgE receptors)",
+   "card": "cell_mast_cell_surface",
+   "material": "membrane",
+   "source": "sagi2025"
+  },
+  "cytosol": {
+   "name": "Cytoplasm",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, so crowded with granules that they take about a tenth of the cell's volume and the nucleus about a fifth."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus",
+   "source": "digihisto17"
+  },
+  "granule": {
+   "name": "Secretory granule",
+   "card": "cell_mast_cell_granule",
+   "material": "protein",
+   "source": "hammel1985"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "loose_connective_fat",
+    "structure": "mast"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 7,
+  "r1_m": 0.00015,
+  "arrive_m": 2.5e-05,
+  "spawn_m": 8e-07
+ },
+ "about": [
+  "A mast cell of a person. Its size, nucleus and granules are those measured in human lung mast cells: a volume of 391 µm³ (the drawn cell holds {drawn.cellVolume} µm³) and a nucleus of 83 µm³, about a fifth of the cell. The outline is an ellipsoid chosen to give that volume; the real shape is less certain, and mast cells in other tissues may be larger.",
+  "The granules fill the cytoplasm: 1,352 per cell were counted, each about a third of a micrometre across and slightly elongated. {drawn.granules} are drawn in the kept half. They store histamine, heparin and proteases that the cell releases when the receptors on its surface, bound to antibodies of the IgE kind, are cross-linked by an allergen, or when tissue is injured.",
+  "The cell is drawn at rest. After its signal the granules swell, fuse with each other and open to the outside, and the cell then shows channels and fewer granules; none of this is drawn. {drawn.mitochondria} mitochondria and one Golgi stack are drawn as illustrations: their amounts are not known."
+ ],
+ "sources": {
+  "hammel1985": {
+   "cite": "Hammel I, Dvorak AM, Peters SP, Schulman ES, Dvorak HF, Lichtenstein LM, Galli SJ (1985) Differences in the volume distributions of human lung mast cell granules and lipid bodies, J Cell Biol 100(5):1488-1492",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2113860/",
+   "opened": "2026-11-23",
+   "used_for": "human lung mast cells, electron micrographs: cell volume 391 µm³, nucleus 83 µm³, 1,352 granules per cell of mean volume 0.025 µm³ and axial ratio 1.32; 71 lipid bodies per cell (Table I, full text read)"
+  },
+  "dvorak1984": {
+   "cite": "Dvorak AM, Hammel I, Schulman ES, Peters SP, MacGlashan DW Jr, Schleimer RP, Newball HH, Pyne K, Dvorak HF, Lichtenstein LM, Galli SJ (1984) Differences in the behavior of cytoplasmic granules and lipid bodies during human lung mast cell degranulation, J Cell Biol 99(5):1678-1687",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2113347/",
+   "opened": "2026-11-23",
+   "used_for": "scroll, crystal and particle patterns in granules; granule swelling, fusion and channels after anti-IgE; 77% of granule volume altered in 20 min; lipid bodies not seen in human skin mast cells; nucleus about 16% of the print area in Table I (full text read)"
+  },
+  "digihisto17": {
+   "cite": "Digital Histology, Connective Tissue Proper, Cells 17 (electron micrograph of a mast cell beside two macrophages)",
+   "url": "https://digitalhistology.org/tissues/connective/connective-tissue-proper/cells/cells-17/",
+   "opened": "2026-11-23",
+   "used_for": "a spherical, central nucleus with moderate peripheral heterochromatin; numerous electron-dense secretory granules throughout the cytoplasm"
+  },
+  "digihisto18": {
+   "cite": "Digital Histology, Connective Tissue Proper, Cells 18 (mast cell in loose connective tissue, 8,000x)",
+   "url": "https://digitalhistology.org/tissues/connective/connective-tissue-proper/cells/cells-18/",
+   "opened": "2026-11-23",
+   "used_for": "a mast cell in loose connective tissue; central nucleus surrounded by granules that hold histamine, heparin and protease enzymes"
+  },
+  "sagi2025": {
+   "cite": "Sagi-Eisenberg R (2025) Biogenesis and homeostasis of mast cell lysosome related secretory granules, Front Cell Dev Biol 13:1603999 (parts read through Europe PMC: introduction and the legend of Figure 1)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12141310/",
+   "opened": "2026-11-23",
+   "used_for": "granule contents (histamine, polyamines, heparin and chondroitin sulfate, tryptase, chymase, TNF-alpha); the high-affinity IgE receptor on human mast cells; the two human types, with tryptase only or with tryptase and chymase"
+  },
+  "openstax_innate": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 21.2 Barrier Defenses and the Innate Immune Response",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/21-2-barrier-defenses-and-the-innate-immune-response",
+   "opened": "2026-11-23",
+   "used_for": "injury releases mast cell granules; histamine widens local blood vessels and makes capillaries leak, causing swelling"
+  }
+ }
+}

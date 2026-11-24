@@ -1,0 +1,66 @@
+{
+ "id": "red_blood_cell",
+ "name": "Red blood cell",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "red_blood_cell",
+ "blurb": "A human red blood cell: a disc thinner in the middle than at the rim, with no nucleus, packed with haemoglobin.",
+ "note": "Model: a human red blood cell, cut through its middle. Measured in human blood: its outline (the Evans–Fung shape, 7.8 µm across), its volume and the number and size of its haemoglobin molecules. Illustrative: the colours, the thickness drawn for the membrane and the spectrin net under it (in life a few nanometres), and the tilt.",
+ "shape": {
+  "type": "disc_biconcave",
+  "diameter_um": 7.82,
+  "c0_um": 0.81,
+  "c2_um": 7.38,
+  "c4_um": -4.39
+ },
+ "dimensions": {
+  "diameter": { "value": 7.82, "range": [6.0, 9.0], "unit": "um", "measured": true, "source": "evansfung", "note": "2 x R0 = 2 x 3.91 µm; the range is that of 500 healthy cells measured by holographic microscopy (mean 7.43 µm)", "also": "bhabhor" },
+  "max_thickness": { "value": 2.41, "unit": "um", "measured": true, "calc": "the Evans-Fung profile with the coefficients above, at 2.7 µm from the axis", "source": "evansfung", "compare": "3.23 ± 0.48 µm in 500 cells (bhabhor)" },
+  "centre_thickness": { "value": 0.81, "unit": "um", "measured": true, "source": "evansfung" },
+  "volume": { "value": 88.3, "range": [72, 100], "unit": "um3", "measured": true, "calc": "the volume of the profile turned about its axis", "source": "evansfung", "compare": "86.1 ± 14.0 fL in 500 cells (bhabhor); 1 fL = 1 µm³" },
+  "surface_area": { "value": 129.7, "unit": "um2", "measured": true, "calc": "the area of the profile turned about its axis", "source": "evansfung", "compare": "121.2 ± 10.8 µm² in 500 cells (bhabhor)" }
+ },
+ "nucleus": { "count": 0, "note": "A mature human red blood cell has no nucleus.", "source": "openstax_rbc" },
+ "organelles": {
+  "absent": ["nucleus", "mitochondria", "endoplasmic reticulum", "ribosomes"],
+  "absent_source": "openstax_rbc"
+ },
+ "special": [
+  { "kind": "crowd", "part": "haemoglobin", "role": "haemoglobin",
+    "params": { "count": 300000000, "size_nm": [5.4, 5.7, 6.6], "show_below_um": 0.3, "max_drawn": 6000 },
+    "source": "openstax_rbc", "size_source": "pdb_4hhb",
+    "note": "About 300 million haemoglobin molecules per cell (openstax_rbc). Their size: the extent of the atoms of the 4HHB structure along its three main axes (calculated from data/proteins/4hhb.json). Drawn only where the view is under 0.3 µm across, in a thin layer behind the cut face, at the spacing that number gives (about 6.6 nm between centres)." },
+  { "kind": "spectrin_net", "part": "spectrin",
+    "params": {},
+    "source": "liu1987",
+    "note": "Under the membrane: a mostly six-sided net of short actin filaments joined by spectrin (liu1987). Drawn as one band along the cut edge; the mesh itself is not drawn." }
+ ],
+ "cut": "A cut through the axis of the disc: the section is a dumbbell, thick at the rim and thin in the middle, filled with haemoglobin; the membrane and the spectrin net run round its edge.",
+ "colours": {
+  "convention": "Haemoglobin red (a red blood cell is red because of it); the membrane pale; the spectrin net light orange so it shows against the haemoglobin. Only the red of the haemoglobin is the real colour; the rest is a code.",
+  "true_colour": ["haemoglobin", "rbc"]
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "haemoglobin": { "name": "Haemoglobin", "card": "bio_hemoglobin_cooperativity", "material": "haemoglobin" },
+  "spectrin": { "name": "Spectrin net", "card": null, "material": "spectrin", "about": "Under the membrane a net of spectrin, a long flexible protein, holds the cell's shape: mostly six-sided meshes whose corners are short actin filaments. It lets the cell bend through capillaries narrower than itself and spring back." }
+ },
+ "reached": {
+  "materials": ["red_blood_cell"],
+  "tissue": [{ "kind": "blood", "id": "red_blood_cell" }, { "kind": "alveoli", "id": "red_blood_cell" }],
+  "tissue2": [{ "scene": "lung_alveoli", "structure": "rbc" }, { "scene": "loose_connective_fat", "structure": "rbc" }]
+ },
+ "view": { "radius_um": 7, "r1_m": 1.2e-4, "arrive_m": 2.2e-5, "spawn_m": 6e-8 },
+ "about": [
+  "The outline is the Evans–Fung formula for a healthy human red blood cell (diameter 7.82 µm). Turned about its axis it gives a volume of {drawn.cellVolume} µm³; 500 healthy cells measured by holographic microscopy averaged 86 ± 14 µm³ (femtolitres).",
+  "There is no nucleus and there are no mitochondria: the cell is a bag of haemoglobin, about 300 million molecules of it. Come close to the cut face (under 0.3 µm across) and the molecules are drawn at their true size and spacing.",
+  "The membrane and the spectrin net are drawn as bands thick enough to see; in life each is only a few nanometres thick."
+ ],
+ "sources": {
+  "evansfung": { "cite": "Totero Gongora JS, Fratalocchi A (2016) Optical force on diseased blood cells: towards the optical sorting of biological matter, arXiv:1605.04509 (Evans-Fung coefficients of a healthy, isotonic red blood cell, from Evans E, Fung YC 1972, Microvasc Res 4:335)", "url": "https://arxiv.org/abs/1605.04509", "opened": "2026-11-23", "used_for": "R0 = 3.91 µm, C0 = 0.81 µm, C2 = 7.38 µm, C4 = -4.39 µm (the 1972 paper itself was not opened)" },
+  "bhabhor": { "cite": "Bhabhor GD, Patel C, Chhillar N, Anand A, Lad KN (2023) Geometrical characterization of healthy red blood cells using digital holographic microscopy and parametric shape models, arXiv:2301.12879", "url": "https://arxiv.org/abs/2301.12879", "opened": "2026-11-23", "used_for": "500 healthy cells: diameter 6.0-9.0 µm (mean 7.43), maximum thickness 3.23 ± 0.48 µm, volume 86.1 ± 14.0 fL, surface 121.2 ± 10.8 µm²" },
+  "openstax_rbc": { "cite": "OpenStax Anatomy and Physiology 2e, 18.3 Erythrocytes", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes", "opened": "2026-11-23", "used_for": "biconcave disc about 7-8 µm across; no nucleus, mitochondria or ER; about 300 million haemoglobin molecules per cell; lives up to 120 days" },
+  "liu1987": { "cite": "Liu SC, Derick LH, Palek J (1987) Visualization of the hexagonal lattice in the erythrocyte membrane skeleton, J Cell Biol 104:527", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2114560/", "opened": "2026-11-23", "used_for": "a mainly hexagonal lattice of junctional actin complexes cross-linked by spectrin (abstract)" },
+  "pdb_4hhb": { "cite": "Fermi G, Perutz MF, Shaanan B, Fourme R (1984) The crystal structure of human deoxyhaemoglobin at 1.74 Å resolution, PDB 4HHB (data/proteins/4hhb.json)", "url": "https://www.rcsb.org/structure/4HHB", "opened": "2026-11-23", "used_for": "the size of one haemoglobin molecule: 5.4 x 5.7 x 6.6 nm, the extent of its atom centres along its principal axes (calculated)" }
+ }
+}

@@ -1,0 +1,269 @@
+{
+ "id": "animal_cell_generic",
+ "name": "Animal cell (a plain one)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "cell_animal_cell_generic",
+ "blurb": "A plain animal cell, drawn with figures from human cells. It stands in for animal cells that have no picture of their own, in any animal.",
+ "note": "Model: a plain animal cell drawn with measurements from human cells (and, where said, rat liver and HeLa cells), used for animal cells of any species that have no drawing of their own, so it is not the cell of the animal you came from. No real cell looks like this one; every kind of cell adds or changes parts, cut in half. Measured: the cell's volume (a crude range of 500 to 4000 µm³ given for mammalian cells with no cell type named), the nucleus's share of it, the mitochondria's share of the cytoplasm, and the number and size of the lysosomes. Illustrative: the six-sided shape and its size, the sizes of the mitochondria, the Golgi and the stacks of rough endoplasmic reticulum, their placing, and the colours. The lysosome count comes from one cell type (breast epithelium) and may not scale with the volume drawn here. Only part of the mitochondria are drawn (a few hundred), so the picture holds fewer than the 9% share. Several shares come from rat liver or human cell lines, and the note on each says which.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 16,
+  "height_um": 10.5,
+  "taper": 1,
+  "irregularity": 0.15,
+  "round_um": 1.5,
+  "apical": "none",
+  "neighbours": 0
+ },
+ "dimensions": {
+  "volume": {
+   "value": 2250,
+   "range": [
+    500,
+    4000
+   ],
+   "unit": "um3",
+   "measured": true,
+   "source": "bn_volume",
+   "note": "a crude range given for mammalian cells with no cell type named; real human cell types fall well outside it"
+  },
+  "width": {
+   "value": 16,
+   "unit": "um",
+   "measured": false,
+   "calc": "a hexagonal prism 16 µm across the flats and 10.5 µm tall: (sqrt(3)/2) x 16² x 10.5 = 2328 µm³, about 2250 µm³ once its edges are rounded (the rounding is chosen to fit, not measured)",
+   "note": "illustrative: chosen so the drawn cell has the measured volume"
+  },
+  "height": {
+   "value": 10.5,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": {
+   "value": 0.1,
+   "range": [
+    0.05,
+    0.1
+   ],
+   "measured": true,
+   "source": "bn_nucleus_frac",
+   "also": "bn_nucleus_liver",
+   "note": "about 10% in mammals in general (an approximation for all mammals); 5 to 10% in rat liver cells"
+  },
+  "nucleoli": 1,
+  "source": "openstax_bio43"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.09,
+    "range": [
+     0.085,
+     0.22
+    ],
+    "measured": true,
+    "calc": "9.4 to 11% of the cytoplasm in HeLa cells (the mid value 10%), and the cytoplasm is the 90% of the cell that is not nucleus: 0.10 x 0.90",
+    "source": "bn_hela_mito",
+    "also": "bn_liver_mito",
+    "note": "the human cell line sits near 9% (low end 0.085 from the HeLa range); rat liver cells reach 22% of the cell. Cells with a heavy load of work carry many more. Illustrative: at 1.0 x 0.4 µm about 2400 would fit in 9% of 2250 µm³, but at most 300 are drawn in the half, so the picture holds fewer than the stated share"
+   },
+   "size_um": [
+    1.0,
+    0.4
+   ],
+   "size_measured": false,
+   "max_drawn": 300
+  },
+  "lysosomes": {
+   "count": {
+    "value": 220,
+    "measured": true,
+    "source": "bn_lyso_n",
+    "note": "normal human breast (mammary) epithelial cells; other cells carry fewer or more, and the count may not scale with the cell volume drawn here"
+   },
+   "size_um": {
+    "value": 0.5,
+    "measured": true,
+    "source": "bn_lyso_d",
+    "note": "median diameter in the same cells"
+   },
+   "position": "any"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 1,
+    "measured": false,
+    "note": "illustrative: one stack drawn near the nucleus"
+   }
+  },
+  "not_drawn": [
+   "the smooth endoplasmic reticulum",
+   "free ribosomes (too small to draw at this size)",
+   "peroxisomes",
+   "centrosome and centrioles",
+   "cytoskeleton",
+   "vesicles"
+  ]
+ },
+ "special": [
+  {
+   "kind": "centrosome",
+   "source": "openstax_bio43",
+   "note": "Animal cells carry a centrosome near the nucleus: a pair of centrioles at right angles, each a cylinder of nine triplets of microtubules. It is described here and not drawn."
+  },
+  {
+   "kind": "differences",
+   "source": "openstax_anp32",
+   "note": "All body cells carry the same DNA and differ in which genes they use. Cells differ in how much of each part they carry: a textbook puts a busy neuron at over a thousand mitochondria and a bone cell at a couple of hundred (a textbook statement, not a count); muscle cells need many for the energy of contraction, white blood cells that swallow things carry many lysosomes, liver cells many peroxisomes. None of this is drawn here; the cells with their own pictures show their own balance.",
+   "also": "openstax_anp36"
+  },
+  {
+   "kind": "rough_er_stacks",
+   "part": "rough_er",
+   "params": {
+    "stacks": 25,
+    "sheets": 4,
+    "width_um": 2.2,
+    "spacing_um": 0.14
+   },
+   "note": "illustrative number and size"
+  }
+ ],
+ "cut": "The cell is cut in half through the middle: the round nucleus with its nucleolus in the centre, mitochondria scattered through the cytoplasm around it, small lysosomes, and one Golgi apparatus beside the nucleus, all inside the membrane.",
+ "colours": {
+  "convention": "Membrane pale peach, the inside dark; nucleus violet; nucleolus darker violet; mitochondria orange; lysosomes green; Golgi yellow. All of these are a code: living cells are close to colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": "cell_animal_cell_generic_cytosol",
+   "material": "water",
+   "about": "Water is the main part of the cytosol; the proteins, ions and other molecules dissolved in it are not shown when you go in close, only liquid water."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "cell_animal_cell_generic_nucleolus",
+   "material": "rna",
+   "about": "The nucleolus is made of DNA, RNA and protein. Shown on a double click: one unit of RNA (a stand-in). The DNA and protein are not shown."
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "lysosome",
+   "material": "membrane",
+   "about": "Shown on a double click: the lipid of the membrane that bounds the lysosome (POPC, a stand-in for the real lipid mix), not its contents, the acid-working enzymes."
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane",
+   "about": "Shown on a double click: the lipid of the membranes that bound the Golgi sacs (POPC, a stand-in for the real lipid mix), not the stacked flattened sacs themselves."
+  },
+  "rough_er": {
+   "name": "Rough endoplasmic reticulum",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of flat membrane sacs covered in ribosomes, where the cell makes proteins to export or to build into its membranes. The ribosomes are shown as one RNA nucleotide, a stand-in. Their number and size here are illustrative; cells differ greatly in how much they have."
+  }
+ },
+ "reached": {
+  "materials": [
+   "animal_cells"
+  ]
+ },
+ "view": {
+  "radius_um": 14,
+  "r1_m": 0.00022,
+  "arrive_m": 3.5e-05,
+  "spawn_m": 1.2e-06
+ },
+ "about": [
+  "This is a plain animal cell, drawn where the app has no picture of the exact kind of cell. It is no real cell: the six-sided body is chosen so that its volume, {drawn.cellVolume} µm³ as drawn, matches the 2250 µm³ given for a human cell, a crude figure with a range from 500 to 4000 µm³ for mammalian cells.",
+  "The nucleus takes about a tenth of the cell ({drawn.nuclei} drawn), the mitochondria about 9% of it ({drawn.mitochondria} drawn in this half, fewer than that share would hold). The 9% is worked out from a human cell line, where they fill about a tenth of the cytoplasm; in rat liver cells they fill 22% of the cell. There are about 220 lysosomes per cell, counted in human breast cells.",
+  "All the cells of the body carry the same DNA and differ in which genes they use, so most of the parts here are in every cell, in different amounts. A few stacks of rough endoplasmic reticulum ({drawn.erStacks} drawn, an illustrative number) stand for the cell's protein-making membranes. The smooth endoplasmic reticulum, the free ribosomes, peroxisomes, centrosome and cytoskeleton are not drawn."
+ ],
+ "sources": {
+  "bn_volume": {
+   "cite": "BioNumbers BNID 100434: characteristic volume of a human cell (Roskams and Rodgers, LabRef), Harvard Medical School",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=100434",
+   "opened": "2026-11-23",
+   "used_for": "human cell volume 2250 µm³, range 500 to 4000 µm³ (the entry: no cell type specified, a crude range for mammalian cells)"
+  },
+  "bn_nucleus_frac": {
+   "cite": "BioNumbers BNID 113848: nucleus share of cell volume in mammals (Heyden and Ortiz 2017, Comput Methods Appl Mech Eng 314:314-322, citing Alberts et al. and Lodish et al.)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=113848",
+   "opened": "2026-11-23",
+   "used_for": "nucleus about 10% of the cell's volume in mammals"
+  },
+  "bn_nucleus_liver": {
+   "cite": "BioNumbers BNID 104262: nucleus share of rat hepatocyte volume (Peters 1984, EMBO J 3:1831, from Novikoff and Holtzman 1976)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=104262",
+   "opened": "2026-11-23",
+   "used_for": "5 to 10% of the volume in rat liver cells: the lower end of the range"
+  },
+  "bn_hela_mito": {
+   "cite": "BioNumbers BNID 109406: mitochondrial volume over cytoplasmic volume in HeLa cells (Posakony, England, Attardi 1977, J Cell Biol 74:468, Table 2)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=109406",
+   "opened": "2026-11-23",
+   "used_for": "mitochondria 9.4 to 11% of the cytoplasm in a human cell line over the cell cycle"
+  },
+  "bn_liver_mito": {
+   "cite": "BioNumbers BNID 105782: mitochondria share of hepatocyte volume in rat (Weibel et al. 1969, J Cell Biol 42:68)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=105782",
+   "opened": "2026-11-23",
+   "used_for": "22% of the volume of a rat liver cell: the high end, for comparison (uncorrected for systematic errors, as the entry says)"
+  },
+  "bn_lyso_n": {
+   "cite": "BioNumbers BNID 106077: lysosomes per normal human mammary epithelial cell at pH 7.4 (Glunde et al. 2003, Neoplasia 5:533, Fig. 6a)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=106077",
+   "opened": "2026-11-23",
+   "used_for": "220 lysosomes per cell, counted in confocal images"
+  },
+  "bn_lyso_d": {
+   "cite": "BioNumbers BNID 106078: lysosome diameter in normal human mammary epithelial cells at pH 7.4 (Glunde et al. 2003, Neoplasia 5:533, Fig. 5a)",
+   "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=106078",
+   "opened": "2026-11-23",
+   "used_for": "median lysosome diameter 0.5 µm"
+  },
+  "openstax_bio43": {
+   "cite": "OpenStax Biology 2e, 4.3 Eukaryotic Cells",
+   "url": "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+   "opened": "2026-11-23",
+   "used_for": "nucleolus about a tenth of the nucleus (a figure description that does not say across or by volume); centrosome with a pair of centrioles of nine microtubule triplets; no cell wall in animal cells; mitochondria oval with cristae"
+  },
+  "openstax_anp32": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 3.2 The Cytoplasm and Cellular Organelles",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-2-the-cytoplasm-and-cellular-organelles",
+   "opened": "2026-11-23",
+   "used_for": "cells differ in how many mitochondria, lysosomes, smooth ER and peroxisomes they carry (a neuron over a thousand mitochondria, a bone cell a couple of hundred)"
+  },
+  "openstax_anp36": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 3.6 Cellular Differentiation",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/3-6-cellular-differentiation",
+   "opened": "2026-11-23",
+   "used_for": "all body cells carry the same DNA and differ in which genes they use"
+  }
+ }
+}

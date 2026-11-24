@@ -1,0 +1,190 @@
+[
+ {
+  "id": "cell_cone_cell_dog",
+  "title": "Cone photoreceptor of a dog",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 4.5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "dog_cone",
+   "dog_retina_scene",
+   "cell_cone_outer_segment_dog",
+   "cell_cone_pedicle_dog",
+   "mitochondrion",
+   "nucleus"
+  ],
+  "summary": "A slim light-sensing cell at the back of a dog's eye, with a tapering tip of stacked membrane folds, a section packed with mitochondria, a nucleus and a foot that hands the signal on.",
+  "layers": {
+   "basics": "The back wall of a dog's eye is lined with light-sensing cells of two kinds, rods and cones. Rods work in dim light. Cones need brighter light and give sharper detail and colour. A cone is long and thin: at the top a tapering tip packed with folded membrane catches light; below it a thicker part full of mitochondria supplies the energy; then the nucleus; and at the bottom a broad foot that passes the signal to the next cell. Dogs have only two kinds of cone, so their colour vision is poorer than a person's, who has three.",
+   "deeper": "In the sharpest region of a dog's retina, the area centralis, cones are packed at roughly 20,000 to 30,000 per square millimetre in the beagle, and the inner segment of a cone there is only about 3 micrometres wide, narrower than in the periphery. Rods still outnumber cones there by about 23 to 1. Most cones (about 9 in 10 there) carry the pigment that peaks near 555 nm, the rest the pigment that peaks near 429 nm. The cone is built in a line: outer segment, a thin cilium, inner segment, nucleus, fibre, pedicle. Light is absorbed by pigment in the outer segment's membrane folds, which in cones stay open to the fluid outside the cell, unlike a rod's closed discs.",
+   "expert": "Counts of cones in dogs differ by method: about 26,000 per square millimetre in one beagle study, up to over 200,000 in a spot of dense packing in another that used a different way of counting, so the real peak is uncertain. No measurement of the length of a dog cone's outer segment was found, so the drawn lengths follow the shape seen in mouse and human cones and are illustrative. The drawn cell is a long-wavelength cone."
+  },
+  "facts": [
+   [
+    "Where",
+    "back of the eye, in the retina"
+   ],
+   [
+    "Cones in the sharp region",
+    "about 26,000 per mm2 (beagle, 9 retinas from 5 dogs)"
+   ],
+   [
+    "Rods per cone there",
+    "about 23"
+   ],
+   [
+    "Inner segment width there",
+    "about 3 um (calculated from its area, 6.8 um2)"
+   ],
+   [
+    "Cone pigments",
+    "2 kinds, peaks near 429 nm and 555 nm"
+   ],
+   [
+    "Drawn length",
+    "about 45 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long is a dog cone's outer segment, and how does it change from the sharp region to the edge of the retina?",
+   "How many cones are there at the peak of the dog's area centralis?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cone density, inner segment size and cone pigments in the beagle retina",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2610288/"
+   },
+   {
+    "title": "Review of cone photoreceptor structure, open discs and size in several species",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740621"
+   }
+  ]
+ },
+ {
+  "id": "cell_cone_outer_segment_dog",
+  "title": "Outer segment of a cone",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1.5e-05,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "dog_cone",
+   "cell_cone_cell_dog"
+  ],
+  "summary": "The tapering tip of a cone, a stack of flattened membrane folds that hold the light-catching pigment.",
+  "layers": {
+   "basics": "The tip of a cone is a narrow cone-shaped stack of folded membrane. The light-catching pigment sits in these folds, so the more folds there are, the more light the cell can catch. The tip is renewed all the time: new folds are made at its base and the old ones at the far end are shed.",
+   "deeper": "In cones the folds stay open to the fluid outside the cell, while in rods they pinch off into closed discs. The tip narrows toward its end. A thin cilium, about 0.9 micrometres long in the dog, joins it to the cell's inner part.",
+   "expert": "Measurements of the outer segment were made in the mouse (about 13 micrometres long, 1.2 wide) and in the human fovea (41 to 50 micrometres long for the whole cell). A dog cone's outer segment length, width and fold spacing have not been measured to our knowledge, so the drawn values of 15 micrometres, 0.8 to 1.4 micrometres and about 50 nanometres are illustrative."
+  },
+  "facts": [
+   [
+    "Shape",
+    "tapering cone of stacked folds"
+   ],
+   [
+    "Folds",
+    "open to the outside (mammal cones)"
+   ],
+   [
+    "Cilium length",
+    "about 0.9 um (dog)"
+   ],
+   [
+    "Drawn length",
+    "15 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long is the outer segment of a dog cone, and how fast is it renewed?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Cone density, inner segment size and cone pigments in the beagle retina",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2610288/"
+   },
+   {
+    "title": "Review of cone photoreceptor structure, open discs and size in several species",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740621"
+   }
+  ]
+ },
+ {
+  "id": "cell_cone_pedicle_dog",
+  "title": "Pedicle of a cone",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 4e-06,
+  "parents": [],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "dog_cone",
+   "cell_cone_cell_dog",
+   "synapse"
+  ],
+  "summary": "The broad foot of a cone, where its signal is passed to the next cells of the retina.",
+  "layers": {
+   "basics": "The bottom of a cone ends in a broad foot, the pedicle. Here the cell passes its signal, by a chemical messenger, to the cells that carry it on toward the brain.",
+   "deeper": "A cone foot makes many contacts with other cells at once: a review of cone structure notes that each has many synaptic ribbons and touches hundreds of receiving processes, where a rod has one ribbon and touches only about seven. This lets one cone feed several different kinds of cells in parallel.",
+   "expert": "The size and shape of the dog's cone foot are not known from measurement; the drawn foot, 4 micrometres across, is illustrative. Counts of contacts are from other mammals."
+  },
+  "facts": [
+   [
+    "Contacts",
+    "many ribbons, hundreds of processes (review, not dog)"
+   ],
+   [
+    "Drawn width",
+    "4 um (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How many contacts does a dog cone foot make?"
+  ],
+  "refs": [
+   [
+    "BIO",
+    "36.5",
+    "36-5-vision"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Review of cone photoreceptor structure, open discs and size in several species",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2740621"
+   }
+  ]
+ }
+]

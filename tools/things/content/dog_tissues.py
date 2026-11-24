@@ -37,7 +37,7 @@ write('dog_muscle', {'id': 'dog_muscle', 'title': 'Inside a dog muscle', 'node':
   'populations': [
     pop('fibre', 'Muscle fibre', 'dog_muscle_fibre', 'tube_z', [47, 47, 400], '#c0574b', .92, L([{'at': [x, y, 0]} for x, y in fib])),
     pop('capillary', 'Capillary', 'capillary', 'tube_z', [8, 8, 400], '#8fb4d8', .9, L([{'at': [x, y, 0]} for x, y in caps])),
-    pop('rbc', 'Red blood cell', 'red_blood_cell', 'ellipsoid', [7, 7, 3], '#c9302c', 1, L([{'at': [x, y, z]} for (x, y), z in zip(caps, [60, -80, 120, -30, 10, -140])])),
+    dict(pop('rbc', 'Red blood cell', 'red_blood_cell', 'ellipsoid', [7, 7, 3], '#c9302c', 1, L([{'at': [x, y, z]} for (x, y), z in zip(caps, [60, -80, 120, -30, 10, -140])])), priority=4),   # in its capillary: what a click through the capillary's wall finds
     pop('nuclei', 'Muscle cell nucleus', 'dog_muscle_fibre', 'ellipsoid', [9, 6, 18], '#4d3a63', .95, L([{'at': [x + 21, y, z]} for (x, y), z in zip(fib[::5], [-120, 60, 150, -40, 100, 0, -90, 30])])),
     pop('axon', 'Motor nerve fibre', 'dog_nmj', 'tube_z', [6, 6, 200], '#efd66a', .95, L([{'at': [fib[4][0], fib[4][1], -345]}])),
     pop('nmj', 'Neuromuscular junction (nerve ending)', 'dog_nmj', 'ellipsoid', [26, 14, 34], '#e8b83a', .95, L([{'at': [fib[4][0], fib[4][1], -224]}]), {'type': 'mol', 'mol': 'acetylcholine', 'name': 'Acetylcholine, the messenger that tells muscle to contract'})]})

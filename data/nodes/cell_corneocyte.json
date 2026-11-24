@@ -1,0 +1,106 @@
+[
+ {
+  "id": "cell_corneocyte",
+  "title": "Corneocyte, a dead skin cell",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 4e-05,
+  "parents": [],
+  "parts": ["cell_corneocyte_envelope", "cell_corneocyte_keratin", "cell_corneocyte_lipids"],
+  "made_of": ["cytoskeleton"],
+  "processes": [],
+  "related": ["keratinocyte", "epidermis", "skin"],
+  "summary": "The outermost cell of the skin: a flat, six-sided scale with no nucleus, filled with keratin, laid in a stack of 15 to 30 and replaced about every four weeks.",
+  "layers": {
+    "basics": "The surface of your skin is not alive. It is a stack of flat, dead scales called corneocytes, laid like roof tiles and glued edge to edge. Each scale was once a living cell deep in the skin. As it rose it lost its nucleus and everything else inside, and filled up with keratin, the same family of tough proteins that makes hair and nails. The result is a thin, strong, waterproof cover.",
+    "deeper": "A corneocyte on the forearm covers about 1100 square micrometres, which is a hexagon roughly 40 micrometres across, but it is under one micrometre thick, so it is about as flat as a sheet of cling film is next to a dinner plate. About 15 to 30 of them are stacked, a layer 10 to 20 micrometres thick on most of the body. The cells are held together by small rivets, and between them lies a lipid seal. The whole layer is shed and renewed about every four weeks. Cells from the cheek are smaller than those from the forearm.",
+    "expert": "The living keratinocyte's cytoplasm is collapsed onto keratin filaments, which a protein called filaggrin gathers into a dense mass. Filaggrin is later broken down into small molecules that help the cell hold water. Under the membrane a protein shell is built, about 15 to 50 nanometres thick depending on source and method, held together by enzyme-made cross-links, and lipid is attached to its outer face. The thickness of a single corneocyte is poorly pinned down: a stated range is 0.2 to 1.0 micrometres, and results depend on the method and the body site. The drawn thickness is a value inside that range, not a measurement of one cell."
+  },
+  "facts": [
+    ["Width of a forearm cell", "about 40 um (area 1148 um2, 10 adults)"],
+    ["Thickness", "0.2 to 1.0 um (a stated range)"],
+    ["Outer layer, forearm", "18.3 um thick, about 15 to 30 cells deep"],
+    ["Protein shell", "about 15 to 50 nm (sources differ)"],
+    ["Nucleus", "none"],
+    ["Replacement time", "about 4 weeks"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How thick is a single corneocyte at each body site, measured the same way?",
+    "How many rivets join one cell to its neighbours?"
+  ],
+  "refs": [["ANP", "5.1", "5-1-layers-of-the-skin"]]
+ },
+ {
+  "id": "cell_corneocyte_envelope",
+  "title": "Corneocyte protein shell (cornified envelope)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 3.5e-08,
+  "parents": ["cell_corneocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["cell_corneocyte", "cell_corneocyte_lipids"],
+  "summary": "A tough shell of cross-linked protein, some tens of nanometres thick, that replaces the cell membrane in a dead skin cell.",
+  "layers": {
+    "basics": "When a skin cell dies, its soft outer membrane is replaced by a rigid shell of protein. The shell turns the cell into a small sealed box that survives scraping, soaking and drying.",
+    "deeper": "The shell is about 15 to 50 nanometres thick, depending on source and method, more than a thousand times thinner than the cell is wide. Many proteins are tied together by enzymes that make chemical cross-links between them, so the shell does not dissolve. Rivets between neighbouring cells are fixed in it, and a lipid coat is attached to its outside.",
+    "expert": "The thickness is quoted in one general sentence of a paper on corneocyte mechanics, with no body site given and a different paper cited; older electron-microscope work gives a thinner shell, about 15 nm. In the picture the shell is drawn much thicker than 20 to 50 nanometres, so that it can be seen."
+  },
+  "facts": [
+    ["Thickness", "about 15 to 50 nm (sources differ)"],
+    ["Made by", "enzymes that cross-link proteins"]
+  ],
+  "certainty": "C2",
+  "refs": []
+ },
+ {
+  "id": "cell_corneocyte_keratin",
+  "title": "Keratin filling of a corneocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-06,
+  "parents": ["cell_corneocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["cell_corneocyte", "keratinocyte", "bio_actin_intermediate"],
+  "summary": "Keratin filaments packed together until they are nearly all that is left inside the cell.",
+  "layers": {
+    "basics": "Inside, a corneocyte is almost solid keratin. The threads were already plentiful in the living cell. At the end they are bundled together and the rest of the cell's contents collapse onto them, which also flattens the cell.",
+    "deeper": "A protein called filaggrin does the bundling. Once the cell is in its final place, filaggrin is cut into its building blocks, small molecules that attract water and help keep the skin supple. The filling makes the cell stiff, which is why dry skin is stiff and flakes.",
+    "expert": "The share of the cell that is keratin was not found in the sources read, so none is given here. The bundles drawn are few and thick so that they can be seen; the real filling is dense and even."
+  },
+  "facts": [
+    ["Held together by", "filaggrin, then broken down into water-binding molecules"],
+    ["Share of the cell", "not found"]
+  ],
+  "certainty": "C2",
+  "refs": []
+ },
+ {
+  "id": "cell_corneocyte_lipids",
+  "title": "Lipid seal between corneocytes",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 1e-08,
+  "parents": ["cell_corneocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["cell_corneocyte", "cell_corneocyte_envelope"],
+  "summary": "Layers of fatty molecules in the gaps between dead skin cells that stop water from leaving the body.",
+  "layers": {
+    "basics": "The dead cells are the bricks of the skin's cover and a fatty seal between them is the mortar. The seal is made in the living cells just below, packed into small granules, and emptied into the gaps as the cells die.",
+    "deeper": "The granules are called lamellar bodies. The fat they release arranges itself into stacked sheets that fill the gaps, so water has to take a long winding path around the cells to escape. Without this seal, skin loses water quickly.",
+    "expert": "The spacing of the sheets, which changes from the lowest to the highest cell layers, was not taken from a source read for this picture and is not given. The seal is not drawn as sheets: the gaps are far thinner than the cell."
+  },
+  "facts": [
+    ["Made in", "lamellar bodies of the living cells below"],
+    ["Job", "keeps water in"]
+  ],
+  "certainty": "C2",
+  "refs": [["ANP", "5.1", "5-1-layers-of-the-skin"]]
+ }
+]

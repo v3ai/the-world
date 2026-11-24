@@ -1,0 +1,249 @@
+{
+ "id": "apocrine_cell_dog",
+ "name": "Apocrine sweat gland cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_apocrine_cell_dog",
+ "blurb": "A secretory cell of a dog's sweat gland: a low column with microvilli on its free face. A dome of its cytoplasm swells from the top and pinches off into the gland's channel, carrying the secretion.",
+ "note": "Model: an apocrine sweat gland secretory cell of a dog (Canis lupus familiaris), cut through from base to lumen. Measured in dogs (electron microscopy of the apocrine glands beside the circumanal glands, more active than glands on the body surface): endoplasmic reticulum, multivesicular bodies, three kinds of large granule, microvilli; light microscopy: cuboidal to low columnar cells with apical blebs. Illustrative: width, height, the nuclear share, the nucleolus count, the positions of the nucleus and Golgi, the number of granules and microvilli, the size of the apical bleb, the colours. Not drawn: the basal folds, the myoepithelial layer. The neighbouring cells are drawn faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 11,
+  "height_um": 12,
+  "taper": 0.9,
+  "irregularity": 0.15,
+  "round_um": 1,
+  "apical": "microvilli",
+  "apical_um": 0.8,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "width": {
+   "value": 11,
+   "range": [
+    6,
+    20
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: no dog source gives the width of one secretory cell"
+  },
+  "height": {
+   "value": 12,
+   "range": [
+    6,
+    30
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: cell height was said to vary considerably (anatrec1998) but no figure is given; low columnar is drawn"
+  },
+  "microvillus_length": {
+   "value": 0.8,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: microvilli are measured as present on every luminal surface (anatrec1998), their length is not given"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": {
+   "value": 0.1,
+   "range": [
+    0.05,
+    0.25
+   ],
+   "measured": false,
+   "note": "illustrative; no dog source gives the nuclear share; a single nucleus per cell is the usual case for epithelial cells and is not counted in the dog papers read"
+  },
+  "nucleoli": 1,
+  "source": "simko2003"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.06,
+    "range": [
+     0.02,
+     0.15
+    ],
+    "measured": false,
+    "note": "illustrative; size and share are illustrative for ordinary mitochondria; the giant cristae-less mitochondria of dog glands (anatrec1998) are among the large granules and are not drawn as such"
+   },
+   "size_um": [
+    1.5,
+    0.6
+   ],
+   "size_measured": false,
+   "max_drawn": 300,
+   "source": "anatrec1998"
+  },
+  "granules": {
+   "count": {
+    "value": 40,
+    "measured": false,
+    "calc": "illustrative; membrane-enclosed globules and multivesicular bodies are measured as abundant in dog secretory cells (anatrec1998), none counted"
+   },
+   "size_um": {
+    "value": 0.6,
+    "measured": false
+   },
+   "elongation": 1.2,
+   "position": "apical",
+   "source": "anatrec1998"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "not_drawn": [
+   "rough endoplasmic reticulum (well developed in dogs, anatrec1998)",
+   "folds of the basal membrane",
+   "the myoepithelial cell beneath",
+   "multivesicular bodies (the granules stand in for them)",
+   "the missing cristae of the giant mitochondria"
+  ]
+ },
+ "cut": "The cell is cut from its base to its lumen face: the oval nucleus (its low position is illustrative), granules and ordinary mitochondria, a Golgi stack (position illustrative), microvilli along the free face (the apical bleb, the basal folds and the myoepithelial layer beneath are not drawn), and the neighbouring cells beside it.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the inside dark; nucleus violet; mitochondria orange; granules pale cream; microvilli pink. All of it is a code: none of these colours is the colour of the real thing. The cytoplasm of the real cell stains pink with eosin on a slide, a colour of the stain."
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins. In the secretory cell the cytoplasm stains pink with eosin on a slide, and the part above the nucleus can bulge out as a bleb. In fresh dog skin these cells stain with PAS, which marks carbohydrate-rich material (the source page could not be opened; the stain claim is as the writer reported it).",
+   "source": "postmortem2026"
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "anatrec1998"
+  },
+  "granule": {
+   "name": "Secretory granule",
+   "card": "cell_apocrine_granule_dog",
+   "material": "membrane",
+   "source": "anatrec1998"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "microvilli": {
+   "name": "Microvilli",
+   "card": "cell_apocrine_microvilli_dog",
+   "material": "membrane",
+   "source": "anatrec1998"
+  },
+  "neighbour": {
+   "name": "Neighbouring secretory cell",
+   "card": "cell_apocrine_cell_dog",
+   "material": "membrane"
+  },
+  "bleb": {
+   "name": "Apical bleb (pinching off)",
+   "card": null,
+   "material": "membrane",
+   "about": "In apocrine secretion the top of the cell swells into a dome of cytoplasm that pinches off into the gland's channel, carrying its contents with it. Its size here is illustrative."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_skin",
+    "structure": "apocrine"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 12,
+  "r1_m": 0.0002,
+  "arrive_m": 3e-05,
+  "spawn_m": 1.2e-06
+ },
+ "about": [
+  "A dog's sweat glands in haired skin are apocrine, not eccrine: dogs have no eccrine glands there, only in the paw pads. The coiled gland lies deep in the dermis, and its secretory cells are cuboidal to low columnar around a wide lumen (a single layer in tumour tissue, Simko 2003, and in the normal gland as stated by Stazi 2022), on a layer of contractile myoepithelial cells. This cell is drawn {drawn.cellVolume} µm³ in volume; no dog study gives the size of a single secretory cell, so its width and height are illustrative.",
+  "On the free face the cell carries microvilli and, when active, a bleb of cytoplasm that pinches off into the lumen: the process that gives apocrine glands their name. Dog glands also release multivesicular bodies by exocytosis, and the cells hold large granules, and a well-developed endoplasmic reticulum. Ordinary mitochondria are drawn ({drawn.mitochondria} in this half); the giant cristae-less mitochondria seen in dog glands are among the large granules and are not drawn as such. The electron-microscope study of these structures was made on the apocrine glands beside the circumanal glands, which are more active than the glands on the rest of the body, so the details are borrowed from there.",
+  "Not drawn: the apical bleb, multivesicular bodies, the rough endoplasmic reticulum, the folds of the basal membrane, the myoepithelial cell under it, the duct and the surrounding glandular coil. The nucleus's position is illustrative, and so are all shares and counts."
+ ],
+ "sources": {
+  "tufts": {
+   "cite": "Tufts University Histology Images, Integumentary System: dog skin, 'aprocrine' (apocrine) gland, H&E 50x",
+   "url": "https://sites.tufts.edu/histologyimages/?p=294",
+   "opened": "2026-11-23",
+   "used_for": "dog: secretory cells cuboidal or low columnar; eosinophilic cytoplasm with apical blebs into wide lumens; myoepithelial cells between secretory cells and basal lamina; duct of two layers of low cuboidal cells"
+  },
+  "anatrec1998": {
+   "cite": "Apocrine sweat glands in the circumanal glands of the dog (1998) Anat Rec 252(3):403-412, PMID 9811218",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9811218/",
+   "opened": "2026-11-23",
+   "used_for": "dog electron microscopy: cell height varies; well-developed ER; multivesicular bodies released into the lumen; apocrine secretion and exocytosis; three kinds of large granule incl. giant mitochondria without cristae; microvilli on every luminal surface; folded basal membrane; actin-rich myoepithelial cells (abstract; the gland is the circumanal one, which is more active than body-surface glands)"
+  },
+  "stazi2022": {
+   "cite": "Stazi M, Silvestri S, Mechelli L, Brachelente C (2022) A case of generalised cutaneous apocrine cystomatosis in a Pekingese dog, Vet Med Sci, doi:10.1002/vms3.711",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8959319",
+   "opened": "2026-11-23",
+   "used_for": "dog: normal apocrine glands are lined by low cuboidal cells with apical blebbing (apocrine secretion), surrounded by myoepithelial cells (stated in the introduction, citing a veterinary dermatology text)"
+  },
+  "simko2003": {
+   "cite": "Simko E, Wilcock BP, Yager JA (2003) A retrospective study of 44 canine apocrine sweat gland adenocarcinomas, Can Vet J 44:38-42",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC340017",
+   "opened": "2026-11-23",
+   "used_for": "dog tumour tissue only: decapitation blebs at the apical surface mark apocrine origin; a double lining of one cuboidal-to-columnar layer and one fusiform layer. Gives no normal-cell sizes."
+  },
+  "siu": {
+   "cite": "Southern Illinois University School of Medicine, Histology: Apocrine sweat gland",
+   "url": "https://histology.siu.edu/intro/apocrine1.htm",
+   "opened": "2026-11-23",
+   "used_for": "epithelium of the apocrine gland ranges from cuboidal to columnar (species not stated; a general histology page)"
+  },
+  "pathbasis": {
+   "cite": "The Integument, in Pathologic Basis of Veterinary Disease (2017), Europe PMC PMC7895312",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7895312",
+   "opened": "2026-11-23",
+   "used_for": "dogs and cats have no eccrine glands in haired skin (only in the paw pads); apocrine glands lie in the deep dermis and are supplied by adrenergic fibres"
+  },
+  "postmortem2026": {
+   "cite": "Postmortem Changes in Skin Appendages of Domestic Dogs (2026), Europe PMC PMC13663342",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13663342",
+   "opened": "2026-11-23",
+   "used_for": "dog sweat gland secretory cells stain with PAS (carry glycoprotein) in fresh skin and lose it by 12 h after death; no cell sizes"
+  }
+ },
+ "special": [
+  {
+   "kind": "apical_bleb",
+   "part": "bleb",
+   "params": {
+    "diameter_um": 6,
+    "height": 0.8,
+    "granules": 8
+   },
+   "note": "illustrative size of the bleb"
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "id": "hair_matrix_cell_dog",
+ "name": "Hair bulb (matrix) cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_hair_matrix_cell_dog",
+ "blurb": "A cell from the root of a dog's hair: a small, many-sided cell with a big nucleus and little else, packed round the dermal papilla at the bottom of the follicle and dividing to build the hair.",
+ "note": "Model: a hair matrix cell from the bulb at the base of a growing hair follicle of a dog (Canis lupus familiaris), cut in half. Measured: that in dogs the bulb is lost in the regression phase (catagen) and absent in the resting phase (telogen). Taken from reviews of mouse and human follicles, not measured in dogs: that matrix cells, fast-dividing cells round the dermal papilla at the base of a growing follicle, become the hair, and that melanocytes sit among them (dog work shows the same layout, with few numbers). Illustrative: every size, the nucleus share, the organelle shares and counts, the number of sides, and the colours. No source gives the size of a single matrix cell of a dog, so nothing about this cell's own dimensions is measured. The cells around it are drawn faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 9,
+  "height_um": 11,
+  "taper": 1,
+  "irregularity": 0.2,
+  "round_um": 1,
+  "apical": "none",
+  "neighbours": 1
+ },
+ "dimensions": {
+  "width": { "value": 9, "unit": "um", "measured": false, "note": "illustrative: a small many-sided cell, smaller than the skin keratinocyte drawn elsewhere; no dog source gives the size of a matrix cell" },
+  "height": { "value": 11, "unit": "um", "measured": false, "note": "illustrative: a little taller than wide, as in cells stacked in columns above the papilla" },
+  "bulb_present_in_growth_phase_only": { "value": 1, "unit": "count", "measured": true, "source": "postmortem2026", "note": "stated there for dog hair follicles: the bulb breaks down during the regression phase (catagen) and is absent in the resting phase (telogen); 1 here means the bulb, and so this kind of cell, exists only while the hair grows" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "volume_fraction": { "value": 0.35, "range": [0.15, 0.5], "measured": false, "note": "illustrative: matrix cells are drawn with a large nucleus and thin cytoplasm; no dog source gives the share" },
+  "nucleoli": 1,
+  "source": "dpreview"
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.03, "range": [0.01, 0.06], "measured": false, "note": "illustrative: a cell dividing this fast needs energy; its share is not measured in dogs" }, "size_um": [0.9, 0.35], "size_measured": false, "max_drawn": 300 },
+  "golgi": { "stacks": { "value": 1, "measured": false, "note": "illustrative" } },
+  "absent": ["melanosomes (made in melanocytes among the matrix cells and passed on to the cells that become the hair, higher in the bulb; none drawn here)", "lamellar bodies", "keratohyalin granules"],
+  "absent_source": "bomhard2006"
+ },
+ "special": [],
+ "cut": "The cell is cut in half: the large round nucleus with its nucleolus fills most of the section, with a thin rim of cytoplasm holding a few mitochondria and a Golgi stack. The matrix cells packed round it show faintly behind, with no gap between them.",
+ "colours": {
+  "convention": "Cell membrane pale pink, the inside dark; nucleus violet; nucleolus deep violet; mitochondria orange; Golgi apparatus yellow. All of it is a code: none of these colours is the colour of the real thing."
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins. A matrix cell has little of it compared with its nucleus." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus", "source": "dpreview" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "neighbour": { "name": "Neighbouring matrix cell", "card": "cell_hair_matrix_cell_dog", "material": "membrane", "source": "dpreview" }
+ },
+ "reached": {
+  "tissue2": [ { "scene": "dog_skin", "structure": "bulb" } ]
+ },
+ "view": { "radius_um": 10, "r1_m": 0.00018, "arrive_m": 3e-05, "spawn_m": 1e-06 },
+ "about": [
+  "A cell from the bulb, the swollen base of a growing dog hair follicle. Matrix cells form a dense layer round the dermal papilla, a small knob of connective tissue pushed up into the bulb. This cell is drawn {drawn.cellVolume} µm³ in volume, with a width and height chosen as plausible; no dog study gives the size of a single matrix cell.",
+  "The cell holds one nucleus ({drawn.nuclei} drawn), with {drawn.mitochondria} mitochondria in this half. In reviews of the hair follicle, matrix cells are the fast-dividing cells that pass signals from the papilla on to become the hair. The nucleus share and the organelle shares drawn are illustrative.",
+  "The bulb exists only while the hair grows: in dogs it breaks down in the regression phase and is missing in the resting phase, so this kind of cell is found only while the hair grows. Not drawn: the melanocytes among the matrix cells that colour the hair, the dermal papilla itself, the keratin filaments that fill the cells higher up as they harden into hair, and the cells in the middle of a division."
+ ],
+ "sources": {
+  "dpreview": {
+   "cite": "Dermal Papilla Cells: From Basic Research to Translational Applications (2024), review, PMC11504027 (hair follicle biology, mainly from mouse and human work)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11504027",
+   "opened": "2026-11-23",
+   "used_for": "matrix cells are highly proliferative cells in the bulb that surround the dermal papilla; mature melanocytes sit among them; in the growth phase they derive from stem cells of the bulge; matrix proliferation stops in the regression phase; matrix cells differentiate into hair shafts (the inner root sheath passage in the review concerns follicle formation, so the sheath is not claimed here). Not dog-specific."
+  },
+  "bomhard2006": {
+   "cite": "von Bomhard W, Mauldin EA, Schmutz SM, Leeb T, Casal ML (2006) Black hair follicular dysplasia in Large Münsterländer dogs: clinical, histological and ultrastructural features, Vet Dermatol 17(3):182-188 (abstract read; full text not available)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3330242",
+   "opened": "2026-11-23",
+   "used_for": "a disease case (black hair follicular dysplasia, thought to be a defect in melanosome transport) in affected dogs: hair bulb melanocytes held pigment granules (melanosomes) and the adjacent matrix keratinocytes lacked them; shows only that matrix keratinocytes are not the pigment makers, not that matrix cells of a healthy dog carry none"
+  },
+  "postmortem2026": {
+   "cite": "Postmortem Changes in Skin Appendages of Domestic Dogs: A Preliminary Comparative Histological Study Between Body Regions (2026), PMC13663342 (nine dogs, Canis lupus familiaris)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13663342",
+   "opened": "2026-11-23",
+   "used_for": "dog follicles: the bulb degenerates during catagen and is missing in telogen; bulb cells of a fresh follicle look normal, with 50 µm scale bars on the micrographs"
+  }
+ }
+}

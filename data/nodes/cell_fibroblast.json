@@ -1,0 +1,186 @@
+[
+ {
+  "id": "cell_fibroblast",
+  "title": "Fibroblast",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 8e-05,
+  "area": "bio_animals",
+  "parents": [],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "fibroblast",
+   "lcf_fibroblast",
+   "hc_fibroblast"
+  ],
+  "summary": "The commonest cell of connective tissue: a long, flat, tapering cell that makes the fibres and gel around it.",
+  "layers": {
+   "basics": "A fibroblast lies among the fibres of connective tissue, in the loose tissue between organs and in the tough skin around cartilage. It is long and flat, thicker in the middle where its oval nucleus sits and tapering to a point at each end. Its work is to build the material that fills the space around cells: it makes the protein fibres and the soft gel they lie in, and it repairs them when they are damaged. It is not packed edge to edge into a sheet the way skin or gut lining cells are; it lies spread out along the fibres it makes.",
+   "deeper": "A busy fibroblast is crowded with the machinery of export. Rough endoplasmic reticulum, flattened sacs studded with ribosomes, makes the proteins; the Golgi apparatus modifies and sorts them; vesicles carry them to the surface and release them. A resting cell, sometimes called a fibrocyte, is smaller and has much less of this machinery, and the same cell can switch between the two states, and damage to the tissue is a trigger for it. In life the cell is branched, with thin extensions along the fibres, and its form depends on the tissue and on how stiff and how tight the surrounding matrix is.",
+   "expert": "Only some of what is drawn is measured: the cell's spindle form and elongated nucleus, the abundant rough reticulum and prominent Golgi apparatus of an active cell, and a nucleus volume of about 500 cubic micrometres from a BioNumbers entry that its own compilers flag as needing a better reference. The two nucleoli drawn are illustrative. The length (80), width (14) and thickness (7 micrometres) are illustrative; the only measured length quoted here, about 25 micrometres, comes from one thin slice that cuts the cell short. Mitochondrion, lysosome and Golgi counts are illustrative. The rough reticulum, branches, internal filaments and matrix are not drawn."
+  },
+  "facts": [
+   [
+    "Cell type",
+    "connective tissue cell (human)"
+   ],
+   [
+    "Shape drawn",
+    "spindle, flat: about 80 x 14 x 7 um (illustrative)"
+   ],
+   [
+    "Nucleus",
+    "one, oval, about 500 um3 (measured, rough)"
+   ],
+   [
+    "Nucleoli",
+    "two (illustrative; two or more in life)"
+   ],
+   [
+    "Length in one thin slice",
+    "about 25 um (a lower bound)"
+   ],
+   [
+    "Makes",
+    "collagen, elastic and reticular fibres and the ground gel"
+   ],
+   [
+    "Resting form",
+    "fibrocyte: smaller, less rough reticulum"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How long, wide and thick is a fibroblast in living human loose connective tissue, and how does that differ from the flat cells of the perichondrium?",
+   "What share of a fibroblast's volume is rough endoplasmic reticulum when it is active, and when it is resting?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ],
+   [
+    "BIO",
+    "4.4",
+    "4-4-the-endomembrane-system-and-proteins"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "Histology Guide: electron micrograph of a fibroblast",
+    "url": "https://histologyguide.com/EM-view/EM-006-fibroblast/01-photo-1.html"
+   },
+   {
+    "title": "BioNumbers: volume of a fibroblast nucleus",
+    "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=105995"
+   }
+  ]
+ },
+ {
+  "id": "cell_fibroblast_nucleus",
+  "title": "Fibroblast nucleus",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1.5e-05,
+  "area": "bio_animals",
+  "parents": [
+   "cell_fibroblast"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "nucleus",
+   "cell_fibroblast"
+  ],
+  "summary": "A long oval nucleus with two nucleoli, lying in the thick middle of the cell.",
+  "layers": {
+   "basics": "The nucleus holds the cell's DNA. In a fibroblast it is long and oval, following the length of the cell, and it sits in the swollen middle where the cell is thickest. Inside it are dark patches called nucleoli, where the parts of ribosomes are made. Because the cell makes so much protein, it needs a great many ribosomes, and these patches are the factory for them.",
+   "deeper": "A human fibroblast nucleus has a volume of about 500 cubic micrometres by a BioNumbers entry. A fibroblast nucleus has two or more nucleoli, and its chromatin looks speckled. In a thin slice of tissue the nucleus is often the easiest part to see, so fibroblasts are often found by their long, narrow nuclei lying along the fibres.",
+   "expert": "The drawn axes of 19 by 9 by 5.5 micrometres are illustrative; they were chosen so that the volume matches the measured 500 cubic micrometres, which BioNumbers marks as needing a better reference. The volume probably changes through the cell cycle and between cultured and tissue cells, and the entry does not say which was measured."
+  },
+  "facts": [
+   [
+    "Count",
+    "one"
+   ],
+   [
+    "Volume",
+    "about 500 um3 (human, rough)"
+   ],
+   [
+    "Axes drawn",
+    "19 x 9 x 5.5 um (illustrative)"
+   ],
+   [
+    "Nucleoli",
+    "two (illustrative; two or more in life)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What are the real axes and volume of a fibroblast nucleus in human tissue, rather than in a dish?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "4.3",
+    "4-3-connective-tissue-supports-and-protects"
+   ]
+  ],
+  "ext": [
+   {
+    "title": "BioNumbers: volume of a fibroblast nucleus",
+    "url": "https://bionumbers.hms.harvard.edu/bionumber.aspx?id=105995"
+   }
+  ]
+ },
+ {
+  "id": "cell_fibroblast_golgi",
+  "title": "Golgi apparatus of a fibroblast",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 3e-06,
+  "area": "bio_animals",
+  "parents": [
+   "cell_fibroblast"
+  ],
+  "parts": [],
+  "processes": [],
+  "related": [
+   "golgi_apparatus",
+   "cell_fibroblast"
+  ],
+  "summary": "Stacks of flat sacs that sort and pack the proteins a fibroblast sends out to build its surroundings.",
+  "layers": {
+   "basics": "The Golgi apparatus is a pile of flat, curved sacs, like a stack of pancakes, near the nucleus. Proteins made on the rough endoplasmic reticulum arrive in small bubbles at one face of the pile, are adjusted as they pass through, and leave from the other face wrapped in new bubbles. In a fibroblast many of these bubbles carry the building material of the fibres and gel outside the cell, and they fuse with the cell surface to release it.",
+   "deeper": "In an active fibroblast the Golgi apparatus is large and easy to see in an electron micrograph, with many small vesicles around it. A resting cell has a smaller one. The Golgi apparatus adds sugars and other tags to the proteins that decide where they go.",
+   "expert": "The two stacks drawn are an illustrative number, and their size is not measured. The vesicles, the rough reticulum that feeds the stacks and the matrix they supply are not drawn."
+  },
+  "facts": [
+   [
+    "Stacks drawn",
+    "2 (illustrative)"
+   ],
+   [
+    "Receives from",
+    "rough endoplasmic reticulum"
+   ],
+   [
+    "Sends to",
+    "the cell surface, in vesicles"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+   [
+    "BIO",
+    "4.4",
+    "4-4-the-endomembrane-system-and-proteins"
+   ]
+  ],
+  "ext": []
+ }
+]

@@ -1,0 +1,97 @@
+[
+ {
+  "id": "cell_osteocyte",
+  "title": "Osteocyte",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": ["bone_tissue"],
+  "parts": ["osteocyte_lacuna", "osteocyte_canaliculus"],
+  "made_of": ["nucleus", "mitochondrion", "golgi_apparatus", "cell_membrane"],
+  "processes": [],
+  "related": ["osteoblast", "bone_tissue"],
+  "mesh": null,
+  "summary": "The long-lived cell inside bone, living in a small hollow and linked to its neighbours by fine arms that run in tiny tunnels.",
+  "layers": {
+    "basics": "Most of the living cells in a bone are osteocytes. Each one sits alone in a small hollow in the hard bone, and from its flattened body dozens of thin arms reach out in every direction through narrow tunnels. The arms of neighbouring cells touch, so the cells form a net that runs through the whole bone. Osteocytes begin as bone-building cells that are walled in by the hard material they have made.",
+    "deeper": "The hollow is a flattened oval, about 17 micrometres long, 9 wide and 5 deep in the thigh bone of older women, and holds a volume of about 350 cubic micrometres. Round 80 tunnels leave it, and they branch further out. The tunnels are about a third of a micrometre wide, and neighbouring hollows lie about 23 micrometres apart. Channels of the protein connexin 43 join the arms of neighbouring cells, so the cells can share signals and small molecules.",
+    "expert": "Counts of tunnels depend on how finely the bone is imaged: at coarser resolution thinner tunnels are lost, and the count fell from about 80 to about 50 per hollow when the same bone was imaged at 120 nm instead of 30 nm. Most measurements are from the thigh bones of women, so other bones, men and young people may differ."
+  },
+  "facts": [
+    ["Hollow (lacuna) axes", "≈ 17.2 × 9.4 × 4.8 µm"],
+    ["Hollow volume", "≈ 348 µm³"],
+    ["Tunnels leaving each hollow", "≈ 80"],
+    ["Tunnel width", "≈ 0.3 µm"],
+    ["Distance to next hollow", "≈ 23 µm"],
+    ["Nuclei", "1"]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+    "How much of the tunnel is filled by the cell's arm, and how much by fluid?",
+    "How do osteocytes sense the load on a bone?"
+  ],
+  "refs": [["ANP", "6.3", "6-3-bone-structure"]],
+  "ext": [
+    { "title": "Human lacuno-canalicular network at the nanoscale (Sci Rep 2020)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7067834" }
+  ]
+ },
+ {
+  "id": "osteocyte_lacuna",
+  "title": "Lacuna",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 1.7e-05,
+  "parents": ["cell_osteocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["osteocyte_canaliculus", "bone_tissue"],
+  "mesh": null,
+  "summary": "The small flattened hollow in bone that holds one osteocyte.",
+  "layers": {
+    "basics": "A lacuna is a hollow in the hard bone, just big enough for one cell. It is flattened like a seed, longer than it is wide and thinner than it is wide. In a stained slice of bone, the hollows show as dark spots with fine lines running out from them.",
+    "deeper": "In the thigh bone of older women the hollow measured about 17 micrometres by 9 by 5, with a volume near 350 cubic micrometres. The cell does not fill it quite: a thin film of fluid lies between the cell and the wall.",
+    "expert": "Measured sizes depend on the method and on the bone sampled, so other bones and other people may differ."
+  },
+  "facts": [
+    ["Axes", "≈ 17.2 × 9.4 × 4.8 µm"],
+    ["Volume", "≈ 348 µm³"],
+    ["Where", "inside compact bone"]
+  ],
+  "certainty": "C2",
+  "refs": [["ANP", "6.3", "6-3-bone-structure"]],
+  "ext": [
+    { "title": "Human lacuno-canalicular network at the nanoscale (Sci Rep 2020)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7067834" }
+  ]
+ },
+ {
+  "id": "osteocyte_canaliculus",
+  "title": "Canaliculus",
+  "kind": "structure",
+  "template": "concept",
+  "scale_m": 3e-07,
+  "parents": ["cell_osteocyte"],
+  "parts": [],
+  "made_of": [],
+  "processes": [],
+  "related": ["osteocyte_lacuna", "bone_tissue"],
+  "mesh": null,
+  "summary": "A narrow tunnel through bone that holds one arm of an osteocyte.",
+  "layers": {
+    "basics": "Canaliculi are very thin tunnels, about a third of a micrometre across, that join one hollow in the bone to the next. Each holds a thin arm of the cell, and fluid flows around it. They are how cells deep inside hard bone get nutrients and send signals.",
+    "deeper": "About 80 tunnels leave each hollow, and they branch as they go. Within the osteons of the thigh bones of 4 middle-aged women, the tunnels together ran about 74 kilometres in each cubic centimetre. About 80 in every 100 parts of the bone were within about 3 micrometres of a tunnel or hollow.",
+    "expert": "Tunnel width is reported anywhere from 0.1 to 0.5 micrometre depending on the study and method."
+  },
+  "facts": [
+    ["Width", "≈ 0.3 µm (0.1–0.5)"],
+    ["Tunnels per hollow", "≈ 80"],
+    ["Tunnel length per volume (in osteons)", "≈ 0.074 µm per µm³"]
+  ],
+  "certainty": "C2",
+  "open_questions": ["How does fluid move through the tunnel around the cell's arm?"],
+  "refs": [["ANP", "6.3", "6-3-bone-structure"]],
+  "ext": [
+    { "title": "Canalicular density in human osteons (Bone Reports 2017)", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5369863" }
+  ]
+ }
+]

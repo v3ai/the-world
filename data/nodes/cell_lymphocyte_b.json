@@ -1,0 +1,62 @@
+[
+ {
+  "id": "cell_lymphocyte_b",
+  "title": "B lymphocyte (resting, in blood)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 7e-6,
+  "area": "bio_animals",
+  "parents": ["lymphocyte_b"],
+  "parts": ["nucleus", "mitochondrion", "ribosome", "golgi_apparatus", "cell_membrane"],
+  "processes": ["immune_response"],
+  "related": ["lymphocyte_b", "lymphocyte_t", "lymph_nodes"],
+  "summary": "A small round white blood cell, almost all nucleus, waiting to meet the one kind of germ fragment its surface receptor fits.",
+  "layers": {
+    "basics": "A B cell in the blood looks plain: a ball about 7 micrometres across, with one big round nucleus and only a thin rim of cytoplasm around it. It has few of the usual organelles because it is not yet making anything in bulk. What sets it apart is on its surface, where it carries receptors shaped like antibodies. Each B cell carries receptors of one kind only. If a germ fragment fits, the cell can be switched on, and its descendants become plasma cells that release antibodies.",
+    "deeper": "B cells are made in the bone marrow and travel in blood and lymph to rest in lymph nodes and the spleen. Under a microscope a B cell cannot be told from a T cell on a blood smear; the difference shows in the proteins on the surface, not in the outline. The nucleus takes up close to half of the cell volume, measured over all human lymphocytes, and the mitochondria a few per cent. Electron micrographs of small lymphocytes show few mitochondria, a few scattered pieces of endoplasmic reticulum and many free ribosomes, which fits a cell that is resting. A resting B cell and a resting T cell look the same under a light microscope, and nearly so under an electron microscope; they are told apart by the proteins on their surface.",
+    "expert": "The volume, 185 cubic micrometres, comes from living B cells sorted by CD19 and imaged without stain; electron microscopy of fixed lymphocytes gives about 125 cubic micrometres, and the two methods are not interchangeable. The shares of nucleus and mitochondria were measured on lymphocytes as a group, not on B cells alone. The nucleus is shown as a plain sphere sized from that share; the Golgi stack, the nucleolus, the size of the mitochondria and the folds in the membrane are illustrative."
+  },
+  "facts": [
+    ["Diameter (worked out from volume)", "about 7 um"],
+    ["Volume of B cells", "185 um3 (mean of ten donors)"],
+    ["Nucleus share of lymphocyte volume", "44%"],
+    ["Mitochondria share of lymphocyte volume", "3.8%"],
+    ["Made in", "red bone marrow"],
+    ["Lives in", "blood, lymph, lymph nodes, spleen"]
+  ],
+  "certainty": "C3",
+  "open_questions": [
+    "How do the nucleus and mitochondria shares of B cells alone compare with those of all lymphocytes taken together?"
+  ],
+  "refs": [
+    ["ANP", "18.4", "18-4-leukocytes-and-platelets"],
+    ["ANP", "21.4", "21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies"]
+  ]
+ },
+ {
+  "id": "cell_lymphocyte_b_receptor",
+  "title": "B cell receptor",
+  "kind": "cell",
+  "template": "thing",
+  "scale_m": 1e-8,
+  "area": "bio_animals",
+  "parents": ["cell_lymphocyte_b"],
+  "parts": [],
+  "processes": ["immune_response"],
+  "related": ["bio_b_cells_antibodies", "bio_antibody_diversity"],
+  "summary": "A copy of an antibody held in the surface of the B cell, which lets the cell sense the one germ fragment it fits.",
+  "layers": {
+    "basics": "Each B cell wears receptors on its surface that look like antibodies still attached to the cell. The receptor's tip is shaped to fit one particular germ fragment. When enough receptors grab a fragment, the cell is alerted, and with further signals it multiplies.",
+    "deeper": "The tip of the receptor is built from gene pieces that are shuffled and joined in each developing B cell, so different B cells have different tips. When a cell is switched on and its descendants become plasma cells, they release a soluble form of the same antibody into the blood.",
+    "expert": "Each cell carries many copies of one receptor type; the number per cell varies with the cell and its stage of development."
+  },
+  "facts": [
+    ["Receptor types per cell", "one specificity"]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": [
+    ["ANP", "21.4", "21-4-the-adaptive-immune-response-b-lymphocytes-and-antibodies"]
+  ]
+ }
+]

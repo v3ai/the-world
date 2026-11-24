@@ -1,0 +1,340 @@
+{
+ "id": "retinal_ganglion_cell_dog",
+ "name": "Retinal ganglion cell (dog)",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_retinal_ganglion_cell_dog",
+ "blurb": "A ganglion cell from a dog's retina: a round cell body with one bushy tree of dendrites on one side and a single thin axon, bare of myelin in the retina, leaving from the other side toward the optic nerve.",
+ "note": "Model: a retinal ganglion cell of a dog, its cell body cut open. Measured in dog retina: how many ganglion cells there are in all, and what share of them are alpha cells, and how wide the dendritic tree of the largest type (the alpha cell) grows from the central retina to its edge. Measured in human tissue: that the axons are rich in mitochondria where they are bare. Measured in dog: that myelin is absent in the retina and begins in the optic nerve head. Illustrative: the size of the cell body, the size and total length of the tree actually drawn (one alpha-like cell, midway between the measured extremes), its branch points and their paths, the thickness of the axon, the organelles, and the colours. The tree is drawn spreading toward you more than in life, where it lies flat in one layer. No spines are drawn.",
+ "shape": {
+  "type": "neuron",
+  "soma": "round",
+  "soma_w_um": 20,
+  "soma_h_um": 20,
+  "basal_n": 0,
+  "basal_total_um": 0,
+  "basal_branch_points": 0,
+  "apical_trunk_um": 18,
+  "apical_reach_um": 250,
+  "oblique_total_um": 400,
+  "oblique_branch_points": 3,
+  "tuft_total_um": 3100,
+  "tuft_branch_points": 22,
+  "dendrite_um": 1.5,
+  "trunk_um": 2.5,
+  "spines_basal_per_um": 0,
+  "spines_apical_per_um": 0,
+  "axon_um": 1,
+  "ais_um": 40,
+  "myelin": 0,
+  "axon_drawn_um": 500,
+  "collaterals": 0,
+  "collateral_um": 0
+ },
+ "dimensions": {
+  "ganglion_cells_total": {
+   "value": 115000,
+   "unit": "count",
+   "measured": true,
+   "source": "peichl1992t",
+   "note": "estimated total number of ganglion cells in the retina of one eye, dogs of seven breeds (wolves: about 200,000)",
+   "compare": "116,800 ± 22,400 axons counted in the optic nerves of 4 healthy dogs (howell2013), one axon for each ganglion cell"
+  },
+  "alpha_field_centre": {
+   "value": 180,
+   "range": [
+    160,
+    200
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "peichl1992m",
+   "note": "width of the smallest alpha trees, in the central retina (fields grow from the central area to the periphery)"
+  },
+  "alpha_field_edge": {
+   "value": 1100,
+   "unit": "um",
+   "measured": true,
+   "source": "peichl1992m",
+   "note": "approximate width of an alpha cell's tree toward the edge of the retina"
+  },
+  "beta_field_range": {
+   "value": 25,
+   "range": [
+    25,
+    360
+   ],
+   "unit": "um",
+   "measured": true,
+   "source": "peichl1992m",
+   "note": "beta cells (smaller body, small dense tree) grow from about 25 µm to about 360 µm from centre to edge; the value shown is the smallest. Beta cells are not drawn."
+  },
+  "alpha_share": {
+   "value": [
+    0.03,
+    0.14
+   ],
+   "unit": "fraction",
+   "measured": true,
+   "source": "peichl1992t",
+   "note": "3-14% of ganglion cells in dogs, depending on retinal location (wolves 1-18%)"
+  },
+  "drawn_field": {
+   "value": 500,
+   "range": [
+    160,
+    1100
+   ],
+   "unit": "um",
+   "measured": false,
+   "calc": "chosen between the measured width at the centre and at the edge",
+   "note": "illustrative width of the tree drawn here; the reach limit of the drawing is 250 µm from the cell body"
+  },
+  "soma": {
+   "value": [
+    20,
+    20
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative; alpha cells have the largest cell bodies of the ganglion cells (peichl1991), but no dog size was read"
+  },
+  "dendrite_total": {
+   "value": 3500,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative total length of the drawn tree, with 25 branch points"
+  },
+  "axon": {
+   "value": 1,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative thickness; no dog value was read"
+  },
+  "ais": {
+   "value": 40,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative length of the bare first stretch"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "round",
+  "size_um": {
+   "value": [
+    11,
+    11,
+    11
+   ],
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a large round nucleus filling about half the width of the cell body"
+  },
+  "nucleoli": 1
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.07,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": [
+    1.2,
+    0.35
+   ],
+   "max_drawn": 300
+  },
+  "rough_er": {
+   "form": "nissl",
+   "clusters": {
+    "value": 24,
+    "measured": false,
+    "note": "illustrative: stacks of rough ER (Nissl bodies) in the cell body"
+   }
+  },
+  "golgi": {
+   "stacks": {
+    "value": 3,
+    "measured": false,
+    "note": "illustrative"
+   }
+  },
+  "lysosomes": {
+   "count": {
+    "value": 20,
+    "measured": false,
+    "note": "illustrative"
+   },
+   "size_um": {
+    "value": 0.5,
+    "measured": false
+   }
+  }
+ },
+ "special": [
+  {
+   "kind": "dendritic_tree",
+   "source": "peichl1992m",
+   "note": "The dendrites of the large alpha and the medium beta type each lie in one thin layer of the retina (the inner plexiform layer), which is why a tree is wide and flat. The drawing grows one tree of {drawn.dendriteLength} µm in all and spreads it more toward you than in life so that it can be seen."
+  },
+  {
+   "kind": "axon",
+   "source": "miyake2004",
+   "note": "One axon leaves the cell and runs along the inner surface of the retina to the optic disc, then into the optic nerve. In the retina the axon has no myelin; it is drawn bare for {drawn.axonDrawn} µm and then broken off. In the dog, myelin begins further along, in the optic nerve head, where it reaches in front of the sieve-like sheet (lamina cribrosa), unlike most mammals."
+  },
+  {
+   "kind": "mitochondria_in_axon",
+   "source": "barron2004",
+   "note": "In the unmyelinated stretch of human optic-nerve axons, mitochondria are packed densely. They are not drawn in the axon here."
+  }
+ ],
+ "cut": "The round cell body is cut open through its middle: a large round nucleus with one nucleolus, Nissl bodies (stacks of rough ER) round it, Golgi stacks and mitochondria. The dendritic tree and the axon are whole.",
+ "colours": {
+  "convention": "The cell in warm pink-brown (a code, as in many drawings of a single stained neuron), the nucleus violet, Nissl bodies blue (as they stain in a Nissl stain). A living ganglion cell is nearly colourless.",
+  "true_colour": []
+ },
+ "parts": {
+  "soma": {
+   "name": "Cell body",
+   "card": "cell_retinal_ganglion_cell_dog",
+   "material": "membrane"
+  },
+  "dendrite": {
+   "name": "Dendritic tree",
+   "card": "cell_retinal_ganglion_cell_dog_dendrites",
+   "material": "membrane",
+   "source": "peichl1992m"
+  },
+  "apical": {
+   "name": "Primary dendrite",
+   "card": "cell_retinal_ganglion_cell_dog_dendrites",
+   "material": "membrane",
+   "about": "The stem from which the tree branches. In life several primary dendrites start at the cell body; here one short stem divides into three."
+  },
+  "spine": {
+   "name": "Dendrite surface (no spines drawn)",
+   "card": null,
+   "material": "membrane",
+   "about": "Spines are not drawn on this cell: no measurement of them on dog ganglion cells was read. The dendrite is shown with a smooth surface."
+  },
+  "axon": {
+   "name": "Axon (no myelin in the retina)",
+   "card": "cell_retinal_ganglion_cell_dog_axon",
+   "material": "membrane",
+   "source": "miyake2004"
+  },
+  "ais": {
+   "name": "Axon initial segment",
+   "card": "cell_retinal_ganglion_cell_dog_axon",
+   "material": "membrane",
+   "about": "The first stretch of the axon, where the cell's signals usually start. Its length here is illustrative."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "nissl": {
+   "name": "Nissl body (rough ER)",
+   "card": "endoplasmic_reticulum",
+   "material": "rna",
+   "about": "Stacks of rough endoplasmic reticulum, covered in ribosomes, in the cell body of a neuron. They make the proteins this long cell needs, and stain blue with a Nissl stain."
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion",
+   "source": "barron2004"
+  },
+  "lysosome": {
+   "name": "Lysosome",
+   "card": "lysosome",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "axon_break": {
+   "name": "Axon (continues)",
+   "card": "cell_retinal_ganglion_cell_dog_axon",
+   "material": "membrane",
+   "about": "The axon goes on to the optic disc, where all the ganglion cell axons of the eye gather into the optic nerve, and on to the brain."
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_retina",
+    "structure": "gang"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 320,
+  "r1_m": 0.002,
+  "arrive_m": 5e-05,
+  "spawn_m": 1.5e-06,
+  "break": {
+   "text": "The axon runs on to the optic nerve"
+  }
+ },
+ "about": [
+  "The tree drawn is one alpha-like cell: {drawn.dendriteLength} µm of dendrite in all, reaching about 250 µm from the cell body. Measured in the dog, the tree of an alpha cell is about 160 to 200 µm wide in the central retina (the smallest fields) and about 1,100 µm wide in the periphery; the width and the length drawn here lie between those and are illustrative. The paths of the branches are random, not traced from a real cell.",
+  "A dog's eye holds about 115,000 ganglion cells in all (an estimate from seven breeds), and each sends one axon into the optic nerve. Alpha cells are a small minority, about 3 to 14 percent of the dog's ganglion cells depending on the place in the retina. The medium-sized beta cells, the smaller types and the cells of other layers are not drawn.",
+  "The axon has no myelin in the retina and is drawn bare for {drawn.axonDrawn} µm before the labelled break. In the dog, myelin begins further along, in the optic nerve head. Its thickness, the size of the cell body and the organelles are illustrative.",
+  "In the human optic nerve the bare axons contain many mitochondria, thought to supply the energy of carrying signals along unwrapped membrane. This was read for people, and is not drawn here."
+ ],
+ "sources": {
+  "peichl1992m": {
+   "cite": "Peichl L (1992) Morphological types of ganglion cells in the dog and wolf retina. J Comp Neurol 324:590-602 (abstract read through Europe PMC; full text not opened)",
+   "url": "https://europepmc.org/article/MED/1430340",
+   "opened": "2026-11-23",
+   "used_for": "dog: alpha cell tree about 160-200 µm wide in the central retina (smallest fields) growing to about 1,100 µm at the periphery; beta cell tree about 25 to 360 µm; both types lie in one layer of the inner plexiform layer; alpha cells have large cell bodies, beta cells medium ones"
+  },
+  "peichl1992t": {
+   "cite": "Peichl L (1992) Topography of ganglion cells in the dog and wolf retina. J Comp Neurol 324:603-620 (abstract read through Europe PMC; full text not opened)",
+   "url": "https://europepmc.org/article/MED/1385496",
+   "opened": "2026-11-23",
+   "used_for": "estimated total of about 115,000 ganglion cells in dogs, about 200,000 in wolves; alpha cells 3-14% of ganglion cells in dogs (1-18% in wolves), depending on retinal location"
+  },
+  "peichl1991": {
+   "cite": "Peichl L (1991) Alpha ganglion cells in mammalian retinae: common properties, species differences, and some comments on other ganglion cells. Vis Neurosci 7:155-169 (abstract read; full text not opened)",
+   "url": "https://www.cambridge.org/core/journals/visual-neuroscience/article/alpha-ganglion-cells-in-mammalian-retinae-common-properties-species-differences-and-some-comments-on-other-ganglion-cells/D63E03FA6C2A7516218A8FBF4083B0F5",
+   "opened": "2026-11-23",
+   "used_for": "alpha cells have the largest cell bodies (a survey of many mammals; its under-10% bound is not used for the dog)"
+  },
+  "howell2013": {
+   "cite": "Howell SJ, Mekhail MN, Azem R, Ward NL, Kern TS (2013) Degeneration of retinal ganglion cells in diabetic dogs and mice. Mol Vis 19:1413-1421",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3695756",
+   "opened": "2026-11-23",
+   "used_for": "each ganglion cell has one axon in the optic nerve; 116.8 ± 22.4 thousand axons in 4 healthy dogs"
+  },
+  "barron2004": {
+   "cite": "Barron MJ, Griffiths P, Turnbull DM, Bates D, Nichols P (2004) The distributions of mitochondria and sodium channels reflect the specific energy requirements and conduction properties of the human optic nerve head. Br J Ophthalmol 88:286-290",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/1771975",
+   "opened": "2026-11-23",
+   "used_for": "human: cytochrome oxidase activity high in unmyelinated optic nerve head regions and absent in the myelinated nerve behind"
+  },
+  "miyake2004": {
+   "cite": "Miyake E, Imagawa T, Uehara M (2004) Fine structure of the retino-optic nerve junction in dogs. J Vet Med Sci 66:1549-1554 (abstract read through Europe PMC; full text not opened)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/15644606/",
+   "opened": "2026-11-23",
+   "used_for": "dog: myelinated fibres in the intraocular optic nerve, fewer toward the retina; a narrow area next to the retina completely unmyelinated"
+  }
+ }
+}

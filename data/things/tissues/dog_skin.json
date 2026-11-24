@@ -158,9 +158,7 @@
     "jitter": 0.05
    },
    "ink": 1,
-   "deeper": {
-    "type": "cell"
-   }
+   "material": "keratinocyte_dog"
   },
   {
    "id": "dermis",
@@ -425,7 +423,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "hair_matrix_cell_dog"
   },
   {
    "id": "sebaceous",
@@ -466,7 +464,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "sebocyte_dog"
   },
   {
    "id": "apocrine",
@@ -507,7 +505,7 @@
     ]
    },
    "ink": 1,
-   "material": "animal_cells"
+   "material": "apocrine_cell_dog"
   }
  ],
  "tag": "Inside dog skin",

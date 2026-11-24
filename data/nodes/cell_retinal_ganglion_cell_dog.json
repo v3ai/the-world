@@ -1,0 +1,159 @@
+[
+ {
+  "id": "cell_retinal_ganglion_cell_dog",
+  "title": "Retinal ganglion cell (dog)",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 2e-05,
+  "parents": [],
+  "parts": [
+   "cell_retinal_ganglion_cell_dog_dendrites",
+   "cell_retinal_ganglion_cell_dog_axon"
+  ],
+  "made_of": [
+   "nucleus",
+   "mitochondrion",
+   "endoplasmic_reticulum",
+   "golgi_apparatus",
+   "cell_membrane"
+  ],
+  "processes": [
+   "vision"
+  ],
+  "related": [
+   "neuron",
+   "retina"
+  ],
+  "mesh": null,
+  "summary": "The nerve cell that sends the retina's result to the brain: one axon from each ganglion cell makes up the optic nerve.",
+  "layers": {
+   "basics": "Light is caught by rods and cones, passed through bipolar cells, and arrives at the ganglion cells. Each ganglion cell collects signals on its tree of dendrites and sends its own signal along one long axon to the brain. All the axons of one eye gather at one spot and leave together as the optic nerve. A dog's eye has about 115,000 of them.",
+   "deeper": "There are several kinds. The large alpha cells and the medium beta cells are the best known in the dog. Each has its tree in one thin layer of the retina, so the tree is wide and flat. The tree is narrow in the central retina and wider toward the edge, where the cells are spread more thinly. Alpha cells are a minority: in the dog they make up about 3 to 14 percent of the ganglion cells, depending on where in the retina, and are thought to carry fast changes in the picture; beta cells are thought to carry fine detail.",
+   "expert": "The numbers read are for the dog: about 115,000 cells in all (an estimate from seven breeds; wolves about 200,000), alpha trees about 160 to 200 µm wide in the central retina and about 1,100 µm in the periphery; alpha cells about 3-14% of ganglion cells, beta trees about 25 to 360 µm. The cell drawn is one alpha-like cell with a tree of 500 µm; its cell body, tree length, branch points, axon thickness and organelles are illustrative. The roles of the types are drawn from cat work and proposed for the dog, not shown in it. Not drawn: the other ganglion cell types, spines, the synapses on the tree, the mitochondria packed along the axon."
+  },
+  "facts": [
+   [
+    "Ganglion cells in one dog eye",
+    "about 115,000 (estimate)"
+   ],
+   [
+    "Alpha cell tree, central retina to periphery",
+    "about 160-200 µm to about 1,100 µm"
+   ],
+   [
+    "Axons per cell",
+    "1"
+   ],
+   [
+    "Myelin in the retina",
+    "none"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "How do the numbers of each ganglion cell type compare between breeds with a pronounced visual streak and those without?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "14.1",
+    "14-1-sensory-perception"
+   ]
+  ]
+ },
+ {
+  "id": "cell_retinal_ganglion_cell_dog_dendrites",
+  "title": "Ganglion cell dendritic tree",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0003,
+  "parents": [
+   "cell_retinal_ganglion_cell_dog"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane"
+  ],
+  "processes": [],
+  "related": [
+   "neuron"
+  ],
+  "mesh": null,
+  "summary": "The branching tree on which a ganglion cell gathers the signals of the cells before it.",
+  "layers": {
+   "basics": "The branches spread out from one side of the cell body like the crown of a small bush. They collect signals from the bipolar cells and from other cells of the retina. Because the tree lies in one thin layer, it covers a patch of the retina like a flat disc.",
+   "deeper": "How far the tree spreads depends on where the cell sits. In the central retina the large alpha cells have the smallest trees, about 160 to 200 µm wide; they grow toward the periphery, where they reach about 1,100 µm. The cells of one type are spaced so that their trees cover the retina evenly, side by side.",
+   "expert": "The widths are from the dog. The drawn tree is 3,500 µm of dendrite with 25 branch points, reaching 250 µm from the cell body; it is spread toward the viewer more than a real, flat tree, and its branch paths are random. These are illustrative. No spines are drawn."
+  },
+  "facts": [
+   [
+    "Alpha tree width, central retina",
+    "about 160-200 µm"
+   ],
+   [
+    "Alpha tree width, periphery",
+    "about 1,100 µm"
+   ],
+   [
+    "Drawn tree",
+    "3,500 µm of dendrite (illustrative)"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [],
+  "refs": []
+ },
+ {
+  "id": "cell_retinal_ganglion_cell_dog_axon",
+  "title": "Ganglion cell axon",
+  "kind": "cell",
+  "template": "cell",
+  "scale_m": 0.0003,
+  "parents": [
+   "cell_retinal_ganglion_cell_dog"
+  ],
+  "parts": [],
+  "made_of": [
+   "cell_membrane",
+   "mitochondrion"
+  ],
+  "processes": [
+   "action_potential"
+  ],
+  "related": [
+   "neuron"
+  ],
+  "mesh": null,
+  "summary": "The single thin fibre that carries the cell's signal out of the eye, bare of myelin in the retina.",
+  "layers": {
+   "basics": "Each ganglion cell has one axon. It runs along the inner face of the retina to one spot at the back of the eye, where it joins the axons of all the other ganglion cells and leaves as the optic nerve. Inside the retina it has no myelin wrapping, which lets light reach the cells behind with little loss. At the optic nerve head of the dog, myelin starts to appear.",
+   "deeper": "In most mammals myelination stops at the sieve-like sheet (lamina cribrosa) where the nerve leaves the eye; in the dog, myelinated fibres reach in front of it and thin out toward the retina, and a narrow strip next to the retina is bare. In the human optic nerve head the bare stretch is rich in mitochondria and the wrapped stretch behind it is not, which fits the idea that carrying a signal along bare membrane costs a lot of energy. A count of the axons in the optic nerves of healthy dogs gave about 117,000, close to the estimated number of ganglion cells.",
+   "expert": "The bare retinal stretch and the myelin in the dog's optic nerve head are from dog work; the mitochondria are described from the human eye; the dog count is from four healthy dogs. The thickness of the drawn axon (1 µm) and the first bare stretch (40 µm) are illustrative, and the mitochondria of the axon are not drawn."
+  },
+  "facts": [
+   [
+    "Axons per cell",
+    "1"
+   ],
+   [
+    "Axons in a healthy dog optic nerve",
+    "about 117,000 (4 dogs)"
+   ],
+   [
+    "Myelin in the retina",
+    "none"
+   ]
+  ],
+  "certainty": "C2",
+  "open_questions": [
+   "What fraction of dog ganglion cell axons are myelinated before the optic disc?"
+  ],
+  "refs": [
+   [
+    "ANP",
+    "12.2",
+    "12-2-nervous-tissue"
+   ]
+  ]
+ }
+]

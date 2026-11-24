@@ -1,0 +1,253 @@
+{
+ "id": "keratinocyte_dog",
+ "name": "Keratinocyte (dog skin)",
+ "organism": "mammal (dog)",
+ "species": "Canis lupus familiaris",
+ "card": "cell_keratinocyte_dog",
+ "blurb": "A living skin cell from the thin epidermis of a dog: a many-sided cell, packed tightly against its neighbours and riveted to them by desmosomes, with keratin filaments running through it.",
+ "note": "Model: a keratinocyte from the middle layers of the haired skin of a dog (Canis lupus familiaris), cut in half. Measured in dogs: that the living epidermis is 2 to 4 cell layers deep and 8.8 to 37.2 µm thick depending on the body site, that it renews in about 21 to 23 days, and that its cells have desmosomes, keratin filaments, lamellar bodies, mitochondria and a nucleus. Illustrative: the width and height of this cell, the share of it taken by the nucleus and each organelle, the number of desmosomes, the number and paths of the keratin bundles and the colours. No dog source gives sizes for single cells, so nothing about the cell's own size is measured. The cells around it are drawn faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 13,
+  "height_um": 7,
+  "taper": 1,
+  "irregularity": 0.18,
+  "round_um": 1,
+  "desmosomes": 140,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "nucleated_layers": {
+   "value": 3,
+   "range": [
+    2,
+    4
+   ],
+   "unit": "count",
+   "measured": false,
+   "source": "theera2012",
+   "note": "the nucleated layers are 'at least two to four' deep in every one of 16 body regions of 27 dogs; 3 is the middle of that count (a choice, not a measurement); 'at least' means 4 may not be the ceiling",
+   "calc": "middle of the measured 'at least 2 to 4'",
+   "also": "jennings"
+  },
+  "nucleated_epidermis_thinnest": {
+   "value": 8.76,
+   "unit": "um",
+   "measured": true,
+   "source": "theera2012",
+   "note": "the axilla (armpit), mean of 27 dogs of five breeds; the thickest site, the digital web, was 37.23 µm"
+  },
+  "nucleated_epidermis_thickest": {
+   "value": 37.23,
+   "unit": "um",
+   "measured": true,
+   "source": "theera2012",
+   "note": "the digital web (between the toes)"
+  },
+  "renewal_time": {
+   "value": 23.38,
+   "unit": "days",
+   "measured": true,
+   "source": "kwochka1989",
+   "compare": "20.97 ± 4.92 days in Cocker Spaniels; 23.38 ± 5.93 days in Beagles (a calculated renewal time for the living layers)",
+   "note": "Beagle mean; the abstract gives means with SDs, not a range of individual dogs"
+  },
+  "height": {
+   "value": 7,
+   "unit": "um",
+   "measured": false,
+   "calc": "a nucleated epidermis of about 20 µm (between the measured 8.8 and 37.2 µm) divided by 3 layers; illustrative"
+  },
+  "width": {
+   "value": 13,
+   "unit": "um",
+   "measured": false,
+   "note": "illustrative: a cell a little wider than it is tall, as in a thin, flat-lying layer"
+  }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": {
+   "value": 0.15,
+   "range": [
+    0.05,
+    0.3
+   ],
+   "measured": false,
+   "note": "illustrative; a nucleus is clearly visible in the cells of every living layer (dog electron micrographs), but no dog source gives its share of the cell"
+  },
+  "nucleoli": 1,
+  "source": "tem2025"
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": {
+    "value": 0.015,
+    "range": [
+     0.005,
+     0.04
+    ],
+    "measured": false,
+    "note": "illustrative; mitochondria are present in dog keratinocytes (tem2025), their share is not measured"
+   },
+   "size_um": [
+    1.0,
+    0.35
+   ],
+   "size_measured": false,
+   "max_drawn": 300,
+   "source": "tem2025"
+  },
+  "lamellar_bodies": {
+   "count": {
+    "value": 120,
+    "measured": false,
+    "calc": "illustrative; lamellar bodies are present in dog epidermis (tem2025) but not counted there"
+   },
+   "size_um": {
+    "value": 0.22,
+    "measured": false
+   },
+   "elongation": 1.4,
+   "position": "peripheral",
+   "source": "tem2025"
+  },
+  "golgi": {
+   "stacks": {
+    "value": 2,
+    "measured": false,
+    "note": "illustrative"
+   }
+  }
+ },
+ "special": [
+  {
+   "kind": "keratin_bundles",
+   "params": {
+    "bundles": 20,
+    "drawn_um": 0.3
+   },
+   "source": "tem2025",
+   "note": "Keratin filaments are seen in dog epidermal keratinocytes in electron micrographs (tem2025). 20 bundles are drawn, thick enough to see; their number and paths are illustrative."
+  },
+  {
+   "kind": "desmosomes",
+   "source": "tem2025",
+   "note": "Desmosomes join the cell to its neighbours (seen in dog skin, tem2025). 140 are drawn on its surface, an illustrative number."
+  }
+ ],
+ "cut": "The cell is cut in half: the oval nucleus with its nucleolus, keratin bundles looping round it and ending at desmosomes on the cell's surface, mitochondria, and lamellar bodies near the edge. The neighbouring cells of the layer show faintly behind, packed close together.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; keratin bundles straw yellow; desmosomes brown; nucleus violet; mitochondria orange; lamellar bodies pale. All of it is a code: none of these colours is the colour of the real thing."
+ },
+ "parts": {
+  "membrane": {
+   "name": "Cell membrane",
+   "card": "cell_membrane",
+   "material": "membrane"
+  },
+  "cytosol": {
+   "name": "Cytosol",
+   "card": null,
+   "material": "water",
+   "about": "The watery inside of the cell, crowded with proteins."
+  },
+  "nucleus": {
+   "name": "Nucleus",
+   "card": "nucleus",
+   "material": "cell_nucleus"
+  },
+  "nucleolus": {
+   "name": "Nucleolus",
+   "card": "nucleus",
+   "material": "rna"
+  },
+  "keratin": {
+   "name": "Keratin filaments",
+   "card": "bio_actin_intermediate",
+   "material": "keratin",
+   "source": "tem2025"
+  },
+  "desmosome": {
+   "name": "Desmosome",
+   "card": "cell_dog_desmosome",
+   "material": "desmosome",
+   "source": "tem2025",
+   "also": "openstax_skin"
+  },
+  "lamellar_body": {
+   "name": "Lamellar body",
+   "card": "cell_dog_lamellar_body",
+   "material": "lamellar_body",
+   "source": "tem2025"
+  },
+  "mitochondrion": {
+   "name": "Mitochondrion",
+   "card": "mitochondrion",
+   "material": "mitochondrion"
+  },
+  "golgi": {
+   "name": "Golgi apparatus",
+   "card": "golgi_apparatus",
+   "material": "membrane"
+  },
+  "neighbour": {
+   "name": "Neighbouring keratinocyte",
+   "card": "cell_keratinocyte_dog",
+   "material": "membrane"
+  }
+ },
+ "reached": {
+  "tissue2": [
+   {
+    "scene": "dog_skin",
+    "structure": "epi"
+   }
+  ]
+ },
+ "view": {
+  "radius_um": 14,
+  "r1_m": 0.00022,
+  "arrive_m": 3.5e-05,
+  "spawn_m": 1.2e-06
+ },
+ "about": [
+  "A cell of the living part of the epidermis of a dog's haired skin. In dogs this living layer is thin: every body region measured had 2 to 4 layers of nucleated cells, and the layer ranged from 8.8 µm thick in the armpit to 37.2 µm between the toes. This cell is drawn {drawn.cellVolume} µm³ in volume, with its width and height chosen to fit a layer of about three cells; no dog study gives the size of a single cell.",
+  "The cell holds a nucleus ({drawn.nuclei} drawn), mitochondria ({drawn.mitochondria} drawn in this half), lamellar bodies and keratin filaments, all seen in electron micrographs of dog skin. How much of the cell each one takes is not measured in dogs, so the shares drawn are illustrative. Desmosomes, {drawn.desmosomes} drawn, rivet it to its neighbours; dog epidermis has little material between its cells, so they sit close together.",
+  "This cell was made in the bottom layer and is on its way up. The living layers of dog epidermis were calculated to renew in about 21 to 23 days. The roughly 4 weeks quoted for human skin is the time to replace the outer dead layer, so the two are not directly comparable. Not drawn: the pigment granules of melanocytes, the Langerhans cells between the keratinocytes, the keratohyalin granules of the cells nearest the surface (seen in dog skin but smaller and fewer than in keratinocyte organoids grown from dog cells), the tight junctions between the cells and, in the bottom layer, the hemidesmosomes that fix it to the basement membrane."
+ ],
+ "sources": {
+  "theera2012": {
+   "cite": "Theerawatanasirikul S, Suriyaphol G, Thanawongnuwech R, Sailasuta A (2012) Histologic morphology and involucrin, filaggrin, and keratin expression in normal canine skin from dogs of different breeds and coat types, J Vet Sci 13(2):163-170",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3386341",
+   "opened": "2026-11-23",
+   "used_for": "27 dogs, 16 body regions: 2 to 4 nucleated layers everywhere; nucleated epidermis 8.76 µm (axilla) to 37.23 µm (digital web); dog epidermis has less intercellular material than other species"
+  },
+  "kwochka1989": {
+   "cite": "Kwochka KW (1989) Cell proliferation of epidermis, hair follicles, and sebaceous glands of Beagles and Cocker Spaniels with healthy skin, Am J Vet Res 50(4):587-591",
+   "url": "https://agris.fao.org/search/en/records/65dfe61163b8185d9cafe90e",
+   "opened": "2026-11-23",
+   "used_for": "abstract: calculated renewal time of the living layers 23.38 ± 5.93 days (Beagles) and 20.97 ± 4.92 days (Cocker Spaniels)"
+  },
+  "tem2025": {
+   "cite": "Evaluation of canine epidermis and keratinocytoids (keratinocytic organoids) by transmission electron microscopy (2025) Vet Dermatol, doi:10.1111/vde.13356 (skin from four dogs)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12420878",
+   "opened": "2026-11-23",
+   "used_for": "dog epidermal keratinocytes have nuclei, mitochondria, keratin filaments, tight junctions, desmosomes and lamellar bodies; keratohyalin granules in skin are smaller and fewer than in organoids; layers are basale, spinosum, granulosum, corneum"
+  },
+  "openstax_skin": {
+   "cite": "OpenStax Anatomy and Physiology 2e, 5.1 Layers of the Skin",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin",
+   "opened": "2026-11-23",
+   "used_for": "human skin: all keratinocytes arise in the basal layer; desmosomes interlock cells; keratin synthesis starts in the spinous layer; lamellar granules secrete lipid for the barrier; the outer layer is replaced in about 4 weeks (the human comparison in the About text)"
+  },
+  "jennings": {
+   "cite": "Jennings R, Premanandan C, Veterinary Histology, 7.4 Structure of the Epidermis (LibreTexts)",
+   "url": "https://med.libretexts.org/Bookshelves/Veterinary_Medicine/Veterinary_Histology_(Jennings_and_Premanandan)/07%3A_Integument/7.04%3A_Structure_of_the_Epidermis",
+   "opened": "2026-11-23",
+   "used_for": "the granular layer may be absent in thin skin, e.g. canine inguinal and axillary skin"
+  }
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "id": "sustentacular_cell_dog",
+ "name": "Supporting (sustentacular) cell of the dog's nose",
+ "organism": "mammal (dog)",
+ "species": "Canis familiaris",
+ "card": "cell_sustentacular_cell_dog",
+ "blurb": "The tall supporting cell of a dog's smell lining: a column topped with a fur of microvilli, with its nucleus near the top and a thin foot reaching down to the base, standing between the smell neurons.",
+ "note": "Model: a supporting (sustentacular) cell from the smell lining of the dog's nose, cut in half. Measured, in dogs and in other mammals as named in the sources: the cell's place and job, that it carries microvilli on its free face, that its nucleus lies toward the top of the lining, that it is joined to its neighbours by junctions, and that it partly wraps the dendrites of the smell neurons. Illustrative, because no source read for this model gives it for the dog: the height, the width, the taper, the length of the microvilli, the size and shape of the nucleus, the number of junctions and organelles, and all colours. The neurons around the cell are not drawn.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 8,
+  "height_um": 60,
+  "taper": 1.8,
+  "irregularity": 0.2,
+  "round_um": 1,
+  "apical": "microvilli",
+  "apical_um": 1.5,
+  "neighbours": 1,
+  "desmosomes": 40
+ },
+ "dimensions": {
+  "height": { "value": 60, "range": [20, 120], "unit": "um", "measured": false, "note": "illustrative. A review of nasal anatomy gives the whole olfactory lining as about 60 µm tall (gizurarsson2012; the sentence does not name the species), and a study of beagle noses found the dog's olfactory lining thicker than a rabbit's by 39.9 µm on average (yang2026), but no source read gives the dog's lining or its supporting cell as a number. The cell is drawn as tall as the lining.", "also": "gizurarsson2012" },
+  "width_at_top": { "value": 14, "range": [4, 25], "unit": "um", "measured": false, "calc": "drawn width of 8 µm at the base times a taper of 1.8, rounded", "note": "illustrative; the cell is wider where the nucleus lies than at its foot" },
+  "width_at_base": { "value": 8, "range": [2, 15], "unit": "um", "measured": false, "note": "illustrative" },
+  "microvillus_length": { "value": 1.5, "range": [0.5, 5], "unit": "um", "measured": false, "note": "illustrative; the microvilli are known to reach up into the mucus and to meet the cilia of the smell neurons there (elsevier_atlas), but no length for the dog was read" },
+  "neurons_per_supporting_cell": { "value": 1, "unit": "fraction", "measured": false, "note": "not given: only that supporting cells outnumber the smell neurons in the dog (anatomyatlases)" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "size_um": [4.5, 4.5, 9],
+  "position": "apical",
+  "nucleoli": 1,
+  "source": "gizurarsson2012",
+  "note": "One oval nucleus lies in the upper part of the cell, in the top layer of nuclei of the lining, above the nuclei of the smell neurons (in the dog the neuron nuclei lie deep, anatomyatlases). That the nucleus of a supporting cell lies higher than the others is from a review of the human nose (gizurarsson2012); the same crowded, high position is described in the wolf's vomeronasal organ (wolf2024). Its size, shape and the one nucleolus are illustrative."
+ },
+ "organelles": {
+  "mitochondria": {
+   "volume_fraction": { "value": 0.05, "measured": false, "note": "illustrative; the cell is said to be rich in mitochondria (gizurarsson2012), but no share was read" },
+   "size_um": [1.0, 0.4],
+   "size_measured": false,
+   "max_drawn": 300,
+   "position": "any"
+  },
+  "granules": {
+   "count": { "value": 14, "measured": false, "note": "illustrative; pigment (lipofuscin) granules are known in these cells (gizurarsson2012), their number and size are not" },
+   "size_um": { "value": 0.5, "measured": false },
+   "position": "any"
+  },
+  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative" } },
+  "not_drawn": [
+   "endoplasmic reticulum",
+   "ribosomes",
+   "the actin core of each microvillus",
+   "the smell neurons and the basal cells around it",
+   "the mucus above the microvilli",
+   "the cell's thin extensions that wrap the neurons' fibres near the base"
+  ]
+ },
+ "special": [
+  {
+   "kind": "microvilli",
+   "part": "microvillus",
+   "params": { "count": 600, "length_um": 1.5, "diameter_um": 0.1 },
+   "source": "elsevier_atlas",
+   "note": "Many microvilli stand on the free face and reach into the mucus, where they meet the cilia of the smell neurons (elsevier_atlas). Their count, length and thickness here are illustrative; only the fingers on the cut and the visible face are drawn."
+  },
+  {
+   "kind": "dendrite_wrapping",
+   "part": "wrapped_dendrite",
+   "params": { "wrapped": 2 },
+   "source": "liang2020",
+   "note": "The dendrite of a smell neuron often lies in a groove or pocket of a supporting cell, which partly or wholly wraps it; this was shown in mouse, rat and human (liang2020), and the dog's lining is likely to be the same, though no dog source was read. Two wrapped dendrites are drawn at the top of the cell; the number is illustrative."
+  },
+  {
+   "kind": "tight_junction",
+   "part": "apical_junction",
+   "params": {},
+   "source": "elsevier_atlas",
+   "note": "Near the free face the cell is bound to its neighbours and to the smell neurons by junctions (elsevier_atlas, liang2020). Drawn as a ring just under the microvilli, thicker than in life. A review of the human nose states that the seal to the neurons is not a gap or tight junction (gizurarsson2012); the sources differ on the kind of junction, so the ring stands for the belt of junctions as a whole."
+  },
+  {
+   "kind": "desmosomes",
+   "source": "elsevier_atlas",
+   "note": "Desmosomes join neighbouring supporting cells near the free face (elsevier_atlas). 40 are drawn, an illustrative number."
+  },
+  {
+   "kind": "basal_process",
+   "part": "basal_process",
+   "params": {},
+   "source": "anatomyatlases",
+   "note": "The cell reaches from the free surface to the base of the lining; in the dog the smell neurons lie between the supporting cells (anatomyatlases). The narrowing of the lower part into a thin foot is illustrative."
+  }
+ ],
+ "cut": "The cell is cut in half lengthwise: a tall column, wider near the top where the oval nucleus lies and narrowing toward a thin foot; microvilli stand on the free face, a ring of junctions lies just below them, mitochondria and pigment granules lie through the cytoplasm, and the neighbouring cells show faintly beside it; two wrapped dendrites of smell neurons lie in grooves near the top.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; microvilli pale straw; the ring of junctions and the desmosomes brown; nucleus violet; mitochondria orange; pigment granules yellow-brown; the wrapped dendrites pale blue. None of these is a real colour: all are a code.",
+  "true_colour": []
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins. In this cell it forms a tall column, widest where the nucleus lies." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus", "source": "gizurarsson2012" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "microvillus": { "name": "Microvillus", "card": "cell_sustentacular_cell_dog_microvilli", "material": "protein", "source": "elsevier_atlas", "about": "A finger of the cell surface. Its surface is membrane over a core of actin, a protein; the closer view shows a protein as a stand-in for that actin core." },
+  "wrapped_dendrite": { "name": "Wrapped dendrite of a smell neuron", "card": "cell_sustentacular_cell_dog_wrapping", "material": "olfactory_neuron_dog", "source": "liang2020", "about": "A thin fibre of a smell neuron, the dendrite that carries its knob of cilia to the surface. The closer view is that smell neuron." },
+  "apical_junction": { "name": "Junctions near the free face", "card": "cell_sustentacular_cell_dog_junctions", "material": "protein", "source": "elsevier_atlas" },
+  "desmosome": { "name": "Desmosome", "card": "bio_cell_junctions", "material": "desmosome", "source": "elsevier_atlas" },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion", "source": "gizurarsson2012" },
+  "granule": { "name": "Pigment granule (lipofuscin)", "card": null, "material": "protein", "source": "gizurarsson2012", "about": "A small granule of worn-out cell material (it is an aggregate of damaged protein and lipid; the closer view shows a protein as a stand-in, since no view of lipofuscin itself is built) that builds up in the cell and shows as a yellowish-brown pigment. Supporting cells of the smell lining are known to carry such granules, which give the lining a faint yellow-brown tint." },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "basal_process": { "name": "Thin foot of the cell", "card": null, "material": "membrane", "source": "anatomyatlases", "about": "The lower end of the cell narrows into a thin foot that reaches toward the base of the lining, where new cells are made from stem cells. Its shape is illustrative." },
+  "neighbour": { "name": "Neighbouring cell of the smell lining", "card": "cell_sustentacular_cell_dog", "material": "membrane" }
+ },
+ "reached": { "tissue2": [{ "scene": "dog_olfactory_epithelium", "structure": "sust" }] },
+ "view": { "radius_um": 36, "r1_m": 0.0003, "arrive_m": 5e-05, "spawn_m": 1.5e-06 },
+ "about": [
+  "This is the supporting cell of the smell lining in a dog's nose. In the dog these cells are more numerous than the smell neurons that lie between them (anatomyatlases), and the cell stands from the free surface down to the base of the lining. The drawn cell is {drawn.cellVolume} µm³; its height and width are illustrative, since no source read gives them for the dog.",
+  "Its microvilli reach into the mucus above, where they meet the cilia of the smell neurons; neighbouring cells are joined by desmosomes and by junctions near the free face (elsevier_atlas). The cell partly wraps the dendrites of the smell neurons (liang2020), which is why it is called a supporting cell: reviews of the dog's nose add that it helps set the make-up of the mucus, insulates the neurons from one another and protects the lining from what is breathed in (frontvet2018), and that it takes up dead neurons (canine_review2021).",
+  "The nucleus ({drawn.nuclei} drawn) lies high in the lining, above the nuclei of the neurons. Neurons here live for only weeks and are replaced from basal cells, which can also become supporting cells (canine_review2021); supporting cells in three beagles stain for the epithelial markers SOX2 and cytokeratin (yoshida2024). Most of the structure comes from other mammals, as each note says; the sizes are illustrative."
+ ],
+ "sources": {
+  "anatomyatlases": { "cite": "Plate 16.298 Olfactory Epithelium, Microscopic Anatomy atlas (dog tissue, silver stain)", "url": "https://www.anatomyatlases.org/MicroscopicAnatomy/Section16/Plate16298.shtml", "opened": "2026-11-23", "used_for": "dog: supporting cells are more numerous than the smell neurons, which lie between them; neuron nuclei lie deep" },
+  "elsevier_atlas": { "cite": "Elsevier anatomy resource, olfactory epithelium: supporting epithelial cells", "url": "https://www.elsevier.com/resources/anatomy/olfactory-organ/olfactory-epithelium/supporting-epithelial-cells/16260", "opened": "2026-11-23", "used_for": "columnar cells in the apical layer; many apical microvilli meeting the neurons' cilia in the mucus; desmosomes between supporting cells; junctions to neurons (species not named)" },
+  "liang2020": { "cite": "Liang F (2020) Sustentacular Cell Enwrapment of Olfactory Receptor Neuronal Dendrites: An Update. Genes 11:493", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7291085/", "opened": "2026-11-23", "used_for": "supporting cells partly epithelial, partly glial; wrapping of neuron dendrites shown in mouse, rat and human; junctions at the surface" },
+  "gizurarsson2012": { "cite": "Gizurarson S (2012) Anatomical and histological factors affecting intranasal drug and vaccine delivery. Curr Drug Deliv 9", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3480721/", "opened": "2026-11-23", "used_for": "supporting cells most numerous; columnar with many microvilli; rich in mitochondria; lipofuscin granules; nuclei more apical; lining about 60 µm (species not named)" },
+  "canine_review2021": { "cite": "Canine Olfaction: Physiology, Behavior, and Possibilities for Practical Applications. Animals (Basel) 2021;11(8):2463", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8388720/", "opened": "2026-11-23", "used_for": "dog: sustentacular cells wrap the receptor cell and support it, take up dead neurons; receptor cells last weeks; basal cells give neurons or sustentacular cells" },
+  "frontvet2018": { "cite": "When the Nose Doesn't Know: Canine Olfactory Function Associated With Health, Management, and Potential Links to Microbiota. Front Vet Sci 2018;5:56", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5884888/", "opened": "2026-11-23", "used_for": "dog: supporting cells regulate the mucus, insulate neurons, protect the lining" },
+  "yoshida2024": { "cite": "Yoshida K, Chambers JK, Ito K, Hirao H, Nibe K, Uchida K (2024) J Vet Med Sci 86(8):850-854", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11300123/", "opened": "2026-11-23", "used_for": "three beagles: normal sustentacular cells are positive for SOX2 and cytokeratin AE1/AE3" },
+  "yang2026": { "cite": "Yang S, Ji H, Kim S, Kim S (2026) Comparative histological characteristics of the nasal cavity of Beagle dogs and rabbits. J Vet Sci, doi 10.4142/jvs.25354", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13454798/", "opened": "2026-11-23", "used_for": "five beagles: olfactory lining covers most of the septum and turbinates of the back region and is thicker than the rabbit's by 39.9 µm on average" },
+  "wolf2024": { "cite": "The vomeronasal system of the wolf (Canis lupus signatus): The singularities of a wild canid. J Anat 2024", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11161832/", "opened": "2026-11-23", "used_for": "wolf vomeronasal organ: sustentacular cells elongated with densely packed nuclei in the apical position (comparison only)" }
+ }
+}

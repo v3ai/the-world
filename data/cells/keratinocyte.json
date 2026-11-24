@@ -1,0 +1,79 @@
+{
+ "id": "keratinocyte",
+ "name": "Keratinocyte (skin cell)",
+ "organism": "human",
+ "species": "Homo sapiens",
+ "card": "keratinocyte",
+ "blurb": "A living skin cell from the middle of the epidermis: a many-sided cell held to its neighbours by desmosomes, with bundles of keratin filaments running between them round its nucleus.",
+ "note": "Model: a keratinocyte of the spinous layer of human skin, cut in half. Measured in human skin: its volume (from cell counts and the thickness of the epidermis), the share of the cell taken by the nucleus, keratin bundles, mitochondria, melanosomes and lamellar bodies, and its depth under the surface. Illustrative: its exact shape, the number and paths of the keratin bundles, the number of desmosomes, the sizes of the small organelles and the colours. The cells around it are drawn faintly.",
+ "shape": {
+  "type": "polyhedron",
+  "sides": 6,
+  "width_um": 14.5,
+  "height_um": 9.5,
+  "taper": 1,
+  "irregularity": 0.18,
+  "round_um": 1.2,
+  "desmosomes": 160,
+  "neighbours": 1
+ },
+ "dimensions": {
+  "volume": { "value": 1250, "unit": "um3", "measured": true, "calc": "the thickness of living epidermis on the forearm (56.6 µm) divided by the number of nucleated cells under each square micrometre of skin (452 per 10,000 µm²): the mean volume of one living epidermal cell", "source": "sandby2003", "also": "bergstresser1978", "note": "a mean over all living layers, from two studies of different people" },
+  "width": { "value": 15, "unit": "um", "measured": false, "note": "illustrative: a six-sided cell 14.5 µm across and 9.5 µm tall has about the measured volume" },
+  "height": { "value": 9.5, "unit": "um", "measured": false, "note": "illustrative" },
+  "depth": { "value": 47, "unit": "um", "measured": true, "calc": "the dead outer layer (18.3 µm) plus half the living epidermis (56.6 / 2 µm), dorsal forearm", "source": "sandby2003" }
+ },
+ "nucleus": {
+  "count": 1,
+  "shape": "oval",
+  "volume_fraction": { "value": 0.127, "range": [0.097, 0.155], "measured": true, "calc": "nuclei over nuclei plus cytoplasm, the mean of the lower and upper spinous layer at two sites", "source": "kleinszanto1977" },
+  "nucleoli": 1
+ },
+ "organelles": {
+  "mitochondria": { "volume_fraction": { "value": 0.0155, "range": [0.012, 0.019], "measured": true, "calc": "mitochondria over nuclei plus cytoplasm, spinous layer, mean of four columns", "source": "kleinszanto1977" }, "size_um": [1.0, 0.35], "size_measured": false, "max_drawn": 400 },
+  "melanosomes": { "volume_fraction": { "value": 0.00083, "measured": true, "source": "kleinszanto1977", "note": "nine women aged 19 to 23 (their skin colour is not given); darker skin holds more melanin" }, "count": { "value": 60, "measured": false, "calc": "the volume share above in a 1250 µm³ cell, for melanosomes of 0.5 x 0.25 x 0.25 µm (illustrative size)" }, "size_um": { "value": 0.25, "measured": false }, "elongation": 2, "position": "supranuclear" },
+  "lamellar_bodies": { "volume_fraction": { "value": 0.0048, "measured": true, "source": "kleinszanto1977", "note": "membrane-coating granules: about 0.1% in the lower spinous layer, 0.9% in the upper" }, "count": { "value": 200, "measured": false, "calc": "the volume share above in a 1250 µm³ cell, for bodies about 0.3 µm long (illustrative size)" }, "size_um": { "value": 0.22, "measured": false }, "elongation": 1.4, "position": "peripheral" },
+  "lysosomes": { "volume_fraction": { "value": 0.00023, "measured": true, "source": "kleinszanto1977" }, "count": { "value": 6, "measured": false }, "size_um": { "value": 0.4, "measured": false } },
+  "golgi": { "stacks": { "value": 2, "measured": false, "note": "illustrative; volume share about 0.06% (kleinszanto1977)" } }
+ },
+ "special": [
+  { "kind": "keratin_bundles", "params": { "bundles": 22, "drawn_um": 0.35 }, "source": "kleinszanto1977", "note": "Keratin filament bundles (tonofilaments) fill about 27% of a spinous cell (measured); they run from desmosome to desmosome round the nucleus (dermnet). 22 bundles are drawn, thick enough to see: their number and paths are illustrative." },
+  { "kind": "desmosomes", "source": "kleinszanto1977", "note": "Desmosomes join the cell to its neighbours: 36 to 51 were counted per 100 µm² of section in the spinous layer. 160 are drawn on the cell's surface, an illustrative number." }
+ ],
+ "cut": "The cell is cut in half: the oval nucleus with its nucleolus, keratin bundles looping round it between desmosomes on the cell's surface, mitochondria, melanin granules capping the top of the nucleus, and lamellar bodies near the surface. The neighbouring cells of the layer show faintly behind.",
+ "colours": {
+  "convention": "Cell membrane pale peach, the inside dark; keratin bundles straw yellow; desmosomes brown; nucleus violet; melanosomes dark brown (melanin is brown); mitochondria orange. Only the brown of melanin is its real colour; the rest is a code.",
+  "true_colour": ["melanin"]
+ },
+ "parts": {
+  "membrane": { "name": "Cell membrane", "card": "cell_membrane", "material": "membrane" },
+  "cytosol": { "name": "Cytosol", "card": null, "material": "water", "about": "The watery inside of the cell, crowded with proteins." },
+  "nucleus": { "name": "Nucleus", "card": "nucleus", "material": "cell_nucleus" },
+  "nucleolus": { "name": "Nucleolus", "card": "nucleus", "material": "rna" },
+  "keratin": { "name": "Keratin filaments", "card": "bio_actin_intermediate", "material": "keratin", "about": "Bundles of keratin filaments (tonofilaments) run through the cell from desmosome to desmosome, so that the whole layer of cells pulls together as one sheet. As the cell rises toward the surface it fills with keratin and dies, becoming a flat scale of the outer layer." },
+  "desmosome": { "name": "Desmosome", "card": null, "material": "desmosome", "source": "openstax_skin", "about": "A desmosome is a button of proteins that rivets two neighbouring cells together; the keratin filaments of each cell are anchored to it. Under a microscope, cells shrunk by preparation stay joined at their desmosomes, which gives this layer its spiny look and its name." },
+  "melanosome": { "name": "Melanin granule (melanosome)", "card": "melanocyte", "material": "melanosome", "source": "openstax_skin", "about": "Melanin is made by melanocytes in the bottom layer and handed to keratinocytes in small granules, melanosomes. Many gather over the top of the nucleus, shading the DNA from sunlight." },
+  "lamellar_body": { "name": "Lamellar body", "card": null, "material": "lamellar_body", "about": "Small granules of stacked lipid layers. Higher in the epidermis the cell empties them into the gaps between cells, where the lipids seal the skin against water loss." },
+  "mitochondrion": { "name": "Mitochondrion", "card": "mitochondrion", "material": "mitochondrion" },
+  "lysosome": { "name": "Lysosome", "card": "lysosome", "material": "membrane" },
+  "golgi": { "name": "Golgi apparatus", "card": "golgi_apparatus", "material": "membrane" },
+  "neighbour": { "name": "Neighbouring keratinocyte", "card": "keratinocyte", "material": "membrane" }
+ },
+ "reached": {
+  "landmark": "Skin cell",
+  "tissue": [{ "kind": "epithelium", "id": "keratinocyte" }]
+ },
+ "view": { "radius_um": 16, "r1_m": 2.5e-4, "arrive_m": 4e-5, "spawn_m": 1.2e-6, "landmark_depth_um": 47 },
+ "about": [
+  "A cell of the spinous layer, about 47 µm under the surface of the skin of the forearm (under 18 µm of dead cells). Its volume, {drawn.cellVolume} µm³ as drawn, matches the mean volume of a living epidermal cell worked out from cell counts (452 cells under each 100 x 100 µm of skin) and the thickness of the living layers (56.6 µm).",
+  "The shares of the cell are measured: the nucleus about 13%, keratin bundles about 27%, mitochondria about 1.5% ({drawn.mitochondria} drawn in this half), melanin granules under 0.1%. Desmosomes, {drawn.desmosomes} drawn, rivet it to its neighbours.",
+  "This cell was made in the bottom layer of the epidermis and is being pushed up. In a month or two it will reach the surface, flattened and dead, full of keratin, and flake off."
+ ],
+ "sources": {
+  "sandby2003": { "cite": "Sandby-Møller J, Poulsen T, Wulf HC (2003) Epidermal thickness at different body sites: relationship to age, gender, pigmentation, blood content, skin type and smoking habits, Acta Derm Venereol 83:410-413", "url": "https://doi.org/10.1080/00015550310015419", "opened": "2026-11-23", "used_for": "dorsal forearm of 71 volunteers: stratum corneum 18.3 (SD 4.9) µm; cellular epidermis 56.6 (SD 11.5) µm (abstract)" },
+  "bergstresser1978": { "cite": "Bergstresser PR, Pariser RJ, Taylor JR (1978) Counting and sizing of epidermal cells in normal human skin, J Invest Dermatol 70:280-284", "url": "https://europepmc.org/article/MED/641379", "opened": "2026-11-23", "used_for": "452 nucleated epidermal cells per 10^4 µm² of forearm skin (abstract)" },
+  "kleinszanto1977": { "cite": "Klein-Szanto AJP (1977) Stereologic baseline data of normal human epidermis, J Invest Dermatol 68:73-78", "url": "https://doi.org/10.1111/1523-1747.ep12491611", "opened": "2026-11-23", "used_for": "Table II, nine women aged 19-23: volume densities of nuclei, cytoplasm, mitochondria, filament bundles, melanosomes, lysosomes, Golgi and membrane-coating granules per stratum; 36-51 desmosomes per 100 µm² field in the spinous layer; nucleus share 26% basal to 5% granular" },
+  "openstax_skin": { "cite": "OpenStax Anatomy and Physiology 2e, 5.1 Layers of the Skin", "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin", "opened": "2026-11-23", "used_for": "the spinous layer is 8-10 cell layers thick, joined by desmosomes, its spiny look an artefact of staining; keratin synthesis begins there; melanosomes are passed to keratinocytes; the outer layer is replaced in about 4 weeks" },
+  "dermnet": { "cite": "DermNet, Skin structure and function", "url": "https://dermnetnz.org/topics/skin-structure-and-function", "opened": "2026-11-23", "used_for": "tonofilaments anchored at desmosomes; about one melanocyte to ten basal keratinocytes; cells take about 28 to 60 days to reach the surface" }
+ }
+}
