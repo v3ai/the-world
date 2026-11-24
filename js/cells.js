@@ -354,11 +354,12 @@ const CELLS = (() => {
     const planes = [];
     for (let i = 0; i < n; i++) { const a = (i + .5 + (r() - .5) * P.irregularity) / n * TAU, nn = new V3(Math.cos(a), tilt, Math.sin(a)).normalize(); planes.push({ n: nn, d: hw * (1 + (r() - .5) * P.irregularity) * nn.dot(new V3(Math.cos(a), 0, Math.sin(a))) }); }
     planes.push({ n: new V3(0, 1, 0).applyAxisAngle(new V3(1, 0, 0), (r() - .5) * P.irregularity * .5), d: hh }); planes.push({ n: new V3(0, -1, 0).applyAxisAngle(new V3(0, 0, 1), (r() - .5) * P.irregularity * .5), d: hh });
+    const planes0 = planes.map(pl => ({ n: pl.n.clone(), d: pl.d }));   // in the cell's own frame: the shell is built there, its poles on the faces, then turned
     if (lid) planes.forEach(pl => { pl.n = Mv(pl.n); });
     const k = 1 / Math.max(.05, P.round_um);
-    const rad = d => { let s = 0; for (const pl of planes) { const c = pl.n.dot(d); if (c > 1e-4) s += Math.exp(-k * pl.d / c); } return -Math.log(Math.max(s, 1e-300)) / k; };
+    const radOf = PL => d => { let s = 0; for (const pl of PL) { const c = pl.n.dot(d); if (c > 1e-4) s += Math.exp(-k * pl.d / c); } return -Math.log(Math.max(s, 1e-300)) / k; }, rad = radOf(planes), rad0 = radOf(planes0);
     ctx.inside = (p, m) => { m = m || 0; for (const pl of planes) if (pl.n.dot(p) > pl.d - P.round_um * .6 - m) return false; return true; };
-    const shell = starGeo(d => { const t = rad(d); return new V3(t, t, t); }, lid ? 96 : 64, lid ? 64 : 44);
+    const shell = starGeo(d => { const t = rad0(d); return new V3(t, t, t); }, lid ? 96 : 64, lid ? 64 : 44); if (lid) shell.rotateX(Math.PI / 2);   // (x, y, z) -> (x, -z, y), as M
     const k2 = cutZ(shell.clone(), false); shell.dispose();
     ctx.mesh(k2.body, 'cell', 'membrane', .6, { side: THREE.FrontSide, kind: 'wet' }); cytosolBack(ctx, k2.body);
     ctx.box = lid ? new THREE.Box3(new V3(-hw * 1.3, -hw * 1.3, -hh * 1.1), new V3(hw * 1.3, hw * 1.3, 0)) : new THREE.Box3(new V3(-hw * 1.3, -hh * 1.1, -hw * 1.3), new V3(hw * 1.3, hh * 1.1, 0));
