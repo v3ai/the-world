@@ -206,7 +206,7 @@ FT.body = {
         if (!her) { F.partsReady = true; F._ready(); }
       });
       loadNote(her ? 'the woman\'s body' : 'the human body', her ? skinP : F.readyP);
-      let restP = null; F.loadAll = () => restP || (restP = Promise.all(ao.concat(first.map(one))).then(() => Promise.all(files.filter(f => !first.includes(f)).map(one))).then(() => {
+      let restP = null; F.loadAll = () => restP || (restP = skinP.then(() => Promise.all(files.filter(f => !first.includes(f)).map(one))).then(() => {   // (each file once: the first ones are in with skinP)
         if (!F.built) return; done(); F.partsReady = true; F._ready();
       }));
       if (!her || F.wantAll) F.loadAll();
