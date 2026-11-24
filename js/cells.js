@@ -777,7 +777,25 @@ const CELLS = (() => {
     const n0 = ctx.nuclei[0]; const nucP = n0 ? n0.c.clone().applyQuaternion(ctx.G.quaternion) : new V3();
     F.v2 = { nucPos: nucP, k: 1, key: 'cell', opts: F.opts }; F.cellNuc = n0 || null;
     /* the next level down from a part: its material, through the table (js/descent.js) */
-    F.spawn = (T, hint) => (typeof DESCENT !== 'undefined' && hint && hint.obj) ? DESCENT.spawn(F, T, hint) : null;
+    /* A zoom that reaches the next level with nothing picked under the pointer (a scroll toward a point) goes into the part nearest that point: the
+       cell never ends in a zoom to nothing. */
+    const nearestPart = T => {
+      const w = F.root.localToWorld(T.clone()), m4 = new THREE.Matrix4(), p = new V3(), b = new THREE.Box3(); let best = null, bd = Infinity;
+      for (const o of F.pickables) {
+        const u = o.userData || {}; if (!u.material || (u.priority ?? 1) < 0 || !o.visible) continue; let d;
+        if (o.isInstancedMesh) { d = Infinity; if (!o.geometry.boundingSphere) o.geometry.computeBoundingSphere(); const r = o.geometry.boundingSphere.radius;
+          for (let i = 0; i < o.count; i += Math.max(1, Math.floor(o.count / 400))) { o.getMatrixAt(i, m4); p.setFromMatrixPosition(m4).applyMatrix4(o.matrixWorld); d = Math.min(d, p.distanceTo(w) - r); } }
+        else d = b.setFromObject(o).distanceToPoint(w);
+        if (d < bd - 1e-9 || (Math.abs(d - bd) <= 1e-9 && (u.priority ?? 1) > ((best && best.userData.priority) ?? 1))) { bd = d; best = o; }
+      }
+      return best;
+    };
+    F.spawn = (T, hint) => {
+      if (typeof DESCENT === 'undefined') return null;
+      let h = hint && hint.obj ? hint : null;
+      if (!h) { const o = nearestPart(T); if (o) h = { obj: o, frame: F, id: o.userData.id }; }
+      return h ? DESCENT.spawn(F, T, h) : null;
+    };
     F.spawnD = (S.view && S.view.spawn_m) || 1.2e-6;
     /* the nearest part on the ray wins; the far wall of the cut cell (the cytosol) only where nothing else is */
     F.chooseHit = cands => { let best = null; for (const c of cands) { if (c.pri < 0) continue; if (!best || c.hit.distance < best.hit.distance - 1e-9) best = c; } return best || cands[0] || null; };
