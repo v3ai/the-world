@@ -178,10 +178,10 @@ function bodyRayStack(F, targetLocal) {
     const part = F.parts[id], m = part.g.userData.main; m.updateWorldMatrix(true, false);
     const hits = raycaster.intersectObjects(part.g.userData.shell ? [m, part.g.userData.shell] : [m], false); if (!hits.length) continue;
     const rank = peelRank(part.p);
-    // the skin is a thin double-sided shell (two crossings per pass): an odd number of passes means the camera is inside it,
-    // and the first pass is the way out, not something in front of the camera
-    const inside = rank === 0 && (hits.length >> 1) % 2 === 1;
-    const hit = hits[inside ? 2 : 0]; if (!hit) continue;
+    // the man's skin is a thin double-sided shell (two crossings per pass; the woman's is one surface, F.skinPasses = 1): an odd number of
+    // passes means the camera is inside it, and the first pass is the way out, not something in front of the camera
+    const k = F.skinPasses || 2, inside = rank === 0 && Math.floor(hits.length / k) % 2 === 1;
+    const hit = hits[inside ? k : 0]; if (!hit) continue;
     rows.push({ id, e: hit.distance, rank });
   }
   rows.sort((a, b) => a.e - b.e);
