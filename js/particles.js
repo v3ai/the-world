@@ -346,6 +346,8 @@ FT.nucleus = {
     ring.scale.set((Rn + .6) * 2, (Rn + .6) * 2, 1); F.add(ring);
     const edge = new THREE.Object3D(); F.add(edge);
     const ancP = new THREE.Object3D(), ancN = new THREE.Object3D(); F.add(ancP); F.add(ancN);
+    /* the "Proton" and "Neutron" names are their things: a click on one gives its card, a double click opens the nucleon it names (the nearest to it) */
+    ancP.userData = { id: 'proton', node: 'sm_proton', kind: 'proton', priority: 3, madeOf: 'quarks', title: 'Proton' }; ancN.userData = { id: 'neutron', node: 'sm_neutron', kind: 'neutron', priority: 3, madeOf: 'quarks', title: 'Neutron' };
     let nP = F.nucleons.find(n => n.userData.kind === 'proton'), nN = F.nucleons.find(n => n.userData.kind === 'neutron');
     const labP = F.label(ancP, 'Proton', { offset: new V3(0, .2, 0) });
     const labN = nN ? F.label(ancN, 'Neutron', { offset: new V3(0, .2, 0) }) : null;
