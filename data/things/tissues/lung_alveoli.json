@@ -394,7 +394,8 @@
     ]
    },
    "ink": 1,
-   "material": "red_blood_cell"
+   "material": "red_blood_cell",
+   "priority": 4
   },
   {
    "id": "barrier",

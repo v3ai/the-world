@@ -37,7 +37,7 @@ rb = []
 for i in range(3):
     for k, s in enumerate([edge * .18, edge * .36, edge * .6, edge * .8]):
         rb.append({'at': at(i, s, [0.4, -0.5, 0.3, -0.3][k]), 'rot': [0, 0, angs[i] + [10, -15, 20, -5][k]]})
-P.append(pop('rbc', 'Red blood cell', 'lung_red_cell', 'ellipsoid', [M['rbc_d'], M['rbc_t'], M['rbc_d']], '#d83a34', 1, rb, 'red_blood_cell'))
+P.append(pop('rbc', 'Red blood cell', 'lung_red_cell', 'ellipsoid', [M['rbc_d'], M['rbc_t'], M['rbc_d']], '#d83a34', 1, rb, 'red_blood_cell', priority=4))   # in its capillary: what a click through the capillary's wall finds
 bar = M['barrier'] - M['type1_thick']; cap2 = M['capillary'] / 2
 bi, ti = [], []
 for i in range(3):
