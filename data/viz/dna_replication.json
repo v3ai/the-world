@@ -168,7 +168,7 @@
  "rep_fidelity": {
   "type": "bars",
   "logy": true,
-  "ylabel": "errors per nucleotide copied (log scale)",
+  "ylabel": "errors per base (log scale)",
   "bars": [
    {
     "label": "Pol α (no proofreading)",
@@ -179,15 +179,19 @@
     "value": 1e-05
    },
    {
-    "label": "replication without mismatch repair (yeast)",
+    "label": "after proofreading (range 10⁻⁶ to 10⁻⁸; bar at the middle)",
+    "value": 1e-07
+   },
+   {
+    "label": "mutation rate per base pair per generation, yeast, mismatch repair absent",
     "value": 1.6e-08
    },
    {
-    "label": "with mismatch repair (yeast)",
+    "label": "mutation rate per base pair per generation, yeast, mismatch repair present",
     "value": 1.7e-10
    }
   ],
-  "caption": "Each check removes most of the errors left by the one before. Base selection: about 1 error in 10⁴ to 10⁵ (the bar shows 10⁻⁵); Pol α, which cannot proofread, about 10⁻⁴. Proofreading improves fidelity 10 to 1,000-fold. The two lower bars are measured rates per base pair per generation in yeast with and without mismatch repair (Lujan and others 2014). Sources on the card."
+  "caption": "Each check removes most of the errors left by the one before. Base selection: about 1 error in 10⁴ to 10⁵ (the bar shows 10⁻⁵); Pol α, which cannot proofread, about 10⁻⁴. Proofreading improves fidelity 10 to 1,000-fold, so the third bar is 10⁻⁵ divided by 10 to 1,000, a calculated range. The two lower bars are a different measure, from another organism: mutations per base pair per generation in yeast cells without and with mismatch repair (Lujan and others 2014). Sources on the card."
  },
  "rep_okazaki": {
   "type": "bars",

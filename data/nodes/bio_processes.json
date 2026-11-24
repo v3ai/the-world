@@ -70,7 +70,7 @@
   "layers": {
    "basics": "The cell unzips its DNA and builds a new partner strand for each old strand, so two identical double helices result.",
    "deeper": "Replication starts at origins, runs in both directions, and is checked for mistakes as it goes.",
-   "expert": "Fork speed ≈ 1,000 nt/s (E. coli) or ≈ 50 nt/s (human); error rate ≈ 10⁻⁹–10⁻¹⁰ per base after proofreading and mismatch repair."
+   "expert": "Fork speed ≈ 1,000 nt/s (E. coli); in human HeLa cells a mean of 0.68 kb/min (≈ 11 nt/s), at most ≈ 2 kb/min; error rate ≈ 10⁻⁹–10⁻¹⁰ per base after proofreading and mismatch repair."
   },
   "facts": [
    [

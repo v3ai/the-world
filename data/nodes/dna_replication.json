@@ -36,7 +36,7 @@
   "layers": {
    "basics": "Before a cell divides it copies all of its DNA. The two strands of the double helix come apart at a <b>fork</b>, and each old strand is used as a pattern for a new one: A pairs with T and G with C. The work is done by proteins, not by the DNA itself. A ring-shaped <b>helicase</b> pulls one strand through its middle and pushes the other aside. <b>DNA polymerases</b> build the new strands one nucleotide at a time. Other proteins start each new piece, hold the polymerase on, tidy up the ends and join the pieces.",
    "deeper": "A DNA polymerase can only lengthen a strand at its 3′ end, and it needs an existing strand end to start from. The two old strands run in opposite directions, so on one of them (the leading strand template) the new strand can grow towards the fork without stopping. On the other (the lagging strand template) the new strand has to grow away from the fork. It is made backwards in pieces called Okazaki fragments, each started by a short RNA primer. The primer is later removed, the gap filled, and the pieces joined. Ahead of the fork, untwisting the helix overwinds the DNA in front; topoisomerases undo that strain.",
-   "expert": "In human cells the core replisome is the CMG helicase (Cdc45, the Mcm2–7 ring and GINS) carrying Pol ε, which makes the leading strand, with AND-1, Timeless–Tipin and Claspin. CMG moves along the leading strand template 3′ to 5′, with the lagging strand template excluded from its central channel. Pol α–primase is held on CMG above the exit of the lagging strand template and makes an RNA–DNA primer about 20–35 nucleotides long. RFC loads the PCNA clamp at the primer, Pol δ extends it, and when Pol δ reaches the previous fragment it displaces its 5′ end as a flap that FEN1 cuts. Ligase I seals the nick. Fidelity comes from three stages: base selection, proofreading by the 3′→5′ exonuclease of Pol δ and Pol ε, and mismatch repair after the fork has passed."
+   "expert": "In human cells the core replisome is the CMG helicase (Cdc45, the Mcm2–7 ring and GINS) carrying Pol ε, which makes most of the leading strand, with AND-1, Timeless–Tipin and Claspin. CMG moves along the leading strand template 3′ to 5′, with the lagging strand template excluded from its central channel. Pol α–primase is held on CMG above the exit of the lagging strand template and makes an RNA–DNA primer about 20–35 nucleotides long. RFC loads the PCNA clamp at the primer, Pol δ extends it, and when Pol δ reaches the previous fragment it displaces its 5′ end as a flap that FEN1 cuts. Ligase I seals the nick. Fidelity comes from three stages: base selection, proofreading by the 3′→5′ exonuclease of Pol δ and Pol ε, and mismatch repair after the fork has passed."
   },
   "facts": [
    [
@@ -84,7 +84,7 @@
   ],
   "where": "place:dna",
   "open_questions": [
-   "How fast forks really move in human cells: measurements range from under 1 to several kb per minute and depend on cell type and method.",
+   "How fast forks really move in human cells: in HeLa cells measurements range from under 1 to about 2 kb per minute, and they differ between cell types and methods.",
    "How human cells remove RNA primers quickly: with purified human proteins the Pol δ–FEN1 cycle takes about 11 seconds a nucleotide, far too slow to keep up.",
    "How the lagging strand polymerase, clamp loader and ligase are positioned relative to CMG while they work; no structure shows them all together.",
    "How often topoisomerases ahead of the fork are used, and how often the fork rotates instead."
@@ -121,6 +121,24 @@
   ],
   "steps": [
    {
+    "title": "Unwinding",
+    "text": "The helicase (CMG) moves along one parent strand, 3′ to 5′, pulling it through its ring with energy from ATP. The other strand cannot fit through and is pushed out at the side, so the two are peeled apart. Ahead, the untwisting overwinds the DNA; topoisomerase I cuts one strand, lets it swivel and joins it again.",
+    "focus": [
+     "rep_cmg",
+     "rep_fork_partners",
+     "rep_topo1"
+    ]
+   },
+   {
+    "title": "Leading strand",
+    "text": "Pol ε, riding on the helicase, adds nucleotides to the new leading strand one at a time, as fast as the fork moves. Its 3′ end points towards the fork, so it can follow the helicase without a break.",
+    "focus": [
+     "rep_pol_epsilon",
+     "rep_template",
+     "rep_dntp"
+    ]
+   },
+   {
     "title": "Priming",
     "text": "Primase, one half of Pol α–primase, starts a new piece of the lagging strand with an RNA primer about 10 nucleotides long, and Pol α adds about 20 nucleotides of DNA to it. The helicase keeps unwinding meanwhile, so the single strand between it and the primase bulges into a loop.",
     "focus": [
@@ -137,7 +155,7 @@
    },
    {
     "title": "Clamp loading",
-    "text": "RFC, the clamp loader, finds the place where the primer ends and threads the ring-shaped clamp PCNA onto the DNA there. Closing the ring needs no ATP to be split; letting go of it does.",
+    "text": "RFC, the clamp loader, brings the ring-shaped clamp PCNA held open by a gap about 2 nm wide. The DNA at the end of the primer slips in through the gap and the ring closes round it. Opening and closing need no ATP to be split; RFC splits ATP to let go.",
     "focus": [
      "rep_rfc",
      "rep_pcna"
@@ -145,7 +163,7 @@
    },
    {
     "title": "Pol δ binds",
-    "text": "DNA polymerase δ grips PCNA and the primer’s 3′ end. The ring round the DNA keeps it on, so it can add many nucleotides without falling off.",
+    "text": "DNA polymerase δ grips PCNA and the primer’s 3′ end; the clamp slides along the DNA with it. The ring round the DNA keeps it on, so it can add many nucleotides without falling off.",
     "focus": [
      "rep_pol_delta",
      "rep_pcna"
@@ -162,7 +180,7 @@
    },
    {
     "title": "Proofreading",
-    "text": "A wrong nucleotide has been added (shown once a fragment; before proofreading it happens about once in 10,000 to 100,000). Pol δ moves the mismatched end to a second site that cuts it off, then adds the right one.",
+    "text": "A wrong nucleotide has been added (marked; shown once a fragment, though before proofreading it happens only about once in 10,000 to 100,000). Pol δ moves the mismatched end to a second site, its exonuclease, which cuts it off; then it adds the right one.",
     "focus": [
      "rep_pol_delta",
      "rep_fidelity"
@@ -187,17 +205,9 @@
    },
    {
     "title": "Ligation",
-    "text": "DNA ligase I closes the nick with energy from ATP, joining the new fragment to the previous one. The lagging strand is now one continuous strand like the leading one.",
+    "text": "DNA ligase I closes round the nick and seals it with energy from ATP, joining the new fragment to the previous one; then it opens and lets go. The clamp is left on the DNA; how and when it comes off is not shown.",
     "focus": [
      "rep_ligase"
-    ]
-   },
-   {
-    "title": "The fork moves on",
-    "text": "The machines leave, and the fork moves on, laying bare more single strand for the next primer. The clamp is left on the DNA; how and when it comes off is not shown.",
-    "focus": [
-     "rep_cmg",
-     "rep_topo1"
     ]
    }
   ]
@@ -223,7 +233,7 @@
   ],
   "summary": "The ring-shaped motor at the fork that unwinds the double helix, pulling one strand through its centre.",
   "layers": {
-   "basics": "The helicase is the engine of the fork. It is a ring of six related proteins (Mcm2 to Mcm7) with three helpers, Cdc45 and the four-part GINS. It wraps round one strand of the DNA and moves along it, using energy from splitting ATP. The other strand cannot fit through the ring and is pushed off to the side, so the two strands are peeled apart.",
+   "basics": "The helicase is the engine of the fork. It is a ring of six related proteins (Mcm2 to Mcm7) with two helper parts, Cdc45 and the four-part GINS: eleven proteins in all. It wraps round one strand of the DNA and moves along it, using energy from splitting ATP. The other strand cannot fit through the ring and is pushed off to the side, so the two strands are peeled apart.",
    "deeper": "CMG encircles the leading strand template and moves along it 3′ to 5′, with the N-terminal tier of the Mcm ring at the front. The parental duplex enters through the front of the ring; the lagging strand template is excluded and leaves past the outside of the ring, where Pol α–primase sits. CMG also carries the leading strand polymerase Pol ε and the partner proteins AND-1, Timeless–Tipin and Claspin.",
    "expert": "The model here is the human core replisome solved by cryo-electron microscopy at 3.2 Å (PDB 7PFO; Jones and others 2021), with the DNA drawn where the structure has it: the parental duplex in front, the leading strand template through the Mcm pore. In budding yeast the same arrangement was shown earlier. The motor domains are AAA+ ATPases in the C-terminal tier; how ATP hydrolysis around the ring pulls the strand is still argued over."
   },
@@ -361,7 +371,7 @@
    "rep_pol_delta",
    "rep_fidelity"
   ],
-  "summary": "The polymerase that makes the leading strand, riding on the helicase and adding nucleotides without a break.",
+  "summary": "The polymerase that makes most of the leading strand, riding on the helicase and adding nucleotides without a break.",
   "layers": {
    "basics": "Pol ε builds the new strand on the leading side of the fork. Because it can lengthen that strand in the same direction as the fork moves, it keeps going for as long as the fork does. Half of it is fixed to the helicase; the other half, the part that actually adds nucleotides, hangs on a flexible link next to it.",
    "deeper": "Pol ε has four subunits. Its catalytic subunit, POLE1, has the polymerase and a 3′→5′ exonuclease that removes wrongly paired nucleotides (proofreading). A small extra domain lets it wrap round the new double helix, which helps it stay on.",
@@ -374,7 +384,7 @@
    ],
    [
     "Strand",
-    "leading"
+    "leading (the main leading-strand polymerase; shared with Pol δ in part)"
    ],
    [
     "Proofreading",
@@ -395,7 +405,8 @@
   ],
   "where": "place:dna",
   "open_questions": [
-   "Where exactly the catalytic half sits while it works: it is flexible in the structures."
+   "Where exactly the catalytic half sits while it works: it is flexible in the structures.",
+   "How the leading strand is shared between Pol ε and Pol δ. Most evidence gives Pol ε the bulk of it, but Pol δ may start it at origins and take over under some conditions, and one model has Pol δ making it while Pol ε mainly proofreads. Yeast cells can even live without Pol ε's polymerase domain, though not with a disabled one in its place."
   ],
   "ext": [
    {
@@ -531,7 +542,7 @@
    ],
    [
     "Strand",
-    "lagging (Okazaki fragments)"
+    "mainly lagging (Okazaki fragments)"
    ],
    [
     "Rate (in vitro, physiological dNTPs)",
@@ -746,7 +757,7 @@
   ],
   "where": "place:dna",
   "open_questions": [
-   "How much of the primer is removed by FEN1 and how much by RNase H in cells."
+   "How much of the primer is removed by FEN1 and how much by other routes in cells: long flaps can also be cut by Dna2, and RNase H2 can cut the primer's RNA directly."
   ],
   "ext": [
    {
@@ -1124,11 +1135,11 @@
    "bio_nucleotides",
    "rep_pol_delta"
   ],
-  "summary": "The building blocks: each nucleotide arrives carrying three phosphates and leaves two behind as pyrophosphate.",
+  "summary": "The building blocks: each nucleotide arrives with three phosphates; one stays in the DNA and the other two leave as pyrophosphate.",
   "layers": {
    "basics": "A polymerase builds DNA from deoxynucleoside triphosphates (dATP, dTTP, dGTP, dCTP) that drift in from the surroundings. Only the one that pairs correctly with the template fits well. When it is joined on, two of its three phosphates break off as pyrophosphate, and that releases the energy that makes the bond.",
    "deeper": "The new bond, a phosphodiester bond, links the free 3′-OH at the end of the growing strand to the 5′ phosphate of the incoming nucleotide; the other two phosphates leave as pyrophosphate. Ribonucleotides, the building blocks of RNA, compete for the same site, so polymerases must also reject the wrong sugar, and they occasionally fail.",
-   "expert": "The incoming nucleotide in the scene is drawn from the dATP bound in the yeast Pol ε structure 4M8O. Each one flies in from about 9 nm away: diffusion is really much faster and less direct than drawn."
+   "expert": "The incoming nucleotide in the scene is drawn from the dATP bound in the yeast Pol ε structure 4M8O. The shape is dATP's for all four bases; only the colour code differs. Each one flies in from about 9 nm away: diffusion is really much faster and less direct than drawn."
   },
   "facts": [
    [
@@ -1141,15 +1152,15 @@
    ],
    [
     "Shape source",
-    "PDB 4M8O (dATP in yeast Pol ε)"
+    "PDB 4M8O (dATP in yeast Pol ε), used for all four"
    ]
   ],
   "certainty": "C1",
   "refs": [
    [
     "BIO",
-    "14.3",
-    "14-3-basics-of-dna-replication"
+    "14.4",
+    "14-4-dna-replication-in-prokaryotes"
    ]
   ],
   "where": "place:dna",
