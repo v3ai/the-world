@@ -17,3 +17,30 @@ Contents: skin (20k tris); 36 skeletal (skull, mandible, teeth, hyoid, C/T/L spi
 - No thyroid gland, spinal cord (only the 2 mm central canal exists), peripheral/limb nerves (sciatic etc.), coccyx, cerebral cortex as one surface other than the OA brain mesh, or reproductive organs used (male reproductive meshes exist in the source; omitted per brief). No true individual cranial nerve set except what is in the source (orbital nerves) - nerves system is therefore only brain parts.
 - Quality: source meshes are already coarse (bones 300-1000 tris, bladder 224, esophagus 296), so bones/small organs look low-poly; vessels/muscle groups from open-anatomy-3d are pre-merged regional groups (e.g. back muscles include latissimus dorsi + erector spinae; abdominal wall includes rectus abdominis and obliques). Cerebral hemispheres were obtained by cutting the OA brain mesh at x=0 (open medial face). Ventricle L/R split is by nearest cavity (septum boundary approximate). `heart` (whole) duplicates the geometry of its parts: show either the whole or the parts.
 - Normals are not stored (compute in browser). Rebuild: `python3 -I work/anatomy/build.py && python3 -I work/anatomy/export.py` (needs `node work/anatomy/node/dump.mjs` output in `work/dl_anatomy/oa_dump`).
+
+# The woman (data/anatomy_f)
+
+## Result
+`data/anatomy_f/`: `index.json`, 11 per-system files and `ao.json`, 5,767,846 bytes in all. **180 parts** (93 shown in the whole body, 87 more in her cut-open views), 253,442 triangles (185,370 whole body + 68,072 detail). Parts per system: respiratory 25, reproductive 25, nervous 24, cardiovascular 24, skeletal 22, digestive 22, sensory 18, urinary 13, muscular 4, lymphatic 2, integumentary 1 (the skin).
+
+Where each part's shape comes from (`src`, shown on its card as "Shape: ..."): from her sections 115; from her sections, adjusted by the atlas makers 25; another woman's brain (Allen atlas), fitted 22; sculpted reference model placed in her body 10 (the inside of each breast and the nipples); modelled to fit her body 4 (spinal discs, colon, rectum, appendix); from her sections, modelled with the guidance of oral anatomy atlases 4 (teeth, tongue, gums and palate, salivary glands).
+
+Same per-part format as the man's (int16 `pos` with per-axis `scale`/`offset`, uint32 `idx`), plus `card` (the topic card the part opens) and `src`. Coordinates: metres, +Y up, feet at y = 0, midline (mean x of her 25 vertebrae, -8.3 mm in the source) at x = 0, skin centred front to back, +Z front, +X her left. **Not scaled**: she stands 1.658 m sole to crown in the model; her recorded height is 171.2 cm.
+
+The index also carries `subject`, `source`, `height_m`; `hotspots` (organ-view markers measured on her parts: heart 12, eyes 7 each, brain 12, kidneys 3 each, right lung 1, uterus 8, breast 5); `organ_views` (uterus with tubes, ovaries and ligaments; left breast); `regions` (a region code per skin vertex and the torso band heights, tools/anatomy/female/regions_f.py); `absent` (the man's parts her atlas has no counterpart for, found by name in both source trees): skull, mandible, hyoid, ribs, clavicle, scapula, humerus, radius, ulna, hand and foot bones, the named arm, shoulder, back, hip and calf muscles, diaphragm, abdominal muscles, oesophagus, stomach, adrenal glands, pituitary.
+
+## Sources and licence
+- Human Reference Atlas (HuBMAP), K. Browne and H. Schlehlein: 3D Reference Organ Set for Female v1.10 (https://doi.org/10.48539/HBM637.DWBM.744) and Pelvis, Female v1.3 (https://doi.org/10.48539/HBM853.VCFM.778), CC BY 4.0, made from the U.S. National Library of Medicine's Visible Human Female (59 years old). Brain: Allen human brain reference atlas (Ding et al. 2016) as fitted by the atlas makers.
+- Files pinned by SHA-256 in tools/anatomy/female/fetch.sh; credit and changes in assets/ATTRIBUTION.md, in a section of its own (her data is CC BY 4.0, the man's share-alike).
+- Downloads were treated as untrusted data: fetched into a work folder outside the repository and parsed only by our own scripts, run with `python -I`.
+
+## Build
+`WORK=work/anatomy_f sh tools/anatomy/female/fetch.sh`, `python -I tools/anatomy/female/build_f.py --work work/anatomy_f`, `node tools/anatomy/bake_ao.mjs data/anatomy_f`. Previews: `python tools/anatomy/female/preview_f.py data/anatomy_f OUT`. The part table is tools/anatomy/female/parts_f.tsv. The build asserts the sides (the heart's left ventricle to her left of the right atrium; kidneys, breasts and ovaries by position; nipples in front) and logs every pair the source names the other way round (142, nearly all Allen brain regions, plus the round ligaments); sides are taken from position.
+
+## Gaps and caveats
+- Her atlas has no skull, ribs, shoulder, arm, hand or foot bones, almost no muscles, no stomach, oesophagus or diaphragm, and no vessels of the head and limbs. Nothing is borrowed from the man; the cards say "Not in her model" and offer his.
+- Not her own tissue: the inside of each breast (sculpted), the brain (another woman's), the spinal discs (modelled). The large intestine (colon, rectum, appendix: modelled) follows her bowel only roughly; the atlas makers adjusted her skin to fit the organs. All of this is on her model note and the part cards.
+- Her eyes are closed in the data and shown closed; the data has no hair or fingernails (the realistic look colours the scalp by rule and draws no nails). The man's detailed skin (skin_hd.bin) and park shadow have no counterpart for her.
+- No source consulted gives her menopause status, so nothing is said about it.
+- The unclothed woman should be reviewed by the site's owner before the site goes public.
+- Phase 2 (her leg and hip muscles from other segmentations of the same woman) is not done.
