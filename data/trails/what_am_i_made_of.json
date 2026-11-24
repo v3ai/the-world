@@ -166,8 +166,8 @@
    "notice": "Count the two colours: protons carry electric charge and neutrons do not.",
    "deeper": [
     {
-     "label": "The nucleus at true size",
-     "node": "nucleusQ"
+     "label": "What holds the nucleus together",
+     "node": "sm_residual_strong"
     }
    ]
   },
@@ -227,7 +227,7 @@
   "what_holds_everything_together"
  ],
  "sources": [
-  "Cards: human, skin, cell_animal, dna, hbond, at_cloud_sizes, nucleusQ, sm_proton, sm_overview (their sources are on the cards)",
+  "Cards: human, skin, cell_animal, dna, hbond, at_cloud_sizes, sm_residual_strong, sm_proton, sm_overview (their sources are on the cards)",
   "Frame notes in the app: Skin cell, DNA, Proton (no structure found down to about 1e-19 m)",
   "Nucleus to atom ratio: see the sources of is_a_rock_really_solid; Standard Model scope: cards sm_interactions, sm_gravity"
  ]

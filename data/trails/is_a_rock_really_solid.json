@@ -165,8 +165,8 @@
    "notice": "Compare this view with the last one: the atom view is 0.5 nanometres wide and this one 20 femtometres, so the same atom is 25,000 times narrower here.",
    "deeper": [
     {
-     "label": "The nucleus at true size",
-     "node": "nucleusQ"
+     "label": "What holds the nucleus together",
+     "node": "sm_residual_strong"
     }
    ]
   }
@@ -179,7 +179,7 @@
   "what_am_i_made_of"
  ],
  "sources": [
-  "Cards: boulder (0.59 m3 x 2.65 to 2.75 g/cm3 = 1.6 t, calculated), rock_grains, at_spin_pauli, at_atom, at_orbital, nucleusQ; quartz crystal data (data/crystals.json)",
+  "Cards: boulder (0.59 m3 x 2.65 to 2.75 g/cm3 = 1.6 t, calculated), rock_grains, at_spin_pauli, at_atom, at_orbital, sm_residual_strong; quartz crystal data (data/crystals.json)",
   "Calculated: the two views are 0.5 nm and 20 fm wide, ratio 25,000. Oxygen: charge radius about 2.7 fm (Angeli and Marinova 2013, as recalled; the table was not fetched) against an atom radius of about 60 to 150 pm gives about 2e4 to 5e4. Hydrogen: 0.84 fm against about 53 pm is about 6e4 to 1e5",
   "Granite density 2.65 to 2.75 g/cm3: https://en.wikipedia.org/wiki/Granite. The quartz share of granite is left out because the 20 to 60 percent range is a classification limit on the quartz-feldspar fraction, not a typical volume"
  ]

@@ -44,7 +44,7 @@ const T = [
   ['motor', 'node:phone_vibration_motor'], ['power grid', 'node:electric_power_grid'], ['generator', 'node:power_plant'], ['solar panel', 'crystal:silicon'], ['led', 'node:led_photodiode'], ['laser', 'node:lasers_semiconductor'], ['ohms law', 'node:ohms_law_node'],
   // the body
   ['heart', 'node:heart'], ['brain', 'node:brain'], ['lungs', 'node:lung_l'], ['liver', 'node:liver'], ['stomach', 'node:stomach'], ['tummy', 'node:stomach'], ['kidney', 'node:kidney_l'], ['eye', 'node:eye_l'], ['skull', 'node:skull'], ['kneecap', 'node:patella_l'],
-  ['collarbone', 'node:clavicle_l'], ['biceps', 'node:biceps_brachii'], ['voice box', 'node:larynx'], ['windpipe', 'node:trachea'], ['teeth', 'node:teeth'], ['tongue', 'node:tongue'], ['skin', 'node:skin'], ['blood', 'node:blood_vessels'], ['skeleton', 'lm:You'],
+  ['collarbone', 'node:clavicle_l'], ['biceps', 'node:biceps_brachii'], ['voice box', 'node:larynx'], ['windpipe', 'node:trachea'], ['teeth', 'node:teeth'], ['tongue', 'node:tongue'], ['skin', 'node:skin'], ['blood', 'node:blood_vessels'], ['skeleton', 'lm:People'], ['woman', 'lm:Woman'], ['female body', 'lm:Woman'], ['uterus', 'node:uterus'], ['ovary', 'node:ovaries'], ['breast', 'node:breast'], ['man', 'lm:Man'],
   ['dna', 'lm:DNA'], ['cell', 'lm:Skin cell'], ['mitochondria', 'node:mitochondrion'], ['heartbeat', ['node:heart', 'trail:how_does_my_heart_beat']],
   // park, Earth, space
   ['dog', 'pl:Dog'], ['bee', 'node:park_bee'], ['a bee', 'node:park_bee'], ['buttercup', 'node:rn_acris'], ['the genetic code', 'lm:DNA'], ['tree', 'pl:Tree'], ['mushroom', 'pl:Mushroom'], ['flower', 'pl:Flowers'], ['pond', 'pl:Pond'], ['cloud', 'pl:Cloud'], ['soil', 'pl:Soil'],
