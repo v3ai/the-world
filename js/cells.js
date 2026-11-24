@@ -212,7 +212,8 @@ const CELLS = (() => {
     nucleolus: { name: 'Nucleolus', card: 'nucleus', material: 'rna' }, nucleus: { name: 'Nucleus', card: 'nucleus', material: 'cell_nucleus' }, cytosol: { name: 'Cytosol', card: null, material: 'water' },
     mitochondrion: { name: 'Mitochondrion', card: 'mitochondrion', material: 'mitochondrion' }, membrane: { name: 'Cell membrane', card: 'cell_membrane', material: 'membrane' },
     spine: { name: 'Dendritic spine', card: 'synapse', material: 'membrane' }, neighbour: { name: 'Neighbouring cell', card: null, material: 'membrane' },
-    granule: { name: 'Granule', card: null, material: 'protein' } };
+    granule: { name: 'Granule', card: null, material: 'protein' }, lamellar_body: { name: 'Lamellar body', card: null, material: 'membrane' },
+    keratin: { name: 'Keratin filaments', card: null, material: 'keratin' }, pseudopod: { name: 'Pseudopod', card: null, material: 'membrane' }, spectrin: { name: 'Spectrin network', card: null, material: 'protein' } };
   const PART_ALIAS = { mitochondrion: ['mitochondria'], microvilli: ['microvillus', 'brush_border', 'apical_processes'], process: ['processes'], pseudopod: ['pseudopods'],
     granule: ['granules', 'phagosome'], membrane: ['soma'], intercalated_disc: ['disc'], lipid_droplet: ['droplet'], cilia: ['cilium'] };
   function defaults(type) { const s = Z.shapes && Z.shapes[type], o = {}; if (s) for (const k in s.params) { const p = s.params[k]; o[k] = typeof p[0] === "string" ? p[p.length - 3] : p[2]; } return o; }   // a text parameter lists its allowed values first: its default is the third from the end
