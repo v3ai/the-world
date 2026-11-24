@@ -108,7 +108,7 @@ lung	Lung ({Side})	respiratory	LR	respiratory_system/lungs/	-	u	5000/6000	vhf	lu
 lseg	{n}	respiratory	L	lungs/left_lungs_L/.*bronchopulmonary_segment$	-	u	300	vhf	bronchopulmonary_segment	lung_l	each
 lseg	{n}	respiratory	R	lungs/lungs_R/.*bronchopulmonary_segm\w*$	-	u	300	vhf	bronchopulmonary_segment	lung_r	each
 trachea	Trachea	respiratory	-	tracheobronchial_tree/trachea_of_respiratory_system/	-	u	900	vhf	trachea	-	-
-bronchi	Bronchial tree (main, lobar and segmental bronchi)	respiratory	-	tracheobronchial_tree/bronchi/	-	u	3500	vhf	bronchi	-	-
+bronchi	Bronchial tree (main, lobar and segmental bronchi)	respiratory	-	tracheobronchial_tree/bronchi/	-	u	10000	vhf	bronchi	-	-
 larynx	Larynx (thyroid, cricoid, epiglottic, arytenoid and corniculate cartilages)	respiratory	-	respiratory_system/larynx/	-	u	2500	vhf	larynx	-	-
 liver	Liver	digestive	-	digestive_system/liver/capsule_of_the_liver$	-	u	4500	vhf	liver	-	whole
 lvseg	{n}	digestive	-	liver/couinaud_liver_segment/	-	u	350	vhf	liver_segments	liver	each

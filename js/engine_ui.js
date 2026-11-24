@@ -644,12 +644,13 @@ function updateCaption() {
   if (active.includes(cam.A)) f = cam.A; // the place and the path name the frame the camera is in as soon as it is the anchor, not once it has faded in
   else for (let i = active.length - 1; i >= 0; i--) if (active[i].alpha > .6) { f = active[i]; break; }
   const view = cam.D * 2 * Math.tan(25 * Math.PI / 180);
-  const nm = humanName(f);
+  const pa = f.placeAs ? f.placeAs() : null;   // a frame may stand for a wider place while seen from further out (the man and the woman together: "People")
+  const nm = pa ? pa.name : humanName(f);
   if (f !== capFrame || $('#capN').textContent !== nm) {
     capFrame = f; updateCrumbs(f);
     $('#capN').textContent = nm;
-    $('#capD').textContent = f.blurb || '';
-    $('#capNote').textContent = f.note || '';
+    $('#capD').textContent = pa ? pa.blurb : f.blurb || '';
+    $('#capNote').textContent = pa ? pa.note || f.note || '' : f.note || '';
     $('#placeNote').textContent = '';
     $('#timeSec').hidden = $('#clockBtn').hidden = !!f.device; // the clock means nothing inside a chip
     $('#placeOut').hidden = crumbChain(f).length < 2;
@@ -662,6 +663,7 @@ function updateCaption() {
     /* it does not name the place it leads to: a waiting scene's name is not final until it is built ("Inside the tissue" became "Inside a dog's skin and
        coat"), and the panel names each place as it is entered */
     if (zs) t = `Nothing new to draw here: the next level is ${fmtTimes(zs.ratio)} further in` + (zs.f ? (W > 860 ? '. Double-click jumps there.' : '. Double-tap jumps there.') : '.');
+    else if (f.gapNote && !fly) t = f.gapNote();   // what a model's data lacks in the view shown (the woman's skeleton has no skull or ribs)
     if (g && g.textContent !== t) { g.textContent = t; g.hidden = !t; } }
   // a thing you looked inside: when the camera arrives in the new place (or the flight is over), the place takes the panel
   if (selLeave) { const L = selLeave; if (!curCard || curCard.key !== L.key) selLeave = null; else if (chainOf(cam.A).includes(L.frame) || (!fly && performance.now() - L.t > 400)) { const arrived = chainOf(cam.A).includes(L.frame); selLeave = null; closeInfo(); if (arrived && L.note) $('#placeNote').textContent = L.note; } } // L.note: what the descent module said about the level it built (a stand-in, say)

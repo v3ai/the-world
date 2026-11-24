@@ -505,10 +505,10 @@
 const VIZ = {};
 let VIZ_READY = null;
 function loadViz() { if (!VIZ_READY) VIZ_READY = getJSON('data/viz/manifest.json').then(fs => Promise.all(fs.map(f => getJSON('data/viz/' + f).catch(() => ({}))))).then(arr => { arr.forEach(m => Object.assign(VIZ, m)); return VIZ; }).catch(() => VIZ); return VIZ_READY; }
-function vizFor(id) { return VIZ[id] || null; }
-function mountViz(el, id) {
+function vizFor(id, who) { return (who && VIZ[id + '@' + who]) || VIZ[id] || null; }   // id@woman: the same chart with the values of an average woman (her lungs)
+function mountViz(el, id, who) {
   loadViz().then(() => {
-    const spec = vizFor(id); if (!spec || !el.isConnected) return;
+    const spec = vizFor(id, who); if (!spec || !el.isConnected) return;
     el.innerHTML = ''; renderViz(el, spec);
     const big = document.createElement('button'); big.className = 'vzbig'; big.title = 'Enlarge'; big.textContent = 'Enlarge'; el.appendChild(big);
     big.onclick = () => { let m = document.getElementById('vizModal'); if (!m) { m = document.createElement('div'); m.id = 'vizModal'; m.innerHTML = '<div class="vm"><button class="x" aria-label="Close">×</button><h3></h3><div class="vmb"></div></div>'; document.body.appendChild(m); m.onclick = e => { if (e.target === m) m.classList.remove('open'); }; m.querySelector('.x').onclick = () => m.classList.remove('open'); } m.querySelector('h3').textContent = (NODE[id] && NODE[id].title) || ''; const b = m.querySelector('.vmb'); b.innerHTML = ''; m.classList.add('open'); renderViz(b, spec, { height: Math.min(innerHeight * .62, 560) }); };

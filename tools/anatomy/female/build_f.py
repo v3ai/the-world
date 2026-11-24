@@ -18,6 +18,7 @@ whose side disagrees with its position (build_f.log in WORK).
 import sys, os, re, json, argparse, collections
 import numpy as np
 import fast_simplification as fs
+import pyfqmr
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
@@ -89,10 +90,64 @@ def decimate(v, f, target):
     v2, f2 = fs.simplify(v.astype(np.float64), f.astype(np.int64), target_reduction=1 - target / len(f), agg=5)
     return compact(v2, f2)
 
+def fq(v, f, target, border):
+    s = pyfqmr.Simplify(); s.setMesh(v.astype(np.float64), f.astype(np.int64))
+    s.simplify_mesh(target_count=target, aggressiveness=5, preserve_border=border, verbose=False); V, F, _ = s.getMesh(); return compact(V, F.astype(np.int64))
+def decimate_fq(v, f, target):   # the airway tree: the same quadric method (pyfqmr), which keeps its thin branches as tubes
+    v, f = clean(v, f); return (v, f) if len(f) <= target else fq(v, f, target, False)
+""" Her skin, region by region: the face, the hands and the feet are where the eye looks for detail and where a uniform reduction to
+    22,000 triangles left a mask (about 1,900 triangles for the whole head) and mittens. The skin is cut into regions by where each
+    triangle lies (in her frame: feet below 9 cm, hands beyond 34 cm from her midline below 1 m, head above 1.40 m), each region is reduced
+    on its own with its border kept exactly (so the pieces meet without a crack), and the pieces are welded again. """
+SKIN_REGIONS = [('head', 9000), ('hands', 6000), ('feet', 3000), ('rest', 20000)]
+def decimate_skin(v, f):
+    v, f = clean(v, f, 1e-6); c = v[f].mean(1); y = c[:, 1] - Y0; ax = np.abs(c[:, 0] - MID)
+    reg = np.full(len(f), 3); reg[y > 1.40] = 0; reg[(ax > .34) & (y < 1.0)] = 1; reg[y < .09] = 2
+    VV, FF, o = [], [], 0
+    for k, (nm, target) in enumerate(SKIN_REGIONS):
+        ff = f[reg == k]; u, inv = np.unique(ff, return_inverse=True); V, F = fq(v[u], inv.reshape(-1, 3), target, True)
+        log('skin region %s: %d -> %d triangles' % (nm, len(ff), len(F))); VV.append(V); FF.append(F + o); o += len(V)
+    return clean(np.vstack(VV), np.vstack(FF), 1e-7)
+""" Display names of the parts the source names one by one (rows with flag each): the lung's bronchopulmonary segments with the lobe each
+    belongs to (the source's "superior" segments are those of the lower lobes; "medial" and "lateral" on the right are the middle lobe's),
+    and the liver's pieces with their segment numbers (Couinaud), given by where each piece lies in her liver: the source names follow
+    another scheme, and the piece it calls "left superomedial" lies furthest to her left and highest, where segment II is. """
+SEG_NAMES = {
+    'left_apical_bronchopulmonary_segment': 'Apical part of the apicoposterior segment (left upper lobe)',
+    'left_posterior_bronchopulmonary_segment': 'Posterior part of the apicoposterior segment (left upper lobe)',
+    'left_anterior_bronchopulmonary_segment': 'Anterior segment (left upper lobe)',
+    'lingula_superior_bronchopulmonary_segment': 'Superior lingular segment (left upper lobe)',
+    'lingula_inferior_bronchopulmonary_segment': 'Inferior lingular segment (left upper lobe)',
+    'left_superior_bronchopulmonary_segment': 'Superior segment (left lower lobe)',
+    'left_anterior_basal_bronchopulmonary_segment': 'Anterior basal segment (left lower lobe)',
+    'left_medial_basal_bronchopulmonary_segment': 'Medial basal segment (left lower lobe)',
+    'left_lateral_basal_bronchopulmonary_segment': 'Lateral basal segment (left lower lobe)',
+    'left_posterior_basal_bronchopulmonary_segment': 'Posterior basal segment (left lower lobe)',
+    'right_apical_bronchopulmonary_segment': 'Apical segment (right upper lobe)',
+    'right_posterior_bronchopulmonary_segment': 'Posterior segment (right upper lobe)',
+    'right_anterior_bronchopulmonary_segment': 'Anterior segment (right upper lobe)',
+    'right_lateral_bronchopulmonary_segment': 'Lateral segment (right middle lobe)',
+    'right_medial_bronchopulmonary_segment': 'Medial segment (right middle lobe)',
+    'right_superior_bronchopulmonary_segment': 'Superior segment (right lower lobe)',
+    'right_medial_basal_bronchopulmonary_segment': 'Medial basal segment (right lower lobe)',
+    'right_anterior_basal_bronchopulmonary_segment': 'Anterior basal segment (right lower lobe)',
+    'right_lateral_basal_bronchopulmonary_segment': 'Lateral basal segment (right lower lobe)',
+    'right_posterior_basal_bronchopulmonary_segment': 'Posterior basal segment (right lower lobe)',
+    'caudate_lobe': 'Caudate lobe (liver segment I)',
+    'left_superomedial_segment': 'Liver segment II (left, upper)',
+    'left_anterolateral_segment': 'Liver segment III (left, lower)',
+    'left_superomedial_segment1': 'Liver segment IVa (upper part of segment IV)',
+    'left_inferomedial_segment': 'Liver segment IVb (lower part of segment IV, front)',
+    'quadrate_lobe': 'Quadrate lobe (lower part of segment IV, underside)',
+    'right_anteroinferior_segment': 'Liver segment V (right, front, lower)',
+    'right_posteroinferior_segment': 'Liver segment VI (right, back, lower)',
+    'right_posterosuperior_segment': 'Liver segment VII (right, back, upper)',
+    'right_anterosuperior_segment': 'Liver segment VIII (right, front, upper)'}
 def pretty(node):
-    s = re.sub(r'_(L|R)$', '', node); s = s.replace('bronchopulmonary_segm', 'bronchopulmonary_segment').replace('segmennt', 'segment').replace('segmentent', 'segment')
+    s = re.sub(r'_(L|R)$', '', node); s = re.sub(r'bronchopulmonary_segm\w*', 'bronchopulmonary_segment', s)
+    if s.lower() in SEG_NAMES: return SEG_NAMES[s.lower()]
+    log('NAME not in SEG_NAMES:', node)
     s = s.replace('_', ' ').strip()
-    s = re.sub(r'\bsegment1$', 'segment (upper part)', s)
     return s[0].upper() + s[1:]
 
 # ---------- the table ----------
@@ -108,7 +163,7 @@ def card_for(card, sd):
     return card
 def add(pid, name, system, side, sel, target, src, card, parent, whole):
     v, f = merge([(m[2], m[3]) for m in sel])
-    v, f = decimate(v, f, target)
+    v, f = decimate_skin(v, f) if pid == 'skin' else decimate_fq(v, f, target) if pid == 'bronchi' else decimate(v, f, target)
     v = v - SHIFT
     d = dict(id=pid, name=name, system=system, side=side, v=v, f=f, src=src, card=card, nodes=sorted(m[1].split('/')[-1] for m in sel))
     if parent: d['parent'] = parent
@@ -133,7 +188,7 @@ for r in rows:
             for m in s2:
                 node = m[1].split('/')[-1]; base = re.sub(r'_(L|R)$', '', node).lower()
                 pid = r['id'] + ('_' + sd.lower() if sd else '') + '_' + re.sub(r'[^a-z0-9]+', '_', base).strip('_')
-                add(pid, pretty(node) + ({'L': ' (left lung)', 'R': ' (right lung)'}.get(sd, '') if r['system'] == 'respiratory' else ''), r['system'], sd, [m], tris[min(k, len(tris) - 1)], r['src'], card, parent, False)
+                add(pid, pretty(node), r['system'], sd, [m], tris[min(k, len(tris) - 1)], r['src'], card, parent, False)
         else:
             add(r['id'] + sx, nm, r['system'], sd, s2, tris[min(k, len(tris) - 1)], r['src'], card, parent, 'whole' in flags)
 
@@ -161,7 +216,10 @@ ORG = {'heart': ['heart'], 'brain': ['cerebrum_l', 'cerebrum_r'], 'eye_r': ['eye
 # her two cut-open views that the man has no counterpart of: which parts each shows (meshes: the organ itself, its detail parts if it
 # has any; with: whole parts shown beside it). The breast view is of her left breast.
 ORGAN_VIEWS = {'uterus': {'meshes': ['uterus'], 'with': ['cervix', 'uterine_tube_l', 'uterine_tube_r', 'ovary_l', 'ovary_r', 'broad_ligament', 'uterine_ligaments', 'vagina']},
-               'breast': {'meshes': ['breast_fat_l'], 'with': ['breast_lobes_l', 'lactiferous_ducts_l', 'nipple_areola_l', 'breast_ligaments_l']}}
+               'breast': {'meshes': ['breast_fat_l'], 'with': ['breast_lobes_l', 'lactiferous_ducts_l', 'nipple_areola_l', 'breast_ligaments_l'],
+                          'shell': ['breast_fat_l'], 'cut': 'sagittal', 'cut_through': 'nipple_areola_l', 'dir': [1, .12, .3]}}
+# the breast is cut as anatomy books draw it, in the sagittal plane through the nipple, and seen from her left: the fat (a see-through
+# wall in this view) round the lobes, the ducts that run to the nipple and the ligaments to the skin
 def ocen(o):
     cs = [(by[i]['v'].min(0) + by[i]['v'].max(0)) / 2 for i in ORG[o]]; return np.mean(cs, 0)
 def node_cen(pat):
@@ -205,6 +263,15 @@ for nid, pid in [('mammary_lobes', 'breast_lobes_l'), ('lactiferous_ducts', 'lac
     hot('breast', nid, cen(pid))
 hot('breast', 'adipose_tissue', near_point('breast_fat_l', ocen('breast') + np.array([.05, .04, 0])))
 log('markers measured on her parts: ' + ', '.join('%s %d' % (o, len(v)) for o, v in HOT.items()))
+
+# ---------- sizes measured on her parts, for her cards ("In this model") ----------
+# The extent of a part along its own three main axes (principal axes of its vertices), longest first, in cm. The uterus is its body
+# (fundus, body, walls, lower segment), then with the cervix; the ovaries each.
+def extents(v):
+    c = v - v.mean(0); _, _, vt = np.linalg.svd(c, full_matrices=False); return [round(float(x) * 100, 1) for x in sorted(np.ptp(c @ vt.T, 0))[::-1]]
+MEAS = {'uterus': extents(by['uterus']['v']), 'uterus_with_cervix': extents(np.vstack([by['uterus']['v'], by['cervix']['v']])),
+        'ovary_l': extents(by['ovary_l']['v']), 'ovary_r': extents(by['ovary_r']['v'])}
+log('measured (cm, along each part\'s main axes): ' + json.dumps(MEAS))
 
 # ---------- the man's parts that her atlas does not have ----------
 # Base ids of parts of the man's model (data/anatomy) with no counterpart in either source file: the app says so on their cards ("Not in
@@ -285,7 +352,7 @@ idx = {'format': 'anatomy-v1', 'units': 'm', 'up': '+Y', 'front': '+Z', 'left': 
                   'doi': ['https://doi.org/10.48539/HBM637.DWBM.744', 'https://doi.org/10.48539/HBM853.VCFM.778'], 'licence': 'CC BY 4.0',
                   'files': {'3d-vh-f-united.glb': '95f0c3d2f918582608692ca1139e8bdb18c147a16470e9ee9af8b276bd77c422', '3d-vh-f-pelvis.glb': '6ef3436e42b7203afcdfa075e57098e97c4e1aaaec08cfdacf6300ba3d5a551d'}},
        'frame': {'shift_m': [r_(x, 5) for x in SHIFT], 'scale': 1},
-       'hotspots': HOT, 'organ_views': ORGAN_VIEWS, 'regions': REG, 'absent': sorted(ABSENT),
+       'hotspots': HOT, 'organ_views': ORGAN_VIEWS, 'measured': MEAS, 'regions': REG, 'absent': sorted(ABSENT),
        'systems': [{'id': a, 'name': b, 'color': c, 'count': sum(1 for e in index if e['system'] == a), 'file': a + '.json'} for a, b, c in SYS],
        'parts': index}
 open(os.path.join(OUT, 'index.json'), 'w').write(json.dumps(idx, separators=(',', ':')))

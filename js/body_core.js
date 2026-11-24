@@ -350,9 +350,19 @@ function lungShellGeo(tree, heart) {
   return sph;
 }
 /* the woman's model note (js/nodes.js FT.body, BLK.recolor): what is hers, what is missing, what is not her own tissue */
-const BODY_F_NOTE = 'Model: one woman\'s body, the Visible Human Female (U.S. National Library of Medicine; 59 years old), from the Human Reference Atlas\'s 3D models of her frozen sections. Not resized: she stands 1.66 m in this model (her recorded height is 171.2 cm). Shown are her skin, spine, breastbone, pelvis and leg bones, heart and the vessels of her trunk, lungs, airway, liver, gut, kidneys, bladder, uterus, ovaries and their ligaments, breasts, spinal cord and eyes. Her skull, ribs, shoulders, arm, hand and foot bones, almost all her muscles, her stomach and the vessels of her head and limbs were not made from her sections, so they are missing here; nothing is borrowed from anyone else. Not her own tissue: the inside of each breast is a sculpted reference model; the large intestine follows her bowel\'s path only roughly; the brain is another woman\'s (Allen atlas), mirrored and resized; the spinal discs are modelled. The atlas makers adjusted her skin to fit the organs. Tissue colours are those of living tissue, approximately. Woman: Visible Human Female (U.S. National Library of Medicine), 3D models by K. Browne and H. Schlehlein, Human Reference Atlas, 3D Reference Organ Set for Female v1.10 and Pelvis v1.3 (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/); brain from the Allen human brain reference atlas (Ding et al. 2016) as fitted by the HRA. Selected, merged, simplified, re-centred and recoloured for this site.';
-const BODY_F_NOTE_REAL = 'The skin tone is one choice of many. Her eyes are closed in the data, and are shown closed. The hair is a colour on the scalp by rule: the data has no hair. The data has no fingernails, and none are drawn.';
-const BODY_BOTH_NOTE = 'The man is BodyParts3D scaled to 1.75 m; the woman is not scaled. The difference between them is between these two people, not between men and women on average.';
+const BODY_F_NOTE = 'Model: one woman\'s body, the Visible Human Female (U.S. National Library of Medicine; 59 years old, described by the Human Reference Atlas as obese), from the Human Reference Atlas\'s 3D models of her frozen sections. Not resized: she stands 1.66 m in this model (her recorded height is 171.2 cm). Her shape is that of a body lying on its back, shown standing: her back and buttocks are flattened. Shown are her skin; spine, breastbone, pelvis and leg bones, with the cartilage and ligaments of her knees; heart and the vessels of her trunk; lungs and airway; liver, gallbladder, bile ducts, pancreas, spleen, thymus, gut and omentum; kidneys and bladder; uterus, ovaries and their ligaments; breasts; brain, spinal cord, optic nerves, eyes and eye muscles; teeth, tongue, mouth and salivary glands; and one thigh muscle on each side. Her skull, ribs, shoulders, arm, hand and foot bones, almost all her muscles, her stomach and the vessels of her head and limbs were not made from her sections, so they are missing here: no missing part is filled in from another body. The one part from someone else is her brain, which the atlas makers took from another woman (Allen human brain atlas), mirrored and resized. Also not her own tissue: the inside of each breast is a sculpted reference model; the large intestine follows her bowel\'s path only roughly; the spinal discs are modelled. Her teeth, tongue, gums, palate and salivary glands follow her sections and were refined with dental atlases. The atlas makers adjusted her skin to fit the organs, made her optic nerves thicker and reshaped the neck of her pancreas. Tissue colours are those of living tissue, approximately. Woman: Visible Human Female (U.S. National Library of Medicine), 3D models by K. Browne and H. Schlehlein, Human Reference Atlas, 3D Reference Organ Set for Female v1.10 and Pelvis v1.3 (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/); brain from the Allen human brain reference atlas (Ding et al. 2016) as fitted by the HRA. Selected, merged, simplified, re-centred and recoloured for this site.';
+const BODY_F_NOTE_REAL = 'The skin tone is one choice of many. Her eyes are closed in the data and are shown closed; the line of the lashes is drawn by rule. The red of the lips, the brows and the hair are colours laid on the skin by rule, as on the man: the data has no hair. Her fingernails are drawn by the rule used for the man, with the proportions measured on men\'s nails (women\'s are a little longer for their width); her toes have none.';
+const BODY_BOTH_NOTE = 'The man is BodyParts3D scaled to 1.75 m, a height chosen for this site (TARO, the scan model it was made from, is 1.73 m tall); the woman is not scaled. So their difference in height is partly that choice. Their other differences are between these two people, not between men and women on average.';
+/* the two of them seen together (the place card while the camera is a few metres from both: engine_ui.js updateCaption, F.placeAs) */
+const BODY_PEOPLE = { name: 'People', blurb: 'A man and a woman, each an anatomical model made from one person\'s body: the man from BodyParts3D, scaled to 1.75 m, the woman from the Visible Human Female at her own size. Click anywhere on either to see what lies under that spot; double-click a part to look inside it. Zoom in and the skin turns see-through, then the layers beneath. Her model has fewer layers than his; her note says which.', note: BODY_BOTH_NOTE };
+/* what her data lacks, said on the canvas in each view (the line under the field of view: engine_ui.js updateCaption, F.gapNote) */
+const BODY_F_GAP = {
+  skeleton: 'Not in her data: skull, jaw, ribs, collarbones, shoulder blades, arm, hand and foot bones. Nothing is filled in from another body.',
+  muscles: 'Not in her data: all her muscles but the front muscle of each thigh (rectus femoris) and the eye muscles.',
+  organs: 'Not in her data: stomach, oesophagus, diaphragm, and the adrenal, thyroid and pituitary glands.',
+  nervous: 'Her nerves in the data: the brain (another woman\'s), spinal cord and optic nerves; no other nerves.',
+  circulatory: 'Not in her data: the vessels of her head, neck, arms and legs.',
+  auto: 'Not in her data: skull, ribs, arm, hand and foot bones and almost all her muscles; what shows is all the atlas has here.' };
 const LUNG_NOTE = 'The lung outline is drawn schematically around the airway tree, because the model data holds only the airways. Its size and shape are approximate.';
 
 /* ---------- surface grain ----------
@@ -618,7 +628,8 @@ float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2
       knee: [.083, .47, .04], elbow: [.215, 1.13, -.045], out: [.066, .075], lid: [.031, 1.627, .052], earThin: [.07, .077], noseThin: [.095, .105], head: 1.45 },
     woman: { face: [1.41, 1.47, -.01, .05, 1.59, 1.65], cheek: [.055, 1.517, .096], nose: [0, 1.512, .118], ear: [.085, 1.577, -.023], hand: [.37, .40, .9, .95, .79, .83],
       knee: [.135, .44, .06], elbow: [.29, 1.07, -.04], out: [.075, .084], lid: [.040, 1.559, .074], earThin: [.079, .086], noseThin: [.111, .121], head: 1.38,
-      hair: [1.50, 1.625, -.06, .07] } };   // her data has no hair: a colour on the scalp above a hairline set by rule (from 1.50 m at the nape to 1.625 m over the brow)
+      hair: [1.50, 1.625, -.06, .07], fingerThin: .35 } };   // her data has no hair: a colour on the scalp above a hairline set by rule (from 1.50 m at the nape to 1.625 m over the brow).
+  // fingerThin: the light through her fingers at about a third of his: the red that comes through skin, added to her darker tone, made the edges of her palms glow orange
   function skinZones(g, keepNormals, who) {
     const P = g.attributes.position, n = P.count, col = new Float32Array(n * 3), thin = new Float32Array(n), lids = new Float32Array(n), Z = ZONES[who] || ZONES.man;
     for (let i = 0; i < n; i++) {
@@ -632,7 +643,7 @@ float bkN( vec3 p ) { vec3 i = floor( p ), f = fract( p ); f = f * f * ( 3.0 - 2
       const red = Math.min(1, (.35 * face + .55 * cheek + .5 * nose + .55 * ear * out + .45 * hand + .35 * finger + .45 * foot + .35 * knee + .3 * elbow) * (1 - .6 * lid));
       col[i * 3] = 1 + .02 * red; col[i * 3 + 1] = 1 - .09 * red; col[i * 3 + 2] = 1 - .1 * red;
       if (Z.hair) { const h = Z.hair[0] + (Z.hair[1] - Z.hair[0]) * sm(Z.hair[2], Z.hair[3], z), k = sm(h, h + .012, y) * .78; col[i * 3] *= 1 - k * .8; col[i * 3 + 1] *= 1 - k * .84; col[i * 3 + 2] *= 1 - k * .86; }
-      thin[i] = Math.min(1, ear * sm(Z.earThin[0], Z.earThin[1], x) + finger + .6 * nose * sm(Z.noseThin[0], Z.noseThin[1], z));
+      thin[i] = Math.min(1, ear * sm(Z.earThin[0], Z.earThin[1], x) + finger * (Z.fingerThin ?? 1) + .6 * nose * sm(Z.noseThin[0], Z.noseThin[1], z));
       lids[i] = lid;
     }
     g.setAttribute('color', new THREE.BufferAttribute(col, 3)); g.setAttribute('bkThin', new THREE.BufferAttribute(thin, 1));
@@ -742,12 +753,24 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
     if (!m || !m.isMeshStandardMaterial) return;
     skinZones(g, false, who);
     if (!g.attributes.bkMask) g.setAttribute('bkMask', new THREE.BufferAttribute(new Uint8Array(g.attributes.position.count * 4), 4, true));
-    skinMat(m);
+    skinMat(m, who);
   };
   /* the skin's material (also the second one drawn while the coarse and the detailed skin cross over, hdUse). uBkFade: x 1 for the
      skin coming in, 2 for the one going out; y how far the change has gone. Each pixel is the one or the other (a fixed pattern of
      pixels hands over from one to the other), so nothing is blended or drawn twice. */
-  function skinMat(m) {
+  /* Where the skin's colours by rule lie on each body (body metres; x is taken on either side): the lips' red (an ellipse round the mouth's
+     middle, on the front of the face), the line where the lips meet, the brows, the areolae, the hairline, the ears and the sideburns.
+     The man's were set on his skin; the woman's measured on hers (tools/anatomy/female: her mouth's middle at 1.4795 m, the front of
+     her lips 10 to 11 cm in front of her midline plane; her lids close at about 1.5545 m, 3.6 cm either side of the midline). Her lids
+     are closed in the data: the line where they meet carries a line of lashes. */
+  const SKINRULE = {
+    man: { lip: [1.5645, .022, .0085, .078, .086], part: .0012, brow: [.029, 1.6455, .021, .0034, .068, .076], ar: [.066, 1.287, .123, .006, .013],
+      hair: [1.578, 1.702, -.10, .04], ear: [.074, 1.646, -.046], sb: [.052, .062, -.02, -.013, -.003, .004], lash: null },
+    woman: { lip: [1.4795, .022, .011, .096, .103], part: .0012, brow: [.034, 1.578, .021, .0034, .084, .092], ar: [.108, 1.185, .1385, .009, .016],
+      hair: [1.50, 1.625, -.06, .07], ear: [.085, 1.577, -.023], sb: [.063, .073, .003, .010, .020, .027], lash: [.036, 1.5545, .016, .0011, .084, .090] } };
+  const gf = x => (Math.round(x * 1e5) / 1e5).toFixed(5);
+  function skinMat(m, who) {
+    const Fc = SKINRULE[who] || SKINRULE.man, L = Fc.lip, Bw = Fc.brow, A = Fc.ar, Hh = Fc.hair, E = Fc.ear, S = Fc.sb, W = Fc.lash;
     m.vertexColors = true;
     const hd = m.userData.bkHD = { value: 0 }, fade = m.userData.bkFade = { value: new THREE.Vector2(0, 0) };
     const sss = LOOK.part('sss'), tex = LOOK.part('tex');
@@ -756,7 +779,7 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
     if (LOOK.part('hair')) m.defines.BK_HAIR = '1';   // ?look=2&lookoff=hair leaves the head bare
     m.extensions = Object.assign(m.extensions || {}, { derivatives: true });
     const pars = THREE.ShaderChunk.lights_physical_pars_fragment, ok = sss && pars.includes(SKINDIFF[0]);
-    LOOK.patch(m, 'bkskin', sh => {
+    LOOK.patch(m, who === 'woman' ? 'bkskin_f' : 'bkskin', sh => {
       sh.uniforms.uBkHD = hd; sh.uniforms.uBkFade = fade;
       sh.vertexShader = 'attribute float bkThin;\nattribute float bkConv;\nattribute vec3 bkNs;\nattribute vec4 bkMask;\nvarying float vBkThin;\nvarying float vBkConv;\nvarying vec3 vBkNs;\nvarying vec3 vBkP;\nvarying vec4 vBkM;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvBkP = position; vBkThin = bkThin; vBkConv = bkConv; vBkNs = normalMatrix * bkNs; vBkM = bkMask;');
       let f = 'varying float vBkThin;\nvarying vec3 vBkP;\nvarying vec4 vBkM;\nuniform float uBkHD;\nuniform vec2 uBkFade;\nfloat bkHair = 0.0;\nfloat bkWet = 0.0;\nfloat bkLipK = 0.0;\n' + NOISE + sh.fragmentShader;
@@ -774,26 +797,28 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
 	{ vec3 bkQ = vec3( abs( vBkP.x ), vBkP.yz ); float bkDv = length( vViewPosition );
 	  float bkM1 = bkN( vBkP * 40.0 ) - 0.5, bkM2 = bkN( vBkP * 230.0 + 7.0 ) - 0.5, bkNear = 1.0 - smoothstep( 0.5, 2.5, bkDv );
 	  diffuseColor.rgb *= 1.0 + vec3( 0.07, -0.03, -0.05 ) * bkM1 + vec3( -0.05, -0.07, -0.06 ) * bkM2 * bkNear;   // blood over centimetres, pigment over millimetres
-	  float bkLip = ( 1.0 - smoothstep( 0.55, 1.0, length( vec2( bkQ.x / 0.022, ( bkQ.y - 1.5645 ) / 0.0085 ) ) ) ) * smoothstep( 0.078, 0.086, bkQ.z );
+	  float bkLip = ( 1.0 - smoothstep( 0.55, 1.0, length( vec2( bkQ.x / ${gf(L[1])}, ( bkQ.y - ${gf(L[0])} ) / ${gf(L[2])} ) ) ) ) * smoothstep( ${gf(L[3])}, ${gf(L[4])}, bkQ.z );
 	  bkLip = mix( bkLip, smoothstep( 0.1, 0.6, vBkM.r ), uBkHD );   // the detailed skin: the red of the lips where the atlas's lips are
 	  bkLipK = bkLip * uBkHD;
 	  diffuseColor.rgb *= mix( vec3( 1.0 ), mix( vec3( 0.93, 0.8, 0.8 ), vec3( 0.95, 0.76, 0.8 ), uBkHD ), bkLip );   // the red of the lips: blood seen through a thin, clear skin
 	  bkWet = smoothstep( 0.3, 0.9, vBkM.g ) * uBkHD;   // the lids' margins, where skin turns into the wet lining of the lid
 	  diffuseColor.rgb *= mix( vec3( 1.0 ), vec3( 0.98, 0.86, 0.85 ), bkWet );
-	  { float bkLx = bkQ.x / 0.022, bkLine = 1.5645 - 0.0012 * bkLx * bkLx;   // where the lips meet: a thin shadow, the corners a little lower
-	    float bkPart = exp( - pow( ( bkQ.y - bkLine ) / 0.0017, 2.0 ) ) * ( 1.0 - smoothstep( 0.45, 1.0, abs( bkLx ) ) ) * smoothstep( 0.074, 0.084, bkQ.z );
+	  { float bkLx = bkQ.x / ${gf(L[1])}, bkLine = ${gf(L[0])} - ${gf(Fc.part)} * bkLx * bkLx;   // where the lips meet: a thin shadow, the corners a little lower
+	    float bkPart = exp( - pow( ( bkQ.y - bkLine ) / 0.0017, 2.0 ) ) * ( 1.0 - smoothstep( 0.45, 1.0, abs( bkLx ) ) ) * smoothstep( ${gf(L[3] - .004)}, ${gf(L[4] - .002)}, bkQ.z );
 	    bkPart *= 1.0 - uBkHD;   // the detailed skin has the parting of the lips in its shape
 	    diffuseColor.rgb *= ( 1.0 - 0.3 * bkPart ) * mix( 1.0, 0.93, bkLip * step( bkLine, bkQ.y ) * ( 1.0 - uBkHD ) ); }   // the upper lip, turned down from the light, a little darker
-	  float bkAr = 1.0 - smoothstep( 0.006, 0.013, length( bkQ - vec3( 0.066, 1.287, 0.123 ) ) );
-	  diffuseColor.rgb *= mix( vec3( 1.0 ), vec3( 0.86, 0.76, 0.74 ), bkAr );
+	  float bkAr = 1.0 - smoothstep( ${gf(A[3])}, ${gf(A[4])}, length( bkQ - vec3( ${gf(A[0])}, ${gf(A[1])}, ${gf(A[2])} ) ) );
+	  diffuseColor.rgb *= mix( vec3( 1.0 ), vec3( 0.86, 0.76, 0.74 ), bkAr );${W ? `
+	  { float bkEx = bkQ.x - ${gf(W[0])}, bkLs = exp( - pow( ( bkQ.y - ${gf(W[1])} + 2.0 * bkEx * bkEx ) / ${gf(W[3])}, 2.0 ) ) * ( 1.0 - smoothstep( 0.6, 1.0, abs( bkEx ) / ${gf(W[2])} ) ) * smoothstep( ${gf(W[4])}, ${gf(W[5])}, bkQ.z );
+	    diffuseColor.rgb *= 1.0 - 0.55 * bkLs; }   // closed lids: where they meet, the line of the lashes` : ''}
 	  #ifdef BK_HAIR
-	  float bkHl = mix( 1.578, 1.702, smoothstep( -0.10, 0.04, bkQ.z ) ) + ( bkN( vBkP * 90.0 ) - 0.5 ) * 0.006;   // the hairline: the nape, over the ears, the forehead
-	  bkHl -= 0.03 * smoothstep( 0.052, 0.062, bkQ.x ) * smoothstep( -0.02, -0.013, bkQ.z ) * ( 1.0 - smoothstep( -0.003, 0.004, bkQ.z ) );   // sideburns, in front of the ear, to about its middle
-	  float bkEar = length( ( bkQ - vec3( 0.074, 1.646, -0.046 ) ) / vec3( 0.03, 0.05, 0.034 ) );
+	  float bkHl = mix( ${gf(Hh[0])}, ${gf(Hh[1])}, smoothstep( ${gf(Hh[2])}, ${gf(Hh[3])}, bkQ.z ) ) + ( bkN( vBkP * 90.0 ) - 0.5 ) * 0.006;   // the hairline: the nape, over the ears, the forehead
+	  bkHl -= 0.03 * smoothstep( ${gf(S[0])}, ${gf(S[1])}, bkQ.x ) * smoothstep( ${gf(S[2])}, ${gf(S[3])}, bkQ.z ) * ( 1.0 - smoothstep( ${gf(S[4])}, ${gf(S[5])}, bkQ.z ) );   // sideburns, in front of the ear, to about its middle
+	  float bkEar = length( ( bkQ - vec3( ${gf(E[0])}, ${gf(E[1])}, ${gf(E[2])} ) ) / vec3( 0.03, 0.05, 0.034 ) );
 	  float bkFe = ( bkQ.y - bkHl ) / 0.006 + ( bkN( vBkP * 1500.0 ) - 0.5 ) * 1.6;   // the edge thins out over about 5 mm, hair by hair rather than as a line
 	  diffuseColor.rgb *= 1.0 - 0.12 * mix( smoothstep( -1.5, 0.5, bkFe ) * smoothstep( 0.95, 1.3, bkEar ), smoothstep( 0.1, 0.5, vBkM.a ) * step( 1.3, vBkP.y ), uBkHD );   // the scalp under thin hair is a little darker than the forehead
 	  bkHair = smoothstep( -0.3, 1.0, bkFe ) * smoothstep( 0.95, 1.3, bkEar );
-	  float bkDx = bkQ.x - 0.029, bkBrow = ( 1.0 - smoothstep( 0.5, 1.0, length( vec2( bkDx / 0.021, ( bkQ.y - 1.6455 + 9.0 * bkDx * bkDx ) / ( 0.0034 - 0.04 * max( bkDx, 0.0 ) ) ) ) ) ) * smoothstep( 0.068, 0.076, bkQ.z );   // tapering outward
+	  float bkDx = bkQ.x - ${gf(Bw[0])}, bkBrow = ( 1.0 - smoothstep( 0.5, 1.0, length( vec2( bkDx / ${gf(Bw[2])}, ( bkQ.y - ${gf(Bw[1])} + 9.0 * bkDx * bkDx ) / ( ${gf(Bw[3])} - 0.04 * max( bkDx, 0.0 ) ) ) ) ) ) * smoothstep( ${gf(Bw[4])}, ${gf(Bw[5])}, bkQ.z );   // tapering outward
 	  bkHair = max( bkHair, 0.55 * bkBrow );
 	  float bkStr = bkN( vec3( vBkP.x * 1400.0, vBkP.y * 300.0, vBkP.z * 1400.0 ) );
 	  if ( uBkHD > 0.5 && vBkP.y > 1.3 ) {
@@ -833,7 +858,7 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
   B.eyes = (F, focus) => {
     const sk = F.parts.skin; if (!sk) return; const so = sk.g.userData.op, lids = !focus && so >= .9 && sk.g.visible && !HD.near;   // the detailed skin has real lids
     if (HD.near) for (const id of ['eyeball_l', 'eyeball_r']) { const e = F.parts[id], c = e && e.g.userData.cornea; if (c) { const m = e.g.userData.main.material; B.ghost(c.material, 1, e.g.visible && !F.hidden.has(id) ? Math.min(1, m.transparent ? m.opacity : F.alpha) : 0); } }   // the cornea: as clear as the eye under it is solid
-    { const nl = sk.g.userData.nails; if (nl && HD.near) { const m = sk.g.userData.main.material; nl.visible = sk.g.visible && m.opacity > .02; nl.material.opacity = m.opacity; nl.material.depthWrite = m.depthWrite; } }   // the nails: as the skin is
+    { const nl = sk.g.userData.nails; if (nl && (HD.near || F.who === 'woman')) { const m = sk.g.userData.main.material; nl.visible = sk.g.visible && m.opacity > .02; nl.material.opacity = m.opacity; nl.material.depthWrite = m.depthWrite; } }   // the nails: as the skin is
     for (const id of ['eyeball_l', 'eyeball_r']) { const e = F.parts[id], c = e && e.g.userData.main.material.userData.bkCap; if (c) c.value.x = lids ? 1 : 0; }
     if (focus) return;
     for (const id of ['eyeball_l', 'eyeball_r']) {
@@ -886,7 +911,16 @@ vec3 bkSkinIrr( const in GeometricContext geometry, const in IncidentLight direc
     return { H, G };
   }
   B.hd = F => {
-    if (F.who === 'woman') return;   // the detailed skin is the man's (data/anatomy/skin_hd.bin); the woman's is drawn from her data's own skin
+    if (F.who === 'woman') {   // the detailed skin is the man's (data/anatomy/skin_hd.bin); the woman's is drawn from her data's own skin.
+      // Her fingernails (data/anatomy_f/nails.json, tools/anatomy/female/nails_f.py: by the man's rule), loaded when the camera is within 4 m
+      if (F._nails || !F.partsReady || !F.parts.skin || !F.C || F.C.distanceTo(F.center || V3Z) > 4) return;
+      F._nails = getJSON(F.anatDir + 'nails.json').then(d => {
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(d.pos), 3)); g.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(d.normal), 3));
+        g.setAttribute('bkMask', new THREE.BufferAttribute(new Float32Array(d.mask), 4)); g.setIndex(new THREE.BufferAttribute(new Uint32Array(d.idx), 1)); g.computeBoundingSphere();
+        const sk = F.parts.skin; sk.g.userData.nails = nailMesh(sk, g);
+      }).catch(e => console.warn('body: her nails did not load', e && e.message));
+      return;
+    }
     if (HD.fade && HD.fade.t0 >= 0) hdFade(F);
     if (HD.on && F.C) { const d = F.C.distanceTo(HD.C); if (HD.near ? d > 5 : d < 4) hdUse(F, !HD.near); return; }   // 4 m in, 5 m out: the park's views draw the coarse skin
     if (HD.p || !F.partsReady || !LOOK.part('hd') || !F.C || F.C.distanceTo(HD.C) > 4) return;

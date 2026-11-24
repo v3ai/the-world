@@ -67,7 +67,8 @@ async function buildWorld() {
 
   for (const ext of WORLD_EXT) { try { await ext(FR); } catch (e) { console.error('world extension failed', e); } }
   // A landmark: {label, D, frame, go(then)}. `frame` is where the camera must be anchored (or inside) after the flight.
-  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, at: p || null, go: then => flyTo(f, p || new V3(), D, then, extra && extra.dir) }, extra || {});   // at: the place in the frame, where it is not the frame's middle (the ruler names a landmark only when the camera is there)
+  const upright = () => innerWidth <= 860 && innerHeight > innerWidth;   // a phone held upright: the toolbar above and the sheet below leave the middle half of the screen
+  const LM = (label, f, p, D, extra) => Object.assign({ label, D, frame: f, at: p || null, go: then => { const ph = extra && extra.phone && upright() ? extra.phone : null; flyTo(f, ph ? ph[0] : p || new V3(), ph ? ph[1] : D, then, extra && extra.dir); } }, extra || {});   // at: the place in the frame, where it is not the frame's middle (the ruler names a landmark only when the camera is there)
   const organ = (id, fallback) => body.children.find(c => c.type === 'organ' && c.opts.organ === id) || fallback;
   const bodyLM = (id, label, D, organId) => {
     const p = AN && AN.byId[id]; if (!p) return null;
@@ -84,7 +85,7 @@ async function buildWorld() {
     LM('Skin cell', cell, null, 4e-5),
     LM('Skin', skin, null, 1.5e-3),
     ...devLM, bodyLM('cerebrum_r', 'Brain', .5, 'brain'), bodyLM('heart', 'Heart', .4, 'heart'),
-    LM('Man', body, new V3(0, .95, 0), 3.2, { side: true }), LM('Woman', body_f, new V3(0, .9, 0), 3.1, { side: true }),   // each of the two people, near enough to see them whole
+    LM('Man', body, new V3(0, .95, 0), 3.2, { side: true, phone: [new V3(0, .875, 0), 4.3] }), LM('Woman', body_f, new V3(0, .9, 0), 3.1, { side: true, phone: [new V3(0, .83, 0), 4.1] }),   // phone: further back and aimed at the middle (the view is already centred above the sheet), so the whole person stands between the toolbar and the sheet   // each of the two people, near enough to see them whole
     LM('People', park, PEOPLE, 6.5),   // the two people (the place the start view shows), not the park around them
     LM('Greenwich Park', park, new V3(0, 0, 0), 450),   // near enough that the oaks (drawn out to 700 m) are all there, far enough to see the park whole
     LM('London', region, null, 8e4),
